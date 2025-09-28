@@ -1,4 +1,4 @@
-# 3.講義：MRI装置の原理
+# 3.講義：MRIの基礎原理
 
 ---
 
@@ -15,7 +15,7 @@
     2. 静磁場中にて、ある周波数の電磁波(RFパルス)を印加すると、プロトンは高エネルギー状態に変化する。そして電磁波を止めると電波を放出しながら徐々に元のエネルギー状態へと戻る。(核磁気共鳴現象)
     3. この過程で放出される電波をコイルで受信し画像化したものがMRI
 
-<video src="/img/07-01.mp4" controls="true" alt="励起と信号検出" width="800" height="auto"></video>
+<video src="../img/07-01.mp4" controls="true" alt="励起と信号検出" width="800" height="auto"></video>
 
 ---
 
@@ -35,7 +35,7 @@ MRIでは、**水素原子核（=陽子[プロトン]、陽子1こ、中性子0�
 **重要②：** MRIは**水素原子核（プロトン）のスピン**を主に利用します。電子のスピンとは別のものです。
 
 <figure>
-  <img src="/img/07-01.png" alt="水素原子核のスピン" width="800" height="auto">
+  <img src="../img/07-01.png" alt="水素原子核のスピン" width="800" height="auto">
   <figcaption>水素原子核のスピンと磁気モーメント</figcaption>
 </figure>
 
@@ -60,7 +60,7 @@ $$f_0 = \gamma \cdot B_0 / (2\pi)$$
 **重要：** ラーモア周波数は静磁場強度に**比例**します（反比例ではありません）。
 
 <figure>
-  <img src="/img/07-02.png" alt="静磁場中の水素原子核" width="800" height="auto">
+  <img src="../img/07-02.png" alt="静磁場中の水素原子核" width="800" height="auto">
   <figcaption>静磁場中での水素原子核の振る舞い</figcaption>
 </figure>
 
@@ -87,7 +87,7 @@ $$f_0 = \gamma \cdot B_0 / (2\pi)$$
   - **受信コイル**：時間変化する磁束を電気信号に変換
 
 <figure>
-  <img src="/img/07-03.png" alt="励起と信号検出" width="800" height="auto">
+  <img src="../img/07-03.png" alt="励起と信号検出" width="800" height="auto">
   <figcaption>高周波励起とMR信号の検出</figcaption>
 </figure>
 
@@ -118,7 +118,7 @@ $$M_{xy}(t) = M_0 \cdot e^{-t/T2}$$
 - 実際に観測される信号減衰
 
 <figure>
-  <img src="/img/07-04.png" alt="T1とT2緩和" width="800" height="auto">
+  <img src="../img/07-04.png" alt="T1とT2緩和" width="800" height="auto">
   <figcaption>T1緩和とT2緩和の概念</figcaption>
 </figure>
 
@@ -154,7 +154,7 @@ $$M_{xy}(t) = M_0 \cdot e^{-t/T2}$$
 
 
 <figure>
-  <img src="/img/07-05.png" alt="傾斜磁場による空間符号化" width="1000" height="auto">
+  <img src="../img/07-05.png" alt="傾斜磁場による空間符号化" width="1000" height="auto">
   <figcaption>3つの傾斜磁場による空間情報の符号化</figcaption>
 </figure>
 
@@ -216,22 +216,22 @@ $$I(x,y) = \iint S(k_x,k_y) \cdot e^{j2\pi(k_x x + k_y y)} dk_x dk_y$$
 - **見かけの拡散係数（ADC）**の測定
 
 <figure>
-  <img src="/img/07-06.png" alt="画像コントラスト" width="800" height="auto">
+  <img src="../img/07-06.png" alt="画像コントラスト" width="800" height="auto">
   <figcaption>緩和時間差による画像コントラスト</figcaption>
 </figure>
 
 <figure>
-  <img src="/img/07-07.png" alt="画像コントラスト" width="800" height="auto">
+  <img src="../img/07-07.png" alt="画像コントラスト" width="800" height="auto">
   <figcaption>コントラストの違い</figcaption>
 </figure>
 
 <figure>
-  <img src="/img/07-08.png" alt="画像コントラスト" width="800" height="auto">
+  <img src="../img/07-08.png" alt="画像コントラスト" width="800" height="auto">
   <figcaption>初見1</figcaption>
 </figure>
 
 <figure>
-  <img src="/img/07-09.png" alt="画像コントラスト" width="800" height="auto">
+  <img src="../img/07-09.png" alt="画像コントラスト" width="800" height="auto">
   <figcaption>初見2</figcaption>
 </figure>
 
@@ -351,7 +351,7 @@ $$I(x,y) = \iint S(k_x,k_y) \cdot e^{j2\pi(k_x x + k_y y)} dk_x dk_y$$
 - **4D flow MRI**：血流の可視化
 
 <figure>
-  <img src="/img/07-10.png" alt="MRIの臨床応用" width="800" height="auto">
+  <img src="../img/07-10.png" alt="MRIの臨床応用" width="800" height="auto">
   <figcaption>MR Angiography</figcaption>
 </figure>
 
