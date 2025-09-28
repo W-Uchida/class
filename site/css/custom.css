@@ -1,0 +1,7 @@
+/* PC表示時のメインコンテンツの幅を拡大 */
+@media (min-width: 1400px) {
+    .md-main__inner {
+      max-width: 4000px;  /* お好みに合わせて調整 */
+    }
+  }
+  

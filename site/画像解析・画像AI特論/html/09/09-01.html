@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ドプラシフト周波数の数学的導出</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.min.js"></script>
+    <style>
+        body {
+            font-family: 'Times New Roman', 'Yu Mincho', 'Hiragino Mincho Pro', serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+            background-color: #ffffff;
+            color: #333;
+        }
+        
+        .container {
+            background-color: white;
+            padding: 40px;
+            border: 1px solid #ddd;
+        }
+        
+        .header {
+            border-bottom: 3px solid #333;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 1.6em;
+            font-weight: normal;
+            color: #333;
+        }
+        
+        .header p {
+            margin: 10px 0 0 0;
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .step-box {
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .step-title {
+            color: #333;
+            font-weight: bold;
+            font-size: 1.0em;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+        
+        .equation-box {
+            background-color: #f8f8f8;
+            border: 1px solid #999;
+            padding: 15px;
+            margin: 15px 0;
+            text-align: center;
+        }
+        
+        .highlight-box {
+            background-color: #f5f5f5;
+            border: 2px solid #666;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .angle-box {
+            background-color: #f9f9f9;
+            border: 1px solid #aaa;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .back-button {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #666;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+        }
+        
+        .back-button:hover {
+            background-color: #444;
+        }
+        
+        h2 {
+            color: #333;
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 8px;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+        
+        h3 {
+            color: #333;
+            margin-top: 25px;
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+        
+        ul {
+            padding-left: 25px;
+        }
+        
+        li {
+            margin-bottom: 6px;
+        }
+        
+        .important {
+            color: #000;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>ドプラシフト周波数の数学的導出</h1>
+            <p>超音波診断におけるドプラ効果の詳細解説</p>
+        </div>
+        
+        <a href="javascript:history.back()" class="back-button">← 講義メインページに戻る</a>
+        
+        <h2>5.1.1 ドプラシフト周波数の導出 (Step-by-Step)</h2>
+        
+        <p>音波の基本的な関係式 \(c = f \lambda\) （音速 = 周波数 × 波長）と、波の相対運動の概念からドプラシフト周波数の式を導出します。</p>
+        
+        <h3>前提条件</h3>
+        <ul>
+            <li>\(c\): 媒質中の音速 (生体軟部組織では約1540 m/s)</li>
+            <li>\(f_0\): 探触子から送信される超音波の周波数 (送信周波数)</li>
+            <li>\(\lambda_0\): 送信される超音波の波長 (\(\lambda_0 = c/f_0\))</li>
+            <li>\(v\): 反射体（赤血球）の速度。探触子に近づく場合を正 \((+)\)、遠ざかる場合を負 \((-)\) とします。</li>
+            <li>\(\theta\): 超音波ビームの進行方向と反射体の移動方向とのなす角度。</li>
+        </ul>
+        
+        <div class="step-box">
+            <div class="step-title">Step 1: 探触子から送信された波が移動する反射体（赤血球）に到達する際の周波数変化（観測者としての反射体）</div>
+            
+            <p>まず、探触子（音源）から発せられた周波数 \(f_0\) の超音波を、速度 \(v \cos\theta\) で探触子に対して相対的に移動している反射体（赤血球）が観測するときの見かけの周波数 \(f_r\) を考えます。</p>
+            
+            <p><strong>反射体が探触子に近づく場合 (\(v \cos\theta > 0\)):</strong></p>
+            <p>反射体は単位時間により多くの波面を受け取るため、観測される周波数は高く感じられます。<br>
+            音源が静止し観測者が速度 \(v_{obs}\) で音源に近づく場合の見かけの周波数 \(f'\) は、\(f' = \frac{c + v_{obs}}{c} f_0\) と表せます。</p>
+            
+            <p>ここで、\(v_{obs} = v \cos\theta\) とすると、反射体が観測する周波数 \(f_r\) は、</p>
+            
+            <div class="equation-box">
+                $$f_r = \frac{c + v \cos\theta}{c} f_0 = \left(1 + \frac{v \cos\theta}{c}\right) f_0$$
+            </div>
+        </div>
+        
+        <div class="step-box">
+            <div class="step-title">Step 2: 反射体が観測した周波数の波を、今度は音源として探触子（観測者）に向けて反射する際の周波数変化</div>
+            
+            <p>次に、反射体は周波数 \(f_r\) の波を反射します。このとき、反射体自身が音源となり、速度 \(v \cos\theta\) で静止している探触子（観測者）に対して相対的に移動しています。</p>
+            
+            <p><strong>反射体（新たな音源）が探触子（観測者）に近づく場合 (\(v \cos\theta > 0\)):</strong></p>
+            <p>音源が速度 \(v_{src}\) で観測者に近づく場合、観測者が受け取る周波数 \(f''\) は、\(f'' = \frac{c}{c - v_{src}} f_r\) と表せます。</p>
+            
+            <p>ここで、\(v_{src} = v \cos\theta\) とすると、探触子が最終的に受信する周波数 \(f_{recv}\) は、</p>
+            
+            <div class="equation-box">
+                $$f_{recv} = \frac{c}{c - v \cos\theta} f_r$$
+            </div>
+            
+            <p>Step 1で求めた \(f_r\) を代入すると、</p>
+            
+            <div class="equation-box">
+                $$f_{recv} = \frac{c}{c - v \cos\theta} \cdot \frac{c + v \cos\theta}{c} f_0 = \frac{c + v \cos\theta}{c - v \cos\theta} f_0$$
+            </div>
+        </div>
+        
+        <div class="step-box">
+            <div class="step-title">Step 3: ドプラシフト周波数 \(f_d\) の導出</div>
+            
+            <p>ドプラシフト周波数 \(f_d\) は、受信周波数 \(f_{recv}\) と送信周波数 \(f_0\) の差として定義されます。</p>
+            
+            <div class="equation-box">
+                $$f_d = f_{recv} - f_0$$
+            </div>
+            
+            <div class="equation-box">
+                $$f_d = \left(\frac{c + v \cos\theta}{c - v \cos\theta}\right) f_0 - f_0 = \left(\frac{c + v \cos\theta}{c - v \cos\theta} - 1\right) f_0$$
+            </div>
+            
+            <div class="equation-box">
+                $$f_d = \left(\frac{c + v \cos\theta - (c - v \cos\theta)}{c - v \cos\theta}\right) f_0 = \left(\frac{2 v \cos\theta}{c - v \cos\theta}\right) f_0$$
+            </div>
+            
+            <p>ここで、通常、生体内の血流速度 \(v\) は音速 \(c\) に比べて非常に小さい (\(v \ll c\)) ため、\(c - v \cos\theta \approx c\) と近似できます。</p>
+            
+            <p>この近似を用いると、</p>
+            
+            <div class="equation-box">
+                $$f_d \approx \left(\frac{2 v \cos\theta}{c}\right) f_0$$
+            </div>
+            
+            <p>整理すると、一般的に用いられるドプラシフト周波数の式が得られます。</p>
+            
+            <div class="highlight-box">
+                <h3 style="margin-top: 0; color: #dc2626;">最終的なドプラシフト周波数の式</h3>
+                $$f_d = \frac{2 \cdot f_0 \cdot v \cdot \cos\theta}{c}$$
+            </div>
+        </div>
+        
+        <h3>式の意味</h3>
+        <ul>
+            <li>\(f_d\): ドプラシフト周波数 [Hz]。これが測定される量です。</li>
+            <li>\(f_0\): 送信周波数 [Hz]。探触子の特性で決まります。</li>
+            <li>\(v\): 血流速度 [m/s]。求めたい量です。</li>
+            <li>\(\cos\theta\): 超音波ビームと血流の方向が成す角度 \(\theta\) の余弦。角度補正係数です。</li>
+            <li>\(c\): 生体内の音速 [m/s]。約1540m/sと仮定されます。</li>
+            <li><span class="important">係数「2」の理由</span>: 上記の導出過程からもわかるように、超音波が探触子から出て反射体に到達する際（1回目）と、反射体で反射されて探触子に戻る際（2回目）の、<strong>2回のドプラ効果を受けるため</strong>です。これを「往復効果」または「double Doppler effect」と呼びます。</li>
+        </ul>
+        
+        <h2>5.1.2 角度依存性 (\(\cos\theta\)) と血流方向の判定</h2>
+        
+        <p>上記のドプラシフト周波数の式からわかる重要な点が2つあります。</p>
+        
+        <div class="angle-box">
+            <h3 style="margin-top: 0; color: #15803d;">1. 角度依存性 (\(\cos\theta\))</h3>
+            <p>ドプラシフト周波数 \(f_d\) は、超音波ビームと血流の方向がなす角度 \(\theta\) の余弦 \(\cos\theta\) に比例します。</p>
+            <ul>
+                <li><strong>\(\theta = 0°\)</strong> (ビームと血流が平行): \(\cos 0° = 1\) となり、\(f_d\) は最大 (\(f_d = 2 f_0 v / c\))。血流速度 \(v\) を最も正確に反映します。</li>
+                <li><strong class="important">\(\theta = 90°\)</strong> (ビームと血流が垂直): \(\cos 90° = 0\) となり、\(f_d\) はゼロ。<span class="important">血流が存在していてもドプラシフトは検出できません</span>。</li>
+                <li>臨床的には、正確な血流速度測定のためには <strong>\(\theta\) を60°以下</strong>に保つことが望ましいとされています。角度が大きくなると、\(\cos\theta\) の値の変化に対する角度のわずかな変化の影響が大きくなり、測定誤差が増大するためです。装置では、この角度\(\theta\)を入力（設定）することで、表示される血流速度 \(v\) を補正します。</li>
+            </ul>
+        </div>
+        
+        <div class="angle-box">
+            <h3 style="margin-top: 0; color: #15803d;">2. 血流方向の判定 (\(f_d\) の符号)</h3>
+            <p>ドプラシフト周波数 \(f_d\) の符号は、\(v \cos\theta\) の符号によって決まります。（\(f_0\) と \(c\) は常に正）</p>
+            <ul>
+                <li><strong>探触子に近づく血流</strong>: \(\cos\theta > 0\) (例えば \(0° \le \theta < 90°\)) で、かつ血流の向きが探触子に向かう場合、または \(\cos\theta < 0\) (例えば \(90° < \theta \le 180°\)) で血流の向きが探触子から遠ざかる向きの「逆」の場合（つまり探触子に向かう）。一般的には、\(\theta\) を鋭角にとり、 \(v\) の符号で方向を表すことが多いです。\(v > 0\)（探触子に近づく速度成分）のとき、\(f_d\) は正の値となり、受信周波数は送信周波数より高くなります。</li>
+                <li><strong>探触子から遠ざかる血流</strong>: \(v < 0\)（探触子から遠ざかる速度成分）のとき、\(f_d\) は負の値となり、受信周波数は送信周波数より低くなります。</li>
+                <li><strong>カラードプラ表示</strong>: この \(f_d\) の符号（または平均速度）に応じて、一般的に<strong>探触子に近づく血流を暖色系（赤色など: Red）</strong>、<strong>探触子から遠ざかる血流を寒色系（青色など: Blue）</strong>でBモード画像上に重ねて表示します (BART: Blue Away, Red Towards の原則)。</li>
+            </ul>
+        </div>
+        
+        <div style="text-align: center; margin-top: 40px; padding: 20px; border-top: 1px solid #ccc;">
+            <a href="javascript:history.back()" class="back-button">← 講義メインページに戻る</a>
+        </div>
+    </div>
+</body>
+</html>

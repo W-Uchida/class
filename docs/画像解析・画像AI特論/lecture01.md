@@ -9,7 +9,7 @@
   医用画像は、診断や治療計画に欠かせない情報源です。ディジタル画像は、膨大な画素情報と解像度、そして正確なアナログ–ディジタル変換（A/D変換）技術に基づいています。  
 
 <figure>
-  <img src="/img/02-01.png" alt="フィルム法とCR法" width="800" height="auto">
+  <img src="../img/02-01.png" alt="フィルム法とCR法" width="800" height="auto">
   <figcaption>フィルム法とCR法（デジタル方式）</figcaption>
 </figure>
 
@@ -44,7 +44,7 @@
 - 指を折る覚え方も！
 
 <figure>
-  <img src="/img/02-02.png" alt="2進数カウント" width="1000" height="auto">
+  <img src="../img/02-02.png" alt="2進数カウント" width="1000" height="auto">
   <figcaption>2進数カウント</figcaption>
 </figure>
 
@@ -134,21 +134,6 @@
       
       2.25 + 7.75 = 10.00 (10進数)
 
-## 2.3 注意点とよくある誤り
-
-1. **桁数が違う場合の変換**
-   * 2進数から16進数への変換時、最上位の桁が4桁に満たない場合は0で埋める
-     * 例：2進数の101101 → 0010 1101 → 16進数では2D
-
-2. 2進数から16進数への変換時、右からではなく左から4桁ずつ区切ってしまう
-   
-3. 16進数の各文字の値を間違える（特にA=10, B=11, C=12, D=13, E=14, F=15の対応）
-   
-4. 小数点以下の変換で指数の符号を間違える
-   
-5. 桁上がりや桁借りの処理を忘れる
-
-
 
 ## 2.3 ビット数と表現可能範囲
 - **n ビットで表現できる数の範囲：**
@@ -179,12 +164,12 @@
     - 10ビットなら1024階調
     - 12ビットなら4096階調
 <figure>
-  <img src="/img/02-03.png" alt="解像度の概念" width="1000" height="auto">
+  <img src="../img/02-03.png" alt="解像度の概念" width="1000" height="auto">
   <figcaption>輝度解像度と空間解像度の概念</figcaption>
 </figure>
 
 <figure>
-  <img src="/img/02-04.png" alt="解像度の概念" width="1000" height="auto">
+  <img src="../img/02-04.png" alt="解像度の概念" width="1000" height="auto">
   <figcaption>輝度解像度と空間解像度の例</figcaption>
 </figure>
 
@@ -225,11 +210,11 @@ $$
 ➡︎ 「輝度解像度」に寄与！
 
 <figure>
-  <img src="/img/02-06.png" alt="標本化・量子化1" width="800" height="auto">
+  <img src="../img/02-06.png" alt="標本化・量子化1" width="800" height="auto">
   <figcaption>アナログデータのデジタル変換（標本化と量子化）</figcaption>
 </figure>
 <figure>
-  <img src="/img/02-05.png" alt="標本化・量子化2" width="800" height="auto">
+  <img src="../img/02-05.png" alt="標本化・量子化2" width="800" height="auto">
   <figcaption>アナログ画像のデジタル変換（標本化と量子化）</figcaption>
 </figure>
   
@@ -268,7 +253,7 @@ $$
 
 
 <figure>
-  <img src="/img/02-07.png" alt="標本化" width="800" height="auto">
+  <img src="../img/02-07.png" alt="標本化" width="800" height="auto">
   <figcaption>標本化間隔の影響</figcaption>
 </figure>
 
@@ -295,12 +280,12 @@ $$
   
 - CTやMRIで細かい構造がぼやけたり、偽の構造として現れる
 <figure>
-  <img src="/img/02-08.png" alt="モアレ" width="200" height="auto">
+  <img src="../img/02-08.png" alt="モアレ" width="200" height="auto">
   <figcaption>エイリアシングの例（モアレ）</figcaption>
 </figure>
 
 <figure>
-  <img src="/img/02-09.png" alt="ジャギー" width="600" height="auto">
+  <img src="../img/02-09.png" alt="ジャギー" width="600" height="auto">
   <figcaption>エイリアシングの例（ジャギー）</figcaption>
 </figure>
 
@@ -319,12 +304,12 @@ $$
 標本化で得られた離散時間信号 $f[m,n]$ は連続的な値を持っていますが、量子化によりこれらの値をあらかじめ定めた離散レベルに丸めます。これにより、連続値を離散値（通常は整数値）で近似します。
 
 <figure>
-  <img src="/img/02-10.png" alt="量子化" width="800" height="auto">
+  <img src="../img/02-10.png" alt="量子化" width="800" height="auto">
   <figcaption>量子化間隔と量子化誤差</figcaption>
 </figure>
 
 <figure>
-  <img src="/img/02-11.png" alt="画像における量子化の理解" width="800" height="auto">
+  <img src="../img/02-11.png" alt="画像における量子化の理解" width="800" height="auto">
   <figcaption>画像における量子化の理解</figcaption>
 </figure>
 
@@ -382,67 +367,6 @@ $$
 </a>
 </div>
 
----
-
-### **量子化における分解能の問題例：**
-電圧測定時の量子化における分解能を問う問題が出ます。
-
-  - 例1：0～1Vを8ビットで表現すると、分解能は約3.9mV（$1 ÷ 2^8 = 1 ÷ 256 = 0.00391$）
-
-$$
-\Delta V = \frac{(0) - (-1)}{2^{8}} = \frac{1}{256} = 0.00391\text{mV}
-$$
-となり、各サンプルの量子化誤差は約 $0.00391\text{mV}$ となります。
-
-  - 例2：-1V～+1Vを10ビットで表現すると、分解能は約2mV（$2 ÷ 2^{10} = 2 ÷ 1024 = 0.00195$）
-$$
-\Delta V = \frac{(+1) - (-1)}{2^{10}} = \frac{2}{1024} \approx 1.95\,\text{mV}
-$$
-となり、各サンプルの量子化誤差は約 $\pm 0.98\,\text{mV}$ となります。
-
-
-
-
----
-### **量子化ノイズと信号対雑音比（SNR）：**
-量子化誤差はノイズとみなすことができ、画像の品質に影響します。
-
-画像の品質の評価には、しばしば**信号雑音比（SNR）**が用いられます。
-
-$B$ ビット量子化における理論的な信号対雑音比は次式で近似できます。
-
-$$
-\text{SNR} \approx 6.02B + 10.8 \quad \text{[dB]}
-$$
-
-
-### **【正弦波の例における信号対雑音比（SNR）】**
-
-8ビット量子化の場合：
-$$
-\text{SNR} \approx 6.02B + 10.8 = 6.02 \times 8 + 10.8 \approx 59.0 \text{ dB}
-$$
-
-2ビット量子化の場合：
-$$
-\text{SNR} \approx 6.02B + 10.8 = 6.02 \times 2 + 10.8 \approx 22.8 \text{ dB}
-$$
-
----
-
-
-
-### **量子化に関する留意点：**
-
-- 量子化ビット数（階調数）を増やすほど量子化誤差は小さくなるが、データ量は増大
-  
-- 標本化周波数を上げても量子化誤差は変化しない（下式より自明）
-  
-$$
-\epsilon[m,n] = \pm \frac{\Delta I}{2}
-$$
-
-  
 ---
 
 ## 5. 画像ファイル形式と圧縮
@@ -516,13 +440,3 @@ $$
 - **画像ファイル形式と圧縮：**
     - 適切なファイル形式と圧縮方式の選択が画質と効率のバランスに重要
     - 医用画像では情報の保全と伝送・保存のバランスが特に重要
-
----
-
-## 第2回 演習
-- [Google Form](https://forms.gle/jH5WPRBSZu4iL95L8)
-
-<figure>
-  <img src="/img/02-12.png" alt="第2回演習" width="300" height="auto">
-  <figcaption>第2回演習</figcaption>
-</figure>
