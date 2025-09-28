@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>距離分解能デモ</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 20px;
+            background-color: #f8f9fa;
+            color: #343a40;
+            line-height: 1.6;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin: auto;
+        }
+        h1, h2 {
+            color: #00509e;
+            border-bottom: 2px solid #dee2e6;
+            padding-bottom: 5px;
+        }
+        .controls {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+        }
+        .controls div {
+            margin-bottom: 10px;
+        }
+        .controls label {
+            display: inline-block;
+            width: 180px; /* ラベル幅を統一 */
+            font-weight: 500;
+        }
+        .controls input[type="range"] {
+            width: 300px;
+            vertical-align: middle;
+        }
+        .controls span {
+            font-weight: bold;
+            color: #00509e;
+            min-width: 30px; /* 値表示の幅 */
+            display: inline-block;
+        }
+        #visualizationArea {
+            border: 1px solid #ced4da;
+            height: 350px; /* 描画領域の高さ */
+            margin-top: 10px;
+            position: relative; /* 子要素の絶対位置指定のため */
+            background-color: #fff;
+        }
+        .pulse, .reflector, .echo {
+            position: absolute;
+            height: 40px; /* パルスの高さ */
+            background-color: rgba(0, 123, 255, 0.7); /* 送信パルスは青系 */
+            border: 1px solid rgba(0, 86, 179, 0.9);
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+            color: white;
+            overflow: hidden;
+        }
+        .reflector {
+            width: 10px;
+            height: 10px;
+            background-color: #dc3545; /* 反射点は赤 */
+            border-radius: 50%;
+            border: none;
+        }
+        .echo {
+            background-color: rgba(255, 193, 7, 0.7); /* 反射波は黄色系 */
+            border-color: rgba(204, 154, 0, 0.9);
+        }
+        #combinedEchoArea {
+            height: 60px; /* 合成波形表示エリア */
+            border: 1px dashed #6c757d;
+            margin-top: 5px;
+            position: relative;
+        }
+        .combined-segment {
+            position: absolute;
+            height: 100%;
+            opacity: 0.6;
+        }
+        #statusIndicator {
+            margin-top: 15px;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+            border-radius: 5px;
+            color: white;
+        }
+        .status-good { background-color: #28a745; } /* 分離良好: 緑 (赤から変更) */
+        .status-poor { background-color: #007bff; } /* 分離不十分: 青 */
+
+        .object-label {
+            position: absolute;
+            font-size: 0.8em;
+            color: #495057;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>距離分解能 体験デモツール</h1>
+        <p>超音波パルスの長さと、軸方向に並んだ2つの反射点の分離能力の関係を視覚化します。</p>
+
+        <div class="controls">
+            <div>
+                <label for="pulseLengthSlider">パルス長 (SPL):</label>
+                <input type="range" id="pulseLengthSlider" min="10" max="150" value="80">
+                <span id="pulseLengthValue">80</span> px
+            </div>
+            <div>
+                <label for="reflectorDistanceSlider">反射点の間隔:</label>
+                <input type="range" id="reflectorDistanceSlider" min="5" max="200" value="100">
+                <span id="reflectorDistanceValue">100</span> px
+            </div>
+        </div>
+
+        <h2>視覚化エリア</h2>
+        <div id="visualizationArea">
+            <!-- 送信プローブ（概念） -->
+            <div class="object-label" style="left: 10px; top: 5px;">プローブ</div>
+            <div style="position:absolute; left: 20px; top: 20px; width:10px; height:40px; background: #6c757d;"></div>
+
+            <!-- 送信パルス -->
+            <div class="pulse" id="txPulse"><span class="pulse-text">送信パルス</span></div>
+
+            <!-- 反射点 -->
+            <div class="reflector" id="reflector1"></div>
+            <div class="object-label" id="reflector1Label" style="top: 65px;">点1</div>
+            <div class="reflector" id="reflector2"></div>
+            <div class="object-label" id="reflector2Label" style="top: 65px;">点2</div>
+
+            <!-- 反射波（エコー）表示エリアのラベル -->
+            <div class="object-label" style="left: 10px; top: 100px;">受信エコー (時間/距離)</div>
+            <div style="position:absolute; left: 20px; top: 120px; width:10px; height:40px; background: #6c757d; opacity:0.5;"></div>
+
+
+            <!-- エコー1 -->
+            <div class="echo" id="echo1"><span class="echo-text">エコー1</span></div>
+            <!-- エコー2 -->
+            <div class="echo" id="echo2"><span class="echo-text">エコー2</span></div>
+
+
+            <!-- 合成反射波表示エリアのラベル -->
+            <div class="object-label" style="left: 10px; top: 220px;">合成エコー</div>
+            <div id="combinedEchoArea">
+                <!-- ここにJavaScriptで合成波形を描画 -->
+            </div>
+        </div>
+
+        <div id="statusIndicator">
+            分離状態を判定中...
+        </div>
+        <p style="font-size:0.9em; margin-top:15px;">
+            <strong>説明:</strong><br>
+            - <strong>パルス長 (SPL):</strong> 送信される超音波1パルスの空間的な長さです。短いほど分解能が良くなります。<br>
+            - <strong>反射点の間隔:</strong> 2つの物体（反射点）が超音波の進む方向にどれだけ離れているかを示します。<br>
+            - <strong>分離状態:</strong>
+                <span style="color:#28a745; font-weight:bold;">緑色</span>は2つの点が分離して認識できる状態（良好）、
+                <span style="color:#007bff; font-weight:bold;">青色</span>は2つの点が重なって1つの点のように見える状態（不十分）を示します。<br>
+            - 距離分解能の目安は、一般的にパルス長(SPL)の半分 (SPL/2) と言われます。2つの反射点の間隔がSPL/2より大きければ分離できる可能性が高まります。
+        </p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const pulseLengthSlider = document.getElementById('pulseLengthSlider');
+            const pulseLengthValue = document.getElementById('pulseLengthValue');
+            const reflectorDistanceSlider = document.getElementById('reflectorDistanceSlider');
+            const reflectorDistanceValue = document.getElementById('reflectorDistanceValue');
+
+            const visualizationArea = document.getElementById('visualizationArea');
+            const txPulse = document.getElementById('txPulse');
+            const reflector1 = document.getElementById('reflector1');
+            const reflector2 = document.getElementById('reflector2');
+            const reflector1Label = document.getElementById('reflector1Label');
+            const reflector2Label = document.getElementById('reflector2Label');
+            const echo1 = document.getElementById('echo1');
+            const echo2 = document.getElementById('echo2');
+
+            const combinedEchoArea = document.getElementById('combinedEchoArea');
+            const statusIndicator = document.getElementById('statusIndicator');
+
+            const PROBE_POSITION_X = 30; // プローブ(パルス開始)のX座標 (px)
+            const REFLECTOR_Y = 40;       // 反射点のY座標 (px)
+            const ECHO_Y = 120;           // エコー表示のY座標 (px)
+
+            function drawElements() {
+                const spl = parseInt(pulseLengthSlider.value); // Spatial Pulse Length
+                const distance = parseInt(reflectorDistanceSlider.value); // Distance between reflectors
+
+                pulseLengthValue.textContent = spl;
+                reflectorDistanceValue.textContent = distance;
+
+                // 1. 送信パルス
+                txPulse.style.left = PROBE_POSITION_X + 'px';
+                txPulse.style.top = REFLECTOR_Y - 20 + 'px';
+                txPulse.style.width = spl + 'px';
+                txPulse.querySelector('.pulse-text').textContent = `送信パルス (SPL: ${spl}px)`;
+
+                // 2. 反射点
+                const r1_x_abs = PROBE_POSITION_X + 100; // 反射点1の基準X位置 (絶対座標)
+                reflector1.style.left = r1_x_abs - (reflector1.offsetWidth / 2) + 'px';
+                reflector1.style.top = REFLECTOR_Y + 'px';
+                reflector1Label.style.left = r1_x_abs - 10 + 'px';
+
+                const r2_x_abs = r1_x_abs + distance; // 反射点2のX位置 (絶対座標)
+                reflector2.style.left = r2_x_abs - (reflector2.offsetWidth / 2) + 'px';
+                reflector2.style.top = REFLECTOR_Y + 'px';
+                reflector2Label.style.left = r2_x_abs - 10 + 'px';
+
+                // 3. 反射波（エコー） - visualizationArea内の絶対座標で表示
+                const echo1_start_abs = r1_x_abs;
+                echo1.style.left = echo1_start_abs + 'px';
+                echo1.style.top = ECHO_Y + 'px';
+                echo1.style.width = spl + 'px';
+                echo1.querySelector('.echo-text').textContent = `エコー1`;
+
+                const echo2_start_abs = r2_x_abs;
+                echo2.style.left = echo2_start_abs + 'px';
+                echo2.style.top = ECHO_Y + 'px';
+                echo2.style.width = spl + 'px';
+                echo2.querySelector('.echo-text').textContent = `エコー2`;
+
+                // 4. 合成反射波と分解能判定
+                combinedEchoArea.innerHTML = ''; // 前の描画をクリア
+                combinedEchoArea.style.paddingLeft = '0px'; // paddingLeftは不要になったのでリセット
+
+                // エコーの開始位置と終了位置を、combinedEchoAreaの左端を0とした相対座標で計算
+                // PROBE_POSITION_X を基準点として、そこからの相対距離で描画する
+                const e1_start_relative = r1_x_abs - PROBE_POSITION_X;
+                const e1_end_relative = e1_start_relative + spl;
+                const e2_start_relative = r2_x_abs - PROBE_POSITION_X;
+                const e2_end_relative = e2_start_relative + spl;
+
+                let resolved = false;
+                if (distance > spl / 2) {
+                    resolved = true;
+                }
+
+                if (resolved) {
+                    statusIndicator.textContent = '分離良好 (Good Resolution)';
+                    statusIndicator.className = 'status-good';
+                } else {
+                    statusIndicator.textContent = '分離不十分 (Poor Resolution)';
+                    statusIndicator.className = 'status-poor';
+                }
+
+                // --- 合成波形を視覚化 ---
+                // エコー1の描画
+                if (spl > 0) {
+                    const echo1Segment = document.createElement('div');
+                    echo1Segment.className = 'combined-segment';
+                    echo1Segment.style.left = e1_start_relative + 'px';
+                    echo1Segment.style.width = spl + 'px';
+                    echo1Segment.style.backgroundColor = resolved ? 'rgba(40, 167, 69, 0.4)' : 'rgba(0, 123, 255, 0.4)'; // 半透明
+                    echo1Segment.style.zIndex = "1";
+                    combinedEchoArea.appendChild(echo1Segment);
+                }
+
+                // エコー2の描画
+                if (spl > 0) {
+                    const echo2Segment = document.createElement('div');
+                    echo2Segment.className = 'combined-segment';
+                    echo2Segment.style.left = e2_start_relative + 'px';
+                    echo2Segment.style.width = spl + 'px';
+                    echo2Segment.style.backgroundColor = resolved ? 'rgba(40, 167, 69, 0.4)' : 'rgba(0, 123, 255, 0.4)'; // 半透明
+                    echo2Segment.style.zIndex = "1";
+                    combinedEchoArea.appendChild(echo2Segment);
+                }
+
+                // 重なり部分をより濃い色で強調
+                const overlap_start_relative = Math.max(e1_start_relative, e2_start_relative);
+                const overlap_end_relative = Math.min(e1_end_relative, e2_end_relative);
+                const overlap_width = overlap_end_relative - overlap_start_relative;
+
+                if (overlap_width > 0) {
+                    const overlapSegment = document.createElement('div');
+                    overlapSegment.className = 'combined-segment';
+                    overlapSegment.style.left = overlap_start_relative + 'px';
+                    overlapSegment.style.width = overlap_width + 'px';
+                    // 重なりの色は常に赤系で固定、透明度で元の色が少し見えるように
+                    overlapSegment.style.backgroundColor = 'rgba(220, 53, 69, 0.6)'; // より濃い赤
+                    overlapSegment.style.zIndex = "2"; // 最前面に
+                    combinedEchoArea.appendChild(overlapSegment);
+                }
+            }
+
+            pulseLengthSlider.addEventListener('input', drawElements);
+            reflectorDistanceSlider.addEventListener('input', drawElements);
+
+            // 初期描画
+            drawElements();
+        });
+
+
+    </script>
+</body>
+</html>
