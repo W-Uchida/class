@@ -1,0 +1,1408 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://W-Uchida.github.io/class/%E7%94%BB%E5%83%8F%E8%A7%A3%E6%9E%90%E3%83%BB%E7%94%BB%E5%83%8FAI%E7%89%B9%E8%AB%96/lecture03/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>3.講義：MRI装置の原理 - 講義資料ポータル</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/custom.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="lime" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#3mri" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href="../.." title="講義資料ポータル" class="md-header__button md-logo" aria-label="講義資料ポータル" data-md-component="logo">
+      
+  <img src="../../img/00-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            講義資料ポータル
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              3.講義：MRI装置の原理
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="検索">
+        
+        <button type="reset" class="md-search__icon md-icon" title="クリア" aria-label="クリア" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/W-Uchida/class" title="リポジトリへ" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="講義資料ポータル" class="md-nav__button md-logo" aria-label="講義資料ポータル" data-md-component="logo">
+      
+  <img src="../../img/00-logo.png" alt="logo">
+
+    </a>
+    講義資料ポータル
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/W-Uchida/class" title="リポジトリへ" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    画像解析・画像AI特論
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            画像解析・画像AI特論
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    概要
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture01/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第1章
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture02/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第2章
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. はじめに
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. はじめに">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 講義の目的と全体像
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-nmr" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 核磁気共鳴（NMR）現象の基礎
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 核磁気共鳴（NMR）現象の基礎">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 原子核のスピンと磁気モーメント
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 静磁場中での原子核の振る舞い
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-mri" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. MRI信号の発生と検出
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. MRI信号の発生と検出">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-mr" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 高周波励起とMR信号の発生
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 緩和現象
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.2 緩和現象">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#t1-" class="md-nav__link">
+    <span class="md-ellipsis">
+      T1緩和（縦緩和・スピン-格子緩和）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#t2-" class="md-nav__link">
+    <span class="md-ellipsis">
+      T2緩和（横緩和・スピン-スピン緩和）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-k" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. k空間と空間情報のエンコード（符号化）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. k空間と空間情報のエンコード（符号化）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 傾斜磁場による空間符号化
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.1 傾斜磁場による空間符号化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3つの傾斜磁場
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-k" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 k空間の概念
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 画像コントラスト
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 画像コントラスト">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#t1" class="md-nav__link">
+    <span class="md-ellipsis">
+      T1強調画像
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#t2" class="md-nav__link">
+    <span class="md-ellipsis">
+      T2強調画像
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flairfluid-attenuated-inversion-recovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      FLAIR（Fluid Attenuated Inversion Recovery）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dwi" class="md-nav__link">
+    <span class="md-ellipsis">
+      拡散強調画像（DWI）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-mri" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. MRI装置の構成要素
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. MRI装置の構成要素">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 主要構成要素
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.1 主要構成要素">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      静磁場発生磁石
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rf" class="md-nav__link">
+    <span class="md-ellipsis">
+      RF送受信コイル
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      傾斜磁場コイル
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2 空間分解能と画質
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-mri" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. MRI安全管理
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. MRI安全管理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.1 安全管理
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.1 安全管理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      磁場に関する安全管理
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      植込み型医療機器への対応
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      患者監視装置の選択
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.2 生体安全性
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.2 生体安全性">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sarspecific-absorption-rate" class="md-nav__link">
+    <span class="md-ellipsis">
+      SAR（Specific Absorption Rate）管理
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      傾斜磁場の生体影響
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. 特殊撮像法
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. 特殊撮像法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.1 中枢神経系の画像診断
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.2 腹部・骨盤部の画像診断
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.3 心血管系の画像診断
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#84-mri" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.4 MRIの特徴と適応
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.4 MRIの特徴と適応">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mri" class="md-nav__link">
+    <span class="md-ellipsis">
+      MRIが適している撮像対象
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mri_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      MRIが適さない撮像対象
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-ctmri" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. CTとMRIの比較
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. CTとMRIの比較">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91" class="md-nav__link">
+    <span class="md-ellipsis">
+      9.1 画像特性の比較
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. まとめ
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="3mri">3.講義：MRI装置の原理</h1>
+<hr />
+<h2 id="1">1. はじめに</h2>
+<h3 id="11">1.1 講義の目的と全体像</h3>
+<ul>
+<li>
+<p><strong>背景説明：</strong><br />
+  これまでX線CTについて学びましたが、MRI（Magnetic Resonance Imaging：磁気共鳴画像）は全く異なる物理現象を利用した画像診断装置です。電離放射線を使用せず、優れた軟部組織コントラストを持つMRIは、現代医療において不可欠な画像診断モダリティとなっています。</p>
+</li>
+<li>
+<p><strong>MRIの基本的な原理：</strong>  </p>
+<ol>
+<li>MRIで対象とするのは生体内の水や脂肪に含まれる水素原子核(プロトン)</li>
+<li>静磁場中にて、ある周波数の電磁波(RFパルス)を印加すると、プロトンは高エネルギー状態に変化する。そして電磁波を止めると電波を放出しながら徐々に元のエネルギー状態へと戻る。(核磁気共鳴現象)</li>
+<li>この過程で放出される電波をコイルで受信し画像化したものがMRI</li>
+</ol>
+</li>
+</ul>
+<video src="/img/07-01.mp4" controls="true" alt="励起と信号検出" width="800" height="auto"></video>
+
+<hr />
+<h2 id="2-nmr">2. 核磁気共鳴（NMR）現象の基礎</h2>
+<h3 id="21">2.1 原子核のスピンと磁気モーメント</h3>
+<p><strong>なぜ人体をMRIで撮像できるのか？</strong></p>
+<p>MRIでは、<strong>水素原子核（=陽子[プロトン]、陽子1こ、中性子0こ）</strong>に注目して信号を取得する。
+水分子に含まれる水素原子核（プロトン）は、<strong>スピン</strong>と呼ばれる固有の角運動量（回転運動）を持ち、小さな磁石のような性質（磁気モーメント）を示します。</p>
+<ul>
+<li><strong>磁気モーメント</strong>：原子核の回転により生じる磁気的性質</li>
+</ul>
+<p><strong>重要①：</strong> MRIは<strong>水素原子核（プロトン）</strong>を対象とし、炭素原子や酸素原子、窒素原子ではありません。これは国家試験で頻出の重要ポイントです。
+<strong>重要②：</strong> MRIは<strong>水素原子核（プロトン）のスピン</strong>を主に利用します。電子のスピンとは別のものです。</p>
+<figure>
+  <a class="glightbox" href="/img/07-01.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="/img/07-01.png" alt="水素原子核のスピン" width="800" height="auto"></a>
+  <figcaption>水素原子核のスピンと磁気モーメント</figcaption>
+</figure>
+
+<h3 id="22">2.2 静磁場中での原子核の振る舞い</h3>
+<p><strong>強力な磁場を加えるとどうなるか？</strong></p>
+<p>MRI装置の静磁場（通常1.5Tまたは3.0T）中では、水素原子核は以下の現象を示します：</p>
+<ul>
+<li><strong>エネルギー準位の分離</strong>：低エネルギー状態（磁場と平行）と高エネルギー状態（磁場と反平行）➡︎これらのペアは磁化を打ち消しあう</li>
+<li><strong>歳差運動</strong>：磁場軸周りのコマのような運動</li>
+<li><strong>ラーモア周波数</strong>：歳差運動の周波数（磁場強度に<strong>比例</strong>）</li>
+</ul>
+<div class="arithmatex">\[f_0 = \gamma \cdot B_0 / (2\pi)\]</div>
+<p>ここで、<span class="arithmatex">\(f_0\)</span>はラーモア周波数、<span class="arithmatex">\(\gamma\)</span>は磁気回転比、<span class="arithmatex">\(B_0\)</span>は静磁場強度です。</p>
+<p><strong>具体例：</strong>
+- 1.5T装置：約63.9MHz
+- 3.0T装置：約127.8MHz</p>
+<p><strong>重要：</strong> ラーモア周波数は静磁場強度に<strong>比例</strong>します（反比例ではありません）。</p>
+<figure>
+  <a class="glightbox" href="/img/07-02.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="/img/07-02.png" alt="静磁場中の水素原子核" width="800" height="auto"></a>
+  <figcaption>静磁場中での水素原子核の振る舞い</figcaption>
+</figure>
+
+<hr />
+<h2 id="3-mri">3. MRI信号の発生と検出</h2>
+<h3 id="31-mr">3.1 高周波励起とMR信号の発生</h3>
+<p><strong>どのようにして信号を取り出すのか？</strong></p>
+<p>静磁場中で熱平衡状態にある原子核に、<strong>ラーモア周波数と同じ周波数のラジオ波である高周波パルス（RFパルス）</strong>を照射します：</p>
+<p><strong>励起過程：</strong></p>
+<ol>
+<li><strong>共鳴現象</strong>：ラーモア周波数での選択的励起</li>
+<li><strong>磁化ベクトルの傾斜</strong>：90°パルスで横磁化成分を生成</li>
+<li><strong>位相の同期</strong>：バラバラだった原子核の位相が揃う</li>
+</ol>
+<p><strong>信号検出：</strong></p>
+<ul>
+<li><strong>自由誘導減衰（FID）</strong>：励起後の減衰信号</li>
+<li><strong>電磁誘導</strong>：回転する横磁化による誘導起電力</li>
+<li><strong>受信コイル</strong>：時間変化する磁束を電気信号に変換</li>
+</ul>
+<figure>
+  <a class="glightbox" href="/img/07-03.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="/img/07-03.png" alt="励起と信号検出" width="800" height="auto"></a>
+  <figcaption>高周波励起とMR信号の検出</figcaption>
+</figure>
+
+<h3 id="32">3.2 緩和現象</h3>
+<p><strong>なぜ信号は時間とともに減衰するのか？</strong></p>
+<p>励起された原子核は、2つの異なる機構で元の平衡状態に戻ります：</p>
+<h4 id="t1-">T1緩和（縦緩和・スピン-格子緩和）</h4>
+<ul>
+<li><strong>エネルギーの放出</strong>：高エネルギー状態から低エネルギー状態への遷移</li>
+<li><strong>縦磁化の回復</strong>：静磁場方向の磁化成分の回復</li>
+<li><strong>時定数T1</strong>：組織により異なる（数十ms〜数秒）</li>
+</ul>
+<div class="arithmatex">\[M_z(t) = M_0(1 - e^{-t/T1})\]</div>
+<h4 id="t2-">T2緩和（横緩和・スピン-スピン緩和）</h4>
+<ul>
+<li><strong>位相のばらつき</strong>：原子核間の相互作用による位相分散</li>
+<li><strong>横磁化の減衰</strong>：検出可能な信号成分の減少</li>
+<li><strong>時定数T2</strong>：T1より短い（数十〜数百ms）</li>
+</ul>
+<div class="arithmatex">\[M_{xy}(t) = M_0 \cdot e^{-t/T2}\]</div>
+<p><strong>T2*緩和：</strong>
+- 磁場不均一の影響を含むより速い横緩和
+- 実際に観測される信号減衰</p>
+<figure>
+  <a class="glightbox" href="/img/07-04.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="/img/07-04.png" alt="T1とT2緩和" width="800" height="auto"></a>
+  <figcaption>T1緩和とT2緩和の概念</figcaption>
+</figure>
+
+<ul>
+<li><a href="https://www.fujifilm.com/jp/ja/healthcare/mri-and-ct/mri-and-ct-column/no1">動画で学ぶ（引用：FUJIFILM わかりやすいMRI解説シリーズ その1 ～MRI画像のコントラスト～）</a></li>
+</ul>
+<hr />
+<h2 id="4-k">4. k空間と空間情報のエンコード（符号化）</h2>
+<h3 id="41">4.1 傾斜磁場による空間符号化</h3>
+<p><strong>どのようにして位置情報を画像に組み込むのか？</strong></p>
+<p>均一な静磁場だけでは、すべての水素原子核が同じラーモア周波数で共鳴してしまい、位置情報を得ることができません。</p>
+<p>そこで、<strong>傾斜磁場</strong>を用いて空間的に異なる磁場強度を作り出します：</p>
+<h4 id="3">3つの傾斜磁場</h4>
+<ol>
+<li>
+<p><strong>スライス選択傾斜磁場（Gz）</strong></p>
+<ul>
+<li>特定の断面のみを励起</li>
+<li>励起RF帯域幅でスライス厚を決定</li>
+</ul>
+</li>
+<li>
+<p><strong>読み取り傾斜磁場（Gx）</strong></p>
+<ul>
+<li>信号読み取り時に印加</li>
+<li>位置に応じた周波数差を付与（周波数エンコード方向の磁場強度を変更することによる）</li>
+<li>角周波数は磁場強度に比例するので、位置ごとに周波数差を持たせることで分別可能に</li>
+</ul>
+</li>
+<li>
+<p><strong>位相エンコード傾斜磁場（Gy）</strong></p>
+<ul>
+<li>励起後に短時間印加</li>
+<li>位置に応じた位相差を付与</li>
+</ul>
+</li>
+</ol>
+<figure>
+  <a class="glightbox" href="/img/07-05.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="/img/07-05.png" alt="傾斜磁場による空間符号化" width="1000" height="auto"></a>
+  <figcaption>3つの傾斜磁場による空間情報の符号化</figcaption>
+</figure>
+
+<h3 id="42-k">4.2 k空間の概念</h3>
+<p><strong>k空間とは何か？</strong></p>
+<p>k空間は、<strong>周波数領域でのデータ収集空間</strong>です。これまで学んだフーリエ変換の概念が直接応用されています：</p>
+<ul>
+<li>
+<p><strong>k空間の軸</strong>：</p>
+<ul>
+<li>kx軸：読み取り方向の空間周波数</li>
+<li>ky軸：位相エンコード方向の空間周波数</li>
+</ul>
+</li>
+<li>
+<p><strong>データ収集</strong>：</p>
+<ul>
+<li>1回の励起で1本のk空間ライン（kxライン）を収集</li>
+<li>位相エンコードを変更して異なるky位置のデータを収集</li>
+</ul>
+</li>
+<li>
+<p><strong>画像再構成</strong>：</p>
+<ul>
+<li>k空間データを2次元フーリエ変換</li>
+<li>周波数領域から空間領域（画像）への変換</li>
+</ul>
+</li>
+</ul>
+<div class="arithmatex">\[I(x,y) = \iint S(k_x,k_y) \cdot e^{j2\pi(k_x x + k_y y)} dk_x dk_y\]</div>
+<p><strong>k空間の特徴：</strong></p>
+<ul>
+<li><strong>中心部</strong>：画像のコントラスト情報（低空間周波数）</li>
+<li><strong>周辺部</strong>：画像の細部情報（高空間周波数）</li>
+<li><strong>対称性</strong>：k空間は中心に対して対称</li>
+</ul>
+<div style="border: 1px solid #ddd; padding: 10px; border-radius: 5px; color: blue;">
+<h4><strong>【復習】 周波数フィルタリング</strong></h4>
+<p><a href="https://monman53.github.io/2dfft/">周波数フィルタリングを開く</a></p>
+</div>
+
+<hr />
+<h2 id="5">5. 画像コントラスト</h2>
+<h4 id="t1">T1強調画像</h4>
+<ul>
+<li><strong>特徴</strong>：解剖学的構造が明瞭</li>
+<li><strong>高信号</strong>：脂肪、短いT1を持つ組織</li>
+<li><strong>低信号</strong>：水、長いT1を持つ組織</li>
+</ul>
+<h4 id="t2">T2強調画像</h4>
+<ul>
+<li><strong>特徴</strong>：病変検出に有用</li>
+<li><strong>高信号</strong>：水、長いT2を持つ組織</li>
+<li><strong>低信号</strong>：筋肉、短いT2を持つ組織</li>
+</ul>
+<h4 id="flairfluid-attenuated-inversion-recovery">FLAIR（Fluid Attenuated Inversion Recovery）</h4>
+<ul>
+<li><strong>脳脊髄液の信号抑制</strong></li>
+<li><strong>脳白質病変の検出</strong>に有用</li>
+<li><strong>反転回復法</strong>を応用</li>
+</ul>
+<h4 id="dwi">拡散強調画像（DWI）</h4>
+<ul>
+<li><strong>水分子の拡散運動</strong>を画像化</li>
+<li><strong>急性脳梗塞の早期診断</strong></li>
+<li><strong>見かけの拡散係数（ADC）</strong>の測定</li>
+</ul>
+<figure>
+  <a class="glightbox" href="/img/07-06.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="/img/07-06.png" alt="画像コントラスト" width="800" height="auto"></a>
+  <figcaption>緩和時間差による画像コントラスト</figcaption>
+</figure>
+
+<figure>
+  <a class="glightbox" href="/img/07-07.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="/img/07-07.png" alt="画像コントラスト" width="800" height="auto"></a>
+  <figcaption>コントラストの違い</figcaption>
+</figure>
+
+<figure>
+  <a class="glightbox" href="/img/07-08.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="/img/07-08.png" alt="画像コントラスト" width="800" height="auto"></a>
+  <figcaption>初見1</figcaption>
+</figure>
+
+<figure>
+  <a class="glightbox" href="/img/07-09.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="/img/07-09.png" alt="画像コントラスト" width="800" height="auto"></a>
+  <figcaption>初見2</figcaption>
+</figure>
+
+<hr />
+<h2 id="6-mri">6. MRI装置の構成要素</h2>
+<h3 id="61">6.1 主要構成要素</h3>
+<h4 id="_1">静磁場発生磁石</h4>
+<ul>
+<li><strong>超電導磁石</strong>：最も一般的。超伝導状態（絶対零度）を保つため、液化ヘリウムでコイルを冷却</li>
+<li><strong>永久磁石</strong>：低磁場装置で使用</li>
+</ul>
+<h4 id="rf">RF送受信コイル</h4>
+<ul>
+<li><strong>送信コイル</strong>：RFパルスの照射</li>
+<li><strong>受信コイル</strong>：MR信号の検出</li>
+<li><strong>表面コイル</strong>：局所的な高感度撮像</li>
+</ul>
+<h4 id="_2">傾斜磁場コイル</h4>
+<ul>
+<li><strong>X軸傾斜磁場コイル</strong></li>
+<li><strong>Y軸傾斜磁場コイル</strong></li>
+<li><strong>Z軸傾斜磁場コイル</strong></li>
+</ul>
+<p><strong>重要：</strong> MRI装置には<strong>コリメータ</strong>や<strong>サイクロトロン</strong>は含まれません。これらはX線装置や核医学装置の構成要素です。</p>
+<h3 id="62">6.2 空間分解能と画質</h3>
+<p><strong>空間分解能：</strong>
+- <strong>現在の技術</strong>：約0.5-1.0mm程度
+- <strong>臨床用途</strong>：1-2,3mm程度が一般的
+- <strong>国家試験での記載</strong>：5mm程度（やや古い情報）</p>
+<p><strong>画質に影響する因子：</strong>
+- <strong>静磁場強度</strong>：高いほど良好（SNR向上）
+- <strong>撮像時間</strong>：長いほど良好（ただし体動のリスク）
+- <strong>コイル性能</strong>：表面コイルで局所的に向上</p>
+<hr />
+<h2 id="7-mri">7. MRI安全管理</h2>
+<h3 id="71">7.1 安全管理</h3>
+<h4 id="_3">磁場に関する安全管理</h4>
+<p><strong>磁性体管理：</strong>
+- <strong>強磁性体の持ち込み禁止</strong>
+- <strong>段階的セキュリティゾーン</strong>の設定
+- <strong>定期的な磁場測定</strong>
+- <strong>磁気シールドルーム</strong>：外部電磁波の遮蔽</p>
+<h4 id="_4">植込み型医療機器への対応</h4>
+<p><strong>MRI対応の確認が必要な機器：</strong>
+- ペースメーカー・ICD
+- 人工内耳
+- 神経刺激装置
+- 血管用ステント・クリップ</p>
+<p><strong>安全確認の手順：</strong>
+1. 機器の型番・製造年月日の確認
+2. MRI安全性情報の照会
+3. 必要に応じた事前設定変更
+4. 検査中の継続監視</p>
+<h4 id="_5">患者監視装置の選択</h4>
+<p><strong>MRI対応監視装置の要件：</strong>
+- <strong>非磁性材料</strong>の使用
+- <strong>高周波ノイズ対策</strong>
+- <strong>光ファイバー伝送</strong>などの技術</p>
+<h3 id="72">7.2 生体安全性</h3>
+<h4 id="sarspecific-absorption-rate">SAR（Specific Absorption Rate）管理</h4>
+<ul>
+<li><strong>高周波の生体吸収</strong></li>
+<li><strong>発熱の制限</strong>：2W/kg（全身平均）</li>
+<li><strong>パルスシーケンス</strong>による制御</li>
+</ul>
+<h4 id="_6">傾斜磁場の生体影響</h4>
+<ul>
+<li><strong>dB/dt制限</strong>：磁場変化率の上限</li>
+<li><strong>末梢神経刺激</strong>の回避</li>
+<li><strong>心刺激の防止</strong></li>
+</ul>
+<p><strong>重要：</strong> MRIは<strong>電離放射線を使用しない</strong>ため、放射線被曝はありません。</p>
+<hr />
+<h2 id="8">8. 特殊撮像法</h2>
+<h3 id="81">8.1 中枢神経系の画像診断</h3>
+<p><strong>脳の解剖学的画像診断：</strong>
+- <strong>T1強調画像</strong>：解剖学的構造
+- <strong>T2強調画像</strong>：病変の検出
+- <strong>FLAIR画像</strong>：白質病変</p>
+<p><strong>機能的画像診断：</strong>
+- <strong>拡散強調画像</strong>：急性脳梗塞
+- <strong>灌流画像</strong>：脳血流評価
+- <strong>fMRI</strong>：脳機能マッピング</p>
+<h3 id="82">8.2 腹部・骨盤部の画像診断</h3>
+<p><strong>肝臓の評価：</strong>
+- <strong>構造画像</strong>：肝細胞癌の検出
+- <strong>拡散強調画像</strong>：転移巣の検出
+- <strong>MR elastography</strong>：肝線維化の評価（硬さの評価）</p>
+<h3 id="83">8.3 心血管系の画像診断</h3>
+<p><strong>心機能の評価：</strong>
+- <strong>シネMRI</strong>：壁運動の評価</p>
+<p><strong>血管の評価：</strong>
+- <strong>MRA（MR angiography）</strong>：造影剤なしでも血管描出可能
+- <strong>4D flow MRI</strong>：血流の可視化</p>
+<figure>
+  <a class="glightbox" href="/img/07-10.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="/img/07-10.png" alt="MRIの臨床応用" width="800" height="auto"></a>
+  <figcaption>MR Angiography</figcaption>
+</figure>
+
+<h3 id="84-mri">8.4 MRIの特徴と適応</h3>
+<h4 id="mri">MRIが適している撮像対象</h4>
+<ul>
+<li><strong>軟部組織</strong>：高コントラストで明瞭</li>
+<li><strong>脳組織</strong>：白質・灰白質の区別</li>
+<li><strong>関節・筋肉</strong>：詳細な構造描出</li>
+<li><strong>血管</strong>：造影剤なしでも撮像可能</li>
+<li><strong>心臓</strong>：CTより動きに弱いが、動きのある臓器も撮像可能（シネMRI）</li>
+</ul>
+<h4 id="mri_1">MRIが適さない撮像対象</h4>
+<ul>
+<li><strong>肺</strong>：空気による信号低下（ただし、撮影は可能である。CTの方がコントラスト分解能に優れる。）</li>
+<li><strong>石灰化病変</strong>：信号が得られにくい</li>
+<li><strong>体動の激しい部位</strong>：撮像時間が長いため</li>
+</ul>
+<p><strong>重要：</strong> MRIは軟組織の画像化に<strong>適している</strong>が、肺や骨の観察には<strong>適していません</strong>。</p>
+<hr />
+<h2 id="9-ctmri">9. CTとMRIの比較</h2>
+<h3 id="91">9.1 画像特性の比較</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>MRI</th>
+<th>X線CT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>撮像対象原子</td>
+<td>水素原子核</td>
+<td>全ての元素</td>
+</tr>
+<tr>
+<td>放射線被曝</td>
+<td>なし</td>
+<td>あり</td>
+</tr>
+<tr>
+<td>軟部組織コントラスト</td>
+<td>優秀</td>
+<td>普通</td>
+</tr>
+<tr>
+<td>骨・肺の描出</td>
+<td>不得意</td>
+<td>得意</td>
+</tr>
+<tr>
+<td>撮像時間</td>
+<td>長い（数分〜数十分）</td>
+<td>短い（数秒〜数分）</td>
+</tr>
+<tr>
+<td>体動への対応</td>
+<td>弱い</td>
+<td>強い</td>
+</tr>
+<tr>
+<td>空間分解能</td>
+<td>0.5-2,3mm</td>
+<td>0.5-1mm</td>
+</tr>
+<tr>
+<td>造影剤なし血管撮影</td>
+<td>可能</td>
+<td>不可能</td>
+</tr>
+<tr>
+<td>作動音</td>
+<td>大きい</td>
+<td>小さい</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="10">10. まとめ</h2>
+<p>本講義ではMRIの原理から特殊撮像手法までざっくり学びました。</p>
+<p><strong>主要なポイント：</strong></p>
+<ol>
+<li>
+<p><strong>核磁気共鳴現象</strong>：水素原子核の磁気的性質を利用した画像化技術</p>
+</li>
+<li>
+<p><strong>空間符号化</strong>：傾斜磁場とk空間による位置情報の符号化</p>
+</li>
+<li>
+<p><strong>多様なコントラスト</strong>：撮像シーケンスの変更による豊富な画像情報</p>
+</li>
+<li>
+<p><strong>安全管理</strong>：強磁場環境での特殊な安全対策の重要性</p>
+</li>
+<li>
+<p><strong>臨床応用</strong>：各領域での診断精度向上への貢献</p>
+</li>
+</ol>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="最終更新日">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年9月28日 11:04:50 UTC">2025年9月28日</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="作成日">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年9月28日 11:04:50 UTC">2025年9月28日</span>
+  </span>
+
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/W-Uchida/class" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.expand", "search.highlight", "search.suggest"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>
