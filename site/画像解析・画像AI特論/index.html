@@ -28,6 +28,9 @@
     
       <link rel="stylesheet" href="../assets/stylesheets/main.8608ea7d.min.css">
       
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
       
 
 
@@ -66,7 +69,12 @@
     body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../assets/javascripts/glightbox.min.js"></script></head>
   
   
-    <body dir="ltr">
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="lime" data-md-color-accent="indigo">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -93,7 +101,7 @@
   <nav class="md-header__inner md-grid" aria-label="ヘッダー">
     <a href=".." title="講義資料ポータル" class="md-header__button md-logo" aria-label="講義資料ポータル" data-md-component="logo">
       
-  <img src="/img/00-logo.png" alt="logo">
+  <img src="../img/00-logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -117,8 +125,8 @@
       </div>
     </div>
     
+      
     
-      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
     
     
@@ -201,7 +209,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href=".." title="講義資料ポータル" class="md-nav__button md-logo" aria-label="講義資料ポータル" data-md-component="logo">
       
-  <img src="/img/00-logo.png" alt="logo">
+  <img src="../img/00-logo.png" alt="logo">
 
     </a>
     講義資料ポータル
@@ -585,6 +593,8 @@
     
     
       <script src="../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
