@@ -376,22 +376,7 @@ $$
 
 ## 5. 画像ファイル形式と圧縮
 
-### 5.1 画像ファイル形式
-ファイル形式の用途は過去国家試験に出題されています。代表的なものは覚えましょう。
-
-- **静止画像のファイル形式：**
-    - JPEG (Joint Photographic Experts Group): 一般的な写真画像、非可逆圧縮
-    - PNG (Portable Network Graphics): 可逆圧縮、透明度対応
-    - TIFF (Tagged Image File Format): 高品質、多様な画像形式サポート
-    - BMP (Bitmap): 非圧縮の基本形式
-    - DICOM (Digital Imaging and Communications in Medicine): 医用画像向け規格
-
-- **動画像のファイル形式：**
-    - MPEG (Moving Picture Experts Group): 動画圧縮の標準規格
-    - AVI (Audio Video Interleave): Windowsベースの動画フォーマット
-    - MP4 (MPEG-4 Part 14): 一般的なマルチメディアコンテナ
-
-### 5.2 画像圧縮技術
+### 5.1 画像圧縮技術
 
 医療現場において、画像データを可能な限り圧縮することで効率的なデータ伝送やサーバー管理が可能になります。
 
@@ -406,6 +391,22 @@ $$
     - 人間の視覚特性を利用して、知覚しにくい情報（冗長な情報）を削減
     - 高い圧縮率（10:1～100:1）が可能だが、画質劣化が発生
     - 例：JPEG（静止画）、MPEG（動画）
+
+
+### 5.2 画像ファイル形式
+ファイル形式の用途は過去国家試験に出題されています。代表的なものは覚えましょう。
+
+- **静止画像のファイル形式：**
+    - JPEG (Joint Photographic Experts Group): 一般的な写真画像、非可逆圧縮
+    - PNG (Portable Network Graphics): 可逆圧縮、透明度対応
+    - TIFF (Tagged Image File Format): 高品質、多様な画像形式サポート
+    - BMP (Bitmap): 非圧縮の基本形式
+    - DICOM (Digital Imaging and Communications in Medicine): 医用画像向け規格
+
+- **動画像のファイル形式：**
+    - MPEG (Moving Picture Experts Group): 動画圧縮の標準規格
+    - AVI (Audio Video Interleave): Windowsベースの動画フォーマット
+    - MP4 (MPEG-4 Part 14): 一般的なマルチメディアコンテナ
 
 
 **圧縮の選択基準：**
