@@ -1,0 +1,1831 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://W-Uchida.github.io/class/%E5%8C%BB%E7%94%A8%E7%94%BB%E5%83%8F%E5%87%A6%E7%90%86%E5%B7%A5%E5%AD%A6/08_ultrasound/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>08, 09. 超音波装置の原理 - 講義資料ポータル</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/custom.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="lime" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#08-09" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href="../.." title="講義資料ポータル" class="md-header__button md-logo" aria-label="講義資料ポータル" data-md-component="logo">
+      
+  <img src="../../img/00-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            講義資料ポータル
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              08, 09. 超音波装置の原理
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="検索">
+        
+        <button type="reset" class="md-search__icon md-icon" title="クリア" aria-label="クリア" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/W-Uchida/class" title="リポジトリへ" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="講義資料ポータル" class="md-nav__button md-logo" aria-label="講義資料ポータル" data-md-component="logo">
+      
+  <img src="../../img/00-logo.png" alt="logo">
+
+    </a>
+    講義資料ポータル
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/W-Uchida/class" title="リポジトリへ" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    画像解析・画像AI特論
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            画像解析・画像AI特論
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%94%BB%E5%83%8F%E8%A7%A3%E6%9E%90%E3%83%BB%E7%94%BB%E5%83%8FAI%E7%89%B9%E8%AB%96/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    概要
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%94%BB%E5%83%8F%E8%A7%A3%E6%9E%90%E3%83%BB%E7%94%BB%E5%83%8FAI%E7%89%B9%E8%AB%96/lecture01/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第1章
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%94%BB%E5%83%8F%E8%A7%A3%E6%9E%90%E3%83%BB%E7%94%BB%E5%83%8FAI%E7%89%B9%E8%AB%96/lecture02/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第2章
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%94%BB%E5%83%8F%E8%A7%A3%E6%9E%90%E3%83%BB%E7%94%BB%E5%83%8FAI%E7%89%B9%E8%AB%96/lecture03/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第3章
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 講義導入
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 超音波の基礎物理学
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 超音波の基礎物理学">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 音波と超音波の定義
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 医用超音波の周波数特性
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 連続波とパルス波
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4 超音波の生体内伝播特性
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.4 超音波の生体内伝播特性">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#241-z" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4.1 音響インピーダンス (Z)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#242" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4.2 超音波の伝播現象の概要
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#243-attenuation" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4.3 超音波の減衰 (Attenuation)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 超音波画像形成の原理
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 超音波画像形成の原理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-pulse-echo-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 パルスエコー法 (Pulse-Echo Method)の基本原理
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 超音波の送受信（圧電効果と超音波振動子）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 分解能の種類
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4 パルスエコー法の重要パラメータ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.5 ビーム形成技術（概要）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36-scanning-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.6 走査方式 (Scanning Method)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 超音波表示モード
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 超音波表示モード">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 各種表示モード
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.1 各種表示モード">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#411-aamplitude-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1.1 Aモード（Amplitude Mode）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#412-bbrightness-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1.2 Bモード（Brightness Mode）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#413-mmotion-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1.3 Mモード（Motion Mode）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. ドプラ法による血流計測
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. ドプラ法による血流計測">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 ドプラ効果の基礎理論
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.1 ドプラ効果の基礎理論">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#52" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 各種ドプラ法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3 ドプラ法の臨床応用（代表例）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 臨床応用と他の画像診断法との比較
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. 臨床応用と他の画像診断法との比較">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 超音波検査の特徴
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-xct" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2 X線CTとの比較（要点）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3 超音波検査が第一選択となることが多い場合（代表例）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-contrast-enhanced-ultrasound-ceus" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.4 造影超音波 (Contrast Enhanced Ultrasound, CEUS)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. 安全管理
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. 安全管理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.1 超音波の生体安全性と指標
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.2 装置の安全管理と感染防止
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. まとめと国家試験対策最重要ポイント
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. まとめと国家試験対策最重要ポイント">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.1 超音波の基礎物理
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.2 超音波画像形成と表示モード
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.3 血流計測（ドプラ法）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#84" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.4 分解能と画質
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#85" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.5 超音波検査の特徴と限界
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#86" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.6 造影超音波
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#87" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.7 物理特性の比較（重要数値の再確認）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#88" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.8 安全管理
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. 演習課題・国家試験対策問題
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="08-09">08, 09. 超音波装置の原理</h1>
+<h2 id="1">1. 講義導入</h2>
+<p>この講義では、医療現場で不可欠な画像診断法の一つである超音波診断装置について、その動作原理を学びます。
+具体的には、超音波の物理的な性質から始まり、どのようにして体内の画像が作られるのか、血流はどのように計測されるのか、そして画質は何によって決まるのか、さらには安全に使用するための知識までを網羅します。
+超音波検査は、患者さんへの負担が少なく（非侵襲的）、リアルタイムで体内の様子を観察できるという大きな利点があり、臨床工学技士としてこれらの原理を深く理解することは、装置の適切な管理やトラブルシューティング、医療チームへの貢献に繋がります。</p>
+<hr />
+<h2 id="2">2. 超音波の基礎物理学</h2>
+<p>超音波診断を理解する第一歩は、超音波が「音」の一種としてどのような物理的性質を持つかを知ることです。</p>
+<h3 id="21">2.1 音波と超音波の定義</h3>
+<ul>
+<li><strong>音波 (Sound Wave)</strong>: 空気や水、生体組織といった<strong>媒質の中を伝わる振動の波（弾性波、具体的には疎密波）</strong>です。<ul>
+<li><strong>周波数 (f)</strong>: 1秒間の振動回数で、単位はヘルツ[Hz]。音の高さに対応します。</li>
+<li><strong>波長 (λ)</strong>: 波1つ分の長さで、単位はメートル[m]。</li>
+<li><strong>音速 (c)</strong>: 音波が媒質を伝わる速さで、単位はメートル毎秒[m/s]。媒質によって異なり、<font color="red"><strong>生体軟部組織の平均音速は約1540m/s</strong></font>とされています。これに対し、<strong>空気中の音速は約340m/s</strong>と遅く、<strong>骨は約4080m/s</strong>と非常に速い特徴があります。</li>
+<li><strong>振幅 (A)</strong>: 振動の大きさで、音の強さ（エネルギー）に関連します。</li>
+<li><strong>基本関係式</strong>: <span class="arithmatex">\(c = fλ\)</span> （音速 = 周波数 × 波長）。この式は非常に重要で、音速が一定なら周波数が高いほど波長は短くなります。</li>
+</ul>
+</li>
+<li><strong>音の分類 (周波数による)</strong>:<ul>
+<li><strong>可聴域</strong>: 人間の耳に聞こえる音の範囲で、通常20Hz～20kHz（2万Hz）です。</li>
+<li><strong>超音波 (Ultrasound)</strong>: 20kHz以上の、人間には聞こえない高周波数の音波です。指向性が高く、エネルギーを集中させやすいため、工業用や医療用に応用されます。</li>
+<li><strong>医用超音波</strong>: 診断に用いられる超音波は、一般的に<font color="red"><strong>1MHz（メガヘルツ）～20MHz</strong></font>という非常に高い周波数帯が使用されます。これにより、体内の細かな構造を画像として捉えることが可能になります。（例：<strong>約25kHzや100kHz～1MHzの超音波は、典型的な診断用とは周波数帯が異なります</strong>）。</li>
+</ul>
+</li>
+</ul>
+<figure>
+  <a class="glightbox" href="../img/08-01.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/08-01.png" alt="超音波" width="800" height="auto"></a>
+  <figcaption>超音波（引用：https://jss1.jp/column/column_47/）</figcaption>
+</figure>
+
+<ul>
+<li><strong>なぜ「超」音波が有用なのか？</strong>: </li>
+</ul>
+<p>超音波は、その高い周波数特性により、指向性を高く保ちやすく、エネルギーを特定の方向に集中させやすいという利点があります。また、音波の強度<span class="arithmatex">\(I [W/m^2]\)</span>（単位面積あたりの音響パワー）は、振幅<span class="arithmatex">\(A [m]\)</span>、周波数<span class="arithmatex">\(f [Hz]\)</span>、媒質の音響インピーダンス<span class="arithmatex">\(Z [kg/m^2s]\)</span>と以下の関係があります。</p>
+<div class="arithmatex">\[ I = \frac{1}{2} Z (2\pi f A)^2 \]</div>
+<p>これを振幅<span class="arithmatex">\(A\)</span>について解くと、</p>
+<div class="arithmatex">\[ A = \frac{1}{\pi f} \sqrt{\frac{I}{2Z}} \]</div>
+<p>これらの式からわかるように、<strong>同じ強度 <span class="arithmatex">\(I\)</span> を得る場合、周波数 <span class="arithmatex">\(f\)</span> が高いほど、必要な振幅 <span class="arithmatex">\(A\)</span> は小さくて済みます</strong>。逆に言えば、<strong>周波数 <span class="arithmatex">\(f\)</span> が高い超音波は、比較的小さな振幅 <span class="arithmatex">\(A\)</span> であっても、効率よく高い強度 <span class="arithmatex">\(I\)</span> のエネルギーを伝播させることができる</strong>という特性を持ちます。</p>
+<ul>
+<li><strong>振幅が小さいことの利点</strong>:<ol>
+<li><strong>エネルギー効率と装置の小型化</strong>: 振動子（超音波を発生させる素子）を大きく振動させる（大きな振幅を生み出す）には、それ相応のエネルギー入力と、物理的なスペースが必要。</li>
+<li><strong>生体への影響（安全性）</strong>: 媒質（この場合は生体組織）の振動振幅が大きいと、組織に対する機械的なストレスも大きくなる可能性があります。<strong>組織への物理的な影響を極力抑えつつ、診断に必要な情報（反射エコー）を得るための十分な強度を確保する</strong>必要があります。高周波数を用いることで、このバランスを取りやすくなります。</li>
+<li><strong>分解能との両立</strong>: 後述するように、高い周波数は波長が短く、これが高い空間分解能（細かく見る能力）に繋がります。</li>
+</ol>
+</li>
+</ul>
+<h3 id="22">2.2 医用超音波の周波数特性</h3>
+<p><strong>周波数と画像のトレードオフ</strong>
+超音波の周波数と、それによって得られる画像の特性には、以下のような相反する関係（トレードオフ）があります。</p>
+<ul>
+<li><strong>高い周波数 (例: 7MHz以上)</strong>:<ul>
+<li><strong>利点</strong>: 波長が短いため、<strong>空間分解能（細かく見る能力）は向上</strong>します。体表に近い浅部の詳細な観察に適しています。</li>
+<li><strong>欠点</strong>: 生体内でのエネルギーの<strong>減衰が大きく</strong>、超音波が<strong>深部まで到達しにくい（深達性が低い）</strong>です。<font color="red"><strong>高周波数で深部臓器の観察は困難です。</strong></font></li>
+</ul>
+</li>
+<li><strong>低い周波数 (例: 2-5MHz)</strong>:<ul>
+<li><strong>利点</strong>: 生体内での<strong>減衰が小さく</strong>、超音波が<strong>深部まで到達しやすい（深達性が高い）</strong>です。腹部深部や心臓などの観察に適しています。</li>
+<li><strong>欠点</strong>: 波長が長いため、<strong>空間分解能は低下</strong>します。
+このトレードオフを理解し、検査目的に応じて最適な周波数を選択することが、良質な超音波画像を得るための基本です。例えば、<strong>腹部超音波診断では3～5MHz帯</strong>が、<strong>心臓の検査では成人で2～5MHz程度</strong>が一般的に用いられます。体表臓器（甲状腺、乳腺など）ではより高い周波数（7MHz以上）が用いられます。</li>
+</ul>
+</li>
+</ul>
+<h3 id="23">2.3 連続波とパルス波</h3>
+<p>医用超音波では、超音波の送信方法として主に<strong>連続波 (Continuous Wave, CW)</strong> と<strong>パルス波 (Pulsed Wave, PW)</strong> が用いられ、それぞれ異なる特徴と用途があります。</p>
+<p>下記距離分解能に関する特徴は、後述します。</p>
+<ul>
+<li>
+<p><strong>連続波 (Continuous Wave, CW)</strong>:</p>
+<ul>
+<li><strong>送信方法</strong>: 超音波を<strong>連続的に送信し続ける</strong>方式です。</li>
+<li><strong>送受信</strong>: 通常、<strong>送信専用の振動子と受信専用の振動子を別々に必要</strong>とします（2つの振動子を用いる）。</li>
+<li><strong>特徴</strong>:<ul>
+<li><strong>時間分解能（距離分解能）がない</strong>: 連続的に送信しているため、エコーがどの深さから返ってきたのかを特定できません。</li>
+</ul>
+</li>
+<li><strong>主な用途</strong>: ドプラ法による高速血流の正確な測定（例：心臓弁膜症における狭窄部や逆流血流の最大流速測定）。</li>
+</ul>
+</li>
+<li>
+<p><strong>パルス波 (Pulsed Wave, PW)</strong>:</p>
+<ul>
+<li><strong>送信方法</strong>: 超音波を<strong>短い時間幅のパルスとして間欠的に送信</strong>し、次のパルスを送信する前に反射波（エコー）の受信を待つ方式です。</li>
+<li><strong>送受信</strong>: 通常、<strong>一つの振動子（またはアレイ探触子内の各素子）が送信と受信の両方の役割</strong>を担います。</li>
+<li><strong>特徴</strong>:<ul>
+<li><strong>時間分解能（距離分解能）がある</strong>: パルスを送信してからエコーが返ってくるまでの時間差を利用して、反射体の深さを特定できます。</li>
+</ul>
+</li>
+<li><strong>主な用途</strong>: Aモード、Bモード、Mモード、パルスドプラ法による特定部位の血流計測。</li>
+</ul>
+</li>
+</ul>
+<div style="text-align: center; margin: 20px 0;">
+<a href="../html/08/08-02.html" style="display: inline-block; padding: 12px 24px; background-color: #2563eb; color: white; text-decoration: none; border-radius: 6px; font-weight: bold;">
+<h4><strong>🔍【実習】 パルス周波数とサイクル数の関係</strong></h4>
+</a>
+</div>
+
+<h3 id="24">2.4 超音波の生体内伝播特性</h3>
+<p>では、生体内で超音波はどのような挙動を示すでしょうか？</p>
+<h4 id="241-z">2.4.1 音響インピーダンス (Z)</h4>
+<p>音響インピーダンスは、超音波が物質中を伝わる際の「伝わりにくさ」を示す指標で、超音波画像の成り立ちを理解する上で最も重要な概念です。</p>
+<ul>
+<li><strong>定義</strong>: </li>
+</ul>
+<div class="arithmatex">\[Z = ρ × c\]</div>
+<ul>
+<li>ρ: 組織の密度, c: その組織中の音速</li>
+</ul>
+<h4 id="242">2.4.2 超音波の伝播現象の概要</h4>
+<p>超音波が体内を進む際には、以下のような様々な現象が起こります。</p>
+<ul>
+<li><strong>反射</strong>: </li>
+</ul>
+<p>超音波は、<strong><font color="red">音響インピーダンスの異なる2つの組織の境界面で反射</font></strong>します。この<strong>音響インピーダンスの差が大きいほど、より強く反射</strong>されます。この反射波（エコー）を捉えることが超音波診断の基本です。</p>
+<p>入射波の振幅に対して、反射波の振幅がどの程度の割合になるかを示す<strong>反射係数 (R)</strong> は、</p>
+<div class="arithmatex">\[R = \frac{Z₂ - Z₁}{Z₂ + Z₁}\]</div>
+<p>で表されます。<span class="arithmatex">\(Z_1\)</span>と<span class="arithmatex">\(Z_2\)</span>が大きく異なれば<span class="arithmatex">\(R\)</span>は1に近づき、ほぼ全反射します。</p>
+<p>逆に言えば、<span class="arithmatex">\(Z_1=Z_2\)</span>の場合、<span class="arithmatex">\(R=0\)</span>となり、<strong>反射は起こりません</strong>。<strong>音速が同じでも密度が異なれば音響インピーダンスは異なるため反射は起こり得ます。</strong></p>
+<ul>
+<li><strong>透過 (Transmission)</strong>: 反射されなかった超音波は次の組織へ進み、さらに深部の情報を得るために必要です。</li>
+<li><strong>屈折 (Refraction)</strong>: 音速の異なる組織へ斜めに入射する際に進行方向が変わる現象で、画像の歪み（アーチファクト）の原因となることがあります。</li>
+<li><strong>散乱 (Scattering)</strong>: 超音波の波長程度の微細な構造物（細胞など）に当たって多方向に散らばる現象。</li>
+</ul>
+<h4 id="243-attenuation">2.4.3 超音波の減衰 (Attenuation)</h4>
+<p>超音波が体内を伝播するにつれて、そのエネルギーは徐々に失われていきます。これを減衰といいます。</p>
+<ul>
+<li><strong>減衰の主な要因</strong>:<ol>
+<li><strong>吸収 (Absorption)</strong>: 超音波エネルギーが組織に吸収され、熱エネルギーに変換されること（これが最大の要因）。</li>
+<li><strong>散乱 (Scattering)</strong>: 波が散らばることによるエネルギーの拡散。</li>
+<li><strong>反射 (Reflection)</strong>: 境界面でのエネルギーの逸脱。</li>
+</ol>
+</li>
+<li><strong>周波数と減衰の関係</strong>: <strong><font color="red">超音波の周波数が高いほど、体内での減衰は指数関数的に大きく</font></strong>なります。このため、高周波超音波は深部まで届きにくいのです。</li>
+</ul>
+<figure>
+  <a class="glightbox" href="../img/08-02.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/08-02.png" alt="超音波の伝播" width="800" height="auto"></a>
+  <figcaption>超音波の伝播</figcaption>
+</figure>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">組織</th>
+<th style="text-align: left;">音速 (c) [m/s] (近似値)</th>
+<th style="text-align: left;">音響インピーダンス (Z) <br> [×10⁶ kg/m²s (MRayl)] (近似値)</th>
+<th style="text-align: left;">音響インピーダンスの相対的な大きさ</th>
+<th style="text-align: left;">超音波の反射・伝播への影響</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>空気</strong></td>
+<td style="text-align: left;">約 340</td>
+<td style="text-align: left;">約 0.0004</td>
+<td style="text-align: left;">極めて小さい</td>
+<td style="text-align: left;">軟部組織との界面でほぼ100%反射。超音波は透過しにくい。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>脂肪</strong></td>
+<td style="text-align: left;">約 1450</td>
+<td style="text-align: left;">約 1.38</td>
+<td style="text-align: left;">小さい</td>
+<td style="text-align: left;">軟部組織（筋肉など）より小さいため、境界面で反射が生じる。<strong>音速も軟部組織平均より遅い。</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>血液</strong></td>
+<td style="text-align: left;">約 1570</td>
+<td style="text-align: left;">約 1.61</td>
+<td style="text-align: left;">中程度</td>
+<td style="text-align: left;">血管壁や他の組織との間で反射が生じる。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>肝臓・筋肉</strong></td>
+<td style="text-align: left;">約 1550～1580</td>
+<td style="text-align: left;">約 1.6～1.7</td>
+<td style="text-align: left;">中程度 (軟部組織の代表)</td>
+<td style="text-align: left;">多くの超音波診断における基準的な組織。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>骨</strong></td>
+<td style="text-align: left;">約 4080</td>
+<td style="text-align: left;">約 7.80</td>
+<td style="text-align: left;">極めて大きい</td>
+<td style="text-align: left;">軟部組織との界面で非常に強く反射。超音波は透過しにくく、強い音響陰影を生じる。<strong>音速も非常に速い。</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>水</strong></td>
+<td style="text-align: left;">約 1500</td>
+<td style="text-align: left;">約 1.5</td>
+<td style="text-align: left;">脂肪よりやや大きい</td>
+<td style="text-align: left;">軟部組織とのインピーダンス差は比較的小さい。減衰も小さい。</td>
+</tr>
+</tbody>
+</table>
+<div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 15px;">
+  <font color="red"><strong>ポイント</strong>:</font><br>
+  <ul style="margin-top: 5px; margin-bottom: 0; padding-left: 20px;">
+    <li style="color: black;"><strong>脂肪組織の音響インピーダンスは、肝臓や筋肉といった実質臓器の音響インピーダンスよりも小さい</strong>です。また、脂肪中の音速も軟部組織の平均より遅いです（約1450m/s）。</li>
+    <li style="color: black;"><strong>空気や骨は、軟部組織との**音響インピーダンス差**が極めて大きい</strong>ため、これらの界面では超音波が非常に強く反射され、その背後への超音波の透過は著しく制限されます。これが、肺（含気）や骨に覆われた部分の超音波観察が難しい理由の一つです。</li>
+    <li style="color: black;"><strong>また、検査時にプローブにジェルを付して検査を行うのも、プローブと体表面の間の空気による<font color="red">著しい反射と減衰を低減させ、効率よく超音波を生体に伝える（音響インピーダンスを整合させる）</font>目的です。</strong></li>
+  </ul>
+</div>
+
+<hr />
+<h2 id="3">3. 超音波画像形成の原理</h2>
+<h3 id="31-pulse-echo-method">3.1 パルスエコー法 (Pulse-Echo Method)の基本原理</h3>
+<p>現在の超音波診断装置は、多くがこのパルスエコー法（<strong>パルス波を用いる</strong>）に基づいて画像を作成しています。</p>
+<ol>
+<li>探触子から短い（時間の）超音波パルスを体内に送信。</li>
+<li>体内の組織境界面で反射されたエコーを探触子で受信。</li>
+<li>パルス送信からエコー受信までの往復時間を測定。</li>
+<li>時間と音速（生体軟部組織の平均音速として<font color="red"><strong>約1540m/s</strong></font>を装置は仮定）から反射体までの距離を計算: <strong>距離 = (音速 × 往復時間) / 2</strong></li>
+<li>受信したエコーの強さ（振幅）をプロットしたり、振幅を輝度（明るさ）に変換し、計算された距離の位置に表示。これを高速に繰り返すことで、リアルタイムの断層像が構築されます。</li>
+</ol>
+<figure>
+  <a class="glightbox" href="../img/08-03.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/08-03.png" alt="パルスエコー法" width="300" height="auto"></a>
+  <figcaption>パルスエコー法</figcaption>
+</figure>
+
+<h3 id="32">3.2 超音波の送受信（圧電効果と超音波振動子）</h3>
+<p>では、どのように超音波を送受信しているのでしょうか？</p>
+<p>パルスエコー法における超音波の送受信には、<strong>圧電効果</strong>という現象を利用した振動子が<strong>超音波送信（発生）・反射波受信の両方</strong>に使われます。</p>
+<ul>
+<li><strong>圧電効果 (ピエゾ効果, Piezoelectric Effect)</strong>:<ul>
+<li><strong>直接圧電効果</strong>: 圧電体（特定の結晶やセラミックス）に機械的な力（圧力や歪み）を加えると、電圧が発生する現象。<strong>超音波の受信時に利用</strong>されます。</li>
+<li><strong>逆圧電効果</strong>: 圧電体に電圧を加えると、機械的に変形（伸び縮み）する現象。これにより、超音波が発生。<strong>超音波の送信時に利用</strong>されます。</li>
+</ul>
+</li>
+<li><strong>超音波振動子の材料</strong>: <strong>PZT (チタン酸ジルコン酸鉛)</strong> と呼ばれるセラミックスが、高い変換効率と安定性から最も一般的に用いられています。</li>
+<li><strong>振動子の構造と主要な役割</strong>:<ul>
+<li><strong>共振周波数</strong>: 振動子はその厚さによって特定の周波数で最も効率よく振動します。これが探触子の中心周波数となります。</li>
+<li><strong>音響整合層 (Matching Layer)</strong>: 圧電素子（高インピーダンス）と生体組織（低インピーダンス）の間の音響インピーダンス差を緩和し、超音波エネルギーが効率よく生体へ伝わるようにする層です。</li>
+<li><strong>ダンピング材 (バッキング材, Damping Material)</strong>: 圧電素子の後面に配置され、送信後の振動子の余計な振動（リンギング）を抑えます。これにより、送信パルスが短くなり（パルス幅が短縮され）、<strong><font color="red">距離分解能（深さ方向の細かさ）が向上</font></strong>します。</li>
+</ul>
+</li>
+</ul>
+<figure>
+  <a class="glightbox" href="../img/08-04.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/08-04.png" alt="超音波の構成" width="800" height="auto"></a>
+  <figcaption>超音波の構成（引用：電子情報通信学会「知識ベース」電子情報通信学会 2014, https://www.ndk.com/jp/products/ultrasound/probe/index_frame.html）</figcaption>
+</figure>
+
+<div style="border: 1px solid #ddd; padding: 10px; border-radius: 5px; color: blue;">
+<h4><strong>【アニメーション】 超音波の発生と受信</strong></h4>
+<a href="../html/08/08-01.html">超音波の発生と受信</a>
+</div>
+
+<h3 id="33">3.3 分解能の種類</h3>
+<p>診断能の高い画像とは、細部まで識別でき（高分解能）、鮮明である（高画質）ことが求められます。</p>
+<ul>
+<li><strong>距離分解能</strong>:<ul>
+<li><strong>超音波ビームの進行方向（深さ方向）に沿って、近接する2つの点を分離して識別できる最小距離</strong>。</li>
+<li>主に送信される<strong>超音波パルスの長さ（後述）が短いほど向上</strong>します。SPLは波長に比例するため、結果的に<strong><font color="red">周波数が高いほど波長が短くなり、距離分解能は良く</font></strong>なります。<strong><font color="red">振動子の数とは直接的な関係はありません。</font></strong></li>
+</ul>
+</li>
+<li><strong>方位分解能</strong>:<ul>
+<li><strong>超音波ビームの幅方向（ビーム進行と直交する方向）で、近接する2つの点を分離識別できる最小距離</strong>。</li>
+<li>その深さにおける<strong>超音波ビームの幅が狭い（細い）ほど向上</strong>します。これは電子フォーカシング技術によって改善されます。</li>
+</ul>
+</li>
+<li><strong>スライス厚分解能</strong>:<ul>
+<li>超音波ビームのスキャン面に対して垂直な方向（画像の厚み方向）の分解能です。Bモード画像は実際にはある程度の厚みを持ったスライス（断層）を表現しています。</li>
+<li>この方向のビーム幅（スライス厚）が薄いほど、スライス厚分解能は向上します。スライス厚は、振動子のスライス方向の形状や、音響レンズ（機械的フォーカス）によって決定。</li>
+</ul>
+</li>
+</ul>
+<figure>
+  <a class="glightbox" href="../img/08-05.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/08-05.png" alt="超音波の分解能" width="600" height="auto"></a>
+  <figcaption>超音波の分解能</figcaption>
+</figure>
+
+<figure>
+  <a class="glightbox" href="../img/08-06.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/08-06.png" alt="超音波の周波数、ビーム幅と分解能の関係" width="600" height="auto"></a>
+  <figcaption>超音波の周波数、ビーム幅と分解能の関係</figcaption>
+</figure>
+
+<h3 id="34">3.4 パルスエコー法の重要パラメータ</h3>
+<p>パルス反射法において、画質や測定範囲に影響を与える重要なパラメータがあります。</p>
+<ul>
+<li>
+<p><strong>パルス繰り返し周波数（Pulse Repetition Frequency, PRF）</strong>：</p>
+<ul>
+<li>1秒間に超音波パルスを送信する回数のことで、単位はHzまたはkHzです。これは、<span class="arithmatex">\(PRF[Hz]=\frac{1}{\text{繰り返し周期}}\)</span>で与えられます。</li>
+<li>PRFが高いほど（繰り返し周期が短いほど）、時間分解能が向上（特にパルスドプラ法で重要）しますが、測定可能な最大深度は浅くなります。</li>
+<li>最大深度 <span class="arithmatex">\(D_{max}\)</span> と <span class="arithmatex">\(PRF\)</span> の関係式（<span class="arithmatex">\(c\)</span>を音速とする）：
+$$ D_{max} ≤ \frac{c}{2 \times PRF} $$</li>
+</ul>
+</li>
+<li>
+<p><strong>パルス幅（Pulse Duration）/パルス長（Spatial Pulse Length, SPL）</strong>：</p>
+<ul>
+<li>送信される1つの超音波パルスの時間的な長さ（パルス幅）または空間的な長さ（パルス長）を指します。</li>
+<li>パルス幅<span class="arithmatex">\(\tau[s] = \frac{n}{f₀}\)</span>は、超音波を構成する波形の個数（サイクル数<span class="arithmatex">\(n\)</span>）で決まる。通常、超音波の数周期分と、短く設計されます。この時、中心周波数<span class="arithmatex">\(f₀\)</span>はプローブ固有です。</li>
+<li>パルス長（空間）[m]は、パルス幅[s] × 音速[m/s] で計算され、この長さが短いほど、超音波ビームの進行方向に沿った分解能である<strong>距離分解能（軸方向分解能）が向上</strong>します。つまり、より近接した2つの反射体を分離して描出できるようになります。</li>
+<li>中心周波数 <span class="arithmatex">\(f₀\)</span> [Hz] との関連式 （n はパルス内のサイクル数）：
+$$τ = \frac{n}{f₀} $$
+つまり、同じサイクル数 <span class="arithmatex">\(n\)</span> であれば、プローブの中心周波数が高いほど、パルス幅 <span class="arithmatex">\(τ\)</span>は短くなります。</li>
+</ul>
+</li>
+</ul>
+<figure>
+  <a class="glightbox" href="../img/08-07.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/08-07.png" alt="パルス繰り返し周波数とパルス幅" width="900" height="auto"></a>
+  <figcaption>パルス繰り返し周波数とパルス幅</figcaption>
+</figure>
+
+<div style="text-align: center; margin: 20px 0;">
+<a href="../html/08/08-02.html" style="display: inline-block; padding: 12px 24px; background-color: #2563eb; color: white; text-decoration: none; border-radius: 6px; font-weight: bold;">
+<h4><strong>🔍【実習】 パルス周波数とサイクル数の関係</strong></h4>
+</a>
+</div>
+
+<div style="text-align: center; margin: 20px 0;">
+<a href="../html/08/08-03.html" style="display: inline-block; padding: 12px 24px; background-color: #2563eb; color: white; text-decoration: none; border-radius: 6px; font-weight: bold;">
+<h4><strong>🔍【実習】 パルス幅/パルス長と距離分解能</strong></h4>
+</a>
+</div>
+
+<h3 id="35">3.5 ビーム形成技術（概要）</h3>
+<p>より鮮明な画像を得るため、アレイ探触子の多数の振動子素子からの超音波の送受信タイミングを電子的に精密に制御し、超音波ビームを細く絞ったり（フォーカシング）、特定の方向に向けたりする技術です。</p>
+<p>高品質な（分解能の高い）画像を得るためには、<strong>収束されたビーム</strong>が不可欠で、複数方向への同時収束は物理的に不可能です（<strong>一度に断層像は取得できない</strong>）。</p>
+<ul>
+<li><strong>電子フォーカシング</strong>: 各素子からの波の位相を合わせることで、レンズのようにビームを収束させ、<strong>ビーム幅を狭くし方位分解能を向上</strong>させます。</li>
+<li><strong>送信ビームフォーミング</strong>: 送信時に遅延時間を制御し、特定の深さに焦点を合わせます。</li>
+<li><strong>電子スキャン</strong>: 機械的な部品を動かすことなく、電気的な制御のみでビームの走査や焦点制御を行います。これにより、<strong>高速スキャンが可能</strong>となり、<strong>焦点距離も電子的に可変</strong>にできます。</li>
+</ul>
+<h3 id="36-scanning-method">3.6 走査方式 (Scanning Method)</h3>
+<p>Bモード画像を得るために超音波ビームをどのように動かすか（走査するか）によって、得られる画像の形や適した用途が異なります。</p>
+<ul>
+<li><strong>リニア走査 (Linear Scan)</strong>:<ul>
+<li>多数の振動子を直線状に並べ、平行なビームを順次送受信。<strong>矩形（長方形）の画像</strong>が得られます。</li>
+<li>近距離の視野が広く歪みが少ないため、甲状腺、乳腺、末梢血管など<strong>体表に近い臓器の観察に適しています</strong>。</li>
+<li>探触子の接触面が広いため、肋間からのアプローチが必要な<strong><font color="red">心臓診断には通常不向き</font></strong>です。</li>
+</ul>
+</li>
+<li><strong>セクタ走査 (Sector Scan)</strong>:<ul>
+<li>小さな探触子面からビームを扇状に振り出して走査。<strong>扇形の画像</strong>が得られます。</li>
+<li>狭い接触面から深部で広い視野が得られるため、肋骨の間など<strong>狭い音響窓からの<font color="red">心臓診断に最も適しています</font></strong>。</li>
+</ul>
+</li>
+<li><strong>コンベックス走査 (Convex Scan)</strong>:<ul>
+<li>振動子を凸面状に配置し、放射状にビームを送受信。<strong>凸型の扇形画像</strong>が得られます。</li>
+<li><strong><font color="red">腹部臓器（肝臓、腎臓など）の一般的な検査に広く用いられ</font></strong>、リニア走査よりも<strong>深部視野が広い</strong>のが特徴です。</li>
+</ul>
+</li>
+<li><strong>ラジアル走査 (Radial Scan)</strong>:<ul>
+<li>放射状に走査する</li>
+<li><strong>血管内超音波画像</strong>で利用される。</li>
+</ul>
+</li>
+</ul>
+<figure>
+  <a class="glightbox" href="../img/08-09.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/08-09.png" alt="探触子" width="700" height="auto"></a>
+  <figcaption>探触子</figcaption>
+</figure>
+
+<figure>
+  <a class="glightbox" href="../img/08-10.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/08-10.png" alt="超音波内視鏡用プローブ" width="700" height="auto"></a>
+  <figcaption>超音波内視鏡用プローブ（穿刺機能は生検のために利用, 引用：https://www.amc1.jp/center/naishikyo/detail06.shtml）</figcaption>
+</figure>
+
+<div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 15px;">
+  <font color="red"><strong>前半はここまで！</strong></font><br>
+</div>
+
+<hr />
+<h2 id="4">4. 超音波表示モード</h2>
+<h3 id="41">4.1 各種表示モード</h3>
+<p>受信したエコー信号は、目的に応じて様々な形式で表示されます。</p>
+<h4 id="411-aamplitude-mode">4.1.1 Aモード（Amplitude Mode）</h4>
+<ul>
+<li><strong>表示方法</strong>：特定の1本の超音波ビームライン上で受信された反射エコーの強さ（振幅: Amplitude）を縦軸に、探触子からの深さ（時間に比例）を横軸にとって、波形として表示するモードです。</li>
+<li><strong>特徴</strong>：<ul>
+<li><strong>一次元的な情報</strong>のみを表示します。つまり、1方向の深さ方向のエコー強度分布を示すだけです。</li>
+<li><strong><font color="red">断層像（二次元画像）は得られません</font></strong>。（国家試験頻出ポイント）</li>
+<li>エコーの強度や反射体までの距離を比較的正確に測定できるという利点があります。</li>
+</ul>
+</li>
+</ul>
+<h4 id="412-bbrightness-mode">4.1.2 Bモード（Brightness Mode）</h4>
+<ul>
+<li><strong>表示方法</strong>：Aモードで得られる反射エコーの振幅（強さ）を、輝点（点）の明るさ（輝度: Brightness）に変換し、その輝点をエコーが返ってきた深さの位置に表示します。この超音波ビームを電子的に、あるいは機械的に走査（スキャン）させることで、多数のビームラインからの情報を組み合わせて二次元の断層画像として表示するモードです。</li>
+<li><strong>特徴</strong>：<ul>
+<li><strong>二次元の断層像</strong>を提供するため、体内の臓器の形態や構造を視覚的に把握することができます。</li>
+<li>現在の超音波診断装置における<strong>最も基本的な表示モードであり、主流</strong>です。</li>
+<li>探触子を動かすことで、<strong>リアルタイムに体内の様子を観察することが可能</strong>です。これにより、臓器の動きや血流の状態（カラードプラと併用時）なども評価できます。</li>
+<li>画像形成には、短い<strong><font color="red">パルス状の超音波を使用</font></strong>します。（連続波ではありません）</li>
+</ul>
+</li>
+</ul>
+<h4 id="413-mmotion-mode">4.1.3 Mモード（Motion Mode）</h4>
+<ul>
+<li><strong>表示方法</strong>：特定の1本の超音波ビームライン上で、時間経過に伴う反射体の動きを記録・表示するモードです。Bモード画像上で関心のある音線を設定すると、その音線上のエコー輝度を縦軸（深さ方向）にとり、横軸を時間軸として、輝度情報を連続的にスクロール表示します。</li>
+<li>
+<p><strong>特徴</strong>：</p>
+<ul>
+<li><strong>時間分解能が非常に高い</strong>ため、心臓の弁の動きや心室壁の運動など、速い動きをする構造の時間的な変化を詳細に捉えるのに適しています。Bモードよりもフレームレートを格段に高くできるためです（Bモードは複数音線の処理が必要だが、Mモードは単一音線）。</li>
+<li><strong>心臓弁の運動パターンの<font color="red">定量的</font>な評価</strong>（弁の開放速度、閉鎖タイミングなど）に最適です。</li>
+<li><strong>心室壁の厚さや内腔径の経時的な変化を正確に測定</strong>することができ、これにより左室収縮能の指標（<strong><font color="red">左室駆出率など</font></strong> [下記動画後半に計測例あり]）を算出するために用いられます。</li>
+</ul>
+</li>
+<li>
+<p><strong>臨床応用</strong>：</p>
+<ul>
+<li>心臓弁（僧帽弁、大動脈弁など）の開放・閉鎖運動のパターン観察、弁膜症の評価。</li>
+<li>心室中隔や左室後壁などの心筋の厚さ、収縮期・拡張期の動きの計測。</li>
+<li>胎児心拍数の正確な測定や不整脈の評価。</li>
+<li>胸膜の動き（呼吸性移動）の評価など。</li>
+</ul>
+</li>
+</ul>
+<figure>
+  <a class="glightbox" href="../img/08-08.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/08-08.png" alt="超音波の構成" width="800" height="auto"></a>
+  <figcaption>超音波エコー信号の表示形式（引用：電子情報通信学会「知識ベース」電子情報通信学会 2014）</figcaption>
+</figure>
+
+<ul>
+<li><a href="https://youtu.be/s4suV5lDB5g?si=j-ykcTsLQQqiy63I">動画で学ぶ(BモードとMモード)</a></li>
+</ul>
+<h2 id="5">5. ドプラ法による血流計測</h2>
+<h3 id="51">5.1 ドプラ効果の基礎理論</h3>
+<p>超音波診断の大きな特徴の一つが、ドプラ効果を利用して体内の<strong>血流情報を非侵襲的に得られる</strong>ことです。</p>
+<ul>
+<li><strong>ドプラ効果 (Doppler Effect)</strong>: </li>
+</ul>
+<p>音源（または反射体）と観測者の間に相対的な動きがあると、観測される音波の周波数が、音源が実際に発している周波数とは異なって聞こえる現象です。</p>
+<figure>
+  <a class="glightbox" href="../img/09-01.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/09-01.png" alt="ドプラ効果" width="800" height="auto"></a>
+  <figcaption>ドプラ効果（引用：中外医学社「超音波の基礎知識」より）</figcaption>
+</figure>
+
+<ul>
+<li><strong>医用超音波におけるドプラシフト周波数 (f<sub>d</sub>)</strong>: </li>
+</ul>
+<p>探触子から送信された超音波(f₀)が、移動する赤血球で反射される際に生じる周波数の変化分です。</p>
+<p>ドプラ効果では、音源と観測者の相対運動により、観測される周波数が変化します：</p>
+<p><strong>Step 1: 送信時</strong>
+探触子→移動する血球：血球が受け取る周波数は
+$$
+f_1 = f_0(1 + \frac{v\cos\theta}{c})
+$$</p>
+<p><strong>Step 2: 受信時</strong> 
+移動する血球→探触子：探触子が受け取る周波数は
+$$
+f_2 = f_1(1 + \frac{v\cos\theta}{c})
+$$</p>
+<p><strong>上記、送信時と受信時の2回ドプラ効果を受けることを考慮すると、ドプラシフト周波数<span class="arithmatex">\(f_d\)</span>は、下記で定式化できます</strong>（v &lt;&lt; c の近似下で）：
+$$
+f_d = f_2 - f_0 \approx 2f_0 \cdot \frac{v\cos\theta}{c}
+$$
+        - f₀: 送信周波数v: 血流速度, θ: 超音波ビームと血流の方向が成す角度, c: 生体内の音速(約1540m/s)</p>
+<figure>
+  <a class="glightbox" href="../img/09-02.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/09-02.png" alt="ドプラシフト" width="800" height="auto"></a>
+  <figcaption>ドプラシフト（引用：中外医学社「超音波の基礎知識」より）</figcaption>
+</figure>
+
+<div style="text-align: center; margin: 20px 0;">
+  <a href="../html/09/09-01.html" style="display: inline-block; padding: 12px 24px; background-color: #2563eb; color: white; text-decoration: none; border-radius: 6px; font-weight: bold;">
+    📚 詳細解説：ドプラシフト周波数の数学的導出を見る
+  </a>
+</div>
+
+<ul>
+<li>
+<p><strong>角度依存性 (cosθ)</strong>: ドプラシフト周波数は角度θに大きく依存します。</p>
+<ul>
+<li><strong>θ=0°</strong> (ビームと血流が平行): f<sub>d</sub>は最大となり、血流速度を最も正確に反映。</li>
+<li><strong><font color="red">θ=90°</font></strong> (ビームと血流が垂直): <span class="arithmatex">\(\cos 90° = 0\)</span> であるため、<strong><font color="red">f<sub>d</sub>はゼロとなり、血流があっても検出不可</font></strong>。</li>
+<li>臨床的には<strong>θを60°以下</strong>に保つことが、血流速度測定の精度上望ましいとされます。</li>
+</ul>
+</li>
+<li>
+<p><strong>血流方向の判定</strong>:</p>
+<ul>
+<li><strong>探触子に近づく血流</strong>: f<sub>d</sub>は正（受信周波数が送信周波数より高くなる）。</li>
+<li><strong>探触子から遠ざかる血流</strong>: f<sub>d</sub>は負（受信周波数が送信周波数より低くなる）。</li>
+<li><strong>カラードプラ表示</strong>: 一般に、<strong>近づく血流を赤色系(Red)</strong>、<strong>遠ざかる血流を青色系(Blue)</strong>で表示 (BART [Blue: Away, Red: Toward]の原則)。</li>
+</ul>
+</li>
+</ul>
+<div style="text-align: center; margin: 20px 0;">
+  <a href="../html/09/09-02.html" style="display: inline-block; padding: 12px 24px; background-color: #2563eb; color: white; text-decoration: none; border-radius: 6px; font-weight: bold;">
+    🔍 実習　ドプラシフト
+  </a>
+</div>
+
+<h4 id="52">5.2 各種ドプラ法</h4>
+<ul>
+<li><strong>連続波ドプラ法 (Continuous Wave Doppler, CWD)</strong>:<ul>
+<li><strong><font color="red">送信用と受信用の振動子を別々に持ち</font></strong>、連続的に超音波を送受信します。</li>
+<li><strong>特徴</strong>:<ul>
+<li><strong>高血流速度の測定に適している</strong>: 原理的に<strong><font color="red">エイリアシング（折り返し現象）が発生しません</font></strong>。</li>
+<li><strong>心臓弁膜症などでの<font color="red">逆流や高速血流</font>の観察</strong>に有用です。つまり、<strong>時間分解能</strong>が高くなければならない場合に有用。</li>
+<li><strong><font color="red">深度情報（距離分解能）はありません</font></strong>。ビーム上の全ての血流信号を重ねて検出します。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>パルスドプラ法 (Pulse Wave Doppler, PWD)</strong>:<ul>
+<li>短い超音波パルスを間欠的に送受信し（通常、<strong>送受信兼用の振動子</strong>を使用）、Bモード画像上で設定した<strong>サンプルボリューム（関心領域）内の血流情報のみを選択的に得る</strong>ことができます。</li>
+<li><strong>特徴</strong>:<ul>
+<li><strong><font color="red">深度情報（距離分解能）があります</font></strong>。</li>
+<li>測定可能な最大ドプラシフト周波数には上限（<span class="arithmatex">\(\text{ナイキスト周波数} = PRF/2\)</span>）があり、これを超える（血流が早すぎる）と<font color="red"><strong>エイリアシングが発生</strong></font>し、血流速度が不正確に表示されます。</li>
+<li><font color="red"><strong>PRF（パルス繰り返し周波数）が高いほど、最大計測深度は浅くなりますが、測定可能な最大血流速度は上がります。</font></strong></li>
+<li><strong>エイリアシング対策</strong>: PRFを上げる（最大血流速度が上がるが、遅い血流は見えなくなる）、送信周波数を下げる、脈管とプローブのなす角を大きくするなどがあります。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div style="text-align: center; margin: 20px 0;">
+  <a href="../html/09/09-02.html" style="display: inline-block; padding: 12px 24px; background-color: #2563eb; color: white; text-decoration: none; border-radius: 6px; font-weight: bold;">
+    🔍 実習　ドプラシフト（エイリアシングを確認）
+  </a>
+</div>
+
+<ul>
+<li><strong>カラードプラ法 (Color Doppler Imaging)</strong>:<ul>
+<li>パルスドプラ法を基盤とし、Bモード画像上に、血流の方向と平均速度をカラーで重ねて表示します。</li>
+<li>血流速度の算出には<strong><font color="red">自己相関法</font></strong>という信号処理技術が用いられます。</li>
+<li><strong>血流の有無や分布、方向を視覚的に把握</strong>するのに優れていますが、<strong><font color="red">角度依存性があります</font></strong>。また、<strong><font color="red">エイリアシングも発生し得ます</font></strong>。定量的な速度測定よりも質的な評価に適しています。</li>
+</ul>
+</li>
+<li><strong>パワードプラ法 (Power Doppler Imaging)</strong>:<ul>
+<li>ドプラシフト信号のパワー（強度、エネルギー）のみをカラー表示します。</li>
+<li><strong>角度依存性が小さく、低速血流の検出感度が高い</strong>という利点がありますが、<strong>血流の方向や速度の情報は直接的には得られません</strong>。<strong><font color="red">原理的にエイリアシングは発生しません。</font></strong></li>
+</ul>
+</li>
+</ul>
+<div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 15px;">
+  <font color="red"><strong>ポイント</strong>:</font><br>
+  <ul style="margin-top: 5px; margin-bottom: 0; padding-left: 20px;">
+    <li style="color: black;"><strong>Bモード画像はパルス波</strong>を用います。連続波では断層像は作れません。</li>
+    <li style="color: black;"><strong>CWドプラはエイリアシングがありませんが、距離分解能もありません。</strong></li>
+    <li style="color: black;"><strong>PWドプラは距離分解能がありますが、エイリアシングの可能性があります。</strong></li>
+  </ul>
+</div>
+
+<figure>
+  <a class="glightbox" href="../img/09-03.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/09-03.png" alt="ドプラ法" width="800" height="auto"></a>
+  <figcaption>ドプラ法</figcaption>
+</figure>
+
+<figure>
+  <a class="glightbox" href="../img/09-04.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/09-04.png" alt="エイリアシング（折り返し現象）" width="800" height="auto"></a>
+  <figcaption>エイリアシング（折り返し現象）</figcaption>
+</figure>
+
+<h4 id="53">5.3 ドプラ法の臨床応用（代表例）</h4>
+<ul>
+<li><strong>血管狭窄・閉塞の評価</strong>: 狭窄部での血流速度増加（<strong><font color="red">CWドプラで最大速度を測定</font></strong>）や、閉塞による血流信号の消失を評価します。</li>
+<li><strong>心機能評価</strong>: 心臓弁膜症における弁通過血流の高速ジェットや逆流の検出、心拍出量の推定などに用いられます。</li>
+<li><strong>産科領域</strong>: <strong><font color="red">胎児心拍数の測定</font></strong>や臍帯血流評価など、胎児の健康状態モニタリングに不可欠です。</li>
+<li><strong>血管内超音波 (IVUS)</strong>: カテーテル先端の超音波で、<strong>血管内から血管壁やプラークを直接観察</strong>する特殊な方法です。</li>
+</ul>
+<hr />
+<h2 id="6">6. 臨床応用と他の画像診断法との比較</h2>
+<h3 id="61">6.1 超音波検査の特徴</h3>
+<p>超音波検査が医療現場で広く用いられている理由はその多くの利点にあります。</p>
+<ul>
+<li><strong>利点</strong>:<ul>
+<li><strong>実時間（リアルタイム）での観察</strong>: 臓器の動きや血流をその場で見ることができ、<strong>動画撮影も可能</strong>です。そのため、<strong>心臓や胎児など動きのある臓器の評価に非常に適しています</strong>。</li>
+<li><strong>高い携帯性</strong>: 小型軽量な装置が多く、<strong>ベッドサイドや救急外来、手術室など、場所を選ばずに検査が可能</strong>です。</li>
+<li><strong>非侵襲・無被曝</strong>: X線のような<strong>電離放射線を使用しないため、被曝の心配がなく、患者さんへの身体的負担が少ない</strong>です。そのため、<strong>妊婦や小児に対しても繰り返し安全に施行</strong>できます。</li>
+<li><strong>血流情報の取得</strong>: <strong>ドプラ法を用いることで、血管内の血流状態（方向、速度、乱れなど）を非侵襲的に評価</strong>できます。</li>
+<li><strong>特殊な評価も可能</strong>: <strong>Mモード</strong>による心室壁の厚さや弁運動の精密測定、<strong>血管内超音波 (IVUS)</strong> による血管内からの詳細観察なども行えます。</li>
+</ul>
+</li>
+<li><strong>欠点</strong>:<ul>
+<li><strong>術者依存性が高い</strong>: 検査の質が術者の技量や経験に大きく左右されます。</li>
+<li><strong>視野に制限がある</strong>: <strong>全身を一度に撮影することはできません</strong>。また、<strong><font color="red">骨やガス（空気、特に肺や消化管ガス）の背後は超音波が届きにくく、死角</font></strong>となります。このため、<strong><font color="red">小腸などの消化管の観察は一般に困難</font></strong>とされます。</li>
+<li><strong>深部到達性に限界</strong>: 特に高周波では深部まで届きにくく、肥満患者などでは画質が低下することがあります。</li>
+<li><strong>画質の制約</strong>: スペックルノイズなど、特有のノイズにより画質が影響を受けることがあります。<strong><font color="red">音速誤差アーチファクト</font></strong>も発生し得ます（例：脂肪層が厚いと、その奥の構造物は実際より深く表示される）。</li>
+</ul>
+</li>
+</ul>
+<h3 id="62-xct">6.2 X線CTとの比較（要点）</h3>
+<p>超音波とCTはどちらも断層像を得る検査ですが、得意分野が異なります。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">項目</th>
+<th style="text-align: left;">超音波検査</th>
+<th style="text-align: left;">X線CT検査</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>基本原理</strong></td>
+<td style="text-align: left;">超音波の反射</td>
+<td style="text-align: left;">X線の透過・減弱</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>画質（分解能）</strong></td>
+<td style="text-align: left;">中程度～良好（条件による、<font color="red">CTより一般に低い</font>）</td>
+<td style="text-align: left;"><strong>一般に優れている</strong>（特に骨・肺）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>観察視野</strong></td>
+<td style="text-align: left;">制限あり（探触子範囲、死角あり）</td>
+<td style="text-align: left;"><strong>広い</strong>（広範囲スキャン可能）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>肺内病変描出</strong></td>
+<td style="text-align: left;"><font color="red">困難</font>（含気のため）</td>
+<td style="text-align: left;"><strong>非常に適している</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>骨の描出</strong></td>
+<td style="text-align: left;">表面のみ、<font color="red">内部や背後は困難</font></td>
+<td style="text-align: left;"><strong>非常に優れている</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>リアルタイム性</strong></td>
+<td style="text-align: left;"><strong>非常に優れている</strong></td>
+<td style="text-align: left;">限定的</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>携帯性</strong></td>
+<td style="text-align: left;"><strong>非常に優れている</strong></td>
+<td style="text-align: left;">装置が大きく、ほぼ不可</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>放射線被ばく</strong></td>
+<td style="text-align: left;"><strong>なし</strong></td>
+<td style="text-align: left;"><strong>あり</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>コスト</strong></td>
+<td style="text-align: left;"><strong>比較的低い</strong></td>
+<td style="text-align: left;">比較的高い</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>血流情報</strong></td>
+<td style="text-align: left;">ドプラ法で直接評価可能</td>
+<td style="text-align: left;">造影剤使用で間接的に評価</td>
+</tr>
+</tbody>
+</table>
+<h3 id="63">6.3 超音波検査が第一選択となることが多い場合（代表例）</h3>
+<ul>
+<li><strong>妊婦・胎児の評価</strong>: 被曝がなく安全なため。</li>
+<li><strong>小児の各種検査</strong>: 同様に安全性が高いため。</li>
+<li><strong>体表臓器の精査</strong>: 甲状腺、乳腺、リンパ節など。</li>
+<li><strong>心臓の形態・機能評価（心エコー）</strong>: リアルタイムでの動態観察が必須なため。</li>
+<li><strong>血管系疾患のスクリーニング</strong>: ドプラ法による血流評価が有用なため。</li>
+<li><strong>胆嚢・胆道系疾患の初期評価</strong>: 胆石などの描出に優れるため。</li>
+<li><strong>救急医療での迅速評価 (FASTなど)</strong>: 腹腔内出血や心タンポナーデの早期発見。</li>
+</ul>
+<h3 id="64-contrast-enhanced-ultrasound-ceus">6.4 造影超音波 (Contrast Enhanced Ultrasound, CEUS)</h3>
+<p>造影超音波は、特殊な超音波造影剤を静脈注射し、血流動態や組織の灌流状態を詳細に評価する検査法です。</p>
+<p><strong>マイクロバブル造影剤 (Microbubble Contrast Agents)</strong></p>
+<ul>
+<li><strong>構造</strong>:<ul>
+<li>医用超音波造影剤の主成分は、<strong>直径が数μm（マイクロメートル、通常1～10μm程度で赤血球と同程度かそれ以下）の微小なガス気泡（<font color="red">マイクロバブル</font>）</strong>で、（<strong><font color="red">造影剤として用いられている</font></strong>：重要）</li>
+</ul>
+</li>
+<li><strong>特性</strong>:<ul>
+<li><strong>血管内に限局</strong>: マイクロバブルは赤血球とほぼ同じサイズであるため、毛細血管を通過できますが、血管壁を透過して血管外の組織間隙へ漏出することはありません。そのため、純粋な血液プール造影剤（血管内造影剤）として機能します。</li>
+<li><strong>強い超音波反射能</strong>: ガスと周囲の血液・組織との間には極めて大きな音響インピーダンス差があるため、マイクロバブルは超音波を非常に強く反射（散乱）します。これにより、少量の造影剤でも血流信号を大幅に増強できます。</li>
+<li><strong>安全性</strong>: 生体内で代謝され、内部のガスは主に肺から呼気として排出されるため、一般的に安全性は高いとされています。腎機能障害のある患者にも比較的安全に使用できます。</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="7">7. 安全管理</h2>
+<p>超音波検査は安全性が高いとされていますが、そのエネルギーが生体に何らかの影響を及ぼす可能性はゼロではありません。適切な知識と運用が求められます。</p>
+<h3 id="71">7.1 超音波の生体安全性と指標</h3>
+<p>診断用超音波の主な生体作用には、熱作用と機械的作用があります。</p>
+<ul>
+<li><strong>熱作用 (Thermal Effect)</strong>: 超音波エネルギーが組織に吸収され、熱に変換されることで組織温度が上昇する現象です。<ul>
+<li><strong>評価指標</strong>: <strong>TI (Thermal Index, 熱的指数)</strong>。超音波による最大温度上昇の目安を示し、<strong>TI &lt; 1.0</strong> であれば臨床的に問題となる温度上昇は起こりにくいとされます。</li>
+</ul>
+</li>
+<li><strong>機械的作用 (Mechanical Effect)</strong>: 超音波の音圧などによる物理的な作用で、代表的なものに<strong>音響キャビテーション</strong>（液体中の微小気泡の発生・振動・崩壊）があります。<ul>
+<li><strong>評価指標</strong>: <strong>MI (Mechanical Index, 機械的指数)</strong>。キャビテーション発生の可能性を示し、<strong>MI &lt; 1.9</strong> であれば重大な損傷リスクは低いとされます（造影剤使用時はより低いMIでも注意）。</li>
+</ul>
+</li>
+<li><strong>安全管理の基本原則</strong>: <strong>ALARA原則 (As Low As Reasonably Achievable)</strong>。診断に必要な画質が得られる範囲で、<strong>音響出力をできるだけ低く、検査時間をできるだけ短く</strong>するよう努めます。</li>
+<li><strong>特に配慮が必要な対象</strong>: <strong>妊娠初期の胎児</strong>（器官形成期）、<strong>眼球</strong>（熱に敏感）、<strong>マイクロバブル造影剤使用時</strong>（キャビテーション誘発しやすい）など。</li>
+</ul>
+<h3 id="72">7.2 装置の安全管理と感染防止</h3>
+<ul>
+<li><strong>日常点検の重要性</strong>: 臨床工学技士は、探触子や装置本体の外観（ケーブル損傷、コネクタ、ヘッドの傷など）、画質（ファントム使用が理想）、安全性指標（TI/MI）の表示、電気的安全性などを定期的に点検し、装置が常に安全かつ最適な状態で使用できるよう管理します。</li>
+<li><strong>感染防止対策</strong>: 超音波検査は患者さんの体表や体腔内に探触子が接触するため、感染防止が極めて重要です。<ul>
+<li><strong>探触子の適切な洗浄・消毒</strong>: 患者ごとに、使用部位（体表か体腔内か）やメーカーの指示に応じた適切な方法で洗浄・消毒を行います。体腔内プローブは高水準消毒や滅菌が推奨され、プローブカバーの使用も一般的です。</li>
+<li><strong>カップリングゲルの衛生管理</strong>: 使い切りタイプや汚染防止策が施された容器を使用します。</li>
+<li>その他、術者の手指衛生、使い捨て器材の使用、検査環境の清掃も徹底します。</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="8">8. まとめと国家試験対策最重要ポイント</h2>
+<p>このセクションでは、本日の講義内容の重要ポイントを国家試験対策の観点から再確認します。</p>
+<h3 id="81">8.1 超音波の基礎物理</h3>
+<ul>
+<li><strong>生体軟部組織中の平均音速</strong>: 約 <strong><font color="red">1540m/s</font></strong> です。これに対し、<strong>空気中では約340m/s</strong>、<strong>骨では約4080m/s</strong>と大きく異なります。<strong>脂肪中の音速は約1450m/s</strong>で、軟部組織平均よりやや遅いです。</li>
+<li><strong>医用超音波の周波数帯域</strong>: 一般的に <strong><font color="red">1～20MHz</font></strong> の範囲が用いられます。これより低い周波数（例：25kHzは約0.025MHz、100kHzは0.1MHz）は診断用としては一般的ではありません。</li>
+<li><strong>腹部超音波診断でよく用いられる周波数</strong>: <strong><font color="red">3～5MHz</font></strong> 帯が一般的です。深達性と分解能のバランスが良いとされています。</li>
+<li><strong>周波数と減衰特性</strong>: <strong><font color="red">超音波の周波数が高いほど、生体内での減衰は大きく</font></strong>なります。したがって、高周波は深部到達性が低く（深部臓器の観察は困難）、低周波は深部到達性が高いという関係を理解しておくことが重要です。</li>
+<li><strong>音響インピーダンスと反射</strong>: <strong>超音波は、音響インピーダンス (Z = 密度ρ × 音速c) が異なる物質の境界面で反射</strong>します。この反射波を捉えることで画像が形成されます。<strong>音速が同じでも密度が異なればZは異なり反射が生じます</strong>。</li>
+<li><strong>組織間の音響インピーダンスの比較</strong>:<ul>
+<li><strong>空気のZは極めて小さい</strong>です。</li>
+<li><strong>脂肪組織のZは、肝臓や筋肉といった実質臓器のZよりも小さい</strong>です。</li>
+<li><strong>骨のZは極めて大きい</strong>です。</li>
+<li>したがって、<strong>空気 &lt;&lt; 脂肪 &lt; 肝臓・筋肉 &lt; 骨</strong> のような大小関係になります。</li>
+</ul>
+</li>
+</ul>
+<h3 id="82">8.2 超音波画像形成と表示モード</h3>
+<ul>
+<li><strong>Aモード (Amplitude Mode)</strong>: 反射エコーの振幅を波形表示するもので、<strong><font color="red">断層像（二次元画像）は得られません</font></strong>。一次元的な情報のみです。</li>
+<li><strong>Bモード (Brightness Mode)</strong>: 反射エコーの強度を輝度で表示し、ビームを走査することで<strong>二次元の断層像が得られます</strong>。<strong>リアルタイムでの観察が可能</strong>で、現在の超音波診断の主流です。<strong><font color="red">パルス波</font></strong>を使用します。</li>
+<li><strong>Mモード (Motion Mode)</strong>: 特定のライン上の構造物の動きを時間軸上に展開して表示します。<strong>心臓の弁の動きを描画したり、心室壁の厚さや動きを測定したりする</strong>のに適しており、時間分解能が非常に高いです。これにより<strong><font color="red">左室駆出率の算出</font></strong>に必要なパラメータ計測も行われます。</li>
+<li><strong>走査方式と適応</strong>:<ul>
+<li><strong>リニア走査</strong>: 探触子幅の矩形画像。体表に近い部位（甲状腺、乳腺、末梢血管など）の観察に適していますが、肋間に挟まれた<strong><font color="red">心臓の画像診断には通常不向き</font></strong>です。</li>
+<li><strong>セクタ走査</strong>: 狭い接触面から扇状に広がる画像。肋間など狭い音響窓からのアプローチが必要な<strong><font color="red">心臓の画像診断に最も適しています</font></strong>。</li>
+<li><strong>コンベックス走査</strong>: 凸型の探触子から扇状に広がる画像。<strong><font color="red">腹部臓器（肝臓、腎臓など）の超音波診断に広く適しており</font></strong>、リニア走査よりも<strong>深部視野が広い</strong>のが特徴です。</li>
+</ul>
+</li>
+</ul>
+<h3 id="83">8.3 血流計測（ドプラ法）</h3>
+<ul>
+<li><strong>ドプラ効果と角度依存性</strong>: 超音波ビームと血流方向のなす角θが<strong><font color="red">90°のときドプラシフトはゼロとなり計測不能</font></strong>。θ=0°で最大。</li>
+<li><strong>連続波ドプラ (CW Doppler)</strong>:<ul>
+<li><strong><font color="red">送信用と受信用の振動子を別々に持ちます</font></strong>。</li>
+<li><strong><font color="red">エイリアシングを起こさずに高血流速度を測定</font></strong>でき、心臓弁膜症などにおける<strong>逆流の情報も得られます</strong>。</li>
+<li>ただし、<strong><font color="red">深度情報（距離分解能）は得られません</font></strong>。</li>
+</ul>
+</li>
+<li><strong>パルス波ドプラ (PW Doppler)</strong>:<ul>
+<li>サンプルボリュームを設定することで<strong>特定の深さの血流情報を選択的に得られます（距離分解能あり）</strong>。</li>
+<li>測定可能な血流速度にはPRFによる上限（ナイキスト限界 = PRF/2）があり、それを超えると<strong><font color="red">エイリアシング</font></strong>が発生します。</li>
+<li><strong><font color="red">PRFが高いほど最大計測深度は浅く</font></strong>なります。</li>
+</ul>
+</li>
+<li><strong>カラードプラ法</strong>:<ul>
+<li>血流の分布や方向をBモード画像上にカラーで表示します。</li>
+<li>平均血流速度の算出には<strong><font color="red">自己相関法</font></strong>が用いられます。</li>
+<li>表示される血流情報は、超音波ビームと血流の成す<strong><font color="red">角度に依存性があり、エイリアシングも発生します</font></strong>。</li>
+</ul>
+</li>
+<li><strong>パワードプラ法</strong>: <strong><font color="red">エイリアシングは原理的に発生しません</font></strong>。</li>
+<li><strong>胎児心拍数の測定</strong>: 安全性の観点からも、<strong><font color="red">ドプラ法が用いられます</font></strong>。</li>
+<li><strong>血管狭窄部位の高速血流速度測定</strong>: エイリアシングを避けるため、<strong><font color="red">主に連続波ドプラ(CW Doppler)が用いられます</font></strong>。</li>
+</ul>
+<h3 id="84">8.4 分解能と画質</h3>
+<ul>
+<li><strong>距離分解能（軸方向分解能）</strong>:<ul>
+<li><strong>超音波ビームの進行方向に沿って、2つの点を分離識別できる能力</strong>です。パルス長が短いほど良好です。</li>
+<li><strong><font color="red">超音波の周波数が高いほど、波長が短くなり、パルス長も短くできるため、距離分解能は良く</font></strong>なります。</li>
+<li><strong><font color="red">振動子の数とは直接関係ありません</font></strong>。</li>
+</ul>
+</li>
+<li><strong>方位分解能（横方向分解能）</strong>: <strong>超音波ビームの幅方向に、2つの点を分離識別できる能力</strong>です。<strong>超音波のビーム幅が狭いほど方位分解能は高く</strong>なります。</li>
+<li><strong>減衰と周波数</strong>: <strong><font color="red">超音波の周波数が高いほど、体内での減衰は大きく</font></strong>なります。</li>
+<li><strong>高調波イメージング (Harmonic Imaging)</strong>: THI（組織性ハーモニックイメージング）は、分解能向上やアーチファクト低減に寄与し、<strong><font color="red">組織性状のより詳細な画像化に有用</font></strong>です。</li>
+</ul>
+<h3 id="85">8.5 超音波検査の特徴と限界</h3>
+<ul>
+<li>
+<p><strong>利点</strong>:</p>
+<ul>
+<li><strong>リアルタイムでの撮影が可能</strong>で、<strong>動画としても記録可能</strong>です。</li>
+<li>X線のような<strong>電離放射線による被曝がないため、侵襲性が低い</strong>です。</li>
+<li>ドプラ法により<strong>血流の情報を画像として得られます</strong>。</li>
+<li>Mモードなどを用いて<strong>心室壁の厚さを測定できます</strong>。</li>
+<li><strong>血管内超音波 (IVUS) を用いれば、血管内から血管壁の断面を観察できます</strong>。</li>
+<li><strong>動きのある臓器の撮影に適しています</strong>。</li>
+</ul>
+</li>
+<li>
+<p><strong>限界</strong>:</p>
+<ul>
+<li><strong>全身を一度に撮影するような広範囲のスクリーニングは不可能です</strong>。</li>
+<li><strong><font color="red">最も描出が困難とされる臓器の一つは小腸</font></strong>です。これは主に腸管内ガスによる強い反射と音響陰影、蠕動運動などが原因です。肺や骨背後も同様に困難です。</li>
+<li>術者の技量に結果が左右される（術者依存性）。</li>
+<li><strong>音速誤差アーチファクト</strong>: 組織中の音速が装置設定値(1540m/s)と異なる場合（例: 脂肪層が厚いと音速が遅いため、その奥の構造物は実際より深く表示される）、距離の誤差が生じます。</li>
+</ul>
+</li>
+</ul>
+<h3 id="86">8.6 造影超音波</h3>
+<ul>
+<li><strong>超音波造影剤</strong>: 主に<strong><font color="red">マイクロバブル（微小気泡）が用いられています</font></strong>。血管内に留まり、強いエコー源となります。</li>
+</ul>
+<h3 id="87">8.7 物理特性の比較（重要数値の再確認）</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">組織</th>
+<th style="text-align: left;">音速 [m/s] (近似値)</th>
+<th style="text-align: left;">音響インピーダンス (Z) [×10⁶ kg/m²s (MRayl)] (近似値)</th>
+<th style="text-align: left;">超音波伝播の特徴</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">空気</td>
+<td style="text-align: left;"><strong>340</strong></td>
+<td style="text-align: left;"><strong>約 0.0004</strong></td>
+<td style="text-align: left;">ほぼ100%反射、強い音響陰影、超音波は透過しにくい</td>
+</tr>
+<tr>
+<td style="text-align: left;">脂肪</td>
+<td style="text-align: left;"><strong>1450</strong></td>
+<td style="text-align: left;"><strong>約 1.38</strong> (小)</td>
+<td style="text-align: left;">軟部組織平均より音速が遅く、Zも小さい。減衰はやや大きい</td>
+</tr>
+<tr>
+<td style="text-align: left;">筋肉・肝臓</td>
+<td style="text-align: left;">1550～1580</td>
+<td style="text-align: left;">約 1.6～1.7 (中)</td>
+<td style="text-align: left;">超音波診断の基準となる音速に近い</td>
+</tr>
+<tr>
+<td style="text-align: left;">骨</td>
+<td style="text-align: left;"><strong>4080</strong></td>
+<td style="text-align: left;"><strong>約 7.80</strong> (極めて大きい)</td>
+<td style="text-align: left;">強く反射し、減衰も非常に大きいため、後方は描出困難</td>
+</tr>
+<tr>
+<td style="text-align: left;">水</td>
+<td style="text-align: left;">1500</td>
+<td style="text-align: left;">約 1.5</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>軟部組織平均</strong></td>
+<td style="text-align: left;"><strong>1540</strong></td>
+<td style="text-align: left;">(基準)</td>
+<td style="text-align: left;">装置の距離計算の基準音速</td>
+</tr>
+</tbody>
+</table>
+<h3 id="88">8.8 安全管理</h3>
+<ul>
+<li><strong>安全性指標</strong>: <strong>TI (Thermal Index、熱的指数)</strong> は熱作用の指標、<strong>MI (Mechanical Index、機械的指数)</strong> はキャビテーションなどの機械的作用の指標です。</li>
+<li><strong>ALARA原則</strong>: 「合理的に達成可能な限り低く」という考え方に基づき、診断に必要な最小限の出力と時間で検査を行うことが重要です。</li>
+<li><strong>妊婦・小児への配慮</strong>: 特に妊娠初期の胎児や小児に対しては、安全性を最大限に考慮し、TI/MI値を確認しながら慎重に検査を行います。</li>
+<li><strong>感染防止</strong>: プローブの適切な洗浄・消毒、プローブカバーの使用、ゲルの衛生管理などが重要です。</li>
+</ul>
+<hr />
+<h2 id="9">9. 演習課題・国家試験対策問題</h2>
+<ul>
+<li><a href="https://forms.gle/gF3jhJGNFWGaBW8VA">Google Form</a></li>
+</ul>
+<figure>
+  <a class="glightbox" href="../img/09-05.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/09-05.png" alt="第8,9回演習QRコード" width="300" height="auto"></a>
+  <figcaption>第8,9回演習QRコード</figcaption>
+</figure>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="最終更新日">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年9月29日 01:24:19 UTC">2025年9月29日</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="作成日">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年9月29日 01:24:19 UTC">2025年9月29日</span>
+  </span>
+
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/W-Uchida/class" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.expand", "search.highlight", "search.suggest"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>

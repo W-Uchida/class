@@ -1,0 +1,1197 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://W-Uchida.github.io/class/%E5%8C%BB%E7%94%A8%E7%94%BB%E5%83%8F%E5%87%A6%E7%90%86%E5%B7%A5%E5%AD%A6/04_reconstruction/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>4. 画像再構成 - 講義資料ポータル</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/custom.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="lime" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#4" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href="../.." title="講義資料ポータル" class="md-header__button md-logo" aria-label="講義資料ポータル" data-md-component="logo">
+      
+  <img src="../../img/00-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            講義資料ポータル
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              4. 画像再構成
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="検索">
+        
+        <button type="reset" class="md-search__icon md-icon" title="クリア" aria-label="クリア" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/W-Uchida/class" title="リポジトリへ" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="講義資料ポータル" class="md-nav__button md-logo" aria-label="講義資料ポータル" data-md-component="logo">
+      
+  <img src="../../img/00-logo.png" alt="logo">
+
+    </a>
+    講義資料ポータル
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/W-Uchida/class" title="リポジトリへ" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    画像解析・画像AI特論
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            画像解析・画像AI特論
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%94%BB%E5%83%8F%E8%A7%A3%E6%9E%90%E3%83%BB%E7%94%BB%E5%83%8FAI%E7%89%B9%E8%AB%96/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    概要
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%94%BB%E5%83%8F%E8%A7%A3%E6%9E%90%E3%83%BB%E7%94%BB%E5%83%8FAI%E7%89%B9%E8%AB%96/lecture01/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第1章
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%94%BB%E5%83%8F%E8%A7%A3%E6%9E%90%E3%83%BB%E7%94%BB%E5%83%8FAI%E7%89%B9%E8%AB%96/lecture02/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第2章
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%94%BB%E5%83%8F%E8%A7%A3%E6%9E%90%E3%83%BB%E7%94%BB%E5%83%8FAI%E7%89%B9%E8%AB%96/lecture03/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第3章
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. はじめに
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. はじめに">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 講義の目的と全体像
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 前回までの復習
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 前回までの復習">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 ディジタル画像の基礎
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 エイリアシングとナイキスト定理
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 フーリエ変換の基礎
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4 画像フィルタリングの基本
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.4 画像フィルタリングの基本">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      フィルタの主な種類:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 画像再構成の基本原理
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 画像再構成の基本原理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 投影データからの画像再構成
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.1 投影データからの画像再構成">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#311" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1.1 医用画像診断装置の多様性と画像再構成の重要性
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#312" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1.2 投影の概念
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#313" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1.3 サイノグラムと再構成
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-fbp-filtered-back-projection" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 フィルタ補正逆投影法（FBP: Filtered Back Projection）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.2 フィルタ補正逆投影法（FBP: Filtered Back Projection）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#321" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2.1 単純逆投影法の問題点
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#322" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2.2 フィルタ補正逆投影法の原理
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#323-fbp" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2.3 FBPの実装手順
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 反復的再構成法
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.3 反復的再構成法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#331-art-algebraic-reconstruction-technique" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3.1 代数的再構成法（ART: Algebraic Reconstruction Technique）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#332-ml-em-maximum-likelihood-expectation-maximization" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3.2 最尤推定法を用いた再構成（ML-EM法: Maximum Likelihood Expectation Maximization）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#333-os-em-ordered-subset-expectation-maximization" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3.3 逐次近似再構成法（OS-EM: Ordered Subset Expectation Maximization）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#334-mbir-model-based-iterative-reconstruction" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3.4 モデルベース反復再構成法（MBIR: Model-Based Iterative Reconstruction）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4 再構成法の比較と選択
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. まとめ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. まとめ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 画像再構成技術のポイント
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 次回講義の予告
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="4">4. 画像再構成</h1>
+<h2 id="1">1. はじめに</h2>
+<h3 id="11">1.1 講義の目的と全体像</h3>
+<ul>
+<li>
+<p><strong>背景説明：</strong><br />
+  医用画像において、画像再構成は正確な診断や治療計画の立案に不可欠です。特にCTやMRI、各医学検査などの断層画像法では、投影データや周波数領域データから診断可能な画像への再構成が必要となります。また、撮影時に生じる劣化の補正や、診断・手術支援のための3次元可視化も重要な技術です。</p>
+</li>
+<li>
+<p><strong>講義の流れ：</strong><br />
+  本講義では、下記の流れで画像再構成・3次元化技術について説明します。</p>
+</li>
+<li>
+<p>前回までの復習：フーリエ変換とフィルタリング</p>
+</li>
+<li>画像再構成の基本原理と手法</li>
+<li>実習</li>
+</ul>
+<hr />
+<h2 id="2">2. 前回までの復習</h2>
+<h3 id="21">2.1 ディジタル画像の基礎</h3>
+<ul>
+<li><strong>標本化と量子化</strong>：</li>
+<li>標本化：連続的な空間情報を離散的な画素に変換（空間解像度）</li>
+<li>量子化：連続的な輝度値を離散的な数値に変換（輝度解像度）</li>
+</ul>
+<h3 id="22">2.2 エイリアシングとナイキスト定理</h3>
+<ul>
+<li>
+<p><strong>標本化定理（ナイキスト定理）</strong>：
+  信号の最高周波数成分 <span class="arithmatex">\(f_{\max}\)</span> に対して、標本化周波数 <span class="arithmatex">\(f_s\)</span> が
+  <span class="arithmatex">\(<span class="arithmatex">\(f_s \geq 2f_{\max}\)</span>\)</span>
+  を満たさなければ、元の信号を正確に復元できない</p>
+</li>
+<li>
+<p><strong>エイリアシング（折り返し歪み）</strong>：
+  標本化定理を満たさない場合に生じる偽の周波数成分の出現</p>
+</li>
+</ul>
+<h3 id="23">2.3 フーリエ変換の基礎</h3>
+<p><strong>2次元フーリエ変換（画像処理用）：</strong></p>
+<p>空間領域と周波数領域を変換する数学的手法。</p>
+<p>フーリエ変換：</p>
+<div class="arithmatex">\[F(u,v) = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x,y) e^{-j2\pi(ux+vy)} dx dy\]</div>
+<p>逆フーリエ変換：</p>
+<div class="arithmatex">\[f(x,y) = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} F(u,v) e^{j2\pi(ux+vy)} du dv\]</div>
+<figure>
+  <a class="glightbox" href="../img/03-02.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/03-02.png" alt="1次元フーリエ変換の概念" width="800" height="auto"></a>
+  <figcaption>1次元フーリエ変換の概念（引用：https://dibyendu-biswas.medium.com/fourier-transform-70ae1b7ec252）</figcaption>
+</figure>
+
+<h3 id="24">2.4 画像フィルタリングの基本</h3>
+<ul>
+<li><strong>空間領域フィルタリングと周波数領域フィルタリング</strong>：</li>
+</ul>
+<p>空間領域での畳み込み演算は、周波数領域での単純な乗算に対応しています。</p>
+<div class="arithmatex">\[g(x,y) = f(x,y) \otimes h(x,y) \Leftrightarrow G(u,v) = F(u,v) × H(u,v)\]</div>
+<p>ここで、<span class="arithmatex">\(\otimes\)</span>は畳み込み演算、<span class="arithmatex">\(×\)</span>は要素ごとの乗算、<span class="arithmatex">\(F(u,v)\)</span>と<span class="arithmatex">\(H(u,v)\)</span>はそれぞれ<span class="arithmatex">\(f(x,y)\)</span>と<span class="arithmatex">\(h(x,y)\)</span>のフーリエ変換です。</p>
+<figure>
+  <a class="glightbox" href="../img/03-06.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/03-06.png" alt="畳み込み定理" width="800" height="auto"></a>
+  <figcaption>畳み込み定理：空間領域の畳み込みと周波数領域の乗算の対応</figcaption>
+</figure>
+
+<ul>
+<li><strong>代表的なフィルタ</strong>：</li>
+</ul>
+<h4 id="_1">フィルタの主な種類:</h4>
+<ol>
+<li><strong>低域通過フィルタ（ローパスフィルタ, LPF）</strong>:<ul>
+<li>低周波成分を通過させ、高周波成分を除去する</li>
+</ul>
+</li>
+<li><strong>高域通過フィルタ（ハイパスフィルタ, HPF）</strong>:<ul>
+<li>高周波成分を通過させ、低周波成分を除去する</li>
+</ul>
+</li>
+<li><strong>帯域通過フィルタ（バンドパスフィルタ, BPF）</strong>:<ul>
+<li>特定の周波数帯域のみを通過させる</li>
+</ul>
+</li>
+<li><strong>帯域除去フィルタ（バンドストップフィルタ, BSF）</strong>:<ul>
+<li>特定の周波数帯域を除去する</li>
+</ul>
+</li>
+</ol>
+<figure>
+  <a class="glightbox" href="../img/03-07.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/03-07.png" alt="各種フィルタの周波数特性" width="800" height="auto"></a>
+  <figcaption>各種フィルタの周波数特性と通過帯域</figcaption>
+</figure>
+
+<hr />
+<h2 id="3">3. 画像再構成の基本原理</h2>
+<p>医用画像の再構成は、間接的に計測されたデータから、生体内部の構造や機能を表す画像を数学的に生成するプロセスです。</p>
+<p>特にMRI画像は周波数空間でのデータ収集なので逆フーリエ変換による再構成、CTや核医学検査では、<strong>投影データから断面画像を再構成</strong>する技術が不可欠です。</p>
+<figure>
+  <a class="glightbox" href="../img/04-01.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/04-01.png" alt="投影データから画像再構成の概念図" width="1000" height="auto"></a>
+  <figcaption>医療装置毎のデータ収集プロセスの概念図</figcaption>
+</figure>
+
+<h3 id="31">3.1 投影データからの画像再構成</h3>
+<h4 id="311">3.1.1 医用画像診断装置の多様性と画像再構成の重要性</h4>
+<ul>
+<li>
+<p><strong>画像再構成の必要性:  なぜ画像再構成が必要なのでしょうか？</strong>：</p>
+<p>現代の医療では、様々な物理現象を利用した多様な画像診断装置が使用されています。</p>
+<p>各装置は異なる物理現象を利用し、<strong>直接的に画像が得られるわけではない</strong>ものが多くあります。</p>
+<p>多くの装置では、間接的なデータから画像を「<strong>再構成</strong>」するプロセスが必要です。</p>
+</li>
+<li>
+<p><strong>直接見えないものを可視化するため</strong>：
+     体内の断層像は直接撮影できないため、様々な方向からの投影データや信号から数学的に再構成する必要があります。</p>
+</li>
+<li>
+<p><strong>異なる装置に適した再構成法が必要</strong>：
+     CTとMRIでは取得するデータの性質が全く異なるため、それぞれに適した再構成手法が必要です。</p>
+</li>
+<li>
+<p><strong>画質と診断精度に直結</strong>：
+     再構成方法の選択や設定は、最終的な画像の質や診断能に大きく影響します。</p>
+</li>
+</ul>
+<p><strong>医用画像診断装置の基本特性比較表</strong></p>
+<table>
+<thead>
+<tr>
+<th>装置</th>
+<th>基本原理</th>
+<th>画像形成</th>
+<th>収集データ</th>
+<th>主な再構成法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>X線撮影装置</td>
+<td>X線の透過率の違いを利用<br>（骨など高吸収構造の描出に優れる）</td>
+<td>直接投影による形成<br>（重なりのある2次元投影像）</td>
+<td>空間的な投影データ<br>（空間領域での直接取得）</td>
+<td>なし（直接画像形成）</td>
+</tr>
+<tr>
+<td>X線CT装置</td>
+<td>多方向からのX線透過データを利用<br>（重なりのない断層像、CT値の定量評価）</td>
+<td>投影データから断層像を数学的に再構成<br>（間接的画像形成）</td>
+<td><strong>投影データ</strong>（サイノグラム）<br>（投影領域）</td>
+<td>・フィルタ補正逆投影法（FBP）<br>・反復的再構成法<br></td>
+</tr>
+<tr>
+<td>MRI装置</td>
+<td>核磁気共鳴現象を利用<br>（軟部組織のコントラスト分解能に優れる）</td>
+<td>k空間データからフーリエ変換で再構成<br>（間接的画像形成）</td>
+<td>k空間データ<br>（純粋な周波数領域）</td>
+<td>・2D/3Dフーリエ変換<br>・非カルテシアン再構成</td>
+</tr>
+<tr>
+<td>超音波装置</td>
+<td>超音波の反射と散乱を利用<br>（リアルタイム性に優れる）</td>
+<td>エコー信号の振幅と到達時間から構成<br>（Aモード/Bモード/Mモードなど表示法多様）</td>
+<td>エコー信号（時間-振幅信号）<br>（空間領域での直接取得）</td>
+<td>・ビームフォーミング<br>・合成開口法<br>（比較的単純な空間マッピング）</td>
+</tr>
+<tr>
+<td>核医学装置<br>(PET/SPECT)</td>
+<td>放射性同位元素からのガンマ線検出<br>（代謝・機能情報、高感度だが低空間分解能）</td>
+<td>投影データから断層像を再構成<br>（間接的画像形成）</td>
+<td><strong>投影データ</strong><br>（投影領域）</td>
+<td>・フィルタ補正逆投影法（FBP）<br>・反復的再構成法</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="312">3.1.2 投影の概念</h4>
+<ul>
+<li><strong>投影（Projection）</strong>：  </li>
+</ul>
+<p>投影とは、対象物の特性（例えば密度や線減弱係数）を特定の方向に沿って積分した値です。CTの場合、物体にX線を照射し、<strong>物体を通過したX線の減衰量</strong>が<strong>投影データ</strong>となります。</p>
+<p>実際のX線CTでは、X線の強度<span class="arithmatex">\(I₀\)</span>が物体を通過した後の強度<span class="arithmatex">\(I\)</span>が次のように表されます：</p>
+<p>$$
+  I = I₀exp(-∫_lf(x,y)dl)
+  $$</p>
+<p>ここで、<span class="arithmatex">\(f(x,y)\)</span>は物体の線減弱係数分布、<span class="arithmatex">\(l\)</span>はX線の経路を表します。</p>
+<figure>
+  <a class="glightbox" href="../img/04-02.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/04-02.png" alt="X線源から検出器でX線強度を検出する様子" width="500" height="auto"></a>
+  <figcaption>X線源から検出器でX線強度を検出する様子（引用：篠原 広行，中世古 和真，坂口 和也，橋本 雄幸『逐次近似画像再構成の基礎』医療科学社）</figcaption>
+</figure>
+
+<p>ただし、CTでは複数の角度からX線を照射、検出します。</p>
+<p><span class="arithmatex">\(y\)</span>軸に対する回転角度を<span class="arithmatex">\(\theta\)</span>、座標系<span class="arithmatex">\((x,y)\)</span>に対して、<span class="arithmatex">\(\theta\)</span>だけ回転した座標系を<span class="arithmatex">\((X,Y)\)</span>としましょう。</p>
+<p>この時、回転した座標系の<span class="arithmatex">\(Y\)</span>軸に沿って（先ほどの例では経路<span class="arithmatex">\(l\)</span>）、強度<span class="arithmatex">\(I_0\)</span>のX線を照射して計測したデータを<span class="arithmatex">\(I（X, \theta）\)</span>とすると、</p>
+<p>$$
+  I(X,\theta) = I₀exp(-\int_{-\infty}^{\infty}f(x,y)dY)
+  $$</p>
+<p>ここで、開区間<span class="arithmatex">\((-\infty, \infty)\)</span>の範囲で積分しているのは、<span class="arithmatex">\(Y\)</span>軸に沿った全ての範囲について積分しているためです。</p>
+<p>両辺を整理して対数を取ると、</p>
+<p>$$
+  ln(\frac{I_0}{I(X,\theta)}) = \int_{-\infty}^{\infty}f(x,y)dY
+  $$
+  左辺を<span class="arithmatex">\(p(X,\theta)\)</span>と置くと、
+  $$
+  p(X,\theta) = \int_{-\infty}^{\infty}f(x,y)dY
+  $$
+  実際のCT計測においては、この<span class="arithmatex">\(p(X,\theta)\)</span>を生データとして取得し、これを<strong>投影データ</strong>と呼びます。</p>
+<figure>
+  <a class="glightbox" href="../img/04-03.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/04-03.png" alt="X線源から検出器でX線強度を検出する様子" width="600" height="auto"></a>
+  <figcaption>座標系を含めたX線CTの計測（引用：篠原 広行，中世古 和真，坂口 和也，橋本 雄幸『逐次近似画像再構成の基礎』医療科学社）</figcaption>
+</figure>
+
+<ul>
+<li><strong>逆投影（Back Projection）</strong>：  </li>
+</ul>
+<p><strong>逆投影</strong>とは次式のように投影データを被写体の方向に向かって直線状にデータを加えていく操作です。</p>
+<p>取得した<strong>投影データ</strong>から、<strong>逆投影</strong>して元の構造を作り出す操作が、CT画像における<strong>再構成</strong>の基盤です。</p>
+<figure>
+  <a class="glightbox" href="../img/04-04.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/04-04.png" alt="複数角度における投影データと逆投影" width="700" height="auto"></a>
+  <figcaption>複数角度における投影データと逆投影（引用：篠原 広行，中世古 和真，坂口 和也，橋本 雄幸『逐次近似画像再構成の基礎』医療科学社）</figcaption>
+</figure>
+
+<ul>
+<li><strong>ラドン変換</strong></li>
+</ul>
+<p>本講では詳細は割愛しますが、2次元平面上で定義された関数（例えば画像や物体の密度分布）から、その各方向への投影データを得るための積分変換を<strong>ラドン変換</strong>、投影データから元の関数に戻す操作を<strong>逆ラドン変換</strong>と呼びます。</p>
+<p>CT計測においては、投影データを生データとして取得するわけなので、<strong>被写体の断面の減弱係数<span class="arithmatex">\(f(x,y)\)</span>からラドン変換を通じて投影データ<span class="arithmatex">\(p(X,\theta)\)</span>を求めることに相当</strong>します。</p>
+<p>一方で、再構成は<strong>投影データに逆ラドン変換を施す</strong>ことで元の構造を推定することに対応します（フーリエ変換とラドン変換との関係（<strong>投影切断定理</strong>）を利用した再構成法はフーリエ変換法と呼ぶ[割愛]）。</p>
+<h4 id="313">3.1.3 サイノグラムと再構成</h4>
+<p>CTスキャンにおいて計測されるのは、下記で表される<strong>投影データ</strong>であることが分かりました。</p>
+<p>$$
+  p(X,\theta) = \int_{-\infty}^{\infty} f(x,y) dY
+  $$</p>
+<p>この投影データをさまざまな回転角度<span class="arithmatex">\(\theta\)</span>、角度<span class="arithmatex">\(\theta\)</span>において投影される軸<span class="arithmatex">\(X\)</span>の位置を並べたデータ（集合）を<strong>「サイノグラム」</strong>と呼びます。</p>
+<p>サイノグラムは、横軸が<span class="arithmatex">\(X\)</span>、縦軸が<span class="arithmatex">\(\theta\)</span>となる2次元データであり、CTの基本的な生データ形式です。</p>
+<p>CTではこのサイノグラムを元に、逆ラドン変換などの手法を用いて断層画像を再構成します。</p>
+<p>逆問題は測定した投影データ<span class="arithmatex">\(p(X,\theta)\)</span>から未知の被写体断面<span class="arithmatex">\(f(x,y)\)</span>を再構成することになります。</p>
+<figure>
+  <a class="glightbox" href="../img/04-05.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/04-05.png" alt="サイノグラム" width="700" height="auto"></a>
+  <figcaption>サイノグラム</figcaption>
+</figure>
+
+<p>投影データにおける画像再構成には、大きく分けて解析的手法と反復的手法があります：</p>
+<ol>
+<li>
+<p><strong>解析的手法</strong>：</p>
+<ul>
+<li>フーリエ変換法：投影データを1Dフーリエ変換-&gt;2D逆フーリエ変換とすることで元の空間領域データを再構成できる（<strong>投影スライス定理</strong>の理解が必要[割愛]）</li>
+<li><strong>フィルタ補正逆投影法（FBP）</strong>：最も広く使われる手法</li>
+</ul>
+</li>
+<li>
+<p><strong>反復的手法</strong>：</p>
+<ul>
+<li>代数的再構成技法（ART）：投影と逆投影を繰り返し使用</li>
+<li>統計的再構成法：ノイズモデルを考慮した反復法</li>
+<li>モデルベース反復再構成（MBIR）：物理的なモデルを組み込んだ高度な反復法</li>
+</ul>
+</li>
+</ol>
+<p>これらの手法は、装置の特性や求める画質、計算時間などの要素を考慮して選択されます。</p>
+<hr />
+<h3 id="32-fbp-filtered-back-projection">3.2 フィルタ補正逆投影法（FBP: Filtered Back Projection）</h3>
+<h4 id="321">3.2.1 単純逆投影法の問題点</h4>
+<ul>
+<li><strong>単純逆投影法（Simple Back Projection）</strong>：
+  投影データを収集角度に沿って画像空間に逆投影する手法</li>
+</ul>
+<p>問題点：結果はボケた画像となり、正確な再構成ができない（スターアーチファクト）</p>
+<h4 id="322">3.2.2 フィルタ補正逆投影法の原理</h4>
+<ul>
+<li><strong>フィルタ補正逆投影法</strong>：
+  投影データに適切なフィルタ（一般にランプフィルタ）を適用した後に逆投影を行う手法</li>
+</ul>
+<h4 id="323-fbp">3.2.3 FBPの実装手順</h4>
+<ol>
+<li>様々な角度から投影データを収集</li>
+<li>各投影データにフーリエ変換を適用</li>
+<li>周波数領域でランプフィルタを乗算</li>
+<li>逆フーリエ変換でフィルタ処理された投影データを得る</li>
+<li>フィルタ処理された投影データを逆投影して画像再構成</li>
+</ol>
+<figure>
+  <a class="glightbox" href="../img/04-06.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/04-06.png" alt="単純逆投影法とFBP（ランプフィルタ）" width="500" height="auto"></a>
+  <figcaption>単純逆投影法とFBP（引用：https://jsnc.org/p-jsnc-seminar/001/2010/0719-9）</figcaption>
+</figure>
+
+<div style="text-align: center; margin: 20px 0;">
+<a href="../html/04/04-01.html" style="display: inline-block; padding: 12px 24px; background-color: #2563eb; color: white; text-decoration: none; border-radius: 6px; font-weight: bold;">
+<h4><strong>🔍【実習】 再構成シミュレーション①</strong></h4>
+</a>
+</div>
+
+<hr />
+<h3 id="33">3.3 反復的再構成法</h3>
+<p>FBP法は計算効率が良く広く使われていますが、ノイズや少ないデータでの再構成に弱点があります。</p>
+<p>そこで、モデルベースの反復的手法が開発されました。</p>
+<p>反復的再構成法では、<strong>「計測された投影データ」を正解として、「画素の理論的な推定値」が近づくように繰り返し画像解を導出</strong>します。</p>
+<p>画像と投影データの間に成り立つべき数学的関係を反復的に満たしていくことで、最終的に実測データと一致する画像解を導出することができます。</p>
+<h4 id="331-art-algebraic-reconstruction-technique">3.3.1 代数的再構成法（ART: Algebraic Reconstruction Technique）</h4>
+<p>画像再構成問題を連立方程式の解法として扱う手法</p>
+<p>$$
+  p_i = \sum_{j=1}^{N} w_{ij} f_j
+  $$</p>
+<p>ここで <span class="arithmatex">\(p_i\)</span> は投影データ、<span class="arithmatex">\(f_j\)</span> は画素値、<span class="arithmatex">\(w_{ij}\)</span> は重み係数（投影線と画素の幾何学的関係）を表します。</p>
+<ul>
+<li><strong>反復更新式</strong>：
+  $$
+  f_j^{(k+1)} = f_j^{(k)} + \lambda \frac{p_i - \sum_{j} w_{ij} f_j^{(k)}}{\sum_{j} w_{ij}^2} w_{ij}
+  $$</li>
+</ul>
+<p>ここで <span class="arithmatex">\(\lambda\)</span> は緩和パラメータ、<span class="arithmatex">\(k\)</span> は反復回数を表します。</p>
+<h4 id="332-ml-em-maximum-likelihood-expectation-maximization">3.3.2 最尤推定法を用いた再構成（ML-EM法: Maximum Likelihood Expectation Maximization）</h4>
+<ul>
+<li><strong>ポアソンノイズモデル</strong>に基づく最尤推定</li>
+</ul>
+<p>$$
+  f_j^{(k+1)} = \frac{f_j^{(k)}}{\sum_{i} w_{ij}} \sum_{i} \frac{p_i w_{ij}}{\sum_{j'} w_{ij'} f_{j'}^{(k)}}
+  $$</p>
+<h4 id="333-os-em-ordered-subset-expectation-maximization">3.3.3 逐次近似再構成法（OS-EM: Ordered Subset Expectation Maximization）</h4>
+<ul>
+<li>ML-EM法を高速化するために、投影データをサブセットに分割して処理</li>
+</ul>
+<h4 id="334-mbir-model-based-iterative-reconstruction">3.3.4 モデルベース反復再構成法（MBIR: Model-Based Iterative Reconstruction）</h4>
+<ul>
+<li>撮影システムの物理特性（検出器応答、散乱、ビームハードニングなど）を詳細にモデル化</li>
+<li>事前知識（解の滑らかさなど）を正則化項として組み込む</li>
+<li>優れた画質と低ノイズを実現するが、計算コストが高い</li>
+</ul>
+<figure>
+  <a class="glightbox" href="../img/04-07.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/04-07.png" alt="FBPと反復法の比較" width="800" height="auto"></a>
+  <figcaption>再構成手法の比較（引用：Chrysostomou, Charalambos, et al. "Spect imaging reconstruction method based on deep convolutional neural network." 2019 IEEE Nuclear Science Symposium and Medical Imaging Conference (NSS/MIC). IEEE, 2019.）</figcaption>
+</figure>
+
+<h3 id="34">3.4 再構成法の比較と選択</h3>
+<table>
+<thead>
+<tr>
+<th>再構成法</th>
+<th>長所</th>
+<th>短所</th>
+<th>主な応用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>単純逆投影法</td>
+<td>計算が最も簡単</td>
+<td>画質が不十分（ボケ）</td>
+<td>教育目的のみ</td>
+</tr>
+<tr>
+<td>FBP法</td>
+<td>計算効率が良い<br>実装が比較的容易</td>
+<td>ノイズに弱い<br>金属アーチファクトが出やすい</td>
+<td>従来型CT<br>一般X線CT</td>
+</tr>
+<tr>
+<td>反復的再構成法</td>
+<td>ノイズに強い<br>少ないデータでも再構成可能<br>モデルの柔軟性</td>
+<td>計算コストが高い<br>パラメータ調整が必要</td>
+<td>最新型CT<br>低線量CT<br>PET/SPECT</td>
+</tr>
+</tbody>
+</table>
+<div style="text-align: center; margin: 20px 0;">
+<a href="../html/04/04-02.html" style="display: inline-block; padding: 12px 24px; background-color: #2563eb; color: white; text-decoration: none; border-radius: 6px; font-weight: bold;">
+<h4><strong>🔍【実習】 再構成シミュレーション②</strong></h4>
+</a></div>
+
+<h2 id="4_1">4. まとめ</h2>
+<h3 id="41">4.1 画像再構成技術のポイント</h3>
+<ul>
+<li>投影データから断層画像を生成する数学的手法</li>
+<li>FBP法と反復的再構成法の特性と選択基準</li>
+<li>計算効率と画質のトレードオフ</li>
+</ul>
+<h3 id="42">4.2 次回講義の予告</h3>
+<ul>
+<li>X線画像機器の原理と応用</li>
+<li>X線の物理的特性と画像形成</li>
+<li>デジタルX線撮影システム</li>
+<li>X線画像処理と解析</li>
+</ul>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="最終更新日">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年9月29日 01:24:19 UTC">2025年9月29日</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="作成日">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年9月29日 01:24:19 UTC">2025年9月29日</span>
+  </span>
+
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/W-Uchida/class" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.expand", "search.highlight", "search.suggest"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>

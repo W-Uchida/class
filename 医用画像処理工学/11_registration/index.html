@@ -1,0 +1,1065 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://W-Uchida.github.io/class/%E5%8C%BB%E7%94%A8%E7%94%BB%E5%83%8F%E5%87%A6%E7%90%86%E5%B7%A5%E5%AD%A6/11_registration/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>12. Registrationとモダリティ融合 - 講義資料ポータル</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/custom.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="lime" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#12-registration" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href="../.." title="講義資料ポータル" class="md-header__button md-logo" aria-label="講義資料ポータル" data-md-component="logo">
+      
+  <img src="../../img/00-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            講義資料ポータル
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              12. Registrationとモダリティ融合
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="検索">
+        
+        <button type="reset" class="md-search__icon md-icon" title="クリア" aria-label="クリア" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/W-Uchida/class" title="リポジトリへ" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="講義資料ポータル" class="md-nav__button md-logo" aria-label="講義資料ポータル" data-md-component="logo">
+      
+  <img src="../../img/00-logo.png" alt="logo">
+
+    </a>
+    講義資料ポータル
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/W-Uchida/class" title="リポジトリへ" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    画像解析・画像AI特論
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            画像解析・画像AI特論
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%94%BB%E5%83%8F%E8%A7%A3%E6%9E%90%E3%83%BB%E7%94%BB%E5%83%8FAI%E7%89%B9%E8%AB%96/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    概要
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%94%BB%E5%83%8F%E8%A7%A3%E6%9E%90%E3%83%BB%E7%94%BB%E5%83%8FAI%E7%89%B9%E8%AB%96/lecture01/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第1章
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%94%BB%E5%83%8F%E8%A7%A3%E6%9E%90%E3%83%BB%E7%94%BB%E5%83%8FAI%E7%89%B9%E8%AB%96/lecture02/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第2章
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%94%BB%E5%83%8F%E8%A7%A3%E6%9E%90%E3%83%BB%E7%94%BB%E5%83%8FAI%E7%89%B9%E8%AB%96/lecture03/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第3章
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 導入・概要
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 導入・概要">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 臨床現場でのモダリティ融合の重要性
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 今日の学習目標
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-registration" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 画像Registrationの基礎
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 画像Registrationの基礎">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-registration" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Registrationとは？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-registration" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Registration手法の分類
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 Registration手法の分類">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#221" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2.1 変換の種類：どう動かすか？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#222" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2.2 基準による分類：何を頼りに合わせるか？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 強度ベースで使われる類似度指標（どのくらいあっているか？）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. モダリティ融合の基礎
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. モダリティ融合の基礎">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 医用画像モダリティの特徴比較
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 融合の目的と利点
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 臨床応用と実装課題
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 臨床応用と実装課題">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 具体的な臨床応用例
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.1 具体的な臨床応用例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#411" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1.1 腫瘍学領域（がん診療）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#412" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1.2 循環器領域
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#413" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1.3 脳神経内科/外科領域
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 実装上の課題と対策
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 最新動向と将来展望
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 最新動向と将来展望">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 AI・機械学習の活用
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 新しい融合技術
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-google-colab" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Google Colab実習
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="12-registration">12. Registrationとモダリティ融合</h1>
+<h2 id="1">1. 導入・概要</h2>
+<p>本日は「Registrationとモダリティ融合」というテーマでお話しします。皆さんの日常業務において、CTやMRI、PETといった様々な画像診断装置に触れる機会が多いと思います。これらの画像は、単体でも非常に有用ですが、<strong>複数の画像を組み合わせる</strong>ことで、診断や治療の質を劇的に向上させることができます。</p>
+<h3 id="11">1.1 臨床現場でのモダリティ融合の重要性</h3>
+<p>なぜ、今モダリティ融合が重要なのでしょうか？</p>
+<ul>
+<li><strong>診断精度の向上</strong>: CTで捉えた詳細な「形（解剖学的情報）」と、PETで捉えたがんの「活動（機能的情報）」を重ね合わせることで、腫瘍の位置と広がりをより正確に特定できます。</li>
+<li><strong>治療計画・手術ナビゲーション</strong>:<ul>
+<li><strong>放射線治療</strong>: 腫瘍の正確な位置に線量を集中させるため、治療計画CTと診断用のMRI/PET画像を高い精度で位置合わせ（Registration）します。</li>
+<li><strong>手術支援</strong>: 術前のMRI画像で特定した腫瘍や重要な神経の位置を、術中の患者さんの体に投影するナビゲーションシステムは、まさにRegistration技術の賜物です。</li>
+</ul>
+</li>
+</ul>
+<p>以下United image HPより。</p>
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+  <figure>
+    <a class="glightbox" href="../img/12-01.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/12-01.png" alt="Registrationの例1" width="70%" height="auto"></a>
+    <figcaption>Registrationの例1</figcaption>
+  </figure>
+
+  <figure>
+    <a class="glightbox" href="../img/12-02.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/12-02.png" alt="Registrationの例2" width="70%" height="auto"></a>
+    <figcaption>Registrationの例2</figcaption>
+  </figure>
+</div>
+
+<h3 id="12">1.2 今日の学習目標</h3>
+<p>この90分間で、以下の3点を達成することを目指します。</p>
+<ol>
+<li><strong>画像Registrationの基本を理解する</strong>: 「位置合わせ」とは何か、どのような手法があるのか、その概念と分類を学びます。</li>
+<li><strong>モダリティ融合の目的と利点を学ぶ</strong>: なぜCTとMRIを重ねるのか？そのメリットと臨床応用を理解します。</li>
+<li><strong>臨床工学技士としての役割を考える</strong>: この技術分野において、私たちがどのように貢献できるのか、その視点を得ます。</li>
+</ol>
+<hr />
+<h2 id="2-registration">2. 画像Registrationの基礎</h2>
+<h3 id="21-registration">2.1 Registrationとは？</h3>
+<p><strong>Registration</strong>とは、一言で言えば<strong>「異なる画像間で、空間的な位置を合わせること」</strong>です。日本語では「位置合わせ」や「位置決め」と訳されます。</p>
+<figure>
+  <a class="glightbox" href="../img/12-03.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/12-03.png" alt="Registration" width="600" height="auto"></a>
+  <figcaption>Registration</figcaption>
+</figure>
+
+<p>では、なぜ医用画像でRegistrationが必要なのでしょうか？</p>
+<ul>
+<li><strong>同一患者・複数検査の統合</strong>:<ul>
+<li>CTとMRIなど、異なるモダリティの画像を重ね、情報を補完し合うため。</li>
+<li>これが今日のメインテーマである<strong>モダリティ融合</strong>の前提となります。</li>
+</ul>
+</li>
+<li><strong>経時的変化の追跡</strong>:<ul>
+<li>治療前の画像と治療後の画像を比較し、腫瘍の縮小効果や病変の進行を定量的に評価するため。</li>
+</ul>
+</li>
+<li><strong>標準脳（アトラス）との比較</strong>:<ul>
+<li>患者さんの脳画像を、標準的な脳の地図（アトラス）と照らし合わせ、どの部位に異常があるかを特定するため。</li>
+</ul>
+</li>
+</ul>
+<h3 id="22-registration">2.2 Registration手法の分類</h3>
+<p>Registrationは、画像の「動かし方（変換の種類）」と「何を基準に合わせるか」によって分類できます。</p>
+<h4 id="221">2.2.1 変換の種類：どう動かすか？</h4>
+<ol>
+<li>
+<p><strong>剛体変換 (Rigid Transformation)</strong></p>
+<ul>
+<li><strong>動き</strong>: 平行移動 (ずらす) + 回転 (まわす) のみ。</li>
+<li><strong>特徴</strong>: 形や大きさは一切変わらない、まさに「剛体」のような動き。</li>
+<li><strong>適用例</strong>: 頭蓋骨や骨盤など、変形しない硬い組織の位置合わせ。CTとMRIでの頭部の位置合わせなど。</li>
+</ul>
+</li>
+<li>
+<p><strong>アフィン変換 (Affine Transformation)</strong></p>
+<ul>
+<li><strong>動き</strong>: 剛体変換 + 拡大・縮小 + せん断 (ひしゃげる)。</li>
+<li><strong>特徴</strong>: 平行な線は平行なまま保たれますが、全体のサイズや角度が変わります。</li>
+<li><strong>適用例</strong>: 撮像時のスキャナの違いによる画像の歪みや、おおまかな体の向きの違いを補正する際に使われます。</li>
+</ul>
+</li>
+<li>
+<p><strong>非線形変換 (Non-rigid / Deformable Transformation)</strong></p>
+<ul>
+<li><strong>動き</strong>: 局所的な、グニャグニャとした変形を許容します。</li>
+<li><strong>特徴</strong>: 最も自由度の高い変換で、軟部組織の変形に対応できます。</li>
+<li><strong>適用例</strong>:<ul>
+<li>呼吸による肺や肝臓の動きの補正。</li>
+<li>治療による腫瘍の縮小や、手術中の脳の変形（ブレインシフト）の追跡。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<figure>
+  <a class="glightbox" href="../img/12-04.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/12-04.png" alt="Registrationの種類" width="600" height="auto"></a>
+  <figcaption>Registrationの種類（引用：大竹義人. "医用画像解析・手術支援システムにおけるレジストレーション." Medical Imaging Technology 35.1 (2017): 11-17.）</figcaption>
+</figure>
+
+<h4 id="222">2.2.2 基準による分類：何を頼りに合わせるか？</h4>
+<ol>
+<li>
+<p><strong>特徴点ベース (Feature-based)</strong></p>
+<ul>
+<li><strong>方法</strong>: 両方の画像で対応がつく「目印（ランドマーク）」を複数指定し、その点同士が重なるように画像を変換します。</li>
+<li><strong>長所</strong>: 直感的で、計算が速い。</li>
+<li><strong>短所</strong>:<ul>
+<li><strong>手動設定</strong>: 手間がかかり、担当者によって精度がばらつく。</li>
+<li><strong>自動検出</strong>: 明確なランドマークがない画像では難しい。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>強度ベース (Intensity-based)</strong></p>
+<ul>
+<li><strong>方法</strong>: 画像全体のピクセル値（輝度値）のパターンが最も似るように、少しずつ画像を動かしながら最適な位置を探します。</li>
+<li><strong>長所</strong>: ランドマークが不要で、客観的かつ高精度な位置合わせが可能。現在の主流。</li>
+<li><strong>短所</strong>: 計算コストが高い。初期位置が大きくずれていると失敗することがある。</li>
+</ul>
+</li>
+</ol>
+<h4 id="23">2.3 強度ベースで使われる類似度指標（どのくらいあっているか？）</h4>
+<p>強度ベースの手法では、2つの画像がどれだけ似ているかを数値化する「類似度指標」を計算し、その値が最も良くなる（最大化または最小化する）ように画像を動かします。ここでは、代表的な2つの指標を簡単に紹介します。</p>
+<ol>
+<li>
+<p><strong>正規化相互相関 (Normalized Cross-Correlation, NCC)</strong></p>
+<ul>
+<li><strong>いつ使うか？</strong>: 主に<strong>同じモダリティ</strong>の画像間 (例: CTとCT、T1強調MRIとT1強調MRI)</li>
+<li><strong>考え方</strong>: 2つの画像の輝度パターンの「形」がどれだけ似ているかを評価します。画像の明るさやコントラストが全体的に違っていても、山や谷のパターンが似ていれば高いスコアになります。統計学で学ぶ「相関係数」とほぼ同じ考え方で、値が+1に近いほど類似度が高いと判断します。</li>
+<li>
+<p><strong>数式（イメージ）</strong>:
+    $$
+    \text{NCC} = \frac{\sum (I_A - \bar{I}_A) \cdot (I_B - \bar{I}_B)}{\sqrt{\sum (I_A - \bar{I}_A)^2} \cdot \sqrt{\sum (I_B - \bar{I}_B)^2}}
+    $$</p>
+<ul>
+<li><span class="arithmatex">\(I_A\)</span>, <span class="arithmatex">\(I_B\)</span>: それぞれの画像（A, B）のある点における輝度値（明るさ）。</li>
+<li><span class="arithmatex">\(\bar{I}_A\)</span>, <span class="arithmatex">\(\bar{I}_B\)</span>: それぞれの画像の輝度値の平均値。</li>
+<li><span class="arithmatex">\(\sum\)</span>: 全ての点について合計を取ることを意味します。</li>
+</ul>
+<p>数式は複雑に見えますが、やっていることは「画像Aのある点の明るさが、全体の平均よりどれだけズレているか」と「画像Bの対応する点のズレ」を掛け合わせ、全体を合計しているだけです。パターンの上がり下がりが一致していると、値が大きくなります。</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>相互情報量 (Mutual Information, MI)</strong></p>
+<ul>
+<li><strong>いつ使うか？</strong>: <strong>異なるモダリティ</strong>の画像間 (例: CTとMRI、PETとCT)</li>
+<li>
+<p><strong>考え方（統計学的視点）</strong>: 相互情報量は、情報理論において<strong>「2つの確率変数が統計的に独立な状態からどれだけ離れているか」</strong>を測る尺度です。画像Aの輝度値（確率変数A）を知ることで、画像Bの輝度値（確率変数B）についての不確かさがどれだけ減少するか、とも言い換えられます。</p>
+</li>
+<li>
+<p><strong>数式（概念）</strong>:
+    $$
+    \text{MI}(I_A, I_B) = \sum_{a, b} p(a, b) \log\left(\frac{p(a, b)}{p(a)p(b)}\right)
+    $$</p>
+<ul>
+<li><span class="arithmatex">\(p(a,b)\)</span>: 画像Aである輝度値<code>a</code>をとり、かつ画像Bで輝度値<code>b</code>をとる点が現れる<strong>同時確率</strong>。</li>
+<li><span class="arithmatex">\(p(a)p(b)\)</span>: もし画像AとBが統計的に独立であったと仮定した場合の同時確率。</li>
+<li><span class="arithmatex">\(\sum_{a, b}\)</span>: 考えられる全ての輝度値の組み合わせについて合計を取ることを意味します。</li>
+</ul>
+<p>この式は、実際の同時分布 <span class="arithmatex">\(p(a,b)\)</span> と、独立を仮定した場合の分布 <span class="arithmatex">\(p(a)p(b)\)</span> との間の<strong>統計的な隔たり（カルバック・ライブラージャイバージェンス）</strong>を計算しています。2つの分布が離れている（＝依存関係が強い）ほど、値は大きくなります。これにより、輝度値の物理的な意味が全く異なるモダリティ間でも、その統計的な関係性だけを頼りに高精度な位置合わせが実現できるのです。</p>
+</li>
+<li>
+<p><strong>独立な状態とは</strong>: 2つの画像の位置が全く対応していない場合、画像Aのとある点の輝度値から、画像Bの同じ位置の輝度値を予測することはできません。この状態が「統計的に独立」であり、</p>
+</li>
+</ul>
+<div class="arithmatex">\[P(a,b) = P(a) \cdot P(b)\]</div>
+<p>が成り立ちます。上の式より、このとき相互情報量は最小値（0）をとります。</p>
+<ul>
+<li><strong>依存関係が生まれると</strong>: 画像を正しく重ね合わせると、「CTで骨に相当する高輝度値の場所は、MRIでは低信号になる」というような<strong>統計的な依存関係</strong>（<span class="arithmatex">\(P(a,b) \not = P(a) \cdot P(b)\)</span>）が生まれます。この依存関係が強くなるほど、相互情報量の値は大きくなります。</li>
+</ul>
+<p>つまり、<strong>相互情報量を最大化することは、2つの画像の輝度値間の統計的依存性を最も強くする変換を探すこと</strong>に他なりません。</p>
+</li>
+</ol>
+<figure>
+  <a class="glightbox" href="../img/12-05.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/12-05.png" alt="相互情報量" width="600" height="auto"></a>
+  <figcaption>相互情報量</figcaption>
+</figure>
+
+<hr />
+<h2 id="3">3. モダリティ融合の基礎</h2>
+<h3 id="31">3.1 医用画像モダリティの特徴比較</h3>
+<p>モダリティ融合を理解するには、まず各モダリティの「長所」を知る必要があります。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">モダリティ</th>
+<th style="text-align: left;">得意なこと (長所)</th>
+<th style="text-align: left;">苦手なこと (短所)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>CT</strong></td>
+<td style="text-align: left;"><strong>骨や硬い組織の描出</strong>、高い空間分解能、高速撮像</td>
+<td style="text-align: left;">軟部組織のコントラストが低い、放射線被ばく</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>MRI</strong></td>
+<td style="text-align: left;"><strong>軟部組織の優れたコントラスト</strong>、多彩な撮像法、機能情報</td>
+<td style="text-align: left;">骨が見えにくい、撮像時間が長い、磁場による制約</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>PET</strong></td>
+<td style="text-align: left;"><strong>細胞の代謝・機能情報の可視化</strong>、高感度、全身検索</td>
+<td style="text-align: left;">解剖学的な位置情報が乏しい、空間分解能が低い</td>
+</tr>
+</tbody>
+</table>
+<h3 id="32">3.2 融合の目的と利点</h3>
+<p>なぜこれらの画像をわざわざ融合するのか？それは、<strong>お互いの弱点を補い合い、単独では得られない価値を生み出す</strong>ためです。</p>
+<ul>
+<li><strong>補完的情報の統合</strong>:<ul>
+<li><strong>解剖学的情報 (CT/MRI) + 機能情報 (PET)</strong>: これが最も古典的で強力な組み合わせです。<ul>
+<li><strong>PET-CT</strong>: PETで光って見える「がんの活動部位」が、体のどの「臓器・位置」にあるのかをCT画像上で正確に特定できます。</li>
+</ul>
+</li>
+<li><strong>異なる組織コントラストの統合</strong>:<ul>
+<li><strong>CT-MRI</strong>: CTで得意な「骨」と、MRIで得意な「脳実質や神経」を1つの画像で見ることができ、手術計画などで役立ちます。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="4">4. 臨床応用と実装課題</h2>
+<h3 id="41">4.1 具体的な臨床応用例</h3>
+<h4 id="411">4.1.1 腫瘍学領域（がん診療）</h4>
+<ul>
+<li><strong>PET-CT融合</strong>:<ul>
+<li><strong>病期診断</strong>: 原発巣だけでなく、リンパ節や遠隔臓器への転移を一度に評価します。</li>
+<li><strong>放射線治療計画</strong>: CTの解剖情報上にPETの機能情報を重ねることで、照射すべき「生物学的標的体積(BTV)」を正確に設定し、正常組織への被ばくを最小限に抑えます。</li>
+</ul>
+</li>
+<li>
+<p><strong>MRI多シーケンス融合</strong>:</p>
+<ul>
+<li>脳腫瘍の手術前に、T1, T2, FLAIR, DTI（神経線維）など複数のMRI画像を融合し、腫瘍の範囲と重要な機能野（運動野、言語野など）との位置関係を把握します。</li>
+</ul>
+</li>
+<li>
+<p><strong>術中ナビゲーションシステム</strong>:</p>
+<ul>
+<li>術前に撮影した高精細なMRI画像と、術中の患者さんの頭部の位置をリアルタイムでRegistrationします。</li>
+<li>これにより、執刀医はメスや器具の先端が、脳のどの部分にあるのかをモニター上で確認しながら安全に手術を進めることができます。</li>
+</ul>
+</li>
+</ul>
+<h4 id="412">4.1.2 循環器領域</h4>
+<ul>
+<li><strong>心臓CT-MRI融合</strong>:<ul>
+<li>CTで得られる冠動脈の鮮明な形態情報と、MRIで得られる心筋の性状（虚血、梗塞、線維化など）を統合し、包括的な心疾患評価を行います。</li>
+</ul>
+</li>
+</ul>
+<h4 id="413">4.1.3 脳神経内科/外科領域</h4>
+<ul>
+<li><strong>CADとしての脳萎縮計測</strong>:<ul>
+<li><strong>VSRAD (Voxel-based Specific Regional analysis System for Alzheimer's Disease)</strong> :</li>
+<li>MRI画像を用いて脳の萎縮の程度を客観的かつ定量的に評価し、アルツハイマー病（AD）の早期診断を支援するために日本で開発されたシステム。VSRADは、その客観的な評価指標と比較的簡便な操作性から、日本国内において医薬品医療機器等法（旧薬事法）に基づく医療機器としての承認を受け、2015年時点で約3000の医療機関でADの診断補助ツールとして臨床応用されている。</li>
+</ul>
+</li>
+</ul>
+<figure>
+  <a class="glightbox" href="../img/12-06.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/12-06.png" alt="VSRAD" width="600" height="auto"></a>
+  <figcaption>VSRAD（引用：https://minoh.keakikai.com/vsrad/）</figcaption>
+</figure>
+
+<h3 id="42">4.2 実装上の課題と対策</h3>
+<p>この素晴らしい技術も、臨床現場で使うにはいくつかの壁があります。</p>
+<ul>
+<li><strong>計算コストとリアルタイム性</strong>: 特に非線形Registrationは計算に時間がかかります。術中ナビゲーションのようなリアルタイム性が求められる場面では、<strong>GPU</strong>を用いた高速化や、アルゴリズムの最適化が不可欠です。</li>
+<li><strong>精度と再現性</strong>: Registrationの精度は治療結果に直結します。手動操作によるばらつきを減らすための<strong>自動化</strong>や、定期的な<strong>品質管理（QC）</strong>プロトコルの確立が重要です。</li>
+<li><strong>標準化と互換性</strong>: 異なるベンダーの装置間で画像をやり取りする際、<strong>DICOM規格</strong>に準拠していても、細かな情報が欠落することがあります。施設内でのデータ連携フローの構築が求められます。</li>
+</ul>
+<hr />
+<h2 id="5">5. 最新動向と将来展望</h2>
+<h3 id="51-ai">5.1 AI・機械学習の活用</h3>
+<ul>
+<li><strong>深層学習によるRegistration</strong>: 大量の正解データペアをAIに学習させることで、従来法より圧倒的に高速（数秒レベル）かつ高精度なRegistrationが可能になりつつあります。</li>
+<li><strong>自動ランドマーク検出</strong>: AIが画像から解剖学的な特徴点を自動で検出し、Registrationの初期位置合わせや精度評価に利用する研究が進んでいます。</li>
+</ul>
+<h3 id="52">5.2 新しい融合技術</h3>
+<ul>
+<li><strong>PET-MRI装置</strong>: PETとMRIを一体化させた装置が登場しています。ほぼ同時に撮像できるため、時間的なズレがなく、特に動きのある臓器の評価で高い精度を発揮します。</li>
+<li><strong>マルチモーダル統合解析</strong>: 複数の画像モダリティ情報だけでなく、ゲノム情報や血液データなども統合し、AIを用いて疾患の診断や予後予測を行う「ラジオミクス」や「統合診断」といった分野が発展しています。</li>
+</ul>
+<h2 id="6-google-colab">6. Google Colab実習</h2>
+<ul>
+<li><a href="https://drive.google.com/file/d/1IC3Mk-BKfPDdGF8oqHc7LTiTdGIAD8om/view?usp=sharing">Google colabファイル</a></li>
+</ul>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="最終更新日">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年9月29日 01:24:19 UTC">2025年9月29日</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="作成日">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年9月29日 01:24:19 UTC">2025年9月29日</span>
+  </span>
+
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/W-Uchida/class" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.expand", "search.highlight", "search.suggest"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>
