@@ -11,6 +11,10 @@
         <link rel="canonical" href="https://W-Uchida.github.io/class/%E5%8C%BB%E7%94%A8%E7%94%BB%E5%83%8F%E5%87%A6%E7%90%86%E5%B7%A5%E5%AD%A6/03_filtering/">
       
       
+        <link rel="prev" href="../02_digital_image/">
+      
+      
+        <link rel="next" href="../04_reconstruction/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -18,7 +22,7 @@
     
     
       
-        <title>3. 講義：画像フィルタリングと画質改善技術 - 講義資料ポータル</title>
+        <title>03.画像フィルタリングと質改善技術 - 講義資料ポータル</title>
       
     
     
@@ -114,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              3. 講義：画像フィルタリングと画質改善技術
+              03.画像フィルタリングと質改善技術
             
           </span>
         </div>
@@ -388,8 +392,10 @@
       
   
   
+    
   
   
+  
     
     
     
@@ -399,13 +405,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
@@ -420,7 +424,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             医用画像処理工学
@@ -434,7 +438,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01_orientation.md" class="md-nav__link">
+      <a href="../01_orientation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -456,7 +460,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../02_digital_image.md" class="md-nav__link">
+      <a href="../02_digital_image/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -475,10 +479,31 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../03_filtering.md" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    03.画像フィルタリングと質改善技術
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -488,6 +513,416 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. はじめに
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. はじめに">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 講義の目的と全体像
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 信号と周波数の基礎
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 信号と周波数の基礎">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 信号の周波数表現
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. エイリアシングの復習とアンチエイリアシングについて考える
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. エイリアシングの復習とアンチエイリアシングについて考える">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 標本化とエイリアシング現象
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 アンチエイリアシングの基本原理
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 実空間と周波数空間
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 実空間と周波数空間">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 実空間・周波数空間
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 フーリエ変換の基本概念
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 画像の周波数成分
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4 フーリエ変換の医用画像への応用
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. フィルタ処理の基本概念
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. フィルタ処理の基本概念">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 空間領域と周波数領域でのフィルタ処理
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 フィルタの種類と特性
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.2 フィルタの種類と特性">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      フィルタの主な種類:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 空間領域でのフィルタリング
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 空間領域でのフィルタリング">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 畳み込み処理の基本
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 代表的な空間フィルタ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.2 代表的な空間フィルタ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      平滑化フィルタ（移動平均フィルタ）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      ガウシアンフィルタ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      微分フィルタ（エッジ検出）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      メディアンフィルタ
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 周波数領域でのフィルタリング
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 周波数領域でのフィルタリング">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 周波数領域フィルタリングの手順
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 代表的な周波数領域フィルタ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.2 代表的な周波数領域フィルタ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      理想低域通過フィルタ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      バターワース低域通過フィルタ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      ガウシアン低域通過フィルタ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      高域通過フィルタ
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 医用画像への応用
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. 医用画像への応用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 画像のノイズ除去
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2 エッジ強調とコントラスト改善
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3 画質改善の臨床例
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. まとめ
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      第3回 演習
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -500,7 +935,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../04_reconstruction.md" class="md-nav__link">
+      <a href="../04_reconstruction/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -522,7 +957,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05_xray.md" class="md-nav__link">
+      <a href="../05_xray/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -544,7 +979,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06_ct.md" class="md-nav__link">
+      <a href="../06_ct/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -566,7 +1001,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../07_mri.md" class="md-nav__link">
+      <a href="../07_mri/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -588,7 +1023,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08_ultrasound.md" class="md-nav__link">
+      <a href="../08_ultrasound/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -610,7 +1045,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09_nuclear.md" class="md-nav__link">
+      <a href="../09_nuclear/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -632,7 +1067,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10_segmentation.md" class="md-nav__link">
+      <a href="../10_segmentation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -654,7 +1089,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11_registration.md" class="md-nav__link">
+      <a href="../11_registration/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -676,7 +1111,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12_ai.md" class="md-nav__link">
+      <a href="../12_ai/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -698,7 +1133,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../13_pacs.md" class="md-nav__link">
+      <a href="../13_pacs/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -720,7 +1155,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../14_intervention.md" class="md-nav__link">
+      <a href="../14_intervention/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -742,7 +1177,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../15_conclusion.md" class="md-nav__link">
+      <a href="../15_conclusion/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
