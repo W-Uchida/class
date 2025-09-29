@@ -1,0 +1,1697 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://W-Uchida.github.io/class/%E5%8C%BB%E7%94%A8%E7%94%BB%E5%83%8F%E5%87%A6%E7%90%86%E5%B7%A5%E5%AD%A6/05_xray/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>第5回 X線画像機器の基礎理論 - 講義資料ポータル</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/custom.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="lime" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#5-x" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href="../.." title="講義資料ポータル" class="md-header__button md-logo" aria-label="講義資料ポータル" data-md-component="logo">
+      
+  <img src="../../img/00-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            講義資料ポータル
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              第5回 X線画像機器の基礎理論
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="検索">
+        
+        <button type="reset" class="md-search__icon md-icon" title="クリア" aria-label="クリア" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/W-Uchida/class" title="リポジトリへ" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="講義資料ポータル" class="md-nav__button md-logo" aria-label="講義資料ポータル" data-md-component="logo">
+      
+  <img src="../../img/00-logo.png" alt="logo">
+
+    </a>
+    講義資料ポータル
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/W-Uchida/class" title="リポジトリへ" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    画像解析・画像AI特論
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            画像解析・画像AI特論
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%94%BB%E5%83%8F%E8%A7%A3%E6%9E%90%E3%83%BB%E7%94%BB%E5%83%8FAI%E7%89%B9%E8%AB%96/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    概要
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%94%BB%E5%83%8F%E8%A7%A3%E6%9E%90%E3%83%BB%E7%94%BB%E5%83%8FAI%E7%89%B9%E8%AB%96/lecture01/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第1章
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%94%BB%E5%83%8F%E8%A7%A3%E6%9E%90%E3%83%BB%E7%94%BB%E5%83%8FAI%E7%89%B9%E8%AB%96/lecture02/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第2章
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%94%BB%E5%83%8F%E8%A7%A3%E6%9E%90%E3%83%BB%E7%94%BB%E5%83%8FAI%E7%89%B9%E8%AB%96/lecture03/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第3章
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 放射線の基礎と医療応用
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 放射線の基礎と医療応用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 放射線の種類と性質
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-x" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 X線の歴史と医学への応用
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3 放射線の主な物理的性質:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4 放射線の生物学的影響
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.5 放射線防護の原則と実践
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-x" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. X線撮影の基本原理と装置構成
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. X線撮影の基本原理と装置構成">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-x" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 X線撮影システムの基本構成と原理
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-x" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 X線発生部
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 X線発生部">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#221-x" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2.1 X線発生のメカニズム
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#222-x" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2.2 X線管球の基本構造
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-x" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 X線検出部
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-x" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. X線撮影条件の最適化
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. X線撮影条件の最適化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-x" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 一般的なX線撮影の設定とパラメータ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-x" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 X線撮影条件最適化の考え方
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.2 X線撮影条件最適化の考え方">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#321-xattenuation" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2.1 X線の減弱（Attenuation）とコントラスト
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#322-x" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2.2 X線撮影におけるノイズの発生
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#323-x" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2.3 X線撮影条件の最適化の考え方
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-x" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 臨床工学技士国家試験対策ポイント - X線撮影の基本
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 臨床工学技士国家試験対策ポイント - X線撮影の基本">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-x" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 X線画像の基本原理
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-x" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 組織とX線の相互作用
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-x" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 X線撮影の技術的特性
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.4 被ばく防護
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.5 臨床応用
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.6 画質に影響する要素
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. まとめと次回講義への接続
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. まとめと次回講義への接続">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 本講義のポイント
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 次回講義の予告
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      第5回 演習
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="5-x">第5回 X線画像機器の基礎理論</h1>
+<hr />
+<h2 id="1">1. 放射線の基礎と医療応用</h2>
+<h3 id="11">1.1 放射線の種類と性質</h3>
+<ul>
+<li><strong>放射線の定義</strong>:<ul>
+<li>電磁波又は粒子線のうち、直接又は間接に空気を<strong>電離</strong>する能力をもつもの（原子力基本法 第3条第5号）<ul>
+<li>電離とは、電磁波や粒子線の影響で物質を構成する原子から電子をはじき出し、正電荷の原子（陽イオン）と自由電子に分離する現象。</li>
+<li>この電離能力を持つ電磁波や粒子線を放射線と定義している。</li>
+<li>ここでは、<strong>高いエネルギー</strong>を持つと考えればよい</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure>
+  <a class="glightbox" href="../img/05-01.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/05-01.png" alt="電磁波" width="1000" height="auto"></a>
+  <figcaption>電磁波（引用：（独）日本原子力研究開発機構発機構「放射線ってなんだろう？」）</figcaption>
+</figure>
+
+<ul>
+<li><strong>放射線の種類とX線画像法利用</strong>:<ul>
+<li>診断用画像（X線画像機器[一般撮影、CT]、核医学検査）には、<strong>透過性の高い電磁波（X線、γ線）</strong>が用いられる。</li>
+<li>撮影範囲内に存在する組織間での、この透過性（線減弱係数）の違いに基づいて画像を形成するのがX線画像法の基礎理論</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>分類</th>
+<th>種類</th>
+<th>本質</th>
+<th>電荷</th>
+<th>透過力</th>
+<th>主な用途・特徴</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>電磁波</strong></td>
+<td>X線</td>
+<td>高エネルギー電磁波</td>
+<td>なし</td>
+<td>高い</td>
+<td>診断用画像（一般撮影、CT）、治療</td>
+</tr>
+<tr>
+<td></td>
+<td>γ線</td>
+<td>高エネルギー電磁波</td>
+<td>なし</td>
+<td>最も高い</td>
+<td>核医学検査（PET, SPECT）、放射線治療</td>
+</tr>
+<tr>
+<td><strong>粒子線</strong></td>
+<td>α線</td>
+<td>ヘリウム原子核</td>
+<td>+2</td>
+<td>非常に低い</td>
+<td>内部被ばくで危険、外部では皮膚で止まる</td>
+</tr>
+<tr>
+<td></td>
+<td>β線</td>
+<td>電子</td>
+<td>-1</td>
+<td>低い</td>
+<td>核医学検査の一部、紙～薄い金属板で遮蔽可能</td>
+</tr>
+<tr>
+<td></td>
+<td>中性子線</td>
+<td>中性子</td>
+<td>0</td>
+<td>高い</td>
+<td>原子炉、中性子捕捉療法、水素含有物質で遮蔽</td>
+</tr>
+<tr>
+<td></td>
+<td>陽子線</td>
+<td>陽子</td>
+<td>+1</td>
+<td>中程度</td>
+<td>がん治療（陽子線治療）</td>
+</tr>
+<tr>
+<td></td>
+<td>重粒子線</td>
+<td>炭素イオンなど</td>
+<td>多価+</td>
+<td>中程度</td>
+<td>がん治療（重粒子線治療）</td>
+</tr>
+</tbody>
+</table>
+<figure>
+  <a class="glightbox" href="../img/05-02.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/05-02.png" alt="放射線の種類と透過力の比較" width="1000" height="auto"></a>
+  <figcaption>放射線の種類と透過力の比較（引用：文部科学省「よくわかる原子力」）</figcaption>
+</figure>
+
+<ul>
+<li><strong>補足</strong><ul>
+<li>上の表では、中性子線も高い透過性を示しているが、診断用には用いられない。主な理由は下記。<ol>
+<li><strong>生体組織への損傷が大きい</strong>：同じ吸収線量でも細胞の損傷は大きい。これは生物学的効果比が高いことによる。</li>
+<li><strong>中性子線源の問題</strong>：中性子線を発生させるには原子炉や加速器などの大規模な設備が必要。</li>
+<li><strong>画像形成の難しさ</strong>：電磁波を用いた従来の方法とは異なる検出器が必要で、技術的に高いクオリティの画像を形成するのが難しい。</li>
+<li><strong>被曝管理の難しさ</strong>：遮蔽が困難。医療従事者の被曝など。</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="12-x">1.2 X線の歴史と医学への応用</h3>
+<ul>
+<li><strong>X線の発見</strong>: <ul>
+<li>1895年、ドイツの物理学者ヴィルヘルム・コンラート・レントゲンが陰極線管（クルックス管）を用いた「電子の存在」を証明するための実験中に偶然発見</li>
+</ul>
+</li>
+<li><strong>歴史的豆知識</strong>:<ul>
+<li>発見直後から医学利用が始まり、最初の医療用X線写真は妻のベルタの手</li>
+<li>レントゲンは“未知の光線”を使って妻の手を撮影し、“未知”を意味する“X”をその名に冠した。</li>
+<li>1901年、レントゲンはX線の発見により第1回ノーベル物理学賞を受賞</li>
+<li><strong>初期は生物学的影響（被ばく）の危険性が認識されておらず、多くの先駆者が放射線障害に苦しんだ</strong></li>
+</ul>
+</li>
+</ul>
+<figure>
+  <a class="glightbox" href="../img/05-03.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/05-03.png" alt="史上初めて撮影されたX線写真の1枚" width="400" height="auto"></a>
+  <figcaption>史上初めて撮影されたX線写真の1枚（Image by Wilhelm Rontgen, via SSPL/Science Museum/Getty Images）</figcaption>
+</figure>
+
+<h3 id="13">1.3 放射線の主な物理的性質:</h3>
+<ul>
+<li><strong>透過性</strong>: 物質を通り抜ける能力（X線・γ線 &gt; β線 &gt; α線）</li>
+<li><strong>電離作用</strong>: 物質中の原子から電子を弾き飛ばし、イオンを生成</li>
+<li><strong>蛍光作用</strong>: 特定の物質に当たると可視光を発生</li>
+</ul>
+<h3 id="14">1.4 放射線の生物学的影響</h3>
+<ul>
+<li><strong>電離作用によるDNA損傷</strong>:<ul>
+<li>放射線が細胞内を通過すると、DNAを直接・間接的に損傷</li>
+</ul>
+</li>
+<li><strong>直接作用</strong>: 放射線エネルギーが直接DNAに吸収され切断</li>
+<li>
+<p><strong>間接作用</strong>: 水分子の電離で生じたフリーラジカル（・OH等）によるDNA損傷</p>
+<ul>
+<li>間接作用は全体の約70%を占める（体内の水分が多いため）</li>
+</ul>
+</li>
+<li>
+<p><strong>DNA損傷の種類</strong>:</p>
+<ul>
+<li>塩基損傷: DNA塩基の化学構造変化</li>
+<li>一本鎖切断: 比較的修復されやすい</li>
+<li>二本鎖切断: 修復が困難で重篤な細胞影響の原因</li>
+<li>クラスター損傷: 局所的に集中した複合的損傷（最も修復困難）</li>
+</ul>
+</li>
+<li>
+<p><strong>細胞レベルでの影響</strong>:</p>
+<ul>
+<li>細胞死（アポトーシス、壊死）</li>
+<li>細胞分裂の遅延・停止</li>
+<li>突然変異（DNA修復エラー）</li>
+<li>がん化（遺伝子変異の蓄積）</li>
+</ul>
+</li>
+</ul>
+<figure>
+  <a class="glightbox" href="../img/05-04.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/05-04.png" alt="放射線によるDNA損傷機序" width="1000" height="auto"></a>
+  <figcaption>放射線によるDNA損傷（引用：文部科学省「よくわかる原子力」）</figcaption>
+</figure>
+
+<ul>
+<li>
+<p><strong>組織・臓器レベルでの影響</strong>:</p>
+<ol>
+<li>
+<p><strong>確定的影響（組織反応）</strong>:</p>
+<ul>
+<li>しきい値（閾値）があり、線量に応じて重症度が変化<ul>
+<li>例: 皮膚紅斑（2Gy～）、脱毛（3Gy～）、白内障（0.5Gy～）</li>
+</ul>
+</li>
+<li>細胞死の蓄積による組織機能不全が原因</li>
+</ul>
+</li>
+<li>
+<p><strong>確率的影響</strong>:</p>
+<ul>
+<li>しきい値（閾値）がなく、線量に応じて発生確率が変化<ul>
+<li>例: 発がん、遺伝的影響</li>
+</ul>
+</li>
+<li><strong>LNT仮説</strong>（Linear Non-Threshold、直線しきい値なし）モデルに基づく防護<ul>
+<li>線量に比例してリスクが高まると仮定（ただし、低線量域でのリスクは不確実性が高い）</li>
+<li>「低線量域の影響はよくわかっていないが、影響があると考えて防護しよう」という考えのもと。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="15">1.5 放射線防護の原則と実践</h3>
+<ul>
+<li>
+<p><strong>放射線防護の3原則</strong>:</p>
+<ul>
+<li>
+<p><strong>正当化（Justification）</strong>: 被ばくによる利益がリスクを上回ること</p>
+<ul>
+<li>不必要な検査の回避（例: 妊婦や小児のX線検査の厳格な適応判断）</li>
+</ul>
+</li>
+<li>
+<p><strong>最適化（Optimization）</strong>: ALARA原則（As Low As Reasonably Achievable）</p>
+<ul>
+<li>合理的に達成可能な限り被ばく線量を低く保つ</li>
+<li>防護設備、撮影条件の最適化、品質管理プログラムの実施</li>
+</ul>
+</li>
+<li>
+<p><strong>線量限度（Dose Limitation）</strong>: 個人の被ばく線量を一定レベル以下に制限</p>
+<ul>
+<li>職業被ばく: 実効線量限度100mSv/5年かつ50mSv/年</li>
+<li>一般公衆: 1mSv/年</li>
+<li>医療被ばくには適用されない（正当化と最適化が重要）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>被ばく低減の実践的方法</strong>:</p>
+<ul>
+<li><strong>時間</strong>: 被ばく時間を短縮（撮影時間の最適化）</li>
+<li><strong>距離</strong>: 線源からの距離を確保（逆二乗則に従い減衰）</li>
+<li><strong>遮蔽</strong>: 適切な防護材の使用（鉛エプロン、防護板等）</li>
+</ul>
+</li>
+<li>
+<p><strong>医療被ばくの最適化</strong>:</p>
+<ul>
+<li>適切な撮影条件（管電圧、管電流、照射時間）の選択</li>
+<li>照射野の最小化（余計な照射範囲を削る）</li>
+<li>不要な繰り返し撮影の回避</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="2-x">2. X線撮影の基本原理と装置構成</h2>
+<h3 id="21-x">2.1 X線撮影システムの基本構成と原理</h3>
+<ul>
+<li><strong>X線撮影システムの主要構成要素</strong>:</li>
+<li>
+<p><strong>X線発生部</strong>: </p>
+<ul>
+<li>X線管球、高電圧発生装置</li>
+</ul>
+</li>
+<li>
+<p><strong>X線制御系</strong>:</p>
+<ul>
+<li>タイマー回路: 照射時間を制御</li>
+<li>自動露出制御（AEC: Automatic Exposure Control）：被写体透過後の線量に応じて、条件を自動でリアルタイムに最適化</li>
+<li>グリッド: 散乱X線除去装置（散乱線は画質に影響するため、除外）</li>
+<li>コリメータ: X線照射野を制限（目的範囲外のX線を除外）</li>
+</ul>
+</li>
+<li>
+<p><strong>X線検出器</strong>:</p>
+<ul>
+<li>従来: X線フィルム＋増感紙</li>
+<li>現在: デジタル検出器<ul>
+<li>Computed Radiography (CR)</li>
+<li>Flat Panel Detector (FPD)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>データ処理系</strong>:</p>
+<ul>
+<li>アナログ/デジタル変換</li>
+<li>画像処理（階調処理、周波数処理）</li>
+<li>画像表示、保存、伝送</li>
+</ul>
+</li>
+</ul>
+<figure>
+  <a class="glightbox" href="../img/05-05.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/05-05.png" alt="X線撮影システムの基本構成" width="1000" height="auto"></a>
+  <figcaption>X線撮影システムの基本構成</figcaption>
+</figure>
+
+<h3 id="22-x">2.2 X線発生部</h3>
+<h4 id="221-x">2.2.1 X線発生のメカニズム</h4>
+<ol>
+<li>
+<p><strong>制動放射（Bremsstrahlung）</strong>: 高速電子が原子核の近くを通過する際に受ける減速によりX線が放出</p>
+<ul>
+<li>電子の運動エネルギーの一部が電磁波（X線）に変換</li>
+<li>連続スペクトルを形成（多様な波長のX線が発生）</li>
+<li>高管電圧ほど、高エネルギーのX線が発生する</li>
+<li>電子の80%程度はこのメカニズムでX線を発生</li>
+</ul>
+</li>
+<li>
+<p><strong>特性X線</strong>: 高速電子が原子の内殻電子を弾き飛ばし（<strong>電離</strong>）、外殻電子が内殻の空孔に遷移する際に発生</p>
+<ul>
+<li>原子の電子軌道間のエネルギー準位差に相当するX線が放出</li>
+<li>ターゲット元素固有のエネルギー（波長）を持つ</li>
+<li>スペクトル上で特徴的なピークとして現れる</li>
+<li>タングステンの場合、約69keVと59keVに主要ピーク（K殻）</li>
+</ul>
+</li>
+</ol>
+<figure>
+  <a class="glightbox" href="../img/05-06.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/05-06.png" alt="制動放射と特性X線の発生メカニズム" width="800" height="auto"></a>
+  <figcaption>X線発生の2つのメカニズム：制動放射と特性X線（引用：https://www.t-rs.co.jp/t-rs/column/column01-04.htm）</figcaption>
+</figure>
+
+<h4 id="222-x">2.2.2 X線管球の基本構造</h4>
+<ul>
+<li>
+<p><strong>X線管球の構成</strong>:</p>
+<ul>
+<li>真空ガラス管内に陰極（フィラメント）と陽極（ターゲット）を配置<ul>
+<li>一般撮影では、タングステンを利用（熱に強く、X線発生効率が高い[高原子番号]）</li>
+</ul>
+</li>
+<li>フィラメントを加熱し熱電子を放出（熱電子放出）</li>
+<li>陰極・陽極間に高電圧（管電圧）を印加して電子を加速</li>
+<li>加速された電子がターゲットに衝突してX線が発生</li>
+</ul>
+</li>
+<li>
+<p><strong>X線発生部に関連するパラメータ</strong></p>
+<ul>
+<li><strong>管電圧</strong>: 60～150kV程度（管球によって異なる）</li>
+<li><strong>管電流</strong>: 10～1000mA程度（管球と用途によって異なる）</li>
+<li><strong>照射時間</strong>：X線制御系にて、管理・制御</li>
+</ul>
+</li>
+</ul>
+<figure>
+  <a class="glightbox" href="../img/05-07.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/05-07.png" alt="X線管球の詳細構造" width="1000" height="auto"></a>
+  <figcaption>X線管球の詳細構造（引用：https://ndt.chugai-tec.co.jp/useful/xraybasic/）</figcaption>
+</figure>
+
+<ul>
+<li><strong>X線スペクトル</strong>:<ul>
+<li>連続スペクトル（制動放射）＋特性X線のピーク</li>
+<li>管電圧を上げると全体的に高エネルギー側にシフト</li>
+<li>管電流・照射時間をあげるとX線の量（強度）がすべてのエネルギー帯で比例して増加（平均エネルギーの変化なし）</li>
+</ul>
+</li>
+</ul>
+<figure>
+  <a class="glightbox" href="../img/05-08.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/05-08.png" alt="X線スペクトル" width="800" height="auto"></a>
+  <figcaption>X線スペクトル（引用：http://www.020329.com/x-ray/bougo/contents/chapter3/3-2-ref01-page3.html）</figcaption>
+</figure>
+
+<h3 id="23-x">2.3 X線検出部</h3>
+<ul>
+<li>
+<p><strong>CR (Computed Radiography)</strong></p>
+<ul>
+<li><strong>基本構造</strong>: 輝尽性蛍光体（イメージングプレート/IP）を用いたX線検出システム</li>
+<li><strong>動作プロセス</strong>: <ul>
+<li>IPにX線照射、記録</li>
+<li>専用リーダーに読み込み（レーザー走査）、デジタル画像に変換</li>
+</ul>
+</li>
+<li><strong>臨床的特徴</strong>:<ul>
+<li><strong>IP取り出しが必要</strong>（可搬性あり、ベッドサイド撮影に適する）</li>
+<li>リーダー処理に数秒〜数分の時間を要する（即時確認困難）</li>
+<li>繰り返し使用可能だがIP消去工程が必要</li>
+<li>比較的低コストだが画質はFPDより劣る（空間分解能　約2.5〜5 lp/mm）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>FPD (Flat Panel Detector)</strong></p>
+<ul>
+<li><strong>基本構造</strong>: X線を直接/間接的に電気信号に変換する平面センサーアレイ</li>
+<li><strong>動作プロセス</strong>:<ul>
+<li>間接変換型：X線→光→電気信号（CsIなどのシンチレータ使用）</li>
+<li>直接変換型：X線→直接電気信号（a-Se光導体使用）</li>
+</ul>
+</li>
+<li><strong>臨床的特徴</strong>:<ul>
+<li>一体型で即時画像表示（撮影後数秒で確認可能）</li>
+<li>高画質（空間分解能約5〜10 lp/mm）で線量低減可能</li>
+<li>IPの取り出し不要で効率的なワークフロー</li>
+<li>固定型と可搬型（ワイヤレス）があり、可搬型は重量に注意</li>
+<li>高コストだがメンテナンス手間が少ない</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure>
+  <a class="glightbox" href="../img/05-09.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/05-09.png" alt="CR・FPDシステムの動作原理" width="700" height="auto"></a>
+  <figcaption>CR・FPDシステムの動作原理（引用：コニカミノルタHP）</figcaption>
+</figure>
+
+<p><strong>比較表</strong></p>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>CR</th>
+<th>FPD</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>可搬性</td>
+<td>○（IPのみ持ち運び可能）</td>
+<td>△（ワイヤレスタイプは可能だが重い）</td>
+</tr>
+<tr>
+<td>即時性</td>
+<td>×（読み取り処理が必要）</td>
+<td>○（数秒で画像表示）</td>
+</tr>
+<tr>
+<td>画質</td>
+<td>△（中程度）</td>
+<td>○（高画質）</td>
+</tr>
+<tr>
+<td>コスト</td>
+<td>○（比較的安価）</td>
+<td>×（高価）</td>
+</tr>
+<tr>
+<td>メンテナンス</td>
+<td>△（IP管理必要）</td>
+<td>○（比較的容易）</td>
+</tr>
+<tr>
+<td>耐久性</td>
+<td>○（IPは頑丈）</td>
+<td>△（衝撃に弱い）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>ポイント</strong></p>
+<ul>
+<li>画像のクオリティはFPDが優れる。</li>
+<li>CRは比較的安価で可搬性に優れるが、FPDに比べ画像処理に時間がかかり、読み取りの手間もかかる</li>
+<li>臨床現場では、それぞれの適応場面（ポータブル撮影vs一般撮影、救急/外来/在宅など）に応じて使い分ける場合も</li>
+</ul>
+<hr />
+<h2 id="3-x">3. X線撮影条件の最適化</h2>
+<h3 id="31-x">3.1 一般的なX線撮影の設定とパラメータ</h3>
+<ul>
+<li><strong>X線発生に関する要因</strong>:</li>
+<li>
+<p><strong>管電圧（kV）</strong>: </p>
+<ul>
+<li><strong>X線の質（エネルギー）</strong>に影響</li>
+<li>高kV: エネルギー↑、X線の透過性↑、コントラスト↓、被ばく線量↓</li>
+<li>低kV: エネルギー↓、X線の透過性↓、コントラスト↑、被ばく線量↑</li>
+</ul>
+</li>
+<li>
+<p><strong>管電流時間積（mAs）</strong>: </p>
+<ul>
+<li><strong>X線の量</strong>に影響</li>
+<li>mAs↑: 画像ノイズ↓、被ばく線量↑</li>
+<li>mAs↓: 画像ノイズ↑、被ばく線量↓</li>
+</ul>
+</li>
+<li>
+<p><strong>幾何学的要因</strong>:照射野サイズ、焦点サイズ、X線焦点-検出器間距離（拡大率含む）などによる関係（ここでは割愛）</p>
+</li>
+</ul>
+<p><strong>X線撮影条件と被ばく・画質の関係</strong></p>
+<table>
+<thead>
+<tr>
+<th>パラメータ</th>
+<th>変化</th>
+<th>被ばく線量</th>
+<th>透過性</th>
+<th>コントラスト</th>
+<th>量子ノイズ</th>
+<th>空間分解能</th>
+<th>散乱線</th>
+<th>適する主な撮影部位</th>
+<th>備考</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>管電圧 (kVp)</strong></td>
+<td>↑ 110-150</td>
+<td>↓ (∝kVp^0.5)</td>
+<td>↑↑↑</td>
+<td>↓↓↓</td>
+<td>↓</td>
+<td>-</td>
+<td>↑</td>
+<td>肺野、胸部</td>
+<td>高kV技法<br>被ばく線量低減<br>透過性向上</td>
+</tr>
+<tr>
+<td></td>
+<td>→ 80-110</td>
+<td>中程度</td>
+<td>中程度</td>
+<td>中程度</td>
+<td>中程度</td>
+<td>-</td>
+<td>中程度</td>
+<td>腹部、骨盤、頭部</td>
+<td>バランスの取れた条件</td>
+</tr>
+<tr>
+<td></td>
+<td>↓ 40-80</td>
+<td>↑</td>
+<td>↓↓↓</td>
+<td>↑↑↑</td>
+<td>↑</td>
+<td>-</td>
+<td>↓</td>
+<td>四肢、乳房、小児</td>
+<td>低kV技法<br>コントラスト重視<br>軟部組織識別能向上</td>
+</tr>
+<tr>
+<td><strong>管電流 (mA)</strong></td>
+<td>↑</td>
+<td>↑ (線形)</td>
+<td>-</td>
+<td>-</td>
+<td>↓ (∝1/√mA)</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>X線量増加<br>ノイズ低減</td>
+</tr>
+<tr>
+<td></td>
+<td>↓</td>
+<td>↓ (線形)</td>
+<td>-</td>
+<td>-</td>
+<td>↑ (∝1/√mA)</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>X線量減少<br>ノイズ増加</td>
+</tr>
+<tr>
+<td><strong>照射時間 (s)</strong></td>
+<td>↑</td>
+<td>↑ (線形)</td>
+<td>-</td>
+<td>-</td>
+<td>↓ (∝1/√t)</td>
+<td>↓</td>
+<td>-</td>
+<td>静止部位</td>
+<td>長時間露出で動きによる不鋭</td>
+</tr>
+<tr>
+<td></td>
+<td>↓</td>
+<td>↓ (線形)</td>
+<td>-</td>
+<td>-</td>
+<td>↑ (∝1/√t)</td>
+<td>↑</td>
+<td>-</td>
+<td>動く部位、小児</td>
+<td>短時間露出で動きの影響低減</td>
+</tr>
+</tbody>
+</table>
+<h3 id="32-x">3.2 X線撮影条件最適化の考え方</h3>
+<h4 id="321-xattenuation">3.2.1 X線の減弱（Attenuation）とコントラスト</h4>
+<p>物質を通過するX線の強度が減少する現象
+- <strong>Beer-Lambertの法則</strong>:
+  $$
+  I = I₀ exp(-μt)
+  $$</p>
+<p><span class="arithmatex">\(I\)</span>: 透過後のX線強度、<span class="arithmatex">\(I₀\)</span>: 入射X線強度、<span class="arithmatex">\(μ\)</span>: 線減弱係数、<span class="arithmatex">\(t\)</span>: 物質の厚さ</p>
+<p>これは、前回投影データの説明で示した式と同様
+  $$
+    I = I₀exp(-∫_lf(x,y)dl)
+  $$</p>
+<p><span class="arithmatex">\(f(x,y)\)</span>は物体の線減弱係数分布、<span class="arithmatex">\(l\)</span>はX線の経路を表します。</p>
+<p>線減弱係数（μ）は以下に依存します</p>
+<ul>
+<li>物質の密度（ρ）: 高密度ほど減弱大</li>
+<li>原子番号（Z）: 高原子番号ほど減弱大</li>
+<li>X線のエネルギー: 低エネルギーほど減弱大</li>
+</ul>
+<p>X線撮影においては、<strong>目的組織間の線減弱係数の差（画像上のコントラスト）を最大</strong>にしたい。</p>
+<ul>
+<li>
+<p><strong>各組織におけるX線減弱の特徴</strong>:</p>
+<ul>
+<li><strong>骨（高密度、高原子番号）</strong>: 強い減弱</li>
+<li><strong>軟部組織（中程度の密度）</strong>: 中程度の減弱</li>
+<li><strong>肺野・空気（低密度）</strong>: ほとんど減弱しない</li>
+</ul>
+</li>
+<li>
+<p><strong>診断可能性（X線で識別可能な組織の違い）</strong>:</p>
+<ul>
+<li>区別しやすい組織対: 骨と軟部組織、空気と軟部組織</li>
+<li>区別しにくい組織対: 軟部組織間（筋肉、肝臓、腎臓など）→ CT、MRIが有利</li>
+</ul>
+</li>
+</ul>
+<h4 id="322-x">3.2.2 X線撮影におけるノイズの発生</h4>
+<ul>
+<li>
+<p><strong>量子モトル（Quantum Mottle）</strong>:</p>
+<ul>
+<li>X線の本質的な粒子性（光子の統計的ゆらぎ）に起因するノイズ</li>
+<li>X線光子数がポアソン分布に従うとすると、相対的なノイズレベルは <span class="arithmatex">\(1/\sqrt{N}\)</span> に比例
+  $$
+  \text{ノイズレベル} \propto \frac{1}{\sqrt{N}}
+  $$
+  <span class="arithmatex">\(N\)</span>: 検出器に到達するX線光子数</li>
+<li>X線量が少ないほどノイズは増加（<strong>管電流時間積[mAs]に依存</strong>）</li>
+<li>多くの場合、画像ノイズの主要な原因となる</li>
+</ul>
+</li>
+<li>
+<p><strong>検出器ノイズ</strong>:</p>
+<ul>
+<li>検出器の電子回路に起因するノイズ</li>
+<li>デジタル検出器の量子検出効率（DQE）、温度、感度特性などに関連</li>
+<li>低線量撮影時に相対的影響が大きくなる（<strong>管電流時間積[mAs]に依存</strong>）</li>
+</ul>
+</li>
+<li>
+<p><strong>構造ノイズ</strong>:</p>
+<ul>
+<li>特に高密度部位や不均質な組織（例：肺野の血管影）における不均一性によるノイズ</li>
+<li>被写体特性に依存するため、撮影条件では制御できない</li>
+</ul>
+</li>
+<li>
+<p><strong>ノイズとコントラストの関係</strong>:</p>
+<ul>
+<li>信号対雑音比（SNR）<span class="arithmatex">\(= \frac{\text{信号強度}}{\text{ノイズレベル}}\)</span></li>
+<li>コントラスト対雑音比（CNR）<span class="arithmatex">\(= \frac{\text{コントラスト}}{\text{ノイズレベル}}\)</span></li>
+</ul>
+</li>
+</ul>
+<p>X線撮影においては、<strong>管電流時間積の決定：ノイズや分解能を考慮して診断に必要な画質レベルを担保したい</strong>。</p>
+<h4 id="323-x">3.2.3 X線撮影条件の最適化の考え方</h4>
+<ul>
+<li>
+<p><strong>管電圧(kV)の決定</strong>:</p>
+<ul>
+<li>目的組織間の線減弱係数の差（コントラスト）を最大化</li>
+<li>管電圧↑ → コントラスト↓、透過性↑</li>
+<li>管電圧↓ → コントラスト↑、透過性↓</li>
+<li>部位ごとに最適な管電圧範囲があり、これが撮影条件の基本となる</li>
+</ul>
+</li>
+<li>
+<p><strong>管電流時間積(mAs)の決定</strong>:</p>
+<ul>
+<li>ノイズや分解能を考慮して診断に必要な画質レベルを担保</li>
+<li>mAs↑ → X線光子数↑ → ノイズ↓ (<span class="arithmatex">\(\propto 1/\sqrt{\text{mAs}}\)</span>)</li>
+<li>ただし、mAs↑ → 被曝線量↑（線形比例）</li>
+<li>必要最小限のmAsでノイズを許容範囲内に抑える</li>
+</ul>
+</li>
+</ul>
+<figure>
+  <a class="glightbox" href="../img/05-10.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/05-10.png" alt="mAs値による変化" width="1000" height="auto"></a>
+  <figcaption>mAs値による変化（引用：https://radiologykey.com/exposure-technique-factors/）</figcaption>
+</figure>
+
+<figure>
+  <a class="glightbox" href="../img/05-11.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/05-11.png" alt="CR・FPDシステムの動作原理" width="1000" height="auto"></a>
+  <figcaption>管電圧による変化（引用：https://radiologykey.com/exposure-technique-factors/）</figcaption>
+</figure>
+
+<ul>
+<li>
+<p><strong>検出器感度と画像処理の最適化</strong>:</p>
+<ul>
+<li>検出器の量子検出効率（DQE）の向上</li>
+<li>適切な画像処理によるノイズ低減と信号強調</li>
+</ul>
+</li>
+<li>
+<p><strong>被曝低減技術の適用</strong>:</p>
+<ul>
+<li><strong>照射野の適正化（コリメーション）</strong></li>
+<li>付加フィルタの使用</li>
+<li>グリッドによる散乱線除去</li>
+</ul>
+</li>
+<li>
+<p><strong>最適化の原則</strong>:</p>
+<ul>
+<li>診断に必要十分なCNRを確保した上で、最小の被曝線量で撮影（ALARA原則）</li>
+<li>コントラストとノイズのトレードオフを考慮した総合的な条件設定</li>
+</ul>
+</li>
+</ul>
+<p><strong>部位別の最適条件（一般的目安）</strong></p>
+<table>
+<thead>
+<tr>
+<th>撮影部位</th>
+<th>推奨管電圧 (kVp)</th>
+<th>推奨mAs範囲</th>
+<th>撮影距離 (SID)</th>
+<th>特記事項</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>胸部X線（成人）</td>
+<td>110-130</td>
+<td>2-5</td>
+<td>180cm</td>
+<td>高kV低mAs技法、深吸気</td>
+</tr>
+<tr>
+<td>腹部X線（成人）</td>
+<td>70-90</td>
+<td>15-40</td>
+<td>100cm</td>
+<td>呼吸停止、散乱線対策重要</td>
+</tr>
+<tr>
+<td>四肢X線</td>
+<td>60-70</td>
+<td>3-8</td>
+<td>100cm</td>
+<td>細部描出重視</td>
+</tr>
+<tr>
+<td>小児胸部X線</td>
+<td>60-80</td>
+<td>1-3</td>
+<td>150-180cm</td>
+<td>可能な限り低線量</td>
+</tr>
+<tr>
+<td>骨盤X線</td>
+<td>75-85</td>
+<td>20-40</td>
+<td>100cm</td>
+<td>散乱線対策必須</td>
+</tr>
+<tr>
+<td>頭部X線</td>
+<td>70-80</td>
+<td>20-40</td>
+<td>100cm</td>
+<td>細部描出重視</td>
+</tr>
+<tr>
+<td>乳房撮影</td>
+<td>25-35</td>
+<td>40-150</td>
+<td>65cm</td>
+<td>専用装置使用、圧迫</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-x">4. 臨床工学技士国家試験対策ポイント - X線撮影の基本</h2>
+<p>過去問から抽出したX線撮影に関する重要ポイントを以下にまとめます。これらは国家試験で頻出する内容です。</p>
+<h3 id="41-x">4.1 X線画像の基本原理</h3>
+<ul>
+<li><strong>X線の透過と吸収</strong>: X線画像は、<strong>生体を透過したX線</strong>を計測して画像化される</li>
+<li><strong>X線減弱のメカニズム</strong>: 各臓器・組織のX線吸収係数（減弱係数）を画像化している</li>
+<li><strong>X線反射の誤解</strong>: X線は体内から<strong>反射するものではない</strong>（誤った概念）</li>
+<li><strong>画像形成の原理</strong>: 高密度組織（骨など）はX線を吸収して陰影を形成する</li>
+</ul>
+<h3 id="42-x">4.2 組織とX線の相互作用</h3>
+<ul>
+<li>
+<p>線減弱係数（μ）は以下に依存</p>
+<ul>
+<li>物質の密度（ρ）: 高密度ほど減弱大</li>
+<li>原子番号（Z）: 高原子番号ほど減弱大</li>
+<li>X線のエネルギー: 低エネルギーほど減弱大- <strong>骨のX線吸収</strong>: 骨のX線吸収係数は水の約2倍（<strong>0.5倍ではない</strong>）</li>
+</ul>
+</li>
+<li>
+<p><strong>骨のX線吸収</strong>: 骨のX線吸収係数は水の約2倍（<strong>0.5倍ではない</strong>）</p>
+</li>
+<li><strong>空気のX線吸収</strong>: 空気のX線吸収係数はほぼゼロ</li>
+<li><strong>元素による減衰差</strong>: X線の減衰は元素の種類によって異なる（高原子番号ほど減弱が大きい）</li>
+</ul>
+<h3 id="43-x">4.3 X線撮影の技術的特性</h3>
+<ul>
+<li><strong>空間分解能</strong>: 一般X線撮影の空間分解能は約0.1～0.2mm程度</li>
+<li><strong>体動の影響</strong>: 患者の体動はアーチファクト（画像の乱れ）の原因となる</li>
+<li><strong>動きのある臓器</strong>: 短時間露出（X線照射）により動きのある臓器も撮影可能（次回紹介）</li>
+<li><strong>体動と画質</strong>: 患者が動くと像が不鮮明になる</li>
+</ul>
+<h3 id="44">4.4 被ばく防護</h3>
+<ul>
+<li><strong>放射線防護</strong>: X線撮影では適切な放射線防護対策が必要</li>
+<li><strong>被ばく低減技術</strong>: 管電圧と管電流時間積(mAs)の最適化により被ばくを低減</li>
+<li><strong>ALARA原則</strong>: 被ばくは合理的に達成可能な限り低く保つ原則（As Low As Reasonably Achievable）</li>
+</ul>
+<h3 id="45">4.5 臨床応用</h3>
+<ul>
+<li><strong>適応</strong>: X線撮影は骨や肺野など組織間のX線吸収差が大きい部位の撮影に適している</li>
+<li><strong>撮影速度</strong>: 単純X線撮影は撮影時間が非常に短い（数十ms～数百ms）</li>
+<li><strong>非侵襲性</strong>: X線撮影は基本的に非侵襲的検査法（身体に挿入や穿刺を必要としない）</li>
+<li><strong>撮影部位による条件設定</strong>: 部位ごとに最適な管電圧・mAs値・SIDが異なる</li>
+</ul>
+<h3 id="46">4.6 画質に影響する要素</h3>
+<ul>
+<li><strong>コントラスト</strong>: 管電圧(X線エネルギー)が低いほどコントラストは向上する</li>
+<li><strong>ノイズ</strong>: mAs値が大きいほど（線量が大きいほど）量子ノイズは減少する</li>
+<li><strong>散乱線の影響</strong>: 散乱線はコントラストを低下させる主な要因</li>
+<li><strong>照射野</strong>: 照射野を限定することで散乱線が減少し、画質が向上する</li>
+</ul>
+<hr />
+<h2 id="5">5. まとめと次回講義への接続</h2>
+<h3 id="51">5.1 本講義のポイント</h3>
+<ul>
+<li>X線の物理的性質と発生原理</li>
+<li>X線と物質の相互作用による画像形成</li>
+<li>デジタルX線検出器（CR, FPD）の種類と原理</li>
+<li>X線撮影条件の最適化</li>
+</ul>
+<h3 id="52">5.2 次回講義の予告</h3>
+<ul>
+<li>X線CT装置の詳細構造</li>
+<li>各種CT撮影法（シングルスライス、マルチスライス、ヘリカル）</li>
+<li>CT画像の臨床応用</li>
+<li>その他X線撮影手法</li>
+</ul>
+<hr />
+<h2 id="5_1">第5回 演習</h2>
+<ul>
+<li><a href="https://forms.gle/g1FRnZx56Y476tKB6">Google Form</a></li>
+</ul>
+<figure>
+  <a class="glightbox" href="../img/05-12.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/05-12.png" alt="第5回演習" width="300" height="auto"></a>
+  <figcaption>第5回演習</figcaption>
+</figure>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="最終更新日">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年9月29日 01:24:19 UTC">2025年9月29日</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="作成日">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年9月29日 01:24:19 UTC">2025年9月29日</span>
+  </span>
+
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/W-Uchida/class" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.expand", "search.highlight", "search.suggest"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>

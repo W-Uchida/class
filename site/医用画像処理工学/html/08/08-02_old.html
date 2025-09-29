@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>周波数スペクトルデモ (周波数調整対応)</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 20px; background-color: #f8f9fa; color: #343a40; line-height: 1.6; }
+        .container { background-color: #ffffff; padding: 25px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); max-width: 900px; margin: auto; }
+        h1, h2, h3 { color: #00509e; border-bottom: 2px solid #dee2e6; padding-bottom: 5px; margin-top: 1.5em; }
+        h1 { margin-top: 0; }
+        .controls, .pulse-width-controls, .frequency-controls { margin-bottom: 25px; padding: 15px; background-color: #e9ecef; border-radius: 5px; }
+        .controls label, .pulse-width-controls label, .frequency-controls label { margin-right: 10px; cursor: pointer; font-weight: 500; }
+        .controls input[type="radio"], .pulse-width-controls input[type="range"], .frequency-controls input[type="range"] { margin-right: 5px; vertical-align: middle; }
+        .pulse-width-controls { display: none; }
+        #pulseCyclesValueDisplay, #frequencyValueDisplay { font-weight: bold; color: #00509e; }
+        canvas { border: 1px solid #ced4da; margin-top: 10px; background-color: #fff; display: block; margin-left: auto; margin-right: auto; }
+        .chart-container { margin-bottom: 30px; text-align: center; }
+        .description { margin-bottom: 25px; padding: 15px; background-color: #f1f3f5; border-left: 4px solid #007bff; border-radius: 4px; }
+        .description strong { color: #00509e; }
+        .formula { font-family: "Consolas", "Courier New", Courier, monospace; background-color: #e0e0e0; padding: 3px 7px; border-radius: 4px; font-size: 0.9em; border: 1px solid #ccc; display: inline-block; margin: 2px 0; }
+        .footer { margin-top: 40px; text-align: center; font-size: 0.85em; color: #6c757d; }
+        .java-info { text-align: center; font-style: italic; color: #495057; margin-bottom: 20px; padding: 10px; background-color: #cfe2ff; border: 1px solid #9ec5fe; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>周波数スペクトル デモツール (周波数調整対応)</h1>
+        <div class="java-info">このHTMLファイルはJavaプログラムによって生成されました。</div>
+        <p>連続波またはパルス波の周波数、およびパルス波のパルス幅（サイクル数）を調整し、時間領域波形と周波数スペクトルへの影響を視覚化します。</p>
+        <div class="description">
+            <h2>超音波パルスの基本パラメータ解説</h2>
+            <p>
+                <strong>パルス繰り返し周波数（PRF）</strong>：
+                1秒間にパルスを送信する回数。 <span class="formula">PRF = 1 / T<sub>PRF</sub></span>. PRFが高いと時間分解能向上、最大深度は浅く。<span class="formula">D<sub>max</sub> &le; c / (2 &middot; PRF)</span>.
+            </p>
+            <p>
+                <strong>パルス幅 (<span class="formula">&tau;</span>) / パルス長 (SPL)</strong>：
+                1パルスの時間長/空間長。<span class="formula">&tau; = n / f<sub>0</sub></span>, <span class="formula">SPL = n &middot; &lambda;<sub>0</sub></span>. 短いほど距離分解能(<span class="formula">R<sub>ax</sub></span>)向上。<span class="formula">R<sub>ax</sub> &approx; SPL / 2</span>.
+            </p>
+        </div>
+        <div class="controls">
+            <h3>波形の選択:</h3>
+            <label><input type="radio" name="waveType" value="continuous" checked> 連続波</label>
+            <label><input type="radio" name="waveType" value="pulse_preset_long"> パルス波 (プリセット長)</label>
+            <label><input type="radio" name="waveType" value="pulse_preset_short"> パルス波 (プリセット短)</label>
+            <label><input type="radio" name="waveType" value="pulse_custom"> パルス波 (カスタム)</label>
+        </div>
+
+        <div class="frequency-controls">
+            <label for="frequencySlider">周波数 (Hz): </label>
+            <input type="range" id="frequencySlider" min="5" max="100" value="20">
+            <span id="frequencyValueDisplay">20</span> Hz
+        </div>
+
+        <div class="pulse-width-controls" id="pulseWidthControlsContainer">
+            <label for="pulseCyclesSlider">パルス幅 (搬送波のサイクル数): </label>
+            <input type="range" id="pulseCyclesSlider" min="1" max="30" value="3">
+            <span id="pulseCyclesValueDisplay">3</span> サイクル
+        </div>
+
+        <div class="chart-container">
+            <h3>時間領域波形</h3>
+            <canvas id="timeDomainCanvas" width="700" height="250"></canvas>
+        </div>
+        <div class="chart-container">
+            <h3>周波数スペクトル</h3>
+            <canvas id="frequencySpectrumCanvas" width="700" height="250"></canvas>
+        </div>
+    </div>
+    <div class="footer">
+        このデモは <a href="https://www.medical.canon/jp/lecture/lecture/lec_032.html" target="_blank" rel="noopener noreferrer">Canon Medical Systems - 超音波の基礎 第32回</a> の内容を参考に作成されました。
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const timeCanvas = document.getElementById('timeDomainCanvas');
+            const freqCanvas = document.getElementById('frequencySpectrumCanvas');
+            const timeCtx = timeCanvas.getContext('2d');
+            const freqCtx = freqCanvas.getContext('2d');
+            const waveTypeRadios = document.querySelectorAll('input[name="waveType"]');
+            const pulseWidthControlsContainer = document.getElementById('pulseWidthControlsContainer');
+            const pulseCyclesSlider = document.getElementById('pulseCyclesSlider');
+            const pulseCyclesValueDisplay = document.getElementById('pulseCyclesValueDisplay');
+            const frequencySlider = document.getElementById('frequencySlider');
+            const frequencyValueDisplay = document.getElementById('frequencyValueDisplay');
+
+            const CANVAS_WIDTH = 700; const CANVAS_HEIGHT = 250; const MARGIN = 40;
+            const PLOT_WIDTH = CANVAS_WIDTH - 2 * MARGIN; const PLOT_HEIGHT = CANVAS_HEIGHT - 2 * MARGIN;
+            const TIME_DURATION = 0.5; /* 時間軸を少し短くして周波数の変化を見やすく */ 
+            const AMPLITUDE_TIME = PLOT_HEIGHT * 0.4; const NUM_SAMPLES_TIME = 1024;
+            const FREQ_MAX_DISPLAY = 200; /* スペクトル表示最大周波数 */ 
+            const NUM_SAMPLES_FREQ = 512;
+
+            let currentFrequency = 20; // Hz, 初期値
+            const PRESET_CYCLES_LONG = 15; const PRESET_CYCLES_SHORT = 3;
+            let currentPulseCycles = PRESET_CYCLES_SHORT;
+
+            function updateFrequency(freq) {
+                currentFrequency = parseFloat(freq);
+                frequencySlider.value = currentFrequency;
+                frequencyValueDisplay.textContent = currentFrequency.toFixed(0);
+            }
+
+            function updatePulseCycles(cycles) {
+                currentPulseCycles = parseInt(cycles, 10);
+                pulseCyclesSlider.value = currentPulseCycles;
+                pulseCyclesValueDisplay.textContent = currentPulseCycles;
+            }
+
+            function clearCanvas(ctx) { ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT); }
+            function drawAxes(ctx, xLabel, yLabel, xMax, yMaxText = "振幅") { ctx.beginPath(); ctx.strokeStyle = '#333'; ctx.lineWidth = 1; ctx.moveTo(MARGIN, MARGIN / 2); ctx.lineTo(MARGIN, CANVAS_HEIGHT - MARGIN); ctx.moveTo(MARGIN, CANVAS_HEIGHT - MARGIN); ctx.lineTo(CANVAS_WIDTH - MARGIN / 2, CANVAS_HEIGHT - MARGIN); ctx.stroke(); ctx.fillStyle = '#333'; ctx.textAlign = 'center'; ctx.fillText(xLabel, CANVAS_WIDTH / 2, CANVAS_HEIGHT - MARGIN / 4 + 5); ctx.save(); ctx.translate(MARGIN / 3 - 5, CANVAS_HEIGHT / 2); ctx.rotate(-Math.PI / 2); ctx.fillText(yLabel, 0, 0); ctx.restore(); ctx.textAlign = 'right'; ctx.fillText(xMax.toString(), CANVAS_WIDTH - MARGIN / 2, CANVAS_HEIGHT - MARGIN + 15); ctx.textAlign = 'left'; ctx.fillText(yMaxText, MARGIN + 5, MARGIN / 2 + 5); }
+
+            function drawTimeWaveform(type) {
+                clearCanvas(timeCtx);
+                drawAxes(timeCtx, "時間 (s)", "振幅", TIME_DURATION.toFixed(2));
+                timeCtx.beginPath(); timeCtx.strokeStyle = 'blue'; timeCtx.lineWidth = 1.5;
+                const dt = TIME_DURATION / NUM_SAMPLES_TIME;
+                const y_center = MARGIN + PLOT_HEIGHT / 2;
+
+                for (let i = 0; i <= NUM_SAMPLES_TIME; i++) {
+                    const t = i * dt;
+                    const x_canvas = MARGIN + (t / TIME_DURATION) * PLOT_WIDTH;
+                    let y_val = 0;
+                    if (type === 'continuous') {
+                        y_val = Math.sin(2 * Math.PI * currentFrequency * t);
+                    } else if (type.startsWith('pulse')) {
+                        const pulseCarrierFreq = currentFrequency;
+                        if (pulseCarrierFreq === 0) { y_val = 0; /* Avoid division by zero */ } else {
+                           const pulseWidthInTime = currentPulseCycles / pulseCarrierFreq;
+                           const PULSE_REP_PERIOD_DISPLAY = Math.max(0.1, 4 * pulseWidthInTime); // 繰り返し周期をパルス幅に応じて調整
+                           const t_in_pulse_envelope = t % PULSE_REP_PERIOD_DISPLAY;
+                           if (t_in_pulse_envelope < pulseWidthInTime && pulseWidthInTime > 0) {
+                               const hanning_window = 0.5 * (1 - Math.cos(2 * Math.PI * t_in_pulse_envelope / pulseWidthInTime));
+                               const carrier_wave = Math.sin(2 * Math.PI * pulseCarrierFreq * t_in_pulse_envelope);
+                               y_val = carrier_wave * hanning_window;
+                           } else {
+                               y_val = 0;
+                           }
+                        }
+                    }
+                    const y_canvas = y_center - y_val * AMPLITUDE_TIME;
+                    if (i === 0) timeCtx.moveTo(x_canvas, y_canvas); else timeCtx.lineTo(x_canvas, y_canvas);
+                }
+                timeCtx.stroke();
+            }
+
+            function drawFrequencySpectrum(type) {
+                clearCanvas(freqCtx);
+                drawAxes(freqCtx, "周波数 (Hz)", "強度", FREQ_MAX_DISPLAY, "強度");
+                freqCtx.beginPath(); freqCtx.strokeStyle = 'red'; freqCtx.lineWidth = 1.5;
+                const df = FREQ_MAX_DISPLAY / NUM_SAMPLES_FREQ;
+                const y_base = CANVAS_HEIGHT - MARGIN;
+                const displayFreq = currentFrequency;
+
+                if (type === 'continuous') {
+                    if (displayFreq >= 0 && displayFreq <= FREQ_MAX_DISPLAY) {
+                        const freq_canvas_x = MARGIN + (displayFreq / FREQ_MAX_DISPLAY) * PLOT_WIDTH;
+                        freqCtx.moveTo(freq_canvas_x, y_base);
+                        freqCtx.lineTo(freq_canvas_x, MARGIN);
+                    }
+                } else if (type.startsWith('pulse')) {
+                    const pulseCarrierFreq = displayFreq;
+                    if (pulseCarrierFreq === 0) { /* No spectrum if carrier is 0 */ } else {
+                       const pulseWidthInTime = currentPulseCycles / pulseCarrierFreq;
+                       for (let i = 0; i <= NUM_SAMPLES_FREQ; i++) {
+                           const f_plot = i * df;
+                           const x_canvas = MARGIN + (f_plot / FREQ_MAX_DISPLAY) * PLOT_WIDTH;
+                           let sinc_arg_val = (f_plot - pulseCarrierFreq) * pulseWidthInTime;
+                           let amplitude = (Math.abs(sinc_arg_val) < 1e-6) ? 1.0 : Math.abs(Math.sin(Math.PI * sinc_arg_val) / (Math.PI * sinc_arg_val));
+                           const y_canvas = y_base - amplitude * PLOT_HEIGHT * 0.9;
+                           if (i === 0) freqCtx.moveTo(x_canvas, y_canvas); else freqCtx.lineTo(x_canvas, y_canvas);
+                       }
+                    }
+                }
+                freqCtx.stroke();
+            }
+
+            function updateDisplay() {
+                const selectedType = document.querySelector('input[name="waveType"]:checked').value;
+                if (selectedType.startsWith('pulse')) {
+                    pulseWidthControlsContainer.style.display = 'block';
+                    if (selectedType === 'pulse_preset_long') updatePulseCycles(PRESET_CYCLES_LONG);
+                    else if (selectedType === 'pulse_preset_short') updatePulseCycles(PRESET_CYCLES_SHORT);
+                } else {
+                    pulseWidthControlsContainer.style.display = 'none';
+                }
+                drawTimeWaveform(selectedType);
+                drawFrequencySpectrum(selectedType);
+            }
+
+            waveTypeRadios.forEach(radio => { radio.addEventListener('change', updateDisplay); });
+            pulseCyclesSlider.addEventListener('input', () => { 
+                document.querySelector('input[name="waveType"][value="pulse_custom"]').checked = true; 
+                updatePulseCycles(pulseCyclesSlider.value); 
+                updateDisplay(); 
+            });
+            frequencySlider.addEventListener('input', () => { 
+                updateFrequency(frequencySlider.value); 
+                updateDisplay(); 
+            });
+
+            // 初期表示
+            updateFrequency(frequencySlider.value); // 初期周波数設定
+            updatePulseCycles(pulseCyclesSlider.value); // 初期パルスサイクル設定
+            // 初期選択は連続波のまま or パルス波のプリセット短にするか選択
+            // document.querySelector('input[name="waveType"][value="pulse_preset_short"]').checked = true;
+            updateDisplay();
+        });
+    </script>
+</body>
+</html>

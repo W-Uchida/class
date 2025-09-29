@@ -1,0 +1,1855 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://W-Uchida.github.io/class/%E5%8C%BB%E7%94%A8%E7%94%BB%E5%83%8F%E5%87%A6%E7%90%86%E5%B7%A5%E5%AD%A6/09_nuclear/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>10. 核医学画像機器（PET・SPECT）の原理と応用 - 講義資料ポータル</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/custom.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="lime" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#10-petspect" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href="../.." title="講義資料ポータル" class="md-header__button md-logo" aria-label="講義資料ポータル" data-md-component="logo">
+      
+  <img src="../../img/00-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            講義資料ポータル
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              10. 核医学画像機器（PET・SPECT）の原理と応用
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="検索">
+        
+        <button type="reset" class="md-search__icon md-icon" title="クリア" aria-label="クリア" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/W-Uchida/class" title="リポジトリへ" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="講義資料ポータル" class="md-nav__button md-logo" aria-label="講義資料ポータル" data-md-component="logo">
+      
+  <img src="../../img/00-logo.png" alt="logo">
+
+    </a>
+    講義資料ポータル
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/W-Uchida/class" title="リポジトリへ" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    画像解析・画像AI特論
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            画像解析・画像AI特論
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%94%BB%E5%83%8F%E8%A7%A3%E6%9E%90%E3%83%BB%E7%94%BB%E5%83%8FAI%E7%89%B9%E8%AB%96/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    概要
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%94%BB%E5%83%8F%E8%A7%A3%E6%9E%90%E3%83%BB%E7%94%BB%E5%83%8FAI%E7%89%B9%E8%AB%96/lecture01/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第1章
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%94%BB%E5%83%8F%E8%A7%A3%E6%9E%90%E3%83%BB%E7%94%BB%E5%83%8FAI%E7%89%B9%E8%AB%96/lecture02/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第2章
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%94%BB%E5%83%8F%E8%A7%A3%E6%9E%90%E3%83%BB%E7%94%BB%E5%83%8FAI%E7%89%B9%E8%AB%96/lecture03/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第3章
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.はじめに
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.はじめに">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 講義の目的と全体像
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 前回までの復習
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 前回までの復習">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 投影データと画像再構成の基礎概念
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-xct" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 X線CTと核医学検査の根本的な違い
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 核医学の基礎原理
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 核医学の基礎原理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 核医学検査の本質的特徴
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-ri" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 放射性医薬品（RI医薬品）の基本概念
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ri" class="md-nav__link">
+    <span class="md-ellipsis">
+      代表的なRI医薬品
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="代表的なRI医薬品">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#spect" class="md-nav__link">
+    <span class="md-ellipsis">
+      ガンマ線放出核種（SPECT用）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pet" class="md-nav__link">
+    <span class="md-ellipsis">
+      ポジトロン放出核種（PET用）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      核種選択の考慮要素
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="核種選択の考慮要素">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#spect_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      SPECT核種の特徴
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pet_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      PET核種の特徴
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 放射線物理学の基礎
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4 γ線検出器の原理
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-petspect" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. PETとSPECTの基本的な違い（概要）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. PETとSPECTの基本的な違い（概要）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 核医学の2つの主要手法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 検出原理の根本的違い
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.2 検出原理の根本的違い">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#spectsingle-photon-emission-ct" class="md-nav__link">
+    <span class="md-ellipsis">
+      SPECT（Single Photon Emission CT）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#petpositron-emission-tomography" class="md-nav__link">
+    <span class="md-ellipsis">
+      PET（Positron Emission Tomography）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 物理現象の比較
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.4 技術的特性の比較
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.5 臨床応用の特徴
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.5 臨床応用の特徴">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#spect_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      SPECTの主な応用
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pet_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      PETの主な応用
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.6 コストと普及度
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-spectsingle-photon-emission-computed-tomography" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. SPECT（Single Photon Emission Computed Tomography）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. SPECT（Single Photon Emission Computed Tomography）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-spect" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 SPECTの基本原理
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-spect" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 SPECT装置の構成
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-spect" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3 SPECT画像再構成の特殊性
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.3 SPECT画像再構成の特殊性">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#531-ml-emmaximum-likelihood-expectation-maximization" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3.1 ML-EM法（Maximum Likelihood Expectation Maximization）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#532-os-emordered-subset-expectation-maximization" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3.2 OS-EM法（Ordered Subset Expectation Maximization）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-petpositron-emission-tomography" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. PET（Positron Emission Tomography）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. PET（Positron Emission Tomography）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-pet" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 PETの基本原理
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.1 PETの基本原理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: β⁺崩壊（陽電子放出）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: 陽電子の飛程と減速
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3: 陽電子-電子対消滅現象
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4: 同時計数検出の原理
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. 定量解析
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. 定量解析">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-suvstandardized-uptake-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.1 SUV（Standardized Uptake Value）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. 臨床応用
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. 臨床応用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-spect" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.1 SPECT検査の代表的臨床応用
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-pet" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.2 PET検査の代表的臨床応用
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. 演習課題・国家試験対策問題
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="10-petspect">10. 核医学画像機器（PET・SPECT）の原理と応用</h1>
+<hr />
+<h2 id="1">1.はじめに</h2>
+<h3 id="11">1.1 講義の目的と全体像</h3>
+<ul>
+<li><strong>背景説明：</strong><br />
+  核医学画像診断は、放射性医薬品（RI医薬品）を患者に投与し、<font color="red">体内から放出される放射線を検出して画像化する</font>検査法です。これまで学習してきたX線CTやこれから学習するMRIが主に「形態学的情報」（臓器の形や大きさ）を提供するのに対し、核医学検査は<font color="red">「機能的・代謝的情報」</font>を定量的に評価できる大きな特徴があります。</li>
+</ul>
+<p>特に重要なのは、核医学検査では「<strong>体内に取り込まれた放射性医薬品の分布」を画像化</strong>することで、臓器の血流、代謝、受容体の状態などを非侵襲的に観察できることです。例えば、心筋の血流状態、脳の血流分布、がん細胞の糖代謝活性などを定量的に評価でき、早期診断や治療効果判定に重要な役割を果たしています。</p>
+<p>SPECT（単一光子放射断層撮影：Single Photon Emission Computed Tomography）とPET（陽電子放射断層撮影：Positron Emission Tomography）は、どちらも異なる物理原理に基づきながらも、第4回講義で学習した「投影データから断層画像を再構成する」技術を必要とする点で共通しています。</p>
+<ul>
+<li><strong>講義の流れ：</strong><br />
+  本講義では、下記の流れで核医学画像機器について詳しく説明します。</li>
+</ul>
+<p>・前回までの復習：投影データと画像再構成の核医学への応用</p>
+<p>・核医学の基礎原理と放射線物理学</p>
+<p>・SPECT装置の原理、構成、画像再構成</p>
+<p>・PET装置の原理、構成、画像再構成</p>
+<p>・核医学画像の特性と品質管理</p>
+<p>・臨床応用と最新技術動向</p>
+<p>・実習</p>
+<hr />
+<h2 id="2">2. 前回までの復習</h2>
+<h3 id="21">2.1 投影データと画像再構成の基礎概念</h3>
+<p>第4回講義では、X線CTを例に投影データから断層画像を再構成する原理を学習しました。ここで重要な概念を核医学に応用する観点から復習しましょう。</p>
+<ul>
+<li><strong>投影（Projection）の概念</strong>：
+  第4回で学習した投影とは、対象物の特性を特定の方向に沿って積分した値でした。</li>
+<li>
+<p><strong>X線CTの場合</strong>：物体の線減弱係数分布を積分
+    $$
+    p(X,\theta) = \int_{-\infty}^{\infty} f(x,y) dY
+    $$
+    ここで<span class="arithmatex">\(f(x,y)\)</span>は線減弱係数分布</p>
+</li>
+<li>
+<p><strong>核医学の場合</strong>：体内の放射能分布を積分
+    $$
+    p(X,\theta) = \int_{-\infty}^{\infty} A(x,y) dY
+    $$
+    ここで<span class="arithmatex">\(A(x,y)\)</span>は放射能分布（単位：Bq/cm²）</p>
+</li>
+<li>
+<p><strong>サイノグラムと再構成手法の復習</strong>：</p>
+<ul>
+<li>サイノグラム：投影データの2次元表現（横軸：検出器位置、縦軸：投影角度）</li>
+<li>フィルタ補正逆投影法（FBP）：周波数領域でフィルタリング後に逆投影</li>
+<li>反復的再構成法：ML-EM法、OS-EM法など（<font color="red"><strong>核医学では特に重要</strong></font>）</li>
+</ul>
+</li>
+</ul>
+<figure>
+  <a class="glightbox" href="../img/04-05.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/04-05.png" alt="サイノグラム" width="700" height="auto"></a>
+  <figcaption>（再掲）サイノグラム</figcaption>
+</figure>
+
+<h3 id="22-xct">2.2 X線CTと核医学検査の根本的な違い</h3>
+<p>理解を深めるために、X線CTと核医学検査の根本的な違いを整理しましょう：</p>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>X線CT</th>
+<th>核医学（SPECT/PET）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>線源の位置</strong></td>
+<td>外部線源（X線管球）</td>
+<td><font color="red">体内線源（放射性医薬品）</font></td>
+</tr>
+<tr>
+<td><strong>検出対象</strong></td>
+<td>透過X線</td>
+<td><font color="red">放出γ線</font></td>
+</tr>
+<tr>
+<td><strong>得られる情報</strong></td>
+<td>形態学的情報<br>（組織の密度差）</td>
+<td><font color="red">機能・代謝情報</font><br>（生理学的活性）</td>
+</tr>
+<tr>
+<td><strong>投影データの性質</strong></td>
+<td>高カウント統計</td>
+<td>低カウント統計<br>（ポアソンノイズが顕著）</td>
+</tr>
+<tr>
+<td><strong>画像再構成</strong></td>
+<td>FBP法が主流</td>
+<td>反復的再構成法が主流</td>
+</tr>
+<tr>
+<td><strong>空間分解能</strong></td>
+<td>約0.5mm</td>
+<td><font color="red">SPECT: 10-15mm<br>PET: 4-6mm</font><br><font color="red">（X線CTに比べて低い）</font></td>
+</tr>
+</tbody>
+</table>
+<p>この違いにより、核医学では <strong>「低カウント統計によるノイズ」</strong> が大きな問題となり、これを克服するための特別な画像再構成技術が発達してきました。</p>
+<hr />
+<h2 id="3">3. 核医学の基礎原理</h2>
+<h3 id="31">3.1 核医学検査の本質的特徴</h3>
+<p>核医学検査を理解するためには、まずその本質的な特徴を理解することが重要です。</p>
+<ul>
+<li><strong>機能・代謝画像としての特徴</strong>：</li>
+</ul>
+<p>従来の画像診断では「病気によって変化した形」を見つけることが主目的でした。しかし核医学では、「病気によって変化した<font color="red"><strong>機能</strong></font>」を検出できます。これにより、形態変化が現れる前の早期段階での異常検出が可能になります。</p>
+<ul>
+<li><strong>定量評価の可能性</strong>：</li>
+</ul>
+<p>核医学検査では、単に「見える・見えない」という<strong>定性的</strong>な情報だけでなく、「どの程度の機能があるか」を数値として<font color="red"><strong>定量的</strong></font> に評価できます。これを <strong>「定量画像」</strong>と呼びます。</p>
+<h3 id="32-ri">3.2 放射性医薬品（RI医薬品）の基本概念</h3>
+<p>核医学検査の要となるのが放射性医薬品です。これは <strong>「放射性同位元素」</strong> と <strong>「医薬品」</strong> を結合させたものです。</p>
+<div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 15px;">
+  <font color="red"><strong>結合する意味</strong>:</font><br>
+  <ul style="margin-top: 5px; margin-bottom: 0; padding-left: 20px;">
+    <li style="color: black;"><strong>  放射性同位元素単体では体内分布が制御できないため、目的の臓器に集積する医薬品と結合させることで、「目的の部位の機能を画像化」できるようになります。</strong></li>
+  </ul>
+</div>
+
+<figure>
+  <a class="glightbox" href="..../img/10-01.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="..../img/10-01.png" alt="PET vs SPECT 原理比較" width="600" height="auto"></a>
+  <figcaption>PET vs SPECT 原理比較</figcaption>
+</figure>
+
+<h2 id="ri">代表的なRI医薬品</h2>
+<h3 id="spect"><strong>ガンマ線放出核種（SPECT用）</strong></h3>
+<table>
+<thead>
+<tr>
+<th>核種</th>
+<th>半減期</th>
+<th>主な医薬品</th>
+<th>集積部位</th>
+<th>主な用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>⁹⁹ᵐTc（テクネチウム）</strong></td>
+<td>6時間</td>
+<td>MIBI, tetrofosmin</td>
+<td>心筋</td>
+<td><font color="red">心筋血流評価</font></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>ECD, HMPAO</td>
+<td>脳</td>
+<td><font color="red">脳血流（認知症・脳梗塞）</font></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>MDP, HDP</td>
+<td>骨</td>
+<td><font color="red">骨シンチ（骨転移・骨疾患）</font></td>
+</tr>
+<tr>
+<td><strong>¹²³I（ヨード）</strong></td>
+<td>13時間</td>
+<td>IMP</td>
+<td>脳</td>
+<td><font color="red">脳血流（高精度）</font></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>ヨウ化ナトリウム</td>
+<td>甲状腺</td>
+<td><font color="red">甲状腺機能評価</font></td>
+</tr>
+<tr>
+<td><strong>²⁰¹Tl（タリウム）</strong></td>
+<td>73時間</td>
+<td>TlCl</td>
+<td>心筋</td>
+<td><font color="red">心筋血流・viability評価</font></td>
+</tr>
+</tbody>
+</table>
+<h3 id="pet"><strong>ポジトロン放出核種（PET用）</strong></h3>
+<table>
+<thead>
+<tr>
+<th>核種</th>
+<th>半減期</th>
+<th>主な医薬品</th>
+<th>集積部位</th>
+<th>主な用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>¹⁸F（フッ素）</strong></td>
+<td><font color="red">110分</font></td>
+<td>FDG</td>
+<td>糖代謝活発部位</td>
+<td><font color="red">がん診断・治療効果判定</font></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>脳</td>
+<td><font color="red">認知症・てんかん診断</font></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>NaF</td>
+<td>骨代謝活発部位</td>
+<td><font color="red">骨転移検出</font></td>
+</tr>
+<tr>
+<td><strong>¹¹C（炭素）</strong></td>
+<td>20分</td>
+<td>メチオニン</td>
+<td>アミノ酸代謝</td>
+<td><font color="red">脳腫瘍診断</font></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>PIB</td>
+<td>アミロイドβ</td>
+<td><font color="red">アルツハイマー病診断</font></td>
+</tr>
+<tr>
+<td><strong>¹⁵O（酸素）</strong></td>
+<td>2分</td>
+<td>水（H₂¹⁵O）</td>
+<td>血流</td>
+<td><font color="red">脳血流・心筋血流定量</font></td>
+</tr>
+</tbody>
+</table>
+<h3 id="_1"><strong>核種選択の考慮要素</strong></h3>
+<h4 id="spect_1"><strong>SPECT核種の特徴</strong></h4>
+<ul>
+<li><strong>⁹⁹ᵐTc</strong>：最も汎用的、入手容易、理想的な物理特性</li>
+<li><strong>長半減期</strong>：輸送・保管が容易、検査時間の制約が少ない</li>
+<li><strong>多様な化合物</strong>：様々な臓器・機能の評価が可能</li>
+</ul>
+<h4 id="pet_1"><strong>PET核種の特徴</strong></h4>
+<ul>
+<li><strong>短半減期</strong>：被ばく線量の軽減、繰り返し検査が可能</li>
+<li><strong>サイクロトロン（加速器）製造</strong>：オンサイト製造または配送による供給</li>
+<li><strong>高い定量性</strong>：SUV計算による客観的評価</li>
+<li><strong>生体元素</strong>：¹¹C、¹³N、¹⁵O、¹⁸Fは生体構成元素のため生理的</li>
+</ul>
+<figure>
+  <a class="glightbox" href="..../img/10-02.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="..../img/10-02.png" alt="サイクロトロン" width="300" height="auto"></a>
+  <figcaption>サイクロトロン（加速器）</figcaption>
+</figure>
+
+<h3 id="33">3.3 放射線物理学の基礎</h3>
+<p>核医学で使用されるγ線について、検出に必要な物理的特性を理解しましょう。</p>
+<p>→<strong>γ線</strong>：高エネルギー電磁波、透過力が高い（<font color="red">核医学の主役。SPECT/PETともに最終的にγ線を検出する</font>）</p>
+<ul>
+<li><strong>γ線の重要な特性</strong>：</li>
+</ul>
+<p>γ線は電磁波の一種で、X線（制動X線、特性X線）と本質的に同じものですが、原子核から放出される点が異なります。</p>
+<p>各核種は決まったエネルギーのγ線を放出します。</p>
+<ul>
+<li><strong>物質との相互作用</strong>：</li>
+</ul>
+<p>γ線が物質と相互作用する主な現象：</p>
+<ol>
+<li><strong>光電効果</strong>：γ線が完全に吸収され、光電子が放出</li>
+<li><strong>コンプトン散乱</strong>：γ線が散乱され、エネルギーが減少</li>
+</ol>
+<p>核医学画像では、光電効果による完全吸収がであれば感度低下のみですが、<font color="red">コンプトン散乱による散乱線が画質劣化の原因となります（散乱補正が必要）</font>。</p>
+<figure>
+  <a class="glightbox" href="..../img/10-03.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="..../img/10-03.png" alt="光電効果・コンプトン散乱" width="600" height="auto"></a>
+  <figcaption>光電効果・コンプトン散乱</figcaption>
+</figure>
+
+<h3 id="34">3.4 γ線検出器の原理</h3>
+<p>核医学装置の心臓部である検出器について詳しく説明します。</p>
+<ul>
+<li>
+<p><strong>シンチレーション検出器の動作原理</strong>：</p>
+</li>
+<li>
+<p><strong>γ線の入射</strong>：体内から放出されたγ線が検出器に入射</p>
+</li>
+<li><strong>シンチレーション現象</strong>：γ線がシンチレータ結晶内で光に変換</li>
+<li><strong>光電変換</strong>：光電子増倍管（PMT）で光が電気信号に変換</li>
+<li>
+<p><strong>信号処理</strong>：電気信号を増幅・処理して位置とエネルギーを決定</p>
+</li>
+<li>
+<p><strong>光電子増倍管（PMT: Photomultiplier Tube）</strong>：</p>
+</li>
+</ul>
+<p>微弱な光信号を電気信号に変換し、大幅に増幅する装置</p>
+<ul>
+<li><strong>エネルギー分解能とエネルギーウィンドウ</strong>：</li>
+</ul>
+<p>検出器のエネルギー分解能により、散乱線と一次線を区別できます</p>
+<hr />
+<h2 id="4-petspect">4. PETとSPECTの基本的な違い（概要）</h2>
+<h3 id="41-2">4.1 核医学の2つの主要手法</h3>
+<p>核医学検査には主に<strong>SPECT</strong>と<strong>PET</strong>の2つの手法があります。どちらも体内の放射性医薬品から放出される放射線を検出しますが、<strong>検出原理</strong>と<strong>使用核種</strong>が根本的に異なります。</p>
+<figure>
+  <a class="glightbox" href="..../img/10-01.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="..../img/10-01.png" alt="PET vs SPECT 原理比較" width="600" height="auto"></a>
+  <figcaption>PET vs SPECT 原理比較</figcaption>
+</figure>
+
+<h3 id="42">4.2 検出原理の根本的違い</h3>
+<h4 id="spectsingle-photon-emission-ct"><strong>SPECT（Single Photon Emission CT）</strong></h4>
+<ul>
+<li><strong>検出対象</strong>：<font color="red">単一のγ線</font></li>
+<li><strong>方向特定</strong>：<font color="red">物理的コリメータ</font>が必須</li>
+<li><strong>装置動作</strong>：<font color="red">検出器を回転</font>させてデータ収集</li>
+<li><strong>問題点</strong>：コリメータにより感度が大幅に低下（約99%のγ線を遮蔽）</li>
+</ul>
+<h4 id="petpositron-emission-tomography"><strong>PET（Positron Emission Tomography）</strong></h4>
+<ul>
+<li><strong>検出対象</strong>：<font color="red">陽電子対消滅による511keV光子ペア</font></li>
+<li><strong>方向特定</strong>：<font color="red">同時計数法（電子コリメーション）</font></li>
+<li><strong>装置動作</strong>：<font color="red">固定検出器リング</font>で全方向同時収集</li>
+<li><strong>利点</strong>：コリメータ不要のため高感度</li>
+</ul>
+<h3 id="43">4.3 物理現象の比較</h3>
+<p><strong>SPECTの物理現象</strong>：</p>
+<ol>
+<li>原子核から直接γ線が放出</li>
+<li>γ線はあらゆる方向に放射（方向不確定）</li>
+<li>コリメータで特定方向のγ線のみを選択</li>
+</ol>
+<p><strong>PETの物理現象</strong>：</p>
+<ol>
+<li>陽電子（β⁺）が放出される</li>
+<li>陽電子と電子が対消滅</li>
+<li><font color="red">必ず180°対角方向に511keV光子2個が放出</font></li>
+<li>対角検出器での同時検出により方向を特定</li>
+</ol>
+<h3 id="44">4.4 技術的特性の比較</h3>
+<table>
+<thead>
+<tr>
+<th>比較項目</th>
+<th>SPECT</th>
+<th>PET</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>空間分解能</strong></td>
+<td><font color="red">10-15mm</font></td>
+<td><font color="red">4-6mm</font></td>
+</tr>
+<tr>
+<td><strong>コリメータ</strong></td>
+<td><font color="red">必須</font></td>
+<td><font color="red">不要</font></td>
+</tr>
+<tr>
+<td><strong>感度</strong></td>
+<td>低い（0.01-0.1%）<br> コリメータによる</td>
+<td>高い（1-5%）</td>
+</tr>
+<tr>
+<td><strong>検出器</strong></td>
+<td>回転式</td>
+<td>固定リング</td>
+</tr>
+<tr>
+<td><strong>定量性</strong></td>
+<td>限定的</td>
+<td><font color="red">優秀（SUV計算）</font></td>
+</tr>
+</tbody>
+</table>
+<h3 id="45">4.5 臨床応用の特徴</h3>
+<h4 id="spect_2"><strong>SPECTの主な応用</strong></h4>
+<ul>
+<li><strong>心筋血流シンチグラフィ</strong>：心筋虚血の評価</li>
+<li><strong>脳血流シンチグラフィ</strong>：脳血管障害、認知症の診断</li>
+<li><strong>骨シンチグラフィ</strong>：骨転移、骨疾患の検出</li>
+</ul>
+<h4 id="pet_2"><strong>PETの主な応用</strong></h4>
+<ul>
+<li><strong>FDG-PET</strong>：<font color="red">がんの診断・病期診断・治療効果判定</font></li>
+<li><strong>脳機能評価</strong>：認知症の早期診断、てんかん焦点の同定</li>
+<li><strong>心筋viability評価</strong>：心筋の生存能力評価</li>
+</ul>
+<h3 id="46">4.6 コストと普及度</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>SPECT</th>
+<th>PET</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>装置コスト</strong></td>
+<td>比較的低い</td>
+<td>高い</td>
+</tr>
+<tr>
+<td><strong>維持費用</strong></td>
+<td>低い</td>
+<td>高い（サイクロトロン等）</td>
+</tr>
+<tr>
+<td><strong>核種供給</strong></td>
+<td>安定供給</td>
+<td>限定的（配送制約）<br>核種の半減期が短いことによる</td>
+</tr>
+</tbody>
+</table>
+<p>次章では、これらの基本的な違いを踏まえて、各手法の詳細な原理と装置構成について学習していきます。</p>
+<hr />
+<h2 id="5-spectsingle-photon-emission-computed-tomography">5. SPECT（Single Photon Emission Computed Tomography）</h2>
+<h3 id="51-spect">5.1 SPECTの基本原理</h3>
+<p>SPECTは「単一光子放射断層撮影」と呼ばれ、体内に投与したRI医薬品から放出される<font color="red">単一のγ線を検出して断層画像を作成する</font>装置です。</p>
+<p>放出された<font color="red">γ線がどの方向からきたかを特定するためにコリメータという装置が必要</font>になります。</p>
+<ul>
+<li><strong>コリメータの役割と種類</strong>：</li>
+</ul>
+<p>コリメータは、特定方向からのγ線のみを検出器に到達させる「方向選択装置」であり、<strong>パラレルホール型</strong>、<strong>ピンホール型</strong>、<strong>ファンビーム型</strong>がある。</p>
+<p>ただし、コリメータによるγ線吸収により感度低下が起きる。</p>
+<p><strong>空間分解能と感度のトレードオフ</strong>を考慮して、臨床目的に応じて最適なコリメータを選択する必要があります。</p>
+<figure>
+  <a class="glightbox" href="..../img/10-04.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="..../img/10-04.png" alt="コリメータ" width="600" height="auto"></a>
+  <figcaption>コリメータ</figcaption>
+</figure>
+
+<h3 id="52-spect">5.2 SPECT装置の構成</h3>
+<p>現代のSPECT装置は、回転するガンマカメラシステムとして構成されています。</p>
+<ul>
+<li>
+<p><strong>ガンマカメラの基本構造</strong>：</p>
+<ol>
+<li><strong>コリメータ</strong>：方向選択（前述）</li>
+<li><strong>シンチレーション結晶</strong>：光に変換</li>
+<li><strong>光電子増倍管アレイ(PMT)</strong>：結晶背面に六角配列で多数配置</li>
+<li><strong>位置演算回路</strong>：各PMTの信号から γ線入射位置を計算</li>
+</ol>
+</li>
+</ul>
+<h3 id="53-spect">5.3 SPECT画像再構成の特殊性</h3>
+<p>SPECTの画像再構成は、X線CTと同じ投影データを扱いますが、核医学特有の問題があります。</p>
+<ul>
+<li>
+<p><strong>投影データの特殊な性質</strong>：</p>
+</li>
+<li>
+<p><strong>低カウント統計（ポアソンノイズ）</strong>：</p>
+<ul>
+<li>X線CTに比べて圧倒的に少ないフォトン数</li>
+<li>ポアソン分布に従うランダムノイズが顕著</li>
+<li>空間分解能は比較的低い</li>
+</ul>
+</li>
+<li>
+<p><strong>散乱線の混入</strong>：</p>
+<ul>
+<li>体内でコンプトン散乱したγ線が検出器に到達</li>
+<li>画像のコントラスト低下と定量性悪化の原因</li>
+</ul>
+</li>
+<li>
+<p><strong>減衰の影響</strong>：</p>
+<ul>
+<li><font color="red">体内深部から放出されたγ線は、体表面に到達するまでに減衰（吸収）</font> → 深部病変の見かけ上の集積低下</li>
+</ul>
+</li>
+<li>
+<p><strong>従来再構成法（FBP）の限界</strong>：</p>
+</li>
+</ul>
+<p>第4回で学習したフィルタ補正逆投影法（FBP）は、核医学では以下の限界があります：</p>
+<ul>
+<li><strong>ノイズ増幅</strong>：フィルタリング処理でノイズが増幅される</li>
+<li><strong>散乱・減衰補正の困難</strong>：物理現象の補正を組み込みにくい</li>
+<li>
+<p><strong>負値の発生</strong>：ノイズによりピクセル値が負になることがある</p>
+</li>
+<li>
+<p><strong>反復的再構成法の優位性</strong>：</p>
+</li>
+</ul>
+<p>核医学では、統計的性質を考慮した反復的再構成法が標準的に使用されています：</p>
+<h4 id="531-ml-emmaximum-likelihood-expectation-maximization">5.3.1 ML-EM法（Maximum Likelihood Expectation Maximization）</h4>
+<p>ポアソンノイズモデルに基づく最尤推定法：</p>
+<div class="arithmatex">\[f_j^{(k+1)} = \frac{f_j^{(k)}}{\sum_{i} w_{ij}} \sum_{i} \frac{p_i w_{ij}}{\sum_{j'} w_{ij'} f_{j'}^{(k)}}\]</div>
+<p>ここで：</p>
+<ul>
+<li><span class="arithmatex">\(f_j^{(k)}\)</span>：k回目の反復における画素jの推定値</li>
+<li><span class="arithmatex">\(p_i\)</span>：投影データiの観測値</li>
+<li><span class="arithmatex">\(w_{ij}\)</span>：投影線iと画素jの幾何学的関係を表すシステム行列</li>
+</ul>
+<h4 id="532-os-emordered-subset-expectation-maximization">5.3.2 OS-EM法（Ordered Subset Expectation Maximization）</h4>
+<p>ML-EM法の高速化バージョン：</p>
+<ul>
+<li><strong>基本アイデア</strong>：全投影データを複数のサブセットに分割</li>
+<li><strong>利点</strong>：収束速度がサブセット数倍に高速化</li>
+<li><strong>注意点</strong>：サブセット間の角度間隔を均等にする必要</li>
+</ul>
+<div style="text-align: center; margin: 20px 0;">
+<a href="../html/04/04-02.html" style="display: inline-block; padding: 12px 24px; background-color: #2563eb; color: white; text-decoration: none; border-radius: 6px; font-weight: bold;">
+<h4><strong>🔍【実習】 再構成シミュレーション②</strong></h4>
+</a></div>
+
+<hr />
+<h2 id="6-petpositron-emission-tomography">6. PET（Positron Emission Tomography）</h2>
+<h3 id="61-pet">6.1 PETの基本原理</h3>
+<p>PET（陽電子放射断層撮影）は、SPECTとは全く異なる物理原理に基づく核医学装置です。</p>
+<figure>
+  <a class="glightbox" href="..../img/10-05.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="..../img/10-05.png" alt="PETにおけるγ線発生機序（β崩壊）" width="600" height="auto"></a>
+  <figcaption>PETにおけるγ線発生機序（β崩壊）</figcaption>
+</figure>
+
+<hr />
+<h4 id="step-1"><strong>Step 1: β⁺崩壊（陽電子放出）</strong></h4>
+<p>PETで使用する核種は <strong>β⁺壊変</strong> により<font color="red">陽電子を放出</font>します。</p>
+<p><strong>崩壊反応式（<span class="arithmatex">\(^{18}F\)</span>の例）</strong>：
+$$
+^{18}F \rightarrow ^{18}O + e^+ + \nu_e
+$$</p>
+<ul>
+<li><strong>¹⁸F（フッ素18）</strong>：陽子9個、中性子9個の不安定核</li>
+<li><strong>¹⁸O（酸素18）</strong>：陽子8個、中性子10個の安定核（娘核）</li>
+<li><strong>e⁺（陽電子、β⁺）</strong>：正の電荷を持つ電子の反粒子</li>
+<li><strong>νₑ（電子ニュートリノ）</strong>：質量がほぼゼロで電荷を持たない素粒子</li>
+</ul>
+<p><strong>核反応の詳細</strong>：
+原子核内で陽子が中性子に変換される：
+$$
+p \rightarrow n + e^+ + \nu_e
+$$</p>
+<p><strong>主なPET核種</strong>：</p>
+<ul>
+<li><strong>¹⁸F</strong>：半減期110分（最も汎用的、FDG-PETで使用）</li>
+<li><strong>¹¹C</strong>：半減期20分（メチオニン、PIBで使用）</li>
+<li><strong>¹⁵O</strong>：半減期2分（血流測定で使用）</li>
+<li><strong>¹³N</strong>：半減期10分（心筋血流測定で使用）</li>
+</ul>
+<hr />
+<h4 id="step-2"><strong>Step 2: 陽電子の飛程と減速</strong></h4>
+<p>放出された陽電子は生体組織内を移動し、エネルギーを失いながら減速します。</p>
+<p><strong>陽電子の飛程</strong>：</p>
+<ul>
+<li><strong>距離</strong>：約<font color="red">1-2mm</font>（核種のエネルギーにより異なる）</li>
+<li><strong>軌跡</strong>：組織分子との相互作用により曲がりくねった経路</li>
+<li><strong>エネルギー損失</strong>：電離・励起作用により段階的に減速</li>
+<li><strong>最終状態</strong>：組織と熱平衡状態に達する</li>
+</ul>
+<p><strong>空間分解能への影響</strong>：</p>
+<p>陽電子の飛程がPETの空間分解能を制限する一因となります。核種によってエネルギーが異なるため：
+- <strong>¹⁸F</strong>：比較的低エネルギー → 短い飛程 → 高分解能
+- <strong>¹⁵O</strong>：高エネルギー → 長い飛程 → やや低い分解能</p>
+<hr />
+<h4 id="step-3-"><strong>Step 3: 陽電子-電子対消滅現象</strong></h4>
+<p>減速した陽電子は、生体組織内の電子と対消滅を起こします。</p>
+<p><strong>対消滅の相手</strong>：</p>
+<ul>
+<li><strong>生体分子内の電子</strong>：水分子（H₂O）、蛋白質、脂質、DNA等の電子</li>
+<li><strong>豊富な存在</strong>：生体組織には大量の電子が存在するため、陽電子は必ず電子と遭遇</li>
+</ul>
+<p><strong>対消滅反応</strong>：</p>
+<div class="arithmatex">\[e^+ + e^- \rightarrow 2\gamma \text{（511keV each）}\]</div>
+<p><strong>エネルギー保存則</strong>：</p>
+<ul>
+<li><strong>電子の静止質量エネルギー</strong>：<span class="arithmatex">\(m_e c^2 = 511\)</span> keV</li>
+<li><strong>陽電子の静止質量エネルギー</strong>：<span class="arithmatex">\(m_e c^2 = 511\)</span> keV</li>
+<li><strong>合計エネルギー</strong>：<span class="arithmatex">\(2 \times 511 = 1022\)</span> keV</li>
+<li><strong>解釈</strong>：光子（γ線）は光速で進むのでcは一定、<font color="red">つまり電子と陽電子は同じ質量を持つ</font></li>
+<li><strong>結果</strong>：<font color="red">2個の511keVγ線光子が放出</font></li>
+</ul>
+<p><strong>運動量保存則</strong>：
+物理法則により、2個の光子は<font color="red">必ず180°対角方向</font>に放出されます。これがPETの最も重要な物理的基礎です。</p>
+<hr />
+<h4 id="step-4"><strong>Step 4: 同時計数検出の原理</strong></h4>
+<p>対消滅により生成された511keVγ線光子ペアを同時に検出することで、コリメータなしで方向を特定できます。</p>
+<p><strong>同時計数検出（Coincidence Detection）</strong>：</p>
+<ol>
+<li><strong>消滅位置の推定</strong>：2つの検出点を結ぶ直線上で消滅が発生</li>
+<li><strong>電子コリメーション</strong>：物理的コリメータなしで方向情報を取得</li>
+<li>
+<p><strong>高感度検出</strong>：コリメータによる感度低下がない</p>
+</li>
+<li>
+<p><strong>PET特有のデータ特性</strong>：</p>
+</li>
+<li>
+<p><strong>真の同時計数（True Coincidence）</strong>：</p>
+<ul>
+<li>同一消滅から発生した光子対の検出</li>
+<li>理想的な測定データ</li>
+</ul>
+</li>
+<li>
+<p><strong>散乱同時計数（Scattered Coincidence）</strong>：</p>
+<ul>
+<li>少なくとも1個の光子が散乱された事象</li>
+<li>消滅位置の誤認識の原因</li>
+</ul>
+</li>
+<li>
+<p><strong>偶発同時計数（Random Coincidence）</strong>：</p>
+<ul>
+<li>異なる消滅から発生した光子の偶然の同時検出</li>
+<li>バックグラウンドノイズの原因</li>
+</ul>
+</li>
+</ol>
+<figure>
+  <a class="glightbox" href="..../img/10-06.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="..../img/10-06.png" alt="PETにおける同時計数計測" width="600" height="auto"></a>
+  <figcaption>PETにおける同時計数計測</figcaption>
+</figure>
+<hr />
+<p><strong>SPECTとの根本的違い</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>SPECT</th>
+<th>PET</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>物理現象</strong></td>
+<td>単一γ線の放射</td>
+<td>陽電子対消滅</td>
+</tr>
+<tr>
+<td><strong>方向特定</strong></td>
+<td>物理的コリメータ</td>
+<td>同時計数（電子的）</td>
+</tr>
+<tr>
+<td><strong>感度</strong></td>
+<td>低い（約0.01-0.1%）</td>
+<td>高い（約1-5%）</td>
+</tr>
+<tr>
+<td><strong>空間分解能</strong></td>
+<td>10-15mm</td>
+<td><font color="red">4-6mm</font></td>
+</tr>
+<tr>
+<td><strong>定量性</strong></td>
+<td>限定的</td>
+<td><font color="red">優秀（SUV計算が正確）</font></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="7">7. 定量解析</h2>
+<h3 id="71-suvstandardized-uptake-value">7.1 SUV（Standardized Uptake Value）</h3>
+<p>核医学検査の重要な特徴である定量評価について説明します。</p>
+<ul>
+<li><strong>SUV（Standardized Uptake Value）</strong>：</li>
+</ul>
+<p><strong>ROI定義と計算式</strong>：
+  SUVは、PETで最も広く使用される定量指標です</p>
+<p>PET画像で患者体内に病変を疑う局所薬剤集積が認められたら、その集積部位を含むように関心領域（Regoion of interest, ROI)を画像上で定義します。</p>
+<p><span class="arithmatex">\(\text{SUV} = \frac{\text{組織内放射能濃度} \text{ (Bq/g)}}{\text{投与放射能} \text{ (Bq)} / \text{体重} \text{ (g)}}\)</span></p>
+<p><strong>実用的計算</strong>：
+  <span class="arithmatex">\(\text{SUV} = \frac{\text{ROI内平均カウント} \times \text{キャリブレーション係数}}{\text{投与量} / \text{体重}} \times \text{減衰補正係数}\)</span></p>
+<figure>
+  <a class="glightbox" href="../img/10-07.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/10-07.png" alt="第7回演習QRコード" width="600" height="auto"></a>
+  <figcaption>ROI設定の例（FDG-PET, 右肺下葉の肺がん症例、両側副腎転移あり。腎杯や膀胱への集積は尿中への正常排泄像。）</figcaption>
+</figure>
+
+<p><strong>SUVの意味</strong>：</p>
+<ul>
+<li>SUV = 1：全身に均等分布した場合の期待値</li>
+<li>SUV &gt; 1：平均より高い集積</li>
+<li>SUV &lt; 1：平均より低い集積</li>
+</ul>
+<p><strong>臨床での活用例</strong>：</p>
+<ul>
+<li><font color="red">悪性腫瘍</font>：SUV &gt; 2.5で悪性を疑う（目安）</li>
+<li><strong>治療効果判定</strong>：SUVの変化率で効果を評価</li>
+<li>
+<p><strong>予後予測</strong>：高SUV値は予後不良因子</p>
+</li>
+<li>
+<p><strong>SUVの変動因子と標準化</strong>：</p>
+</li>
+</ul>
+<p><strong>生理学的因子</strong>：</p>
+<ol>
+<li><strong>血糖値</strong>：高血糖でSUV低下（FDG-PET）</li>
+<li><strong>絶食時間</strong>：短すぎると生理的集積が高い</li>
+<li><strong>体組成</strong>：筋肉量、脂肪量の影響</li>
+</ol>
+<p><strong>技術的因子</strong>：</p>
+<ol>
+<li><strong>撮影タイミング</strong>：投与後の経過時間</li>
+<li><strong>再構成条件</strong>：反復回数、フィルタ設定</li>
+<li><strong>ROI設定</strong>：サイズ、位置の影響</li>
+</ol>
+<p><strong>標準化への取り組み</strong>：</p>
+<ul>
+<li><strong>撮影プロトコルの標準化</strong></li>
+<li><strong>品質管理プログラム</strong></li>
+<li><strong>多施設共同研究での基準統一</strong></li>
+</ul>
+<hr />
+<h2 id="8">8. 臨床応用</h2>
+<p>核医学検査の臨床的価値を理解するために、国家試験で頻出の代表的な検査を詳しく見てみましょう：</p>
+<h3 id="81-spect">8.1 SPECT検査の代表的臨床応用</h3>
+<ul>
+<li><strong>脳血流シンチグラフィ</strong>：</li>
+</ul>
+<p><strong>検査の意義</strong>：
+  <font color="red">脳血管障害、認知症、てんかんなどの診断</font>と病態把握</p>
+<p><strong>使用する代表的放射性医薬品</strong>：</p>
+<p><strong>¹²³I-IMP（イオドアンフェタミン）</strong>：</p>
+<ul>
+<li><font color="red">脳血流</font> + 神経細胞活性を反映</li>
+<li>より詳細な機能評価が可能</li>
+<li>コスト高、供給制約あり</li>
+<li><a href="https://www.innervision.co.jp/suite/toshiba/seminarreport/120202.html">活用例紹介</a></li>
+</ul>
+<p><strong>認知症診断への応用</strong></p>
+<ul>
+<li>アルツハイマー病</li>
+<li>血管性認知症</li>
+<li>レビー小体型認知症</li>
+<li><a href="https://www.nmp.co.jp/member/ninchisho/point/03.html">活用例紹介</a></li>
+</ul>
+<h3 id="82-pet">8.2 PET検査の代表的臨床応用</h3>
+<ul>
+<li><strong>FDG-PET</strong>：</li>
+</ul>
+<p><strong>¹⁸F-FDG（フルオロデオキシグルコース）</strong>の特性：</p>
+<ul>
+<li><font color="red">糖代謝活性を反映</font></li>
+<li><font color="red">半減期：110分（院内サイクロトロンまたは配送供給）</font></li>
+</ul>
+<p><strong>腫瘍学での応用</strong>：</p>
+<p><strong>がん細胞の代謝特性</strong>：</p>
+<ul>
+<li>Warburg効果：がん細胞の解糖系亢進</li>
+<li>正常細胞の10-20倍の糖取り込み</li>
+<li><font color="red">悪性度と糖代謝活性の相関</font></li>
+</ul>
+<p><strong>臨床応用場面</strong>：</p>
+<ol>
+<li><font color="red">原発巣の検出</font>：特に肺がん、大腸がん</li>
+<li><font color="red">病期診断</font>：リンパ節転移、遠隔転移の評価</li>
+<li><font color="red">治療効果判定</font>：SUV変化による効果評価</li>
+<li><font color="red">再発診断</font>：術後の瘢痕組織と再発の鑑別</li>
+<li>
+<p><strong>放射線治療計画</strong>：生物学的標的体積の決定</p>
+</li>
+<li>
+<p><a href="https://kohnan.or.jp/kohnan/department/center/pet/fdg-pet-ct">活用例紹介</a></p>
+</li>
+</ol>
+<p><strong>神経疾患での応用</strong>：</p>
+<p><strong>てんかん</strong>：</p>
+<ul>
+<li>発作間欠期：てんかん焦点の代謝低下</li>
+<li>発作時：てんかん焦点の代謝亢進</li>
+<li>外科治療の適応決定に重要</li>
+</ul>
+<p><strong>認知症</strong>：</p>
+<ul>
+<li>アルツハイマー病：側頭頭頂葉の代謝低下</li>
+<li>前頭側頭型認知症：前頭葉・側頭葉の代謝低下</li>
+<li>近年は、病態基盤（疾患の原因）とされるアミロイドβやタウを定量化するPETが適応</li>
+<li><a href="https://link.springer.com/article/10.1007/s11604-019-00901-8">活用例紹介</a></li>
+</ul>
+<hr />
+<div style="border: 2px solid black; padding: 15px; border-radius: 5px; background-color:rgb(255, 255, 255);">
+<h2>9. 国家試験対策の要点まとめ</h2>
+
+<p>本講義内容から、国家試験で頻出する重要ポイントを以下にまとめます。赤字の部分は特に重要なので確実に覚えましょう。</p>
+
+<h4><strong>核医学検査の基本原理（SPECT/PET共通）</strong></h4>
+<ul>
+  <li><strong>線源</strong>：<font color="red">体内線源</font>。体内に投与した放射性医薬品から放出される放射線を検出する。（体外から照射するX線CTや放射線治療とは根本的に異なる）</li>
+  <li><strong>検出対象</strong>：<font color="red">γ（ガンマ）線</font>。α線、β線、中性子線ではない。</li>
+  <li><strong>得られる情報</strong>：<font color="red">機能・代謝情報</font>（血流、糖代謝など）。形態情報が主体のX線CTやMRIとは異なる。</li>
+  <li><strong>画像種別</strong>：SPECTもPETも<font color="red">3次元の断層画像</font>を作成できる。</li>
+  <li><strong>空間分解能</strong>：X線CT（~0.5mm）に比べて<font color="red">低い</font>（SPECT: 10-15mm, PET: 4-6mm）。</li>
+  <li><strong>物理的影響</strong>：<font color="red">散乱</font>（コンプトン散乱）と<font color="red">減衰（吸収）</font>の影響を受け、画質が劣化するため補正が必要。</li>
+</ul>
+
+<h4><strong>SPECTの重要ポイント</strong></h4>
+<ul>
+  <li><strong>原理</strong>：<font color="red">単一のγ線</font>を検出する。</li>
+  <li><strong>必須の構成要素</strong>：<font color="red">コリメータ</font>。γ線の入射方向を特定するために必要。</li>
+  <li><strong>臨床応用</strong>：<font color="red">心筋血流</font>シンチグラフィ、<font color="red">脳血流</font>シンチグラフィが代表的。</li>
+  <li><strong>使用核種例</strong>：⁹⁹ᵐTc（テクネチウム99m）、半減期6時間。</li>
+</ul>
+
+<h4><strong>PETの重要ポイント</strong></h4>
+<ul>
+  <li><strong>原理</strong>：<font color="red">陽電子（ポジトロン, β⁺）放出核種</font>を使用する。放出された陽電子が電子と<font color="red">対消滅</font>する際に生じる、<font color="red">2本の511keVのγ線</font>を<font color="red">同時計数法</font>で検出する。</li>
+  <li><strong>構成要素</strong>：<font color="red">コリメータは不要</font>。同時計数によって方向を電子的に特定する（電子コリメーション）。</li>
+  <li><strong>臨床応用</strong>：<font color="red">FDG-PET</font>が代表的。がん細胞の<font color="red">糖代謝</font>亢進を捉え、<font color="red">がん（腫瘍）の診断</font>に広く用いられる。</li>
+  <li><strong>使用核種例</strong>：¹⁸F（フッ素18）、半減期110分。SPECTで用いる核種より<font color="red">半減期が短い</font>ものが多い。</li>
+  <li><strong>核種製造</strong>：半減期が短いため、多くは<font color="red">サイクロトロン（加速器）</font>で製造される。</li>
+</ul>
+
+<h4><strong>頻出の誤選択肢</strong></h4>
+<ul>
+  <li>「核医学検査はβ線を検出する」 → <font color="red">誤り</font>。最終的に検出するのはγ線。</li>
+  <li>「SPECTは中性子線を検出する」 → <font color="red">誤り</font>。γ線を検出する。</li>
+  <li>「PETは体外からγ線を照射する」 → <font color="red">誤り</font>。体内線源である。</li>
+  <li>「核医学検査の空間分解能はX線CTと同等か高い」 → <font color="red">誤り</font>。X線CTより低い。</li>
+  <li>「PETはコリメータを必要とする」 → <font color="red">誤り</font>。不要である。</li>
+  <li>「ガンマカメラの画像は断層像である」 → <font color="red">誤り</font>。ガンマカメラ単体で得られるのは平面像（プラナー像）。SPECT装置として回転させて再構成することで断層像が得られる。</li>
+</ul>
+</div>
+
+<hr />
+<h2 id="9">9. 演習課題・国家試験対策問題</h2>
+<ul>
+<li><a href="https://docs.google.com/forms/d/e/1FAIpQLSfC8eUcoGhtoolNZcX1gRSKxNjpPV_yVrM1dxJo_P3DZGQCxA/viewform?usp=header">Google Form</a></li>
+</ul>
+<figure>
+  <a class="glightbox" href="../img/10-08.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/10-08.png" alt="第7回演習QRコード" width="300" height="auto"></a>
+  <figcaption>第10回演習QRコード</figcaption>
+</figure>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="最終更新日">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年9月29日 01:24:19 UTC">2025年9月29日</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="作成日">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年9月29日 01:24:19 UTC">2025年9月29日</span>
+  </span>
+
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/W-Uchida/class" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.expand", "search.highlight", "search.suggest"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>
