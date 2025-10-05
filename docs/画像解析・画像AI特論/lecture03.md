@@ -47,7 +47,7 @@ $$f(x,y) = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} F(u,v) e^{j2\pi(ux+vy
 
 
 <figure>
-  <img src="/img/03-02.png" alt="1次元フーリエ変換の概念" width="800" height="auto">
+  <img src="../img/03-02.png" alt="1次元フーリエ変換の概念" width="800" height="auto">
   <figcaption>1次元フーリエ変換の概念（引用：https://dibyendu-biswas.medium.com/fourier-transform-70ae1b7ec252）</figcaption>
 </figure>
 
@@ -60,7 +60,7 @@ $$f(x,y) = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} F(u,v) e^{j2\pi(ux+vy
 特にMRI画像は周波数空間でのデータ収集なので逆フーリエ変換による再構成、CTや核医学検査では、**投影データから断面画像を再構成**する技術が不可欠です。
 
 <figure>
-  <img src="/img/04-01.png" alt="投影データから画像再構成の概念図" width="1000" height="auto">
+  <img src="../img/04-01.png" alt="投影データから画像再構成の概念図" width="1000" height="auto">
   <figcaption>医療装置毎のデータ収集プロセスの概念図</figcaption>
 </figure>
 
@@ -117,7 +117,7 @@ $$f(x,y) = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} F(u,v) e^{j2\pi(ux+vy
   ここで、$f(x,y)$は物体の線減弱係数分布、$l$はX線の経路を表します。
   
 <figure>
-  <img src="/img/04-02.png" alt="X線源から検出器でX線強度を検出する様子" width="500" height="auto">
+  <img src="../img/04-02.png" alt="X線源から検出器でX線強度を検出する様子" width="500" height="auto">
   <figcaption>X線源から検出器でX線強度を検出する様子（引用：篠原 広行，中世古 和真，坂口 和也，橋本 雄幸『逐次近似画像再構成の基礎』医療科学社）</figcaption>
 </figure>
 
@@ -146,7 +146,7 @@ $$f(x,y) = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} F(u,v) e^{j2\pi(ux+vy
   実際のCT計測においては、この$p(X,\theta)$を生データとして取得し、これを**投影データ**と呼びます。
 
 <figure>
-  <img src="/img/04-03.png" alt="X線源から検出器でX線強度を検出する様子" width="600" height="auto">
+  <img src="../img/04-03.png" alt="X線源から検出器でX線強度を検出する様子" width="600" height="auto">
   <figcaption>座標系を含めたX線CTの計測（引用：篠原 広行，中世古 和真，坂口 和也，橋本 雄幸『逐次近似画像再構成の基礎』医療科学社）</figcaption>
 </figure>
 
@@ -157,7 +157,7 @@ $$f(x,y) = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} F(u,v) e^{j2\pi(ux+vy
 取得した**投影データ**から、**逆投影**して元の構造を作り出す操作が、CT画像における**再構成**の基盤です。
 
 <figure>
-  <img src="/img/04-04.png" alt="複数角度における投影データと逆投影" width="700" height="auto">
+  <img src="../img/04-04.png" alt="複数角度における投影データと逆投影" width="700" height="auto">
   <figcaption>複数角度における投影データと逆投影（引用：篠原 広行，中世古 和真，坂口 和也，橋本 雄幸『逐次近似画像再構成の基礎』医療科学社）</figcaption>
 </figure>
 
@@ -186,7 +186,7 @@ $$f(x,y) = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} F(u,v) e^{j2\pi(ux+vy
   逆問題は測定した投影データ$p(X,\theta)$から未知の被写体断面$f(x,y)$を再構成することになります。
 
 <figure>
-  <img src="/img/04-05.png" alt="サイノグラム" width="700" height="auto">
+  <img src="../img/04-05.png" alt="サイノグラム" width="700" height="auto">
   <figcaption>サイノグラム</figcaption>
 </figure>
 
@@ -227,7 +227,7 @@ $$f(x,y) = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} F(u,v) e^{j2\pi(ux+vy
 5. フィルタ処理された投影データを逆投影して画像再構成
 
 <figure>
-  <img src="/img/04-06.png" alt="単純逆投影法とFBP（ランプフィルタ）" width="500" height="auto">
+  <img src="../img/04-06.png" alt="単純逆投影法とFBP（ランプフィルタ）" width="500" height="auto">
   <figcaption>単純逆投影法とFBP（引用：https://jsnc.org/p-jsnc-seminar/001/2010/0719-9）</figcaption>
 </figure>
 
@@ -283,7 +283,7 @@ FBP法は計算効率が良く広く使われていますが、ノイズや少�
 - 優れた画質と低ノイズを実現するが、計算コストが高い
 
 <figure>
-  <img src="/img/04-07.png" alt="FBPと反復法の比較" width="800" height="auto">
+  <img src="../img/04-07.png" alt="FBPと反復法の比較" width="800" height="auto">
   <figcaption>再構成手法の比較（引用：Chrysostomou, Charalambos, et al. "Spect imaging reconstruction method based on deep convolutional neural network." 2019 IEEE Nuclear Science Symposium and Medical Imaging Conference (NSS/MIC). IEEE, 2019.）</figcaption>
 </figure>
 
