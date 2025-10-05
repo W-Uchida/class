@@ -33,12 +33,12 @@
     - 一般X線撮影装置の構造と原理
 
 <figure>
-  <img src="..../img/05-06.png" alt="制動放射と特性X線の発生メカニズム" width="800" height="auto">
+  <img src="../img/05-06.png" alt="制動放射と特性X線の発生メカニズム" width="800" height="auto">
   <figcaption>X線発生の2つのメカニズム：制動X線と特性X線（引用：https://www.t-rs.co.jp/t-rs/column/column01-04.htm）</figcaption>
 </figure>
 
 <figure>
-  <img src="..../img/05-07.png" alt="X線管球の詳細構造" width="1000" height="auto">
+  <img src="../img/05-07.png" alt="X線管球の詳細構造" width="1000" height="auto">
   <figcaption>X線管球の詳細構造（引用：https://ndt.chugai-tec.co.jp/useful/xraybasic/）</figcaption>
 </figure>
 
@@ -103,7 +103,7 @@
     - 画像表示・保存システム
 
 <figure>
-  <img src="..../img/06-01.png" alt="CT装置の基本構成" width="800" height="auto">
+  <img src="../img/06-01.png" alt="CT装置の基本構成" width="800" height="auto">
   <figcaption>CT装置の基本構成要素</figcaption>
 </figure>
 
@@ -127,7 +127,7 @@
 
 
 <figure>
-  <img src="..../img/06-02.png" alt="CT装置のデータ収集方式による分類" width="800" height="auto">
+  <img src="../img/06-02.png" alt="CT装置のデータ収集方式による分類" width="800" height="auto">
   <figcaption>CT装置のデータ収集方式による分類（引用:https://rada.or.jp/database/home4/normal/ht-docs/member/synopsis/030001.html, https://x.gd/MbtsK）</figcaption>
 </figure>
 
@@ -147,7 +147,7 @@
       - 空間分解能と時間分解能の大幅な向上
 
 <figure>
-  <img src="..../img/06-03.png" alt="CT装置の検出器構成による分類" width="800" height="auto">
+  <img src="../img/06-03.png" alt="CT装置の検出器構成による分類" width="800" height="auto">
   <figcaption>CT装置の検出器構成による分類（引用：https://www.ct-tekijyuku.net/basic/evolution/evolution002.html）</figcaption>
 </figure>
 
@@ -234,17 +234,17 @@ $$ \text{CT値} = 1000 \times \frac{\mu - \mu_{\text{water}}}{\mu_{\text{water}}
 
 
 <figure>
-  <img src="..../img/06-04.png" alt="ビームハードニング効果" width="700" height="auto">
+  <img src="../img/06-04.png" alt="ビームハードニング効果" width="700" height="auto">
   <figcaption>ビームハードニング効果（引用：https://ameblo.jp/chuouxray/entry-12529630917.html, https://white-rabbit.jp/artifact/）</figcaption>
 </figure>
 
 <figure>
-  <img src="..../img/06-05.png" alt="部分体積効果" width="700" height="auto">
+  <img src="../img/06-05.png" alt="部分体積効果" width="700" height="auto">
   <figcaption>部分体積効果（引用：https://www.ct-tekijyuku.net/basic/size/size003.html）</figcaption>
 </figure>
 
 <figure>
-  <img src="..../img/03-08.png" alt="金属アーチファクト" width="700" height="auto">
+  <img src="../img/03-08.png" alt="金属アーチファクト" width="700" height="auto">
   <figcaption>金属アーチファクト（第3回再掲）</figcaption>
 </figure>
 
@@ -339,7 +339,7 @@ $$ \text{CT値} = 1000 \times \frac{\mu - \mu_{\text{water}}}{\mu_{\text{water}}
      - CTでは、二重造影法（陽性＋陰性）での利用も多い
 
 <figure>
-  <img src="..../img/06-07.png" alt="CTコロノグラフィ" width="700" height="auto">
+  <img src="../img/06-07.png" alt="CTコロノグラフィ" width="700" height="auto">
   <figcaption>CTコロノグラフィ（引用：https://www.kamiiida-hp.jp/guide/04/h.html）</figcaption>
 </figure>
 
