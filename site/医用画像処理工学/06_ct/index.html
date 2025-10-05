@@ -11,6 +11,10 @@
         <link rel="canonical" href="https://W-Uchida.github.io/class/%E5%8C%BB%E7%94%A8%E7%94%BB%E5%83%8F%E5%87%A6%E7%90%86%E5%B7%A5%E5%AD%A6/06_ct/">
       
       
+        <link rel="prev" href="../05_xray/">
+      
+      
+        <link rel="next" href="../07_mri/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -388,8 +392,10 @@
       
   
   
+    
   
   
+  
     
     
     
@@ -399,13 +405,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
@@ -420,7 +424,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             医用画像処理工学
@@ -434,7 +438,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01_orientation.md" class="md-nav__link">
+      <a href="../01_orientation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -456,7 +460,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../02_digital_image.md" class="md-nav__link">
+      <a href="../02_digital_image/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -478,7 +482,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03_filtering.md" class="md-nav__link">
+      <a href="../03_filtering/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -500,7 +504,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../04_reconstruction.md" class="md-nav__link">
+      <a href="../04_reconstruction/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -522,7 +526,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05_xray.md" class="md-nav__link">
+      <a href="../05_xray/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -541,10 +545,31 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../06_ct.md" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    06.CT装置の原理と発展
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -554,6 +579,434 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 講義導入
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 講義導入">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 前回までの学習内容
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-ct" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. CT装置の基本原理と機器構成
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. CT装置の基本原理と機器構成">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-ct" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 CT装置の原理とは
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-xct" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 一般X線撮影装置とCT装置の基本的な違い
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-ct" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 CT装置の基本構成
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-ct" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4 現代のCT装置の進歩
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-ct" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. CT値とその臨床的意義
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. CT値とその臨床的意義">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-cthounsfield-unit-hu" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 CT値（Hounsfield Unit: HU）の基本概念
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-ct" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 主要組織のCT値範囲
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-ct" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 CT値に影響する要素
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-ct" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. CT画像の特性と機能
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. CT画像の特性と機能">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-ct" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 CT画像の空間分解能
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-ct" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 CT検査の適応と限界
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      5 造影剤
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5 造影剤">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 造影剤の基本的役割
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 主な造影剤の種類と用途
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3 造影剤使用の注意点
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-ct" class="md-nav__link">
+    <span class="md-ellipsis">
+      6 CT検査の実情（動画視聴）
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-ct" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. 本日のまとめと臨床工学技士国家試験対策ポイント - CT
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. 本日のまとめと臨床工学技士国家試験対策ポイント - CT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-ct" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.1 CT装置の基本原理と特徴
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-ct" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.2 CT装置の構成と種類
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.2 CT装置の構成と種類">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#721" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.2.1 基本構成要素
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#722" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.2.2 データ収集方式による分類
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#723" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.2.3 検出器構成による分類
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-ct" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.3 CT値と臨床的意義
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.3 CT値と臨床的意義">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#731-ct" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.3.1 CT値の基本概念
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#732-ct" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.3.2 主要組織のCT値範囲
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#74-ct" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.4 CT画像の特性と機能
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.4 CT画像の特性と機能">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#741-ct" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.4.1 CT検査の特徴
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#742-ct" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.4.2 CT検査の特徴（比較）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#75" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.5 造影剤と臨床応用
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.5 造影剤と臨床応用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#751" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.5.1 造影剤の役割と種類
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#76" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.6 過去問から、特に注意すべき事項
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. まとめと次回予告
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. まとめと次回予告">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.1 本講義のポイント
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.2 次回講義の予告
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      第6回 演習
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -566,7 +1019,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../07_mri.md" class="md-nav__link">
+      <a href="../07_mri/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -588,7 +1041,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08_ultrasound.md" class="md-nav__link">
+      <a href="../08_ultrasound/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -610,7 +1063,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09_nuclear.md" class="md-nav__link">
+      <a href="../09_nuclear/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -632,7 +1085,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10_segmentation.md" class="md-nav__link">
+      <a href="../10_segmentation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -654,7 +1107,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11_registration.md" class="md-nav__link">
+      <a href="../11_registration/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -676,7 +1129,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12_ai.md" class="md-nav__link">
+      <a href="../12_ai/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -698,7 +1151,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../13_pacs.md" class="md-nav__link">
+      <a href="../13_pacs/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -720,7 +1173,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../14_intervention.md" class="md-nav__link">
+      <a href="../14_intervention/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -742,7 +1195,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../15_conclusion.md" class="md-nav__link">
+      <a href="../15_conclusion/" class="md-nav__link">
         
   
   <span class="md-ellipsis">

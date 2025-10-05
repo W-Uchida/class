@@ -11,6 +11,10 @@
         <link rel="canonical" href="https://W-Uchida.github.io/class/%E5%8C%BB%E7%94%A8%E7%94%BB%E5%83%8F%E5%87%A6%E7%90%86%E5%B7%A5%E5%AD%A6/02_digital_image/">
       
       
+        <link rel="prev" href="../01_orientation/">
+      
+      
+        <link rel="next" href="../03_filtering/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -18,7 +22,7 @@
     
     
       
-        <title>2. ディジタル画像の基礎理論 - 講義資料ポータル</title>
+        <title>02.ディジタル画像の基礎理論 - 講義資料ポータル</title>
       
     
     
@@ -114,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              2. ディジタル画像の基礎理論
+              02.ディジタル画像の基礎理論
             
           </span>
         </div>
@@ -388,8 +392,10 @@
       
   
   
+    
   
   
+  
     
     
     
@@ -399,13 +405,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
@@ -420,7 +424,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             医用画像処理工学
@@ -434,7 +438,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01_orientation.md" class="md-nav__link">
+      <a href="../01_orientation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -453,10 +457,31 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../02_digital_image.md" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    02.ディジタル画像の基礎理論
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -466,6 +491,380 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. はじめに
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. はじめに">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 講義の目的と全体像
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. ディジタルデータの表現
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 数値の表現方法
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 数値の表現方法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2進数（バイナリ）：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16" class="md-nav__link">
+    <span class="md-ellipsis">
+      16進数（ヘキサデシマル）：
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 実践テクニック
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 注意点とよくある誤り
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 ビット数と表現可能範囲
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 画像の基本構造と解像度
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 画像は画素（ピクセル, ボクセル）の集合体
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 解像度の概念
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 画像データ量の計算
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. アナログ信号のディジタル化
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 標本化（サンプリング）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.1 標本化（サンプリング）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      標本化の基本概念：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      ナイキスト周波数：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      標本化定理（ナイキスト定理）：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      エイリアシング（折り返し歪み）：
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#42" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 量子化の詳細
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.2 量子化の詳細">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      基本概念：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      量子化ステップ（分解能）：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      量子化誤差：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#false-contour" class="md-nav__link">
+    <span class="md-ellipsis">
+      擬似輪郭（False Contour）：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      【正弦波信号の例におけるの量子化】
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8256" class="md-nav__link">
+    <span class="md-ellipsis">
+      8ビット量子化（256階調）の場合：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24" class="md-nav__link">
+    <span class="md-ellipsis">
+      2ビット量子化（4階調）の場合：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      量子化における分解能の問題例：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#snr" class="md-nav__link">
+    <span class="md-ellipsis">
+      量子化ノイズと信号対雑音比（SNR）：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#snr_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      【正弦波の例における信号対雑音比（SNR）】
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      量子化に関する留意点：
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 画像ファイル形式と圧縮
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 画像ファイル形式と圧縮">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 画像ファイル形式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 画像圧縮技術
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. まとめ
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      第2回 演習
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -478,7 +877,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03_filtering.md" class="md-nav__link">
+      <a href="../03_filtering/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -500,7 +899,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../04_reconstruction.md" class="md-nav__link">
+      <a href="../04_reconstruction/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -522,7 +921,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05_xray.md" class="md-nav__link">
+      <a href="../05_xray/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -544,7 +943,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06_ct.md" class="md-nav__link">
+      <a href="../06_ct/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -566,7 +965,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../07_mri.md" class="md-nav__link">
+      <a href="../07_mri/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -588,7 +987,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../08_ultrasound.md" class="md-nav__link">
+      <a href="../08_ultrasound/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -610,7 +1009,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09_nuclear.md" class="md-nav__link">
+      <a href="../09_nuclear/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -632,7 +1031,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10_segmentation.md" class="md-nav__link">
+      <a href="../10_segmentation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -654,7 +1053,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11_registration.md" class="md-nav__link">
+      <a href="../11_registration/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -676,7 +1075,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12_ai.md" class="md-nav__link">
+      <a href="../12_ai/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -698,7 +1097,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../13_pacs.md" class="md-nav__link">
+      <a href="../13_pacs/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -720,7 +1119,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../14_intervention.md" class="md-nav__link">
+      <a href="../14_intervention/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -742,7 +1141,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../15_conclusion.md" class="md-nav__link">
+      <a href="../15_conclusion/" class="md-nav__link">
         
   
   <span class="md-ellipsis">

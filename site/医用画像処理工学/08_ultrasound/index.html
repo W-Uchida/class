@@ -11,6 +11,10 @@
         <link rel="canonical" href="https://W-Uchida.github.io/class/%E5%8C%BB%E7%94%A8%E7%94%BB%E5%83%8F%E5%87%A6%E7%90%86%E5%B7%A5%E5%AD%A6/08_ultrasound/">
       
       
+        <link rel="prev" href="../07_mri/">
+      
+      
+        <link rel="next" href="../09_nuclear/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -18,7 +22,7 @@
     
     
       
-        <title>08, 09. 超音波装置の原理 - 講義資料ポータル</title>
+        <title>08.超音波画像機器の原理と計測技術 - 講義資料ポータル</title>
       
     
     
@@ -114,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              08, 09. 超音波装置の原理
+              08.超音波画像機器の原理と計測技術
             
           </span>
         </div>
@@ -388,8 +392,10 @@
       
   
   
+    
   
   
+  
     
     
     
@@ -399,13 +405,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
@@ -420,7 +424,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             医用画像処理工学
@@ -434,7 +438,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../01_orientation.md" class="md-nav__link">
+      <a href="../01_orientation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -456,7 +460,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../02_digital_image.md" class="md-nav__link">
+      <a href="../02_digital_image/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -478,7 +482,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../03_filtering.md" class="md-nav__link">
+      <a href="../03_filtering/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -500,7 +504,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../04_reconstruction.md" class="md-nav__link">
+      <a href="../04_reconstruction/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -522,7 +526,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../05_xray.md" class="md-nav__link">
+      <a href="../05_xray/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -544,7 +548,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../06_ct.md" class="md-nav__link">
+      <a href="../06_ct/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -566,7 +570,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../07_mri.md" class="md-nav__link">
+      <a href="../07_mri/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -585,10 +589,31 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../08_ultrasound.md" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    08.超音波画像機器の原理と計測技術
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -598,6 +623,473 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 講義導入
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 超音波の基礎物理学
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 超音波の基礎物理学">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 音波と超音波の定義
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 医用超音波の周波数特性
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 連続波とパルス波
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4 超音波の生体内伝播特性
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.4 超音波の生体内伝播特性">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#241-z" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4.1 音響インピーダンス (Z)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#242" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4.2 超音波の伝播現象の概要
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#243-attenuation" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4.3 超音波の減衰 (Attenuation)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 超音波画像形成の原理
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 超音波画像形成の原理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-pulse-echo-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 パルスエコー法 (Pulse-Echo Method)の基本原理
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 超音波の送受信（圧電効果と超音波振動子）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 分解能の種類
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4 パルスエコー法の重要パラメータ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.5 ビーム形成技術（概要）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36-scanning-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.6 走査方式 (Scanning Method)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 超音波表示モード
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 超音波表示モード">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 各種表示モード
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.1 各種表示モード">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#411-aamplitude-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1.1 Aモード（Amplitude Mode）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#412-bbrightness-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1.2 Bモード（Brightness Mode）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#413-mmotion-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1.3 Mモード（Motion Mode）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. ドプラ法による血流計測
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. ドプラ法による血流計測">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 ドプラ効果の基礎理論
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.1 ドプラ効果の基礎理論">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#52" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 各種ドプラ法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3 ドプラ法の臨床応用（代表例）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 臨床応用と他の画像診断法との比較
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. 臨床応用と他の画像診断法との比較">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 超音波検査の特徴
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-xct" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2 X線CTとの比較（要点）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3 超音波検査が第一選択となることが多い場合（代表例）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-contrast-enhanced-ultrasound-ceus" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.4 造影超音波 (Contrast Enhanced Ultrasound, CEUS)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. 安全管理
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. 安全管理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.1 超音波の生体安全性と指標
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.2 装置の安全管理と感染防止
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. まとめと国家試験対策最重要ポイント
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. まとめと国家試験対策最重要ポイント">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.1 超音波の基礎物理
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.2 超音波画像形成と表示モード
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.3 血流計測（ドプラ法）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#84" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.4 分解能と画質
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#85" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.5 超音波検査の特徴と限界
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#86" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.6 造影超音波
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#87" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.7 物理特性の比較（重要数値の再確認）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#88" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.8 安全管理
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. 演習課題・国家試験対策問題
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -610,7 +1102,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../09_nuclear.md" class="md-nav__link">
+      <a href="../09_nuclear/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -632,7 +1124,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../10_segmentation.md" class="md-nav__link">
+      <a href="../10_segmentation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -654,7 +1146,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../11_registration.md" class="md-nav__link">
+      <a href="../11_registration/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -676,7 +1168,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../12_ai.md" class="md-nav__link">
+      <a href="../12_ai/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -698,7 +1190,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../13_pacs.md" class="md-nav__link">
+      <a href="../13_pacs/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -720,7 +1212,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../14_intervention.md" class="md-nav__link">
+      <a href="../14_intervention/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -742,7 +1234,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../15_conclusion.md" class="md-nav__link">
+      <a href="../15_conclusion/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
