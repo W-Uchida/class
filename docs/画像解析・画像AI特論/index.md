@@ -8,7 +8,9 @@
 
 *   [第1章: ディジタル画像の基礎理論](lecture01.md)
 *   [第2章: 画像フィルタリングと画質改善技術](lecture02.md)
-*   [第3章: MRIの基礎原理](lecture03.md)
+*   [第3章: 画像再構成と放射線の基礎](lecture03.md)
+*   [第4章: CT装置の基礎原理](lecture04.md)
+*   [第5章: MRI装置の基礎原理](lecture05.md)
 
 <figure>
   <img src="./img/00-home.png" alt="Home" width="300" height="auto">
