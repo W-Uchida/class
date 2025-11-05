@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>標本化間隔とエイリアシングデモ</title>
+  <style>
+    .container {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .control-panel {
+      margin-bottom: 20px;
+      padding: 15px;
+      background-color: #f0f0f0;
+      border-radius: 6px;
+    }
+    label {
+      font-weight: bold;
+      margin-right: 10px;
+    }
+    input[type="range"] {
+      width: 300px;
+      margin-right: 10px;
+    }
+    .value-display {
+      display: inline-block;
+      width: 60px;
+      text-align: center;
+      font-weight: bold;
+    }
+    .info-text {
+      font-size: 14px;
+      color: #666;
+      margin-top: 5px;
+    }
+    
+    /* エイリアシングデモ用スタイル */
+    .aliasing-demo {
+      width: 100%;
+      margin-top: 10px;
+      background-color: #fff;
+      padding: 15px;
+      border-radius: 6px;
+      box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+    }
+    
+    .sampling-options {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+    }
+    
+    .sampling-options label {
+      margin-right: 20px;
+      font-weight: normal;
+      display: flex;
+      align-items: center;
+    }
+    
+    .sampling-options input[type="checkbox"] {
+      margin-right: 5px;
+    }
+    
+    .aliasing-info {
+      margin-top: 15px;
+      padding: 10px;
+      background-color: #f5f5f5;
+      border-radius: 4px;
+      font-size: 13px;
+    }
+    
+    .aliasing-info p {
+      margin: 5px 0;
+    }
+    
+    .image-title {
+      font-weight: bold;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    
+    canvas {
+      width: 100%;
+      border: 1px solid #ddd;
+    }
+    
+    /* レジェンド */
+    .legend {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+    
+    .legend-item {
+      display: flex;
+      align-items: center;
+      margin: 0 10px;
+    }
+    
+    .legend-color {
+      width: 15px;
+      height: 3px;
+      margin-right: 5px;
+    }
+    
+    .legend-point {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-right: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>標本化間隔とエイリアシングデモ</h2>
+    
+    <!-- エイリアシングのデモ用セクション -->
+    <div class="control-panel">
+      <h3>標本化間隔とエイリアシング</h3>
+      <div>
+        <label for="samplingRate">標本化間隔:</label>
+        <input type="range" id="samplingRate" min="1" max="40" value="1" step="1">
+        <span id="samplingDisplay" class="value-display">1</span>
+        <span class="info-text">（低い値=高密度サンプリング、高い値=低密度サンプリング）</span>
+      </div>
+      <div class="sampling-options">
+        <label><input type="checkbox" id="showOriginalSignal" checked> 元の信号を表示</label>
+        <label><input type="checkbox" id="showSampledPoints" checked> 標本点を表示</label>
+        <label><input type="checkbox" id="showReconstructed" checked> 再構成信号を表示</label>
+      </div>
+      <div class="info-text" style="margin-top: 10px;">
+        * 標本化間隔スライダーを動かして、エイリアシング現象を確認できます。<br>
+        * サンプリング定理（ナイキスト・シャノンの定理）: 信号の最高周波数の2倍以上のサンプリング周波数が必要です。
+      </div>
+    </div>
+    
+    <!-- エイリアシングデモ -->
+    <div class="aliasing-demo">
+      <div class="image-title">標本化とエイリアシングの関係</div>
+      <canvas id="aliasingCanvas"></canvas>
+      <div class="legend">
+        <div class="legend-item">
+          <div class="legend-color" style="background-color: rgba(255, 0, 0, 0.8);"></div>
+          <span>元の信号</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-point" style="background-color: rgba(0, 0, 255, 0.8);"></div>
+          <span>標本点</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-color" style="background-color: rgba(0, 180, 0, 0.8);"></div>
+          <span>再構成信号</span>
+        </div>
+      </div>
+      <div class="aliasing-info">
+        <p>エイリアシングは、標本化間隔（サンプリング周波数）が不足すると生じる現象です。</p>
+        <p>標本化間隔が広すぎると（つまりサンプリング周波数が低すぎると）、再構成された信号が元の信号と異なる周波数になります。</p>
+        <p>これが「エイリアシング」と呼ばれる現象で、画像処理では「ジャギー」や「モアレ」として現れます。</p>
+        <p>ナイキスト・シャノンの定理によれば、正確な再構成には「信号の最高周波数の2倍以上のサンプリング周波数」が必要です。</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // キャンバスの設定
+    const aliasingCanvas = document.getElementById('aliasingCanvas');
+    
+    aliasingCanvas.width = 800;
+    aliasingCanvas.height = 300;
+    
+    const aliasCtx = aliasingCanvas.getContext('2d');
+    
+    // スライダーの設定
+    const samplingSlider = document.getElementById('samplingRate');
+    const samplingDisplay = document.getElementById('samplingDisplay');
+    const showOriginalCheckbox = document.getElementById('showOriginalSignal');
+    const showSampledCheckbox = document.getElementById('showSampledPoints');
+    const showReconstructedCheckbox = document.getElementById('showReconstructed');
+    
+    // グリッドの描画
+    function drawGrid(ctx, width, height) {
+      ctx.strokeStyle = '#ddd';
+      ctx.lineWidth = 0.5;
+      
+      // 水平グリッド
+      for (let y = 0; y < height; y += 50) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(width, y);
+        ctx.stroke();
+      }
+      
+      // 垂直グリッド
+      for (let x = 0; x < width; x += 50) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, height);
+        ctx.stroke();
+      }
+      
+      // 中心線（Y=0）
+      ctx.strokeStyle = '#aaa';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(0, height / 2);
+      ctx.lineTo(width, height / 2);
+      ctx.stroke();
+    }
+    
+    // 軸ラベルの描画
+    function drawAxisLabels(ctx, width, height) {
+      ctx.fillStyle = '#333';
+      ctx.font = '12px Arial';
+      
+      // X軸ラベル
+      ctx.textAlign = 'center';
+      ctx.fillText('時間 →', width / 2, height - 10);
+      
+      // Y軸ラベル
+      ctx.save();
+      ctx.translate(15, height / 2);
+      ctx.rotate(-Math.PI / 2);
+      ctx.textAlign = 'center';
+      ctx.fillText('振幅', 0, 0);
+      ctx.restore();
+      
+      // ナイキスト周波数の表示
+      const samplingInterval = parseInt(samplingSlider.value);
+      const nyquistFreq = 1 / (2 * samplingInterval);
+      ctx.textAlign = 'start';
+      ctx.fillText(`サンプリング間隔: ${samplingInterval}`, 10, 20);
+      ctx.fillText(`ナイキスト周波数: ${nyquistFreq.toFixed(3)}`, 10, 40);
+    }
+    
+    // 再構成信号の計算（シンク関数の近似）
+    function reconstructSignal(x, sampledPoints, samplingInterval) {
+      // シンプルな場合の再構成（スプライン補間の簡易版）
+      let sum = 0;
+      let weightSum = 0;
+      
+      // 各サンプル点からの寄与を計算
+      for (const point of sampledPoints) {
+        const distance = Math.abs(x - point.x);
+        // 距離に基づく重み（シンク関数の簡易近似）
+        let weight;
+        if (distance === 0) {
+          weight = 1;
+        } else {
+          // 距離が近いほど大きい重み
+          weight = Math.max(0, 1 - distance / (samplingInterval * 3));
+        }
+        
+        sum += point.y * weight;
+        weightSum += weight;
+      }
+      
+      // 正規化
+      return weightSum > 0 ? sum / weightSum : sampledPoints[0].y;
+    }
+    
+    // エイリアシングデモの描画
+    function drawAliasingDemo(samplingInterval, showOriginal, showSampled, showReconstructed) {
+      const width = aliasingCanvas.width;
+      const height = aliasingCanvas.height;
+      
+      // キャンバスをクリア
+      aliasCtx.clearRect(0, 0, width, height);
+      
+      // 背景グリッド
+      drawGrid(aliasCtx, width, height);
+      
+      // パラメータ
+      const centerY = height / 2;
+      const amplitude = height / 4;
+      const period = 100; // 基本周期
+      
+      // 元の信号（2つの異なる周波数の正弦波の合成）
+      // 高周波と低周波の組み合わせで、エイリアシングが観察しやすい
+      function originalSignal(x) {
+        return Math.sin(x * 2 * Math.PI / period) * amplitude * 0.7 + 
+               Math.sin(x * 6 * Math.PI / period) * amplitude * 0.3;
+      }
+      
+      // 元の信号を描画
+      if (showOriginal) {
+        aliasCtx.beginPath();
+        aliasCtx.strokeStyle = 'rgba(255, 0, 0, 0.8)';
+        aliasCtx.lineWidth = 2;
+        
+        for (let x = 0; x < width; x++) {
+          const y = centerY - originalSignal(x);
+          if (x === 0) {
+            aliasCtx.moveTo(x, y);
+          } else {
+            aliasCtx.lineTo(x, y);
+          }
+        }
+        aliasCtx.stroke();
+      }
+      
+      // 標本点の取得（サンプリング間隔に基づく）
+      const sampledPoints = [];
+      for (let x = 0; x < width; x += samplingInterval) {
+        sampledPoints.push({
+          x: x,
+          y: centerY - originalSignal(x)
+        });
+      }
+      
+      // 標本点を描画
+      if (showSampled) {
+        aliasCtx.fillStyle = 'rgba(0, 0, 255, 0.8)';
+        for (const point of sampledPoints) {
+          aliasCtx.beginPath();
+          aliasCtx.arc(point.x, point.y, 4, 0, Math.PI * 2);
+          aliasCtx.fill();
+        }
+      }
+      
+      // 再構成された信号（シンク関数による補間）を描画
+      if (showReconstructed) {
+        aliasCtx.beginPath();
+        aliasCtx.strokeStyle = 'rgba(0, 180, 0, 0.8)';
+        aliasCtx.lineWidth = 2;
+        
+        // シンク関数による補間（理想的な再構成）
+        // 実際にはシンプルな線形補間やスプライン補間で近似
+        for (let x = 0; x < width; x++) {
+          let y = centerY;
+          
+          // 再構成（簡易版のシンク関数による補間）
+          if (sampledPoints.length > 0) {
+            y = reconstructSignal(x, sampledPoints, samplingInterval);
+          }
+          
+          if (x === 0) {
+            aliasCtx.moveTo(x, y);
+          } else {
+            aliasCtx.lineTo(x, y);
+          }
+        }
+        aliasCtx.stroke();
+      }
+      
+      // 軸ラベルと説明
+      drawAxisLabels(aliasCtx, width, height);
+    }
+    
+    // エイリアシングの更新
+    function updateAliasing() {
+      const samplingInterval = parseInt(samplingSlider.value);
+      samplingDisplay.textContent = samplingInterval;
+      
+      drawAliasingDemo(
+        samplingInterval,
+        showOriginalCheckbox.checked,
+        showSampledCheckbox.checked,
+        showReconstructedCheckbox.checked
+      );
+    }
+    
+    // 初期化関数
+    function init() {
+      // エイリアシングデモのイベントリスナー設定
+      samplingSlider.addEventListener('input', updateAliasing);
+      showOriginalCheckbox.addEventListener('input', updateAliasing);
+      showSampledCheckbox.addEventListener('input', updateAliasing);
+      showReconstructedCheckbox.addEventListener('input', updateAliasing);
+      
+      // エイリアシングデモの初期表示
+      updateAliasing();
+    }
+    
+    // ページロード時に初期化
+    window.addEventListener('load', init);
+  </script>
+</body>
+</html>

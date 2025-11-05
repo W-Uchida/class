@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>リアルタイム量子化ツール</title>
+  <style>
+    .container {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .control-panel {
+      margin-bottom: 20px;
+      padding: 15px;
+      background-color: #f0f0f0;
+      border-radius: 6px;
+    }
+    .image-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .image-row {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .image-box {
+      width: 32%; /* 3つ並べる場合は32%が適切 */
+      background-color: #fff;
+      padding: 10px;
+      border-radius: 6px;
+      box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+      position: relative; /* スケールバーの位置調整のため */
+    }
+    .histogram-box {
+      width: 100%;
+      margin-top: 20px;
+      background-color: #fff;
+      padding: 10px;
+      border-radius: 6px;
+      box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+    }
+    .image-title {
+      font-weight: bold;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    canvas {
+      width: 100%;
+      border: 1px solid #ddd;
+    }
+    label {
+      font-weight: bold;
+      margin-right: 10px;
+    }
+    input[type="range"] {
+      width: 300px;
+      margin-right: 10px;
+    }
+    .value-display {
+      display: inline-block;
+      width: 60px;
+      text-align: center;
+      font-weight: bold;
+    }
+    .info-text {
+      font-size: 14px;
+      color: #666;
+      margin-top: 5px;
+    }
+    .scale-container {
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .scale-bar {
+      height: 20px;
+      width: 100%;
+      margin: 5px 0;
+      position: relative;
+    }
+
+    .scale-label {
+      font-size: 12px;
+      color: #333;
+      margin-top: 3px;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>リアルタイム階調調整ツール</h2>
+    <div class="control-panel">
+      <div>
+        <label for="quantizationLevel">階調数:</label>
+        <input type="range" id="quantizationLevel" min="2" max="32" value="16" step="1">
+        <span id="levelDisplay" class="value-display">16</span>
+        <span class="info-text">（階調数 = 2^<span id="bitDisplay">4</span>ビット）</span>
+      </div>
+      <div class="info-text" style="margin-top: 10px;">
+        * スライダーを動かして階調数を変更すると、リアルタイムに量子化結果と誤差が表示されます。<br>
+        * 量子化誤差は赤色（正の誤差）と青色（負の誤差）で表示されます。
+      </div>
+    </div>
+    
+    <div class="image-container">
+      <!-- 横に3つ並べる -->
+      <div class="image-row">
+        <div class="image-box">
+          <div class="image-title">オリジナル画像</div>
+          <canvas id="originalCanvas"></canvas>
+        </div>
+        <div class="image-box">
+          <div class="image-title">量子化画像 (<span id="levelTitle">16</span>階調)</div>
+          <canvas id="quantizedCanvas"></canvas>
+        </div>
+        <div class="image-box">
+          <div class="image-title">量子化誤差</div>
+          <canvas id="errorCanvas"></canvas>
+        </div>
+      </div>
+      
+      <!-- ヒストグラムは下に配置 -->
+      <div class="histogram-box">
+        <div class="image-title">輝度分布ヒストグラム</div>
+        <canvas id="histogramCanvas"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 画像データの読み込みと処理
+    let originalImageData;
+    let canvasWidth = 280; // 3つ並べるので少し小さくする
+    let canvasHeight = 210;
+    
+    // キャンバスの設定
+    const originalCanvas = document.getElementById('originalCanvas');
+    const quantizedCanvas = document.getElementById('quantizedCanvas');
+    const errorCanvas = document.getElementById('errorCanvas');
+    const histogramCanvas = document.getElementById('histogramCanvas');
+    
+    originalCanvas.width = canvasWidth;
+    originalCanvas.height = canvasHeight;
+    quantizedCanvas.width = canvasWidth;
+    quantizedCanvas.height = canvasHeight;
+    errorCanvas.width = canvasWidth;
+    errorCanvas.height = canvasHeight;
+    histogramCanvas.width = 800; // ヒストグラムは幅広く
+    histogramCanvas.height = 200;
+    
+    const origCtx = originalCanvas.getContext('2d');
+    const quantCtx = quantizedCanvas.getContext('2d');
+    const errorCtx = errorCanvas.getContext('2d');
+    const histCtx = histogramCanvas.getContext('2d');
+    
+    // スライダーの設定
+    const levelSlider = document.getElementById('quantizationLevel');
+    const levelDisplay = document.getElementById('levelDisplay');
+    const levelTitle = document.getElementById('levelTitle');
+    const bitDisplay = document.getElementById('bitDisplay');
+    
+    function loadImage() {
+      const img = new Image();
+      img.crossOrigin = 'Anonymous';
+      img.onload = function() {
+        // キャンバスサイズを画像サイズに合わせる（またはリサイズ）
+        const aspectRatio = img.width / img.height;
+        canvasWidth = 280; // 固定サイズにする
+        canvasHeight = canvasWidth / aspectRatio;
+        
+        // キャンバスサイズを設定
+        originalCanvas.width = canvasWidth;
+        originalCanvas.height = canvasHeight;
+        quantizedCanvas.width = canvasWidth;
+        quantizedCanvas.height = canvasHeight;
+        errorCanvas.width = canvasWidth;
+        errorCanvas.height = canvasHeight;
+        
+        // 画像を描画
+        origCtx.drawImage(img, 0, 0, canvasWidth, canvasHeight);
+        originalImageData = origCtx.getImageData(0, 0, canvasWidth, canvasHeight);
+        
+        // 量子化処理を実行
+        updateQuantization();
+      };
+      img.onerror = function() {
+        console.error('画像の読み込みに失敗しました: ' + img.src);
+        // 画像が読み込めない場合はサンプル画像を生成
+        originalImageData = generateSampleImage();
+        origCtx.putImageData(originalImageData, 0, 0);
+        updateQuantization();
+      };
+      img.src = 'Lung_CT.jpg'; // 画像のパスを指定（htmlファイルからの相対パス）
+    }
+    
+    // サンプル画像生成（画像読み込み失敗時のフォールバック）
+    function generateSampleImage() {
+      const imgData = origCtx.createImageData(canvasWidth, canvasHeight);
+      const data = imgData.data;
+      
+      for (let y = 0; y < canvasHeight; y++) {
+        for (let x = 0; x < canvasWidth; x++) {
+          const idx = (y * canvasWidth + x) * 4;
+          
+          const centerX = canvasWidth / 2;
+          const centerY = canvasHeight / 2;
+          const distance = Math.sqrt((x - centerX) ** 2 + (y - centerY) ** 2);
+          
+          let value = 255 - distance * 0.6;
+          
+          if (Math.abs(x - centerX) < 20 && y > centerY - 80 && y < centerY + 80) {
+            value -= 80;
+          }
+          
+          if ((Math.abs(x - centerX - 50) < 3 && y > centerY - 60 && y < centerY + 30) ||
+              (Math.abs(x - centerX + 40) < 2 && y > centerY - 40 && y < centerY + 60)) {
+            value -= 40;
+          }
+          
+          value += (Math.random() - 0.5) * 30;
+          value = Math.max(0, Math.min(255, value));
+          
+          data[idx] = value;
+          data[idx + 1] = value;
+          data[idx + 2] = value;
+          data[idx + 3] = 255;
+        }
+      }
+      
+      return imgData;
+    }
+  
+    // 初期化関数
+    function init() {
+      // 画像の読み込み
+      loadImage();
+      
+      // スライダーのイベントリスナー
+      levelSlider.addEventListener('input', updateQuantization);
+    }    
+        
+    // 画像の量子化処理
+    function quantizeImage(origImgData, levels) {
+      const width = origImgData.width;
+      const height = origImgData.height;
+      const quantImgData = new ImageData(width, height);
+      const errorImgData = new ImageData(width, height);
+      
+      // 量子化ステップの計算
+      const step = 255 / (levels - 1);
+      
+      // ヒストグラム用の配列
+      const histogram = new Array(256).fill(0);
+      const quantizedHistogram = new Array(levels).fill(0);
+      
+      // 固定スケール: 最大誤差は255 / 2 = 127.5とする
+      const maxPossibleError = 127.5;
+      
+      for (let i = 0; i < origImgData.data.length; i += 4) {
+        // 元の値
+        const origValue = origImgData.data[i];
+        
+        // ヒストグラムを更新
+        histogram[origValue]++;
+        
+        // 量子化
+        const quantLevel = Math.round(origValue / step);
+        const quantValue = Math.min(255, quantLevel * step);
+        
+        // 量子化済みヒストグラムを更新
+        const histIndex = Math.floor(quantValue / (256 / levels));
+        quantizedHistogram[histIndex]++;
+        
+        // 量子化値を設定
+        quantImgData.data[i] = quantValue;
+        quantImgData.data[i + 1] = quantValue;
+        quantImgData.data[i + 2] = quantValue;
+        quantImgData.data[i + 3] = 255;
+        
+        // 誤差を計算
+        const error = origValue - quantValue;
+        
+        // カラースケールを使用して誤差を表示
+        // -maxPossibleError から +maxPossibleError までの範囲でカラーマッピング
+        const [r, g, b] = getErrorColor(error, maxPossibleError);
+        errorImgData.data[i] = r;
+        errorImgData.data[i + 1] = g;
+        errorImgData.data[i + 2] = b;
+        errorImgData.data[i + 3] = 255;
+      }
+      
+      return {
+        quantized: quantImgData,
+        error: errorImgData,
+        histogram: histogram,
+        quantizedHistogram: quantizedHistogram
+      };
+    }
+    // ヒストグラムの描画
+    function drawHistogram(histogram, quantizedHistogram, levels) {
+      histCtx.clearRect(0, 0, histogramCanvas.width, histogramCanvas.height);
+      
+      // 最大頻度を見つける
+      const maxFreq = Math.max(...histogram);
+      
+      // ヒストグラムの背景
+      histCtx.fillStyle = '#f8f8f8';
+      histCtx.fillRect(0, 0, histogramCanvas.width, histogramCanvas.height);
+      
+      // グリッド線
+      histCtx.strokeStyle = '#ddd';
+      histCtx.beginPath();
+      for (let i = 0; i < 5; i++) {
+        const y = i * (histogramCanvas.height / 4);
+        histCtx.moveTo(0, y);
+        histCtx.lineTo(histogramCanvas.width, y);
+      }
+      histCtx.stroke();
+      
+      // 元のヒストグラム（灰色で描画）
+      histCtx.fillStyle = 'rgba(100, 100, 100, 0.3)';
+      const barWidth = histogramCanvas.width / 256;
+      
+      for (let i = 0; i < 256; i++) {
+        const height = (histogram[i] / maxFreq) * histogramCanvas.height;
+        const x = i * barWidth;
+        histCtx.fillRect(x, histogramCanvas.height - height, barWidth, height);
+      }
+      
+      // 量子化レベルの位置に縦線を描画
+      histCtx.strokeStyle = 'red';
+      histCtx.beginPath();
+      
+      for (let i = 0; i < levels; i++) {
+        const x = (i * 255 / (levels - 1)) * barWidth;
+        histCtx.moveTo(x, 0);
+        histCtx.lineTo(x, histogramCanvas.height);
+      }
+      histCtx.stroke();
+      
+      // ラベル
+      histCtx.fillStyle = 'black';
+      histCtx.font = '10px Arial';
+      histCtx.fillText('輝度値', histogramCanvas.width / 2, histogramCanvas.height - 5);
+      histCtx.save();
+      histCtx.rotate(-Math.PI / 2);
+      histCtx.fillText('頻度', -histogramCanvas.height / 2, 10);
+      histCtx.restore();
+    }
+        
+    // 誤差値からカラースケールの色を取得する関数
+    function getErrorColor(error, maxError) {
+      // errorの範囲: -maxError から +maxError
+      // これを0から1の範囲に正規化
+      const normalizedError = (error + maxError) / (2 * maxError);
+      
+      // divergingカラースケール（青→白→赤）を適用
+      // 青(-) → 水色 → 白(0) → オレンジ → 赤(+)
+      if (normalizedError < 0.25) {
+        // 青 → 水色
+        const t = normalizedError * 4;
+        return [
+          Math.round(0 + t * 128),
+          Math.round(0 + t * 200),
+          255
+        ];
+      } else if (normalizedError < 0.5) {
+        // 水色 → 白
+        const t = (normalizedError - 0.25) * 4;
+        return [
+          Math.round(128 + t * 127),
+          Math.round(200 + t * 55),
+          255
+        ];
+      } else if (normalizedError < 0.75) {
+        // 白 → オレンジ
+        const t = (normalizedError - 0.5) * 4;
+        return [
+          255,
+          Math.round(255 - t * 155),
+          Math.round(255 - t * 255)
+        ];
+      } else {
+        // オレンジ → 赤
+        const t = (normalizedError - 0.75) * 4;
+        return [
+          255,
+          Math.round(100 - t * 100),
+          0
+        ];
+      }
+    }
+
+    // スケールバーを描画する関数
+    function drawErrorScalebar(ctx, maxError, width, height) {
+      const barHeight = 20;
+      const margin = 10;
+      const barWidth = width - (margin * 2);
+      
+      // スケールバーの背景
+      ctx.fillStyle = '#f0f0f0';
+      ctx.fillRect(margin, height - barHeight - margin, barWidth, barHeight);
+      
+      // スケールバーのグラデーション
+      for (let i = 0; i < barWidth; i++) {
+        // -maxError から +maxError までのマッピング
+        const error = (i / barWidth) * (2 * maxError) - maxError;
+        const [r, g, b] = getErrorColor(error, maxError);
+        
+        ctx.fillStyle = `rgb(${r}, ${g}, ${b})`;
+        ctx.fillRect(margin + i, height - barHeight - margin, 1, barHeight);
+      }
+      
+      // スケールバーの枠線
+      ctx.strokeStyle = '#000';
+      ctx.strokeRect(margin, height - barHeight - margin, barWidth, barHeight);
+      
+      // ラベル
+      ctx.fillStyle = '#000';
+      ctx.font = '10px Arial';
+      ctx.textAlign = 'center';
+      
+      // 目盛りの値
+      const tickValues = [
+        -maxError, 
+        -maxError/2, 
+        0, 
+        maxError/2, 
+        maxError
+      ];
+      
+      // 目盛りの位置
+      for (let i = 0; i < tickValues.length; i++) {
+        const x = margin + (barWidth * (i / (tickValues.length - 1)));
+        const value = tickValues[i];
+        
+        // 目盛り線
+        ctx.beginPath();
+        ctx.moveTo(x, height - barHeight - margin);
+        ctx.lineTo(x, height - margin);
+        ctx.stroke();
+        
+        // ラベル
+        ctx.fillText(Math.round(value), x, height - margin + 12);
+      }
+      
+      // タイトル
+      ctx.textAlign = 'center';
+      ctx.fillText('量子化誤差スケール', width / 2, height - barHeight - margin - 5);
+    }
+
+    // 画像処理の更新
+    function updateQuantization() {
+      const levels = parseInt(levelSlider.value);
+      levelDisplay.textContent = levels;
+      levelTitle.textContent = levels;
+      
+      // ビット数の計算（log2(levels)の切り上げ）
+      const bits = Math.ceil(Math.log2(levels));
+      bitDisplay.textContent = bits;
+      
+      // 量子化処理
+      const result = quantizeImage(originalImageData, levels);
+      
+      // 画像の描画
+      quantCtx.putImageData(result.quantized, 0, 0);
+      errorCtx.putImageData(result.error, 0, 0);
+      
+      // 誤差のスケールバーを描画
+      drawErrorScalebar(errorCtx, 127.5, errorCanvas.width, errorCanvas.height);
+      
+      // ヒストグラムの描画
+      drawHistogram(result.histogram, result.quantizedHistogram, levels);
+    }
+    
+    // ページロード時に初期化
+    window.addEventListener('load', init);
+    
+  </script>
+</body>
+</html>

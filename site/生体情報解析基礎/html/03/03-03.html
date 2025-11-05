@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1D フーリエ変換 デモ</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        h1, h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 5px;
+        }
+        .container {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .explanation {
+            background-color: #e8f4f8;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 5px solid #3498db;
+        }
+        .canvas-container {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        canvas {
+            display: block;
+            background: white;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .control-group {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #e0e0e0;
+        }
+        .control-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .control-row > label {
+            width: 120px;
+            font-weight: bold;
+        }
+        .control-row > input[type="range"] {
+            flex: 1;
+        }
+        .control-row > input[type="number"] {
+            width: 60px;
+            margin-left: 10px;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .wave-controls {
+            margin-top: 20px;
+        }
+        .wave-component {
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+        .wave-component.active {
+            border-color: #3498db;
+            background-color: #e8f4f8;
+        }
+        .remove-wave {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            font-size: 16px;
+            line-height: 1;
+            cursor: pointer;
+        }
+        .remove-wave:hover {
+            background-color: #c0392b;
+        }
+        .signal-label {
+            position: absolute;
+            left: 10px;
+            font-size: 12px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <h1>1D フーリエ変換 インタラクティブデモ</h1>
+    
+    <div class="explanation">
+        <h2>フーリエ変換の基本概念</h2>
+        <p>フーリエ変換は、<strong>実空間（時間領域）</strong>の信号を<strong>周波数空間（周波数領域）</strong>に変換する数学的手法です。この変換により、信号に含まれる様々な周波数成分を分析することができます。</p>
+        <p>このデモでは、異なる周波数のsin波を組み合わせて複雑な波形を作成し、それに対応する周波数スペクトルがどのように変化するかを視覚的に確認できます。</p>
+        
+        <h3>実空間と周波数空間の変換</h3>
+        <p><strong>実空間から周波数空間への変換（フーリエ変換）：</strong></p>
+        <div style="background-color: #f9f9f9; padding: 10px; border-radius: 5px; text-align: center; margin: 10px 0;">
+            <span style="font-size: 1.2em;">F(ω) = ∫<sub>-∞</sub><sup>∞</sup> f(t) · e<sup>-jωt</sup> dt</span>
+        </div>
+        
+        <p><strong>周波数空間から実空間への変換（逆フーリエ変換）：</strong></p>
+        <div style="background-color: #f9f9f9; padding: 10px; border-radius: 5px; text-align: center; margin: 10px 0;">
+            <span style="font-size: 1.2em;">f(t) = 1/(2π) · ∫<sub>-∞</sub><sup>∞</sup> F(ω) · e<sup>jωt</sup> dω</span>
+        </div>
+        
+        <p>ここで、f(t)は実空間の信号、F(ω)は周波数空間での表現、ωは角周波数、jは虚数単位です。</p>
+    </div>
+
+    <div class="container">
+        <div class="canvas-container">
+            <div class="signal-label"><strong>実空間 (時間領域)</strong> - 波形の時間的な変化</div>
+            <canvas id="timeCanvas" height="200"></canvas>
+        </div>
+        
+        <div class="canvas-container">
+            <div class="signal-label"><strong>周波数空間 (周波数領域)</strong> - 波形の周波数成分</div>
+            <canvas id="freqCanvas" height="200"></canvas>
+        </div>
+
+        <div class="button-group">
+            <button id="addWave">+ 波形を追加</button>
+            <button id="resetWaves">リセット</button>
+        </div>
+
+        <div id="waveComponents" class="wave-controls">
+            <!-- Wave components will be added here dynamically -->
+        </div>
+    </div>
+
+    <script>
+        // グローバル変数
+        const waves = [
+            { frequency: 1, amplitude: 50, phase: 0, active: true }
+        ];
+        const timeCanvas = document.getElementById('timeCanvas');
+        const freqCanvas = document.getElementById('freqCanvas');
+        const timeCtx = timeCanvas.getContext('2d');
+        const freqCtx = freqCanvas.getContext('2d');
+        const addWaveBtn = document.getElementById('addWave');
+        const resetWavesBtn = document.getElementById('resetWaves');
+        const waveComponentsContainer = document.getElementById('waveComponents');
+        
+        // キャンバスサイズ設定
+        function resizeCanvas() {
+            timeCanvas.width = timeCanvas.parentElement.clientWidth;
+            freqCanvas.width = freqCanvas.parentElement.clientWidth;
+            drawWaves();
+        }
+
+        // 初期化
+        function init() {
+            // キャンバスサイズの設定
+            resizeCanvas();
+            
+            // イベントリスナーの設定
+            window.addEventListener('resize', resizeCanvas);
+            addWaveBtn.addEventListener('click', addWave);
+            resetWavesBtn.addEventListener('click', resetWaves);
+            
+            // 波形コンポーネントの初期描画
+            updateWaveComponents();
+            drawWaves();
+        }
+
+        // 波形追加
+        function addWave() {
+            const newFreq = waves.length + 1;
+            waves.push({
+                frequency: newFreq,
+                amplitude: 50 / newFreq, // 周波数が高いほど振幅を小さく
+                phase: 0,
+                active: true
+            });
+            updateWaveComponents();
+            drawWaves();
+        }
+
+        // 波形リセット
+        function resetWaves() {
+            waves.length = 0;
+            waves.push({
+                frequency: 1,
+                amplitude: 50,
+                phase: 0,
+                active: true
+            });
+            updateWaveComponents();
+            drawWaves();
+        }
+
+        // 波形コンポーネントの更新
+        function updateWaveComponents() {
+            waveComponentsContainer.innerHTML = '';
+            
+            waves.forEach((wave, index) => {
+                const waveComponent = document.createElement('div');
+                waveComponent.className = `wave-component ${wave.active ? 'active' : ''}`;
+                
+                // 波形の有効/無効切り替えチェックボックス
+                const activeCheckbox = document.createElement('input');
+                activeCheckbox.type = 'checkbox';
+                activeCheckbox.checked = wave.active;
+                activeCheckbox.addEventListener('change', () => {
+                    wave.active = activeCheckbox.checked;
+                    waveComponent.className = `wave-component ${wave.active ? 'active' : ''}`;
+                    drawWaves();
+                });
+                
+                // 周波数スライダー
+                const freqRow = document.createElement('div');
+                freqRow.className = 'control-row';
+                const freqLabel = document.createElement('label');
+                freqLabel.textContent = `周波数 ${index + 1}:`;
+                const freqSlider = document.createElement('input');
+                freqSlider.type = 'range';
+                freqSlider.min = '1';
+                freqSlider.max = '20';
+                freqSlider.step = '1';
+                freqSlider.value = wave.frequency;
+                const freqValue = document.createElement('input');
+                freqValue.type = 'number';
+                freqValue.min = '1';
+                freqValue.max = '20';
+                freqValue.value = wave.frequency;
+                
+                freqSlider.addEventListener('input', () => {
+                    wave.frequency = parseFloat(freqSlider.value);
+                    freqValue.value = wave.frequency;
+                    drawWaves();
+                });
+                
+                freqValue.addEventListener('change', () => {
+                    wave.frequency = Math.max(1, Math.min(20, parseFloat(freqValue.value)));
+                    freqSlider.value = wave.frequency;
+                    freqValue.value = wave.frequency;
+                    drawWaves();
+                });
+                
+                freqRow.appendChild(freqLabel);
+                freqRow.appendChild(freqSlider);
+                freqRow.appendChild(freqValue);
+                
+                // 振幅スライダー
+                const ampRow = document.createElement('div');
+                ampRow.className = 'control-row';
+                const ampLabel = document.createElement('label');
+                ampLabel.textContent = '振幅:';
+                const ampSlider = document.createElement('input');
+                ampSlider.type = 'range';
+                ampSlider.min = '0';
+                ampSlider.max = '100';
+                ampSlider.step = '1';
+                ampSlider.value = wave.amplitude;
+                const ampValue = document.createElement('input');
+                ampValue.type = 'number';
+                ampValue.min = '0';
+                ampValue.max = '100';
+                ampValue.value = wave.amplitude;
+                
+                ampSlider.addEventListener('input', () => {
+                    wave.amplitude = parseFloat(ampSlider.value);
+                    ampValue.value = wave.amplitude;
+                    drawWaves();
+                });
+                
+                ampValue.addEventListener('change', () => {
+                    wave.amplitude = Math.max(0, Math.min(100, parseFloat(ampValue.value)));
+                    ampSlider.value = wave.amplitude;
+                    ampValue.value = wave.amplitude;
+                    drawWaves();
+                });
+                
+                ampRow.appendChild(ampLabel);
+                ampRow.appendChild(ampSlider);
+                ampRow.appendChild(ampValue);
+                
+                // 位相スライダー
+                const phaseRow = document.createElement('div');
+                phaseRow.className = 'control-row';
+                const phaseLabel = document.createElement('label');
+                phaseLabel.textContent = '位相:';
+                const phaseSlider = document.createElement('input');
+                phaseSlider.type = 'range';
+                phaseSlider.min = '0';
+                phaseSlider.max = '360';
+                phaseSlider.step = '1';
+                phaseSlider.value = (wave.phase * 180 / Math.PI) % 360;
+                const phaseValue = document.createElement('input');
+                phaseValue.type = 'number';
+                phaseValue.min = '0';
+                phaseValue.max = '360';
+                phaseValue.value = (wave.phase * 180 / Math.PI) % 360;
+                
+                phaseSlider.addEventListener('input', () => {
+                    wave.phase = parseFloat(phaseSlider.value) * Math.PI / 180;
+                    phaseValue.value = parseFloat(phaseSlider.value);
+                    drawWaves();
+                });
+                
+                phaseValue.addEventListener('change', () => {
+                    const phaseDeg = Math.max(0, Math.min(360, parseFloat(phaseValue.value)));
+                    wave.phase = phaseDeg * Math.PI / 180;
+                    phaseSlider.value = phaseDeg;
+                    phaseValue.value = phaseDeg;
+                    drawWaves();
+                });
+                
+                phaseRow.appendChild(phaseLabel);
+                phaseRow.appendChild(phaseSlider);
+                phaseRow.appendChild(phaseValue);
+                
+                // 削除ボタン（最初の波形以外に表示）
+                if (index > 0) {
+                    const removeBtn = document.createElement('button');
+                    removeBtn.textContent = '×';
+                    removeBtn.className = 'remove-wave';
+                    removeBtn.addEventListener('click', () => {
+                        waves.splice(index, 1);
+                        updateWaveComponents();
+                        drawWaves();
+                    });
+                    waveComponent.appendChild(removeBtn);
+                }
+                
+                // 要素の追加
+                const activeRow = document.createElement('div');
+                activeRow.className = 'control-row';
+                const activeLabel = document.createElement('label');
+                activeLabel.textContent = `波形 ${index + 1}:`;
+                activeRow.appendChild(activeLabel);
+                activeRow.appendChild(activeCheckbox);
+                
+                waveComponent.appendChild(activeRow);
+                waveComponent.appendChild(freqRow);
+                waveComponent.appendChild(ampRow);
+                waveComponent.appendChild(phaseRow);
+                
+                waveComponentsContainer.appendChild(waveComponent);
+            });
+        }
+
+        // 波形描画
+        function drawWaves() {
+            const timeWidth = timeCanvas.width;
+            const timeHeight = timeCanvas.height;
+            const freqWidth = freqCanvas.width;
+            const freqHeight = freqCanvas.height;
+            
+            // キャンバスのクリア
+            timeCtx.clearRect(0, 0, timeWidth, timeHeight);
+            freqCtx.clearRect(0, 0, freqWidth, freqHeight);
+            
+            // 軸の描画
+            drawTimeAxis(timeWidth, timeHeight);
+            drawFreqAxis(freqWidth, freqHeight);
+            
+            // 合成波と個別波形の描画
+            const points = [];
+            for (let x = 0; x < timeWidth; x++) {
+                let sum = 0;
+                const t = x / timeWidth * 2 * Math.PI * 5; // 5周期分表示
+                
+                waves.forEach(wave => {
+                    if (wave.active) {
+                        const value = wave.amplitude * Math.sin(wave.frequency * t + wave.phase);
+                        sum += value;
+                    }
+                });
+                
+                points.push(sum);
+            }
+            
+            // 時間領域の描画
+            timeCtx.beginPath();
+            timeCtx.strokeStyle = '#e74c3c';
+            timeCtx.lineWidth = 2;
+            
+            for (let x = 0; x < timeWidth; x++) {
+                const y = timeHeight / 2 - points[x];
+                if (x === 0) {
+                    timeCtx.moveTo(x, y);
+                } else {
+                    timeCtx.lineTo(x, y);
+                }
+            }
+            
+            timeCtx.stroke();
+            
+            // 各成分の波形を薄く描画
+            waves.forEach(wave => {
+                if (wave.active) {
+                    timeCtx.beginPath();
+                    timeCtx.strokeStyle = 'rgba(52, 152, 219, 0.3)'; // 薄い青色
+                    timeCtx.lineWidth = 1;
+                    
+                    for (let x = 0; x < timeWidth; x++) {
+                        const t = x / timeWidth * 2 * Math.PI * 5; // 5周期分表示
+                        const value = wave.amplitude * Math.sin(wave.frequency * t + wave.phase);
+                        const y = timeHeight / 2 - value;
+                        
+                        if (x === 0) {
+                            timeCtx.moveTo(x, y);
+                        } else {
+                            timeCtx.lineTo(x, y);
+                        }
+                    }
+                    
+                    timeCtx.stroke();
+                }
+            });
+            
+            // 周波数スペクトルの描画（振幅スペクトル）
+            const maxFreq = 20; // 表示する最大周波数
+            const barWidth = freqWidth / (maxFreq + 1);
+            
+            // アクティブな各波形の周波数成分を表示
+            waves.forEach(wave => {
+                if (wave.active) {
+                    const freq = wave.frequency;
+                    const amp = wave.amplitude;
+                    
+                    if (freq <= maxFreq) {
+                        const x = freq * barWidth;
+                        const barHeight = amp * 1.5;
+                        
+                        freqCtx.fillStyle = '#3498db';
+                        freqCtx.fillRect(x - barWidth/3, freqHeight - barHeight, barWidth/1.5, barHeight);
+                        
+                        // 周波数ラベル
+                        freqCtx.fillStyle = '#333';
+                        freqCtx.font = '12px Arial';
+                        freqCtx.textAlign = 'center';
+                        freqCtx.fillText(freq.toString(), x, freqHeight - 5);
+                    }
+                }
+            });
+        }
+
+        // 時間軸の描画
+        function drawTimeAxis(width, height) {
+            timeCtx.strokeStyle = '#999';
+            timeCtx.lineWidth = 1;
+            
+            // X軸
+            timeCtx.beginPath();
+            timeCtx.moveTo(0, height / 2);
+            timeCtx.lineTo(width, height / 2);
+            timeCtx.stroke();
+            
+            // 実空間のラベル
+            timeCtx.fillStyle = '#333';
+            timeCtx.font = '14px Arial';
+            timeCtx.textAlign = 'center';
+            timeCtx.fillText('実空間 (時間領域)', width/2, 20);
+            
+            // 目盛り
+            timeCtx.font = '10px Arial';
+            timeCtx.textAlign = 'center';
+            timeCtx.fillStyle = '#666';
+            
+            for (let i = 0; i <= 5; i++) {
+                const x = i * width / 5;
+                timeCtx.beginPath();
+                timeCtx.moveTo(x, height / 2 - 5);
+                timeCtx.lineTo(x, height / 2 + 5);
+                timeCtx.stroke();
+                timeCtx.fillText(`${i}π`, x, height / 2 + 20);
+            }
+        }
+
+        // 周波数軸の描画
+        function drawFreqAxis(width, height) {
+            freqCtx.strokeStyle = '#999';
+            freqCtx.lineWidth = 1;
+            
+            // X軸
+            freqCtx.beginPath();
+            freqCtx.moveTo(0, height);
+            freqCtx.lineTo(width, height);
+            freqCtx.stroke();
+            
+            // Y軸
+            freqCtx.beginPath();
+            freqCtx.moveTo(0, 0);
+            freqCtx.lineTo(0, height);
+            freqCtx.stroke();
+            
+            // 周波数空間のラベル
+            freqCtx.font = '14px Arial';
+            freqCtx.textAlign = 'center';
+            freqCtx.fillStyle = '#333';
+            freqCtx.fillText('周波数空間 (周波数領域)', width/2, 70);
+            
+            // X軸ラベル
+            freqCtx.font = '12px Arial';
+            freqCtx.textAlign = 'center';
+            freqCtx.fillStyle = '#666';
+            freqCtx.fillText('周波数 (Hz)', width / 2, height - 5);
+        }
+
+        // 初期化処理
+        window.onload = init;
+    </script>
+</body>
+</html>
