@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CT画像の標本化間隔とエイリアシングデモ</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: a0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .controls {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .control-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: inline-block;
+            margin-right: 10px;
+            font-weight: 500;
+        }
+        .range-value {
+            font-family: monospace;
+            background: #eee;
+            padding: 3px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            min-width: 30px;
+            text-align: center;
+        }
+        input[type="range"] {
+            width: 300px;
+            vertical-align: middle;
+        }
+        select {
+            padding: 6px 10px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+        .canvas-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .canvas-wrapper {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        canvas {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+        }
+        .canvas-title {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #2c3e50;
+            font-size: 18px;
+        }
+        .explanation {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .explanation h2 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+        .explanation ul {
+            padding-left: 20px;
+        }
+        .explanation li {
+            margin-bottom: 8px;
+        }
+        .status {
+            text-align: center;
+            padding: 20px;
+            font-size: 18px;
+        }
+        .error {
+            color: #e74c3c;
+        }
+        @media (max-width: 768px) {
+            .canvas-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>CT画像の標本化間隔とエイリアシングデモ</h1>
+        
+        <div id="loading" class="status">
+            画像を読み込み中です...
+        </div>
+        
+        <div id="error" class="status error" style="display: none;">
+            画像の読み込みに失敗しました。
+        </div>
+        
+        <div id="content" style="display: none;">
+            <div class="controls">
+                <div class="control-group">
+                    <label for="samplingRate">標本化間隔:</label>
+                    <input type="range" id="samplingRate" min="1" max="20" value="1" step="1">
+                    <span class="range-value" id="samplingRateValue">1倍</span>
+                </div>
+                
+                <div class="control-group">
+                    <label for="interpolationMethod">補間方法:</label>
+                    <select id="interpolationMethod">
+                        <option value="nearest">最近傍補間</option>
+                        <option value="bilinear">バイリニア補間</option>
+                        <option value="bicubic">バイキュービック補間</option>
+                    </select>
+                </div>
+                
+                <div class="control-group">
+                    <label>
+                        <input type="checkbox" id="showGrid">
+                        サンプリンググリッドを表示
+                    </label>
+                </div>
+            </div>
+            
+            <div class="canvas-container">
+                <div class="canvas-wrapper">
+                    <h3 class="canvas-title">オリジナル画像</h3>
+                    <canvas id="originalCanvas"></canvas>
+                </div>
+                
+                <div class="canvas-wrapper">
+                    <h3 class="canvas-title" id="processedTitle">処理後の画像</h3>
+                    <canvas id="processedCanvas"></canvas>
+                </div>
+            </div>
+            
+            <div class="explanation">
+                <h2>エイリアシングについての説明</h2>
+                <p>
+                    <strong>標本化間隔（サンプリング間隔）:</strong> 元の画像から何ピクセルおきにデータを取得するかを示します。
+                    間隔が大きいほど情報が失われ、エイリアシングが発生しやすくなります。
+                </p>
+                <p>
+                    <strong>エイリアシング:</strong> 標本化間隔が大きすぎると、高周波成分（細かい部分）が正しく再現されず、
+                    本来存在しないパターンや偽の構造が現れる現象です。医療画像では診断に影響する可能性があります。
+                </p>
+                <p>
+                    <strong>補間方法:</strong> ダウンサンプリングした画像を元のサイズに戻す際、失われたピクセル値を推定する方法です。
+                </p>
+                <ul>
+                    <li><strong>最近傍補間:</strong> 最も近いピクセルの値をコピーします。計算が単純ですが、ブロック状のアーティファクトが発生します。</li>
+                    <li><strong>バイリニア補間:</strong> 周囲の4つのピクセルから線形に値を計算します。よりなめらかですが、細部がぼやけます。</li>
+                    <li><strong>バイキュービック補間:</strong> 周囲の16個のピクセルから3次関数で値を計算します。より高品質ですが、計算コストが高くなります。</li>
+                </ul>
+                <p>
+                    標本化間隔を大きくすると、肺の細かい構造（血管や気管支など）が失われ、エイリアシングによって
+                    偽の構造やパターンが現れることがあります。補間方法を変えることで、再構成画像の品質は変わりますが、
+                    一度失われた情報は完全には回復できません。
+                </p>
+                <p>
+                    <strong>実際の医療画像処理では:</strong> ナイキストの定理に従って、信号の最高周波数の2倍以上の標本化頻度が必要です。
+                    不十分なサンプリングは画像の品質低下やアーティファクトの発生につながり、診断精度に影響します。
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DOM要素
+        const loadingElement = document.getElementById('loading');
+        const errorElement = document.getElementById('error');
+        const contentElement = document.getElementById('content');
+        const originalCanvas = document.getElementById('originalCanvas');
+        const processedCanvas = document.getElementById('processedCanvas');
+        const samplingRateInput = document.getElementById('samplingRate');
+        const samplingRateValue = document.getElementById('samplingRateValue');
+        const interpolationMethodSelect = document.getElementById('interpolationMethod');
+        const showGridCheckbox = document.getElementById('showGrid');
+        const processedTitle = document.getElementById('processedTitle');
+
+        // 同じフォルダ内のCTスキャン画像を使用
+        const imageBase64 = "Lung_CT.jpg";
+
+        // グローバル変数
+        let originalImage = null;
+        let originalCtx = originalCanvas.getContext('2d');
+        let processedCtx = processedCanvas.getContext('2d');
+
+        // 初期化
+        window.onload = function() {
+            // 画像の読み込み
+            loadImage(imageBase64);
+
+            // イベントリスナー設定
+            samplingRateInput.addEventListener('input', updateProcessedImage);
+            interpolationMethodSelect.addEventListener('change', updateProcessedImage);
+            showGridCheckbox.addEventListener('change', updateProcessedImage);
+        };
+
+        // 画像の読み込み関数
+        function loadImage(src) {
+            originalImage = new Image();
+            originalImage.crossOrigin = "Anonymous";  // CORS対策
+
+            originalImage.onload = function() {
+                // キャンバスサイズ設定
+                originalCanvas.width = originalImage.width;
+                originalCanvas.height = originalImage.height;
+                processedCanvas.width = originalImage.width;
+                processedCanvas.height = originalImage.height;
+
+                // オリジナル画像を描画
+                originalCtx.drawImage(originalImage, 0, 0);
+
+                // 初期の処理画像を生成
+                updateProcessedImage();
+
+                // UI表示
+                loadingElement.style.display = 'none';
+                contentElement.style.display = 'block';
+            };
+
+            originalImage.onerror = function() {
+                loadingElement.style.display = 'none';
+                errorElement.style.display = 'block';
+                console.error('画像の読み込みに失敗しました');
+            };
+
+            originalImage.src = src;
+        }
+
+        // 処理画像の更新
+        function updateProcessedImage() {
+            if (!originalImage) return;
+
+            const rate = parseInt(samplingRateInput.value);
+            const method = interpolationMethodSelect.value;
+            const showGrid = showGridCheckbox.checked;
+
+            // 値を表示
+            samplingRateValue.textContent = rate + '倍';
+            
+            // タイトル更新
+            const methodName = method === 'nearest' ? '最近傍補間' : 
+                              method === 'bilinear' ? 'バイリニア補間' : 'バイキュービック補間';
+            processedTitle.textContent = `処理後の画像 (${rate}倍, ${methodName})`;
+
+            // 画像処理
+            processSamplingRate(rate, method, showGrid);
+        }
+
+        // 標本化間隔処理
+        function processSamplingRate(rate, method, showGrid) {
+            const originalWidth = originalImage.width;
+            const originalHeight = originalImage.height;
+            
+            // オリジナルのピクセルデータを取得
+            originalCtx.drawImage(originalImage, 0, 0);
+            const originalData = originalCtx.getImageData(0, 0, originalWidth, originalHeight);
+            
+            // ダウンサンプリングされたサイズ
+            const sampledWidth = Math.floor(originalWidth / rate);
+            const sampledHeight = Math.floor(originalHeight / rate);
+            
+            // ダウンサンプリング用の一時キャンバス
+            const sampledCanvas = document.createElement('canvas');
+            const sampledCtx = sampledCanvas.getContext('2d');
+            sampledCanvas.width = sampledWidth;
+            sampledCanvas.height = sampledHeight;
+            
+            const sampledData = sampledCtx.createImageData(sampledWidth, sampledHeight);
+            
+            // ダウンサンプリング実行
+            for (let y = 0; y < sampledHeight; y++) {
+                for (let x = 0; x < sampledWidth; x++) {
+                    const origX = x * rate;
+                    const origY = y * rate;
+                    const origPos = (origY * originalWidth + origX) * 4;
+                    const sampledPos = (y * sampledWidth + x) * 4;
+                    
+                    sampledData.data[sampledPos] = originalData.data[origPos];        // R
+                    sampledData.data[sampledPos + 1] = originalData.data[origPos + 1]; // G
+                    sampledData.data[sampledPos + 2] = originalData.data[origPos + 2]; // B
+                    sampledData.data[sampledPos + 3] = 255;                           // Alpha
+                }
+            }
+            
+            sampledCtx.putImageData(sampledData, 0, 0);
+            
+            // 処理画像のキャンバスをクリア
+            processedCtx.clearRect(0, 0, processedCanvas.width, processedCanvas.height);
+            
+            // 補間方法の設定
+            if (method === 'nearest') {
+                // 最近傍補間
+                processedCtx.imageSmoothingEnabled = false;
+            } else {
+                // バイリニアまたはバイキュービック補間
+                processedCtx.imageSmoothingEnabled = true;
+                processedCtx.imageSmoothingQuality = method === 'bilinear' ? 'low' : 'high';
+            }
+            
+            // アップサンプリング（再構成）
+            processedCtx.drawImage(sampledCanvas, 0, 0, originalWidth, originalHeight);
+            
+            // グリッドの描画（オプション）
+            if (showGrid && rate > 1) {
+                processedCtx.strokeStyle = 'rgba(255, 0, 0, 0.5)';
+                processedCtx.lineWidth = 1;
+                
+                // 水平線
+                for (let y = 0; y < originalHeight; y += rate) {
+                    processedCtx.beginPath();
+                    processedCtx.moveTo(0, y);
+                    processedCtx.lineTo(originalWidth, y);
+                    processedCtx.stroke();
+                }
+                
+                // 垂直線
+                for (let x = 0; x < originalWidth; x += rate) {
+                    processedCtx.beginPath();
+                    processedCtx.moveTo(x, 0);
+                    processedCtx.lineTo(x, originalHeight);
+                    processedCtx.stroke();
+                }
+            }
+        }
+
+        // この関数は不要になったため削除
+        // フォルダ内のLung_CT.jpgが既に読み込まれています
+    </script>
+</body>
+</html>

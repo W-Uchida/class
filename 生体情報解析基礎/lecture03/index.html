@@ -1,0 +1,2292 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://W-Uchida.github.io/class/%E7%94%9F%E4%BD%93%E6%83%85%E5%A0%B1%E8%A7%A3%E6%9E%90%E5%9F%BA%E7%A4%8E/lecture03/">
+      
+      
+        <link rel="prev" href="../lecture02/">
+      
+      
+        <link rel="next" href="../lecture04/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>第3章 - 講義資料ポータル</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/custom.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="lime" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#3" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href="../.." title="講義資料ポータル" class="md-header__button md-logo" aria-label="講義資料ポータル" data-md-component="logo">
+      
+  <img src="../../img/00-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            講義資料ポータル
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              第3章
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="検索">
+        
+        <button type="reset" class="md-search__icon md-icon" title="クリア" aria-label="クリア" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/W-Uchida/class" title="リポジトリへ" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="講義資料ポータル" class="md-nav__button md-logo" aria-label="講義資料ポータル" data-md-component="logo">
+      
+  <img src="../../img/00-logo.png" alt="logo">
+
+    </a>
+    講義資料ポータル
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/W-Uchida/class" title="リポジトリへ" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    講義一覧
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            講義一覧
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    生体情報解析基礎
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            生体情報解析基礎
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    概要
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture01/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第1章
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture02/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第2章
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    第3章
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    第3章
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. はじめに
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. はじめに">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 講義の目的と全体像
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 前回までの復習
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 前回までの復習">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 ディジタル画像の基礎
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 エイリアシングとナイキスト定理
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 フーリエ変換の基礎
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 画像再構成の基本原理
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 画像再構成の基本原理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 投影データからの画像再構成
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.1 投影データからの画像再構成">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#311" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1.1 医用画像診断装置の多様性と画像再構成の重要性
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#312" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1.2 投影の概念
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#313" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1.3 サイノグラムと再構成
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 放射線の基礎と医療応用
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 放射線の基礎と医療応用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 放射線の種類と性質
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-x" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 X線の歴史と医学への応用
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 放射線の主な物理的性質:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.4 放射線の生物学的影響
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-x" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. X線撮影の基本原理と装置構成
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. X線撮影の基本原理と装置構成">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-x" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 X線撮影システムの基本構成と原理
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-x" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 X線発生部
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.2 X線発生部">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#521-x" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2.1 X線発生のメカニズム
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#522-x" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2.2 X線管球の基本構造
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture04/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第4章
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture05/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第5章
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    画像解析・画像AI特論
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            画像解析・画像AI特論
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%94%BB%E5%83%8F%E8%A7%A3%E6%9E%90%E3%83%BB%E7%94%BB%E5%83%8FAI%E7%89%B9%E8%AB%96/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    概要
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%94%BB%E5%83%8F%E8%A7%A3%E6%9E%90%E3%83%BB%E7%94%BB%E5%83%8FAI%E7%89%B9%E8%AB%96/lecture01/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第1章
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%94%BB%E5%83%8F%E8%A7%A3%E6%9E%90%E3%83%BB%E7%94%BB%E5%83%8FAI%E7%89%B9%E8%AB%96/lecture02/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第2章
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%94%BB%E5%83%8F%E8%A7%A3%E6%9E%90%E3%83%BB%E7%94%BB%E5%83%8FAI%E7%89%B9%E8%AB%96/lecture03/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第3章
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%94%BB%E5%83%8F%E8%A7%A3%E6%9E%90%E3%83%BB%E7%94%BB%E5%83%8FAI%E7%89%B9%E8%AB%96/lecture04/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第4章
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%94%BB%E5%83%8F%E8%A7%A3%E6%9E%90%E3%83%BB%E7%94%BB%E5%83%8FAI%E7%89%B9%E8%AB%96/lecture05/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第5章
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    医用画像処理工学
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            医用画像処理工学
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%8C%BB%E7%94%A8%E7%94%BB%E5%83%8F%E5%87%A6%E7%90%86%E5%B7%A5%E5%AD%A6/01_orientation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    01.オリエンテーション
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%8C%BB%E7%94%A8%E7%94%BB%E5%83%8F%E5%87%A6%E7%90%86%E5%B7%A5%E5%AD%A6/02_digital_image/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    02.ディジタル画像の基礎理論
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%8C%BB%E7%94%A8%E7%94%BB%E5%83%8F%E5%87%A6%E7%90%86%E5%B7%A5%E5%AD%A6/03_filtering/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    03.画像フィルタリングと質改善技術
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%8C%BB%E7%94%A8%E7%94%BB%E5%83%8F%E5%87%A6%E7%90%86%E5%B7%A5%E5%AD%A6/04_reconstruction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    04.画像再構成・復元・3次元化
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%8C%BB%E7%94%A8%E7%94%BB%E5%83%8F%E5%87%A6%E7%90%86%E5%B7%A5%E5%AD%A6/05_xray/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    05.X線画像機器の原理と応用
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%8C%BB%E7%94%A8%E7%94%BB%E5%83%8F%E5%87%A6%E7%90%86%E5%B7%A5%E5%AD%A6/06_ct/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    06.CT装置の原理と発展
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%8C%BB%E7%94%A8%E7%94%BB%E5%83%8F%E5%87%A6%E7%90%86%E5%B7%A5%E5%AD%A6/07_mri/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    07.MRI装置の原理と先進的撮像手法
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%8C%BB%E7%94%A8%E7%94%BB%E5%83%8F%E5%87%A6%E7%90%86%E5%B7%A5%E5%AD%A6/08_ultrasound/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    08.超音波画像機器の原理と計測技術
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%8C%BB%E7%94%A8%E7%94%BB%E5%83%8F%E5%87%A6%E7%90%86%E5%B7%A5%E5%AD%A6/09_nuclear/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    09.核医学画像機器（PET・SPECT）の原理と応用
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%8C%BB%E7%94%A8%E7%94%BB%E5%83%8F%E5%87%A6%E7%90%86%E5%B7%A5%E5%AD%A6/10_segmentation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    10.画像のセグメンテーションと特徴抽出
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%8C%BB%E7%94%A8%E7%94%BB%E5%83%8F%E5%87%A6%E7%90%86%E5%B7%A5%E5%AD%A6/11_registration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    11.画像登録とモダリティ融合
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%8C%BB%E7%94%A8%E7%94%BB%E5%83%8F%E5%87%A6%E7%90%86%E5%B7%A5%E5%AD%A6/12_ai/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    12.AI・機械学習による医用画像解析
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%8C%BB%E7%94%A8%E7%94%BB%E5%83%8F%E5%87%A6%E7%90%86%E5%B7%A5%E5%AD%A6/13_pacs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    13.PACS・画像データの運用と管理
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%8C%BB%E7%94%A8%E7%94%BB%E5%83%8F%E5%87%A6%E7%90%86%E5%B7%A5%E5%AD%A6/14_intervention/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    14.手術支援・インターベンションにおける画像活用
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%8C%BB%E7%94%A8%E7%94%BB%E5%83%8F%E5%87%A6%E7%90%86%E5%B7%A5%E5%AD%A6/15_conclusion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    15.最新動向・今後の展望と総括
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    確率と統計I_II
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            確率と統計I_II
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%A2%BA%E7%8E%87%E3%81%A8%E7%B5%B1%E8%A8%88I_II/lecture01/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第1回
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%A2%BA%E7%8E%87%E3%81%A8%E7%B5%B1%E8%A8%88I_II/lecture02/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第2回
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%A2%BA%E7%8E%87%E3%81%A8%E7%B5%B1%E8%A8%88I_II/lecture03/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第3回
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. はじめに
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. はじめに">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 講義の目的と全体像
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 前回までの復習
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 前回までの復習">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 ディジタル画像の基礎
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 エイリアシングとナイキスト定理
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 フーリエ変換の基礎
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 画像再構成の基本原理
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 画像再構成の基本原理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 投影データからの画像再構成
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.1 投影データからの画像再構成">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#311" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1.1 医用画像診断装置の多様性と画像再構成の重要性
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#312" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1.2 投影の概念
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#313" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1.3 サイノグラムと再構成
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 放射線の基礎と医療応用
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 放射線の基礎と医療応用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 放射線の種類と性質
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-x" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 X線の歴史と医学への応用
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 放射線の主な物理的性質:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.4 放射線の生物学的影響
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-x" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. X線撮影の基本原理と装置構成
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. X線撮影の基本原理と装置構成">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-x" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 X線撮影システムの基本構成と原理
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-x" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 X線発生部
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.2 X線発生部">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#521-x" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2.1 X線発生のメカニズム
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#522-x" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2.2 X線管球の基本構造
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="3">3. 画像再構成と放射線の基礎</h1>
+<h2 id="1">1. はじめに</h2>
+<h3 id="11">1.1 講義の目的と全体像</h3>
+<ul>
+<li>
+<p><strong>背景説明：</strong><br />
+  医用画像において、画像再構成は正確な診断や治療計画の立案に不可欠です。特にCTやMRI、各医学検査などの断層画像法では、投影データや周波数領域データから診断可能な画像への再構成が必要となります。また、撮影時に生じる劣化の補正や、診断・手術支援のための3次元可視化も重要な技術です。</p>
+</li>
+<li>
+<p><strong>講義の流れ：</strong><br />
+  本講義では、下記の流れで画像再構成・3次元化技術について説明します。</p>
+</li>
+<li>
+<p>前回までの復習：フーリエ変換とフィルタリング</p>
+</li>
+<li>画像再構成の基本原理と手法</li>
+<li>実習</li>
+</ul>
+<hr />
+<h2 id="2">2. 前回までの復習</h2>
+<h3 id="21">2.1 ディジタル画像の基礎</h3>
+<ul>
+<li><strong>標本化と量子化</strong>：</li>
+<li>標本化：連続的な空間情報を離散的な画素に変換（空間解像度）</li>
+<li>量子化：連続的な輝度値を離散的な数値に変換（輝度解像度）</li>
+</ul>
+<h3 id="22">2.2 エイリアシングとナイキスト定理</h3>
+<ul>
+<li>
+<p><strong>標本化定理（ナイキスト定理）</strong>：
+  信号の最高周波数成分 <span class="arithmatex">\(f_{\max}\)</span> に対して、標本化周波数 <span class="arithmatex">\(f_s\)</span> が
+  <span class="arithmatex">\(<span class="arithmatex">\(f_s \geq 2f_{\max}\)</span>\)</span>
+  を満たさなければ、元の信号を正確に復元できない</p>
+</li>
+<li>
+<p><strong>エイリアシング（折り返し歪み）</strong>：
+  標本化定理を満たさない場合に生じる偽の周波数成分の出現</p>
+</li>
+</ul>
+<h3 id="23">2.3 フーリエ変換の基礎</h3>
+<p><strong>2次元フーリエ変換（画像処理用）：</strong></p>
+<p>空間領域と周波数領域を変換する数学的手法。</p>
+<p>フーリエ変換：</p>
+<div class="arithmatex">\[F(u,v) = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x,y) e^{-j2\pi(ux+vy)} dx dy\]</div>
+<p>逆フーリエ変換：</p>
+<div class="arithmatex">\[f(x,y) = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} F(u,v) e^{j2\pi(ux+vy)} du dv\]</div>
+<figure>
+  <a class="glightbox" href="../img/03-02.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/03-02.png" alt="1次元フーリエ変換の概念" width="800" height="auto"></a>
+  <figcaption>1次元フーリエ変換の概念（引用：https://dibyendu-biswas.medium.com/fourier-transform-70ae1b7ec252）</figcaption>
+</figure>
+
+<hr />
+<h2 id="3_1">3. 画像再構成の基本原理</h2>
+<p>医用画像の再構成は、間接的に計測されたデータから、生体内部の構造や機能を表す画像を数学的に生成するプロセスです。</p>
+<p>特にMRI画像は周波数空間でのデータ収集なので逆フーリエ変換による再構成、CTや核医学検査では、<strong>投影データから断面画像を再構成</strong>する技術が不可欠です。</p>
+<figure>
+  <a class="glightbox" href="../img/04-01.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/04-01.png" alt="投影データから画像再構成の概念図" width="1000" height="auto"></a>
+  <figcaption>医療装置毎のデータ収集プロセスの概念図</figcaption>
+</figure>
+
+<h3 id="31">3.1 投影データからの画像再構成</h3>
+<h4 id="311">3.1.1 医用画像診断装置の多様性と画像再構成の重要性</h4>
+<ul>
+<li>
+<p><strong>画像再構成の必要性:  なぜ画像再構成が必要なのでしょうか？</strong>：</p>
+<p>現代の医療では、様々な物理現象を利用した多様な画像診断装置が使用されています。</p>
+<p>各装置は異なる物理現象を利用し、<strong>直接的に画像が得られるわけではない</strong>ものが多くあります。</p>
+<p>多くの装置では、間接的なデータから画像を「<strong>再構成</strong>」するプロセスが必要です。</p>
+</li>
+<li>
+<p><strong>直接見えないものを可視化するため</strong>：
+     体内の断層像は直接撮影できないため、様々な方向からの投影データや信号から数学的に再構成する必要があります。</p>
+</li>
+<li>
+<p><strong>異なる装置に適した再構成法が必要</strong>：
+     CTとMRIでは取得するデータの性質が全く異なるため、それぞれに適した再構成手法が必要です。</p>
+</li>
+<li>
+<p><strong>画質と診断精度に直結</strong>：
+     再構成方法の選択や設定は、最終的な画像の質や診断能に大きく影響します。</p>
+</li>
+</ul>
+<p><strong>医用画像診断装置の基本特性比較表</strong></p>
+<table>
+<thead>
+<tr>
+<th>装置</th>
+<th>基本原理</th>
+<th>画像形成</th>
+<th>収集データ</th>
+<th>主な再構成法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>X線撮影装置</td>
+<td>X線の透過率の違いを利用<br>（骨など高吸収構造の描出に優れる）</td>
+<td>直接投影による形成<br>（重なりのある2次元投影像）</td>
+<td>空間的な投影データ<br>（空間領域での直接取得）</td>
+<td>なし（直接画像形成）</td>
+</tr>
+<tr>
+<td>X線CT装置</td>
+<td>多方向からのX線透過データを利用<br>（重なりのない断層像、CT値の定量評価）</td>
+<td>投影データから断層像を数学的に再構成<br>（間接的画像形成）</td>
+<td><strong>投影データ</strong>（サイノグラム）<br>（投影領域）</td>
+<td>・フィルタ補正逆投影法（FBP）<br>・反復的再構成法<br></td>
+</tr>
+<tr>
+<td>MRI装置</td>
+<td>核磁気共鳴現象を利用<br>（軟部組織のコントラスト分解能に優れる）</td>
+<td>k空間データからフーリエ変換で再構成<br>（間接的画像形成）</td>
+<td>k空間データ<br>（純粋な周波数領域）</td>
+<td>・2D/3Dフーリエ変換<br>・非カルテシアン再構成</td>
+</tr>
+<tr>
+<td>超音波装置</td>
+<td>超音波の反射と散乱を利用<br>（リアルタイム性に優れる）</td>
+<td>エコー信号の振幅と到達時間から構成<br>（Aモード/Bモード/Mモードなど表示法多様）</td>
+<td>エコー信号（時間-振幅信号）<br>（空間領域での直接取得）</td>
+<td>・ビームフォーミング<br>・合成開口法<br>（比較的単純な空間マッピング）</td>
+</tr>
+<tr>
+<td>核医学装置<br>(PET/SPECT)</td>
+<td>放射性同位元素からのガンマ線検出<br>（代謝・機能情報、高感度だが低空間分解能）</td>
+<td>投影データから断層像を再構成<br>（間接的画像形成）</td>
+<td><strong>投影データ</strong><br>（投影領域）</td>
+<td>・フィルタ補正逆投影法（FBP）<br>・反復的再構成法</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="312">3.1.2 投影の概念</h4>
+<ul>
+<li><strong>投影（Projection）</strong>：  </li>
+</ul>
+<p>投影とは、対象物の特性（例えば密度や線減弱係数）を特定の方向に沿って積分した値です。CTの場合、物体にX線を照射し、<strong>物体を通過したX線の減衰量</strong>が<strong>投影データ</strong>となります。</p>
+<p>実際のX線CTでは、X線の強度<span class="arithmatex">\(I₀\)</span>が物体を通過した後の強度<span class="arithmatex">\(I\)</span>が次のように表されます：</p>
+<p>$$
+  I = I₀exp(-∫_lf(x,y)dl)
+  $$</p>
+<p>ここで、<span class="arithmatex">\(f(x,y)\)</span>は物体の線減弱係数分布、<span class="arithmatex">\(l\)</span>はX線の経路を表します。</p>
+<figure>
+  <a class="glightbox" href="../img/04-02.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/04-02.png" alt="X線源から検出器でX線強度を検出する様子" width="500" height="auto"></a>
+  <figcaption>X線源から検出器でX線強度を検出する様子（引用：篠原 広行，中世古 和真，坂口 和也，橋本 雄幸『逐次近似画像再構成の基礎』医療科学社）</figcaption>
+</figure>
+
+<p>ただし、CTでは複数の角度からX線を照射、検出します。</p>
+<p><span class="arithmatex">\(y\)</span>軸に対する回転角度を<span class="arithmatex">\(\theta\)</span>、座標系<span class="arithmatex">\((x,y)\)</span>に対して、<span class="arithmatex">\(\theta\)</span>だけ回転した座標系を<span class="arithmatex">\((X,Y)\)</span>としましょう。</p>
+<p>この時、回転した座標系の<span class="arithmatex">\(Y\)</span>軸に沿って（先ほどの例では経路<span class="arithmatex">\(l\)</span>）、強度<span class="arithmatex">\(I_0\)</span>のX線を照射して計測したデータを<span class="arithmatex">\(I（X, \theta）\)</span>とすると、</p>
+<p>$$
+  I(X,\theta) = I₀exp(-\int_{-\infty}^{\infty}f(x,y)dY)
+  $$</p>
+<p>ここで、開区間<span class="arithmatex">\((-\infty, \infty)\)</span>の範囲で積分しているのは、<span class="arithmatex">\(Y\)</span>軸に沿った全ての範囲について積分しているためです。</p>
+<p>両辺を整理して対数を取ると、</p>
+<p>$$
+  ln(\frac{I_0}{I(X,\theta)}) = \int_{-\infty}^{\infty}f(x,y)dY
+  $$
+  左辺を<span class="arithmatex">\(p(X,\theta)\)</span>と置くと、
+  $$
+  p(X,\theta) = \int_{-\infty}^{\infty}f(x,y)dY
+  $$
+  実際のCT計測においては、この<span class="arithmatex">\(p(X,\theta)\)</span>を生データとして取得し、これを<strong>投影データ</strong>と呼びます。</p>
+<figure>
+  <a class="glightbox" href="../img/04-03.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/04-03.png" alt="X線源から検出器でX線強度を検出する様子" width="600" height="auto"></a>
+  <figcaption>座標系を含めたX線CTの計測（引用：篠原 広行，中世古 和真，坂口 和也，橋本 雄幸『逐次近似画像再構成の基礎』医療科学社）</figcaption>
+</figure>
+
+<ul>
+<li><strong>逆投影（Back Projection）</strong>：  </li>
+</ul>
+<p><strong>逆投影</strong>とは次式のように投影データを被写体の方向に向かって直線状にデータを加えていく操作です。</p>
+<p>取得した<strong>投影データ</strong>から、<strong>逆投影</strong>して元の構造を作り出す操作が、CT画像における<strong>再構成</strong>の基盤です。</p>
+<figure>
+  <a class="glightbox" href="../img/04-04.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/04-04.png" alt="複数角度における投影データと逆投影" width="700" height="auto"></a>
+  <figcaption>複数角度における投影データと逆投影（引用：篠原 広行，中世古 和真，坂口 和也，橋本 雄幸『逐次近似画像再構成の基礎』医療科学社）</figcaption>
+</figure>
+
+<ul>
+<li><strong>ラドン変換</strong></li>
+</ul>
+<p>本講では詳細は割愛しますが、2次元平面上で定義された関数（例えば画像や物体の密度分布）から、その各方向への投影データを得るための積分変換を<strong>ラドン変換</strong>、投影データから元の関数に戻す操作を<strong>逆ラドン変換</strong>と呼びます。</p>
+<p>CT計測においては、投影データを生データとして取得するわけなので、<strong>被写体の断面の減弱係数<span class="arithmatex">\(f(x,y)\)</span>からラドン変換を通じて投影データ<span class="arithmatex">\(p(X,\theta)\)</span>を求めることに相当</strong>します。</p>
+<p>一方で、再構成は<strong>投影データに逆ラドン変換を施す</strong>ことで元の構造を推定することに対応します（フーリエ変換とラドン変換との関係（<strong>投影切断定理</strong>）を利用した再構成法はフーリエ変換法と呼ぶ[割愛]）。</p>
+<h4 id="313">3.1.3 サイノグラムと再構成</h4>
+<p>CTスキャンにおいて計測されるのは、下記で表される<strong>投影データ</strong>であることが分かりました。</p>
+<p>$$
+  p(X,\theta) = \int_{-\infty}^{\infty} f(x,y) dY
+  $$</p>
+<p>この投影データをさまざまな回転角度<span class="arithmatex">\(\theta\)</span>、角度<span class="arithmatex">\(\theta\)</span>において投影される軸<span class="arithmatex">\(X\)</span>の位置を並べたデータ（集合）を<strong>「サイノグラム」</strong>と呼びます。</p>
+<p>サイノグラムは、横軸が<span class="arithmatex">\(X\)</span>、縦軸が<span class="arithmatex">\(\theta\)</span>となる2次元データであり、CTの基本的な生データ形式です。</p>
+<p>CTではこのサイノグラムを元に、逆ラドン変換などの手法を用いて断層画像を再構成します。</p>
+<p>逆問題は測定した投影データ<span class="arithmatex">\(p(X,\theta)\)</span>から未知の被写体断面<span class="arithmatex">\(f(x,y)\)</span>を再構成することになります。</p>
+<figure>
+  <a class="glightbox" href="../img/04-05.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/04-05.png" alt="サイノグラム" width="700" height="auto"></a>
+  <figcaption>サイノグラム</figcaption>
+</figure>
+
+<p>投影データにおける画像再構成には、大きく分けて解析的手法と反復的手法があります：</p>
+<ol>
+<li>
+<p><strong>解析的手法</strong>：</p>
+<ul>
+<li>フーリエ変換法：投影データを1Dフーリエ変換-&gt;2D逆フーリエ変換とすることで元の空間領域データを再構成できる（<strong>投影スライス定理</strong>の理解が必要[割愛]）</li>
+<li><strong>フィルタ補正逆投影法（FBP）</strong>：最も広く使われる手法</li>
+</ul>
+</li>
+<li>
+<p><strong>反復的手法</strong>：</p>
+<ul>
+<li>代数的再構成技法（ART）：投影と逆投影を繰り返し使用</li>
+<li>統計的再構成法：ノイズモデルを考慮した反復法</li>
+<li>モデルベース反復再構成（MBIR）：物理的なモデルを組み込んだ高度な反復法</li>
+</ul>
+</li>
+</ol>
+<p>これらの手法は、装置の特性や求める画質、計算時間などの要素を考慮して選択されます。</p>
+<h2 id="4">4. 放射線の基礎と医療応用</h2>
+<h3 id="41">4.1 放射線の種類と性質</h3>
+<ul>
+<li><strong>放射線の定義</strong>:<ul>
+<li>電磁波又は粒子線のうち、直接又は間接に空気を<strong>電離</strong>する能力をもつもの（原子力基本法 第3条第5号）<ul>
+<li>電離とは、電磁波や粒子線の影響で物質を構成する原子から電子をはじき出し、正電荷の原子（陽イオン）と自由電子に分離する現象。</li>
+<li>この電離能力を持つ電磁波や粒子線を放射線と定義している。</li>
+<li>ここでは、<strong>高いエネルギー</strong>を持つと考えればよい</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure>
+  <a class="glightbox" href="../img/05-01.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/05-01.png" alt="電磁波" width="1000" height="auto"></a>
+  <figcaption>電磁波（引用：（独）日本原子力研究開発機構発機構「放射線ってなんだろう？」）</figcaption>
+</figure>
+
+<ul>
+<li><strong>放射線の種類とX線画像法利用</strong>:<ul>
+<li>診断用画像（X線画像機器[一般撮影、CT]、核医学検査）には、<strong>透過性の高い電磁波（X線、γ線）</strong>が用いられる。</li>
+<li>撮影範囲内に存在する組織間での、この透過性（線減弱係数）の違いに基づいて画像を形成するのがX線画像法の基礎理論</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>分類</th>
+<th>種類</th>
+<th>本質</th>
+<th>電荷</th>
+<th>透過力</th>
+<th>主な用途・特徴</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>電磁波</strong></td>
+<td>X線</td>
+<td>高エネルギー電磁波</td>
+<td>なし</td>
+<td>高い</td>
+<td>診断用画像（一般撮影、CT）、治療</td>
+</tr>
+<tr>
+<td></td>
+<td>γ線</td>
+<td>高エネルギー電磁波</td>
+<td>なし</td>
+<td>最も高い</td>
+<td>核医学検査（PET, SPECT）、放射線治療</td>
+</tr>
+<tr>
+<td><strong>粒子線</strong></td>
+<td>α線</td>
+<td>ヘリウム原子核</td>
+<td>+2</td>
+<td>非常に低い</td>
+<td>内部被ばくで危険、外部では皮膚で止まる</td>
+</tr>
+<tr>
+<td></td>
+<td>β線</td>
+<td>電子</td>
+<td>-1</td>
+<td>低い</td>
+<td>核医学検査の一部、紙～薄い金属板で遮蔽可能</td>
+</tr>
+<tr>
+<td></td>
+<td>中性子線</td>
+<td>中性子</td>
+<td>0</td>
+<td>高い</td>
+<td>原子炉、中性子捕捉療法、水素含有物質で遮蔽</td>
+</tr>
+<tr>
+<td></td>
+<td>陽子線</td>
+<td>陽子</td>
+<td>+1</td>
+<td>中程度</td>
+<td>がん治療（陽子線治療）</td>
+</tr>
+<tr>
+<td></td>
+<td>重粒子線</td>
+<td>炭素イオンなど</td>
+<td>多価+</td>
+<td>中程度</td>
+<td>がん治療（重粒子線治療）</td>
+</tr>
+</tbody>
+</table>
+<figure>
+  <a class="glightbox" href="../img/05-02.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/05-02.png" alt="放射線の種類と透過力の比較" width="1000" height="auto"></a>
+  <figcaption>放射線の種類と透過力の比較（引用：文部科学省「よくわかる原子力」）</figcaption>
+</figure>
+
+<h3 id="42-x">4.2 X線の歴史と医学への応用</h3>
+<ul>
+<li><strong>X線の発見</strong>: <ul>
+<li>1895年、ドイツの物理学者ヴィルヘルム・コンラート・レントゲンが陰極線管（クルックス管）を用いた「電子の存在」を証明するための実験中に偶然発見</li>
+</ul>
+</li>
+<li><strong>歴史的豆知識</strong>:<ul>
+<li>発見直後から医学利用が始まり、最初の医療用X線写真は妻のベルタの手</li>
+<li>レントゲンは“未知の光線”を使って妻の手を撮影し、“未知”を意味する“X”をその名に冠した。</li>
+<li>1901年、レントゲンはX線の発見により第1回ノーベル物理学賞を受賞</li>
+<li><strong>初期は生物学的影響（被ばく）の危険性が認識されておらず、多くの先駆者が放射線障害に苦しんだ</strong></li>
+</ul>
+</li>
+</ul>
+<figure>
+  <a class="glightbox" href="../img/05-03.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/05-03.png" alt="史上初めて撮影されたX線写真の1枚" width="400" height="auto"></a>
+  <figcaption>史上初めて撮影されたX線写真の1枚（Image by Wilhelm Rontgen, via SSPL/Science Museum/Getty Images）</figcaption>
+</figure>
+
+<h3 id="43">4.3 放射線の主な物理的性質:</h3>
+<ul>
+<li><strong>透過性</strong>: 物質を通り抜ける能力（X線・γ線 &gt; β線 &gt; α線）</li>
+<li><strong>電離作用</strong>: 物質中の原子から電子を弾き飛ばし、イオンを生成</li>
+<li><strong>蛍光作用</strong>: 特定の物質に当たると可視光を発生</li>
+</ul>
+<h3 id="44">4.4 放射線の生物学的影響</h3>
+<ul>
+<li><strong>電離作用によるDNA損傷</strong>:<ul>
+<li>放射線が細胞内を通過すると、DNAを直接・間接的に損傷</li>
+</ul>
+</li>
+<li><strong>直接作用</strong>: 放射線エネルギーが直接DNAに吸収され切断</li>
+<li>
+<p><strong>間接作用</strong>: 水分子の電離で生じたフリーラジカル（・OH等）によるDNA損傷</p>
+<ul>
+<li>間接作用は全体の約70%を占める（体内の水分が多いため）</li>
+</ul>
+</li>
+<li>
+<p><strong>DNA損傷の種類</strong>:</p>
+<ul>
+<li>塩基損傷: DNA塩基の化学構造変化</li>
+<li>一本鎖切断: 比較的修復されやすい</li>
+<li>二本鎖切断: 修復が困難で重篤な細胞影響の原因</li>
+<li>クラスター損傷: 局所的に集中した複合的損傷（最も修復困難）</li>
+</ul>
+</li>
+<li>
+<p><strong>細胞レベルでの影響</strong>:</p>
+<ul>
+<li>細胞死（アポトーシス、壊死）</li>
+<li>細胞分裂の遅延・停止</li>
+<li>突然変異（DNA修復エラー）</li>
+<li>がん化（遺伝子変異の蓄積）</li>
+</ul>
+</li>
+</ul>
+<figure>
+  <a class="glightbox" href="../img/05-04.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/05-04.png" alt="放射線によるDNA損傷機序" width="1000" height="auto"></a>
+  <figcaption>放射線によるDNA損傷（引用：文部科学省「よくわかる原子力」）</figcaption>
+</figure>
+
+<hr />
+<h2 id="5-x">5. X線撮影の基本原理と装置構成</h2>
+<h3 id="51-x">5.1 X線撮影システムの基本構成と原理</h3>
+<ul>
+<li><strong>X線撮影システムの主要構成要素</strong>:</li>
+<li>
+<p><strong>X線発生部</strong>: </p>
+<ul>
+<li>X線管球、高電圧発生装置</li>
+</ul>
+</li>
+<li>
+<p><strong>X線制御系</strong>:</p>
+<ul>
+<li>タイマー回路: 照射時間を制御</li>
+<li>自動露出制御（AEC: Automatic Exposure Control）：被写体透過後の線量に応じて、条件を自動でリアルタイムに最適化</li>
+<li>グリッド: 散乱X線除去装置（散乱線は画質に影響するため、除外）</li>
+<li>コリメータ: X線照射野を制限（目的範囲外のX線を除外）</li>
+</ul>
+</li>
+<li>
+<p><strong>X線検出器</strong>:</p>
+<ul>
+<li>従来: X線フィルム＋増感紙</li>
+<li>現在: デジタル検出器<ul>
+<li>Computed Radiography (CR)</li>
+<li>Flat Panel Detector (FPD)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>データ処理系</strong>:</p>
+<ul>
+<li>アナログ/デジタル変換</li>
+<li>画像処理（階調処理、周波数処理）</li>
+<li>画像表示、保存、伝送</li>
+</ul>
+</li>
+</ul>
+<figure>
+  <a class="glightbox" href="../img/05-05.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/05-05.png" alt="X線撮影システムの基本構成" width="1000" height="auto"></a>
+  <figcaption>X線撮影システムの基本構成</figcaption>
+</figure>
+
+<h3 id="52-x">5.2 X線発生部</h3>
+<h4 id="521-x">5.2.1 X線発生のメカニズム</h4>
+<ol>
+<li>
+<p><strong>制動放射（Bremsstrahlung）</strong>: 高速電子が原子核の近くを通過する際に受ける減速によりX線が放出</p>
+<ul>
+<li>電子の運動エネルギーの一部が電磁波（X線）に変換</li>
+<li>連続スペクトルを形成（多様な波長のX線が発生）</li>
+<li>高管電圧ほど、高エネルギーのX線が発生する</li>
+<li>電子の80%程度はこのメカニズムでX線を発生</li>
+</ul>
+</li>
+<li>
+<p><strong>特性X線</strong>: 高速電子が原子の内殻電子を弾き飛ばし（<strong>電離</strong>）、外殻電子が内殻の空孔に遷移する際に発生</p>
+<ul>
+<li>原子の電子軌道間のエネルギー準位差に相当するX線が放出</li>
+<li>ターゲット元素固有のエネルギー（波長）を持つ</li>
+<li>スペクトル上で特徴的なピークとして現れる</li>
+<li>タングステンの場合、約69keVと59keVに主要ピーク（K殻）</li>
+</ul>
+</li>
+</ol>
+<figure>
+  <a class="glightbox" href="../img/05-06.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/05-06.png" alt="制動放射と特性X線の発生メカニズム" width="800" height="auto"></a>
+  <figcaption>X線発生の2つのメカニズム：制動放射と特性X線（引用：https://www.t-rs.co.jp/t-rs/column/column01-04.htm）</figcaption>
+</figure>
+
+<h4 id="522-x">5.2.2 X線管球の基本構造</h4>
+<ul>
+<li>
+<p><strong>X線管球の構成</strong>:</p>
+<ul>
+<li>真空ガラス管内に陰極（フィラメント）と陽極（ターゲット）を配置<ul>
+<li>一般撮影では、タングステンを利用（熱に強く、X線発生効率が高い[高原子番号]）</li>
+</ul>
+</li>
+<li>フィラメントを加熱し熱電子を放出（熱電子放出）</li>
+<li>陰極・陽極間に高電圧（管電圧）を印加して電子を加速</li>
+<li>加速された電子がターゲットに衝突してX線が発生</li>
+</ul>
+</li>
+<li>
+<p><strong>X線発生部に関連するパラメータ</strong></p>
+<ul>
+<li><strong>管電圧</strong>: 60～150kV程度（管球によって異なる）</li>
+<li><strong>管電流</strong>: 10～1000mA程度（管球と用途によって異なる）</li>
+<li><strong>照射時間</strong>：X線制御系にて、管理・制御</li>
+</ul>
+</li>
+</ul>
+<figure>
+  <a class="glightbox" href="../img/05-07.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/05-07.png" alt="X線管球の詳細構造" width="1000" height="auto"></a>
+  <figcaption>X線管球の詳細構造（引用：https://ndt.chugai-tec.co.jp/useful/xraybasic/）</figcaption>
+</figure>
+
+<ul>
+<li><strong>X線スペクトル</strong>:<ul>
+<li>連続スペクトル（制動放射）＋特性X線のピーク</li>
+<li>管電圧を上げると全体的に高エネルギー側にシフト</li>
+<li>管電流・照射時間をあげるとX線の量（強度）がすべてのエネルギー帯で比例して増加（平均エネルギーの変化なし）</li>
+</ul>
+</li>
+</ul>
+<figure>
+  <a class="glightbox" href="../img/05-08.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/05-08.png" alt="X線スペクトル" width="800" height="auto"></a>
+  <figcaption>X線スペクトル（引用：http://www.020329.com/x-ray/bougo/contents/chapter3/3-2-ref01-page3.html）</figcaption>
+</figure>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="最終更新日">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年12月15日 04:32:43 UTC">2025年12月15日</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="作成日">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年9月28日 11:04:50 UTC">2025年9月28日</span>
+  </span>
+
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/W-Uchida/class" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.collapse", "search.highlight", "search.suggest"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>

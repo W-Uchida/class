@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>畳み込みフィルタリングデモ</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: #555;
+            margin-top: 25px;
+        }
+        .image-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+        .image-box {
+            display: flex;
+            flex-direction: column;
+        }
+        .pixel-grid {
+            display: grid;
+            gap: 1px;
+        }
+        .pixel {
+            width: 10px;
+            height: 10px;
+            background-color: #eee;
+        }
+        .kernel-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 40px);
+            gap: 2px;
+            margin-top: 10px;
+        }
+        .kernel-cell {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+        }
+        .control-panel {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        .calculation-display {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f0f8ff;
+            border-radius: 5px;
+            border: 1px solid #cce5ff;
+        }
+        .calc-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 80px);
+            gap: 5px;
+            margin-top: 10px;
+        }
+        .calc-cell {
+            text-align: center;
+            padding: 5px;
+            background-color: #e0f0ff;
+            border-radius: 3px;
+        }
+        button {
+            padding: 8px 15px;
+            margin-right: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .btn-play {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .btn-step {
+            background-color: #2196F3;
+            color: white;
+        }
+        .btn-reset {
+            background-color: #f44336;
+            color: white;
+        }
+        select, input {
+            padding: 8px;
+            margin-right: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .info-box {
+            margin-top: 30px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            border-left: 5px solid #2196F3;
+        }
+        .info-box ul {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+        .info-box li {
+            margin-bottom: 8px;
+        }
+        .checkbox-container {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .checkbox-container input[type="checkbox"] {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>畳み込みフィルタリングデモ</h1>
+        
+        <div class="control-panel">
+            <label for="kernel-type">フィルタータイプ: </label>
+            <select id="kernel-type">
+                <option value="identity">恒等フィルター</option>
+                <option value="edge" selected>エッジ検出</option>
+                <option value="sharpen">シャープ化</option>
+                <option value="blur">ぼかし</option>
+                <option value="emboss">エンボス</option>
+            </select>
+            
+            <label for="image-size">画像サイズ: </label>
+            <select id="image-size">
+                <option value="10">10x10</option>
+                <option value="15">15x15</option>
+                <option value="20">20x20</option>
+                <option value="25" selected>25x25</option>
+            </select>
+            
+            <button id="btn-reset" class="btn-reset">リセット</button>
+            
+            <div class="checkbox-container">
+                <input type="checkbox" id="auto-adjust" checked>
+                <label for="auto-adjust">自動諧調調整</label>
+            </div>
+            <button id="btn-adjust" class="btn-step">手動で諧調調整</button>
+        </div>
+        
+        <div class="image-container">
+            <div class="image-box">
+                <h2>元画像</h2>
+                <div id="original-image" class="pixel-grid"></div>
+            </div>
+            
+            <div class="image-box">
+                <h2>結果画像</h2>
+                <div id="result-image" class="pixel-grid"></div>
+            </div>
+        </div>
+        
+        <h2>現在のカーネル</h2>
+        <div id="kernel-display" class="kernel-grid"></div>
+        
+        <div id="calculation-display" class="calculation-display" style="display: none;">
+            <h3>現在の計算:</h3>
+            <div id="current-position"></div>
+            <div id="calc-grid" class="calc-grid"></div>
+            <div id="calc-sum" style="margin-top: 10px;"></div>
+        </div>
+        
+        <div class="control-panel">
+            <button id="btn-play" class="btn-play">再生</button>
+            <button id="btn-prev" class="btn-step">前へ</button>
+            <button id="btn-next" class="btn-step">次へ</button>
+            
+            <div style="margin-top: 15px;">
+                <label for="speed">速度: </label>
+                <input type="range" id="speed" min="1" max="100" value="5">
+                <span id="speed-value">5x</span>
+            </div>
+        </div>
+        
+        <div class="info-box">
+            <h2>詳細説明:</h2>
+            <ul>
+                <li>各ピクセルの新しい値は、そのピクセルとその周囲のピクセルにカーネル（フィルタ）を適用して計算されます。</li>
+                <li>計算方法: 各ピクセルとそれに対応するカーネル値を掛け、それらの合計を取ります。</li>
+                <li>エッジ検出フィルタは、画像内の急激な変化（エッジ）を強調します。</li>
+                <li>ぼかしフィルタは、各ピクセルを周囲のピクセルの平均値に置き換えます。</li>
+                <li>シャープ化フィルタは、ピクセルとその周囲のピクセルとの差を強調します。</li>
+                <li>エンボスフィルタは、浮き彫り効果を生み出します。</li>
+                <li>自動諧調調整をオンにすると、計算結果の最小値と最大値を自動的に検出し、表示時に0〜255の範囲に再マッピングします。</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // 初期設定
+        let imageSize = 25;
+        let kernelSize = 3;
+        let originalImage = [];
+        let resultImage = [];
+        let currentStep = -1;
+        let currentCalculation = null;
+        let isPlaying = false;
+        let speed = 5;
+        let playInterval;
+        let autoAdjust = true;
+        
+        // カーネルの種類
+        const kernels = {
+            identity: [
+                [0, 0, 0],
+                [0, 1, 0],
+                [0, 0, 0]
+            ],
+            edge: [
+                [-1, -1, -1],
+                [-1, 9, -1],
+                [-1, -1, -1]
+            ],
+            sharpen: [
+                [0, -1, 0],
+                [-1, 5, -1],
+                [0, -1, 0]
+            ],
+            blur: [
+                [1/9, 1/9, 1/9],
+                [1/9, 1/9, 1/9],
+                [1/9, 1/9, 1/9]
+            ],
+            emboss: [
+                [-2, -1, 0],
+                [-1, 1, 1],
+                [0, 1, 2]
+            ]
+        };
+        
+        // DOM要素の取得
+        const originalImageEl = document.getElementById('original-image');
+        const resultImageEl = document.getElementById('result-image');
+        const kernelDisplayEl = document.getElementById('kernel-display');
+        const calculationDisplayEl = document.getElementById('calculation-display');
+        const currentPositionEl = document.getElementById('current-position');
+        const calcGridEl = document.getElementById('calc-grid');
+        const calcSumEl = document.getElementById('calc-sum');
+        const btnPlay = document.getElementById('btn-play');
+        const btnNext = document.getElementById('btn-next');
+        const btnPrev = document.getElementById('btn-prev');
+        const btnReset = document.getElementById('btn-reset');
+        const btnAdjust = document.getElementById('btn-adjust');
+        const kernelTypeSelect = document.getElementById('kernel-type');
+        const imageSizeSelect = document.getElementById('image-size');
+        const speedSlider = document.getElementById('speed');
+        const speedValueEl = document.getElementById('speed-value');
+        const autoAdjustCb = document.getElementById('auto-adjust');
+        
+        // 初期化
+        initializeDemo();
+        
+        // イベントリスナーの設定
+        btnPlay.addEventListener('click', togglePlay);
+        btnNext.addEventListener('click', nextStep);
+        btnPrev.addEventListener('click', prevStep);
+        btnReset.addEventListener('click', resetDemo);
+        btnAdjust.addEventListener('click', () => adjustContrast());
+        kernelTypeSelect.addEventListener('change', updateKernel);
+        imageSizeSelect.addEventListener('change', updateImageSize);
+        speedSlider.addEventListener('input', updateSpeed);
+        autoAdjustCb.addEventListener('change', function() {
+            autoAdjust = this.checked;
+            if (autoAdjust && currentStep > 0) {
+                adjustContrast();
+            }
+        });
+        
+        // 初期化関数
+        function initializeDemo() {
+            // 画像生成
+            generateImage();
+            
+            // 画像表示
+            displayImages();
+            
+            // カーネル表示
+            displayKernel();
+        }
+        
+        // 画像生成
+        function generateImage() {
+            originalImage = [];
+            resultImage = [];
+            
+            for (let y = 0; y < imageSize; y++) {
+                const origRow = [];
+                const resultRow = [];
+                
+                for (let x = 0; x < imageSize; x++) {
+                    // シンプルなパターン作成
+                    const pattern = Math.floor((Math.sin(y/2) + Math.cos(x/2) +3) * 50);
+                    origRow.push(pattern);
+                    resultRow.push(0);
+                }
+                
+                originalImage.push(origRow);
+                resultImage.push(resultRow);
+            }
+        }
+        
+        // 画像の表示
+        function displayImages() {
+            // 元画像のクリア
+            originalImageEl.innerHTML = '';
+            originalImageEl.style.gridTemplateColumns = `repeat(${imageSize}, 10px)`;
+            
+            // 結果画像のクリア
+            resultImageEl.innerHTML = '';
+            resultImageEl.style.gridTemplateColumns = `repeat(${imageSize}, 10px)`;
+            
+            // 元画像の表示
+            for (let y = 0; y < imageSize; y++) {
+                for (let x = 0; x < imageSize; x++) {
+                    const pixelValue = originalImage[y][x];
+                    const pixelEl = document.createElement('div');
+                    pixelEl.className = 'pixel';
+                    pixelEl.id = `orig-${x}-${y}`;
+                    pixelEl.style.backgroundColor = getColor(pixelValue);
+                    pixelEl.title = `値: ${pixelValue}`;
+                    originalImageEl.appendChild(pixelEl);
+                }
+            }
+            
+            // 結果画像の表示
+            for (let y = 0; y < imageSize; y++) {
+                for (let x = 0; x < imageSize; x++) {
+                    const pixelValue = resultImage[y][x];
+                    const pixelEl = document.createElement('div');
+                    pixelEl.className = 'pixel';
+                    pixelEl.id = `result-${x}-${y}`;
+                    pixelEl.style.backgroundColor = pixelValue ? getColor(pixelValue) : '#eee';
+                    pixelEl.title = `値: ${pixelValue}`;
+                    resultImageEl.appendChild(pixelEl);
+                }
+            }
+        }
+        
+        // カーネルの表示
+        function displayKernel() {
+            kernelDisplayEl.innerHTML = '';
+            
+            const currentKernel = kernels[kernelTypeSelect.value];
+            
+            for (let y = 0; y < kernelSize; y++) {
+                for (let x = 0; x < kernelSize; x++) {
+                    const kernelCell = document.createElement('div');
+                    kernelCell.className = 'kernel-cell';
+                    kernelCell.textContent = currentKernel[y][x];
+                    kernelDisplayEl.appendChild(kernelCell);
+                }
+            }
+        }
+        
+        // カーネルの適用
+        function applyKernel(x, y) {
+            if (x < 1 || y < 1 || x >= imageSize - 1 || y >= imageSize - 1) return { sum: 0, calculation: [] };
+            
+            const kernel = kernels[kernelTypeSelect.value];
+            let sum = 0;
+            let calculation = [];
+            
+            for (let i = 0; i < kernelSize; i++) {
+                for (let j = 0; j < kernelSize; j++) {
+                    const imgX = x + (i - Math.floor(kernelSize/2));
+                    const imgY = y + (j - Math.floor(kernelSize/2));
+                    
+                    if (imgX >= 0 && imgY >= 0 && imgX < imageSize && imgY < imageSize) {
+                        const imgVal = originalImage[imgY][imgX];
+                        const kernelVal = kernel[i][j];
+                        const product = imgVal * kernelVal;
+                        
+                        calculation.push({
+                            imgX, imgY, imgVal, kernelVal, product
+                        });
+                        
+                        sum += product;
+                    }
+                }
+            }
+            
+            // 値を0-255の範囲に正規化
+            sum = Math.min(255, Math.max(0, Math.round(sum)));
+            
+            return { sum, calculation };
+        }
+        
+        // 次のステップへ
+        function nextStep() {
+            // 全ピクセルを処理し終えたら最初から
+            if (currentStep >= (imageSize - 2) * (imageSize - 2) - 1) {
+                resetCalculation();
+                return;
+            }
+            
+            const newStep = currentStep + 1;
+            currentStep = newStep;
+            
+            // 現在の座標を計算
+            const x = (newStep % (imageSize - 2)) + 1;
+            const y = Math.floor(newStep / (imageSize - 2)) + 1;
+            
+            // カーネル適用と計算結果の保存
+            const { sum, calculation } = applyKernel(x, y);
+            currentCalculation = { x, y, sum, details: calculation };
+            
+            // 結果画像の更新
+            resultImage[y][x] = sum;
+            updateDisplay();
+            
+            // 自動諧調調整（一定間隔で実行）
+            if (autoAdjust && currentStep % 20 === 0) {
+                adjustContrast();
+            }
+        }
+        
+        // 前のステップへ
+        function prevStep() {
+            if (currentStep <= 0) {
+                resetCalculation();
+                return;
+            }
+            
+            const newStep = currentStep - 1;
+            currentStep = newStep;
+            
+            // 現在の座標を計算
+            const x = (newStep % (imageSize - 2)) + 1;
+            const y = Math.floor(newStep / (imageSize - 2)) + 1;
+            
+            // カーネル適用と計算結果の保存
+            const { sum, calculation } = applyKernel(x, y);
+            currentCalculation = { x, y, sum, details: calculation };
+            
+            updateDisplay();
+        }
+        
+        // 計算をリセット
+        function resetCalculation() {
+            currentStep = -1;
+            currentCalculation = null;
+            
+            // ハイライトを削除
+            const highlightedPixels = document.querySelectorAll('.highlighted');
+            highlightedPixels.forEach(pixel => {
+                pixel.classList.remove('highlighted');
+                pixel.style.border = 'none';
+            });
+            
+            calculationDisplayEl.style.display = 'none';
+            
+            if (isPlaying) {
+                togglePlay();
+            }
+        }
+        
+        // 表示の更新
+        function updateDisplay() {
+            if (!currentCalculation) return;
+            
+            // 計算表示の更新
+            calculationDisplayEl.style.display = 'block';
+            currentPositionEl.textContent = `位置 x=${currentCalculation.x}, y=${currentCalculation.y}`;
+            
+            // 計算グリッドの更新
+            calcGridEl.innerHTML = '';
+            currentCalculation.details.forEach(detail => {
+                const calcCell = document.createElement('div');
+                calcCell.className = 'calc-cell';
+                calcCell.innerHTML = `
+                    <div>${detail.imgVal}</div>
+                    <div>×</div>
+                    <div>${detail.kernelVal}</div>
+                    <div>=</div>
+                    <div>${detail.product.toFixed(1)}</div>
+                `;
+                calcGridEl.appendChild(calcCell);
+            });
+            
+            // 合計の表示
+            const totalSum = currentCalculation.details.reduce((acc, d) => acc + d.product, 0);
+            calcSumEl.innerHTML = `合計: ${totalSum.toFixed(1)} → 正規化: ${currentCalculation.sum}`;
+            
+            // 画像のハイライト更新
+            // まず以前のハイライトをリセット
+            const highlightedPixels = document.querySelectorAll('.highlighted');
+            highlightedPixels.forEach(pixel => {
+                pixel.classList.remove('highlighted');
+                pixel.style.border = 'none';
+            });
+            
+            // 現在の計算に関連するピクセルをハイライト
+            currentCalculation.details.forEach(detail => {
+                const origPixel = document.getElementById(`orig-${detail.imgX}-${detail.imgY}`);
+                if (origPixel) {
+                    origPixel.classList.add('highlighted');
+                    origPixel.style.border = '1px solid red';
+                }
+            });
+            
+            // 現在処理中のピクセルをハイライト
+            const resultPixel = document.getElementById(`result-${currentCalculation.x}-${currentCalculation.y}`);
+            if (resultPixel) {
+                resultPixel.classList.add('highlighted');
+                resultPixel.style.border = '1px solid blue';
+                resultPixel.style.backgroundColor = getColor(currentCalculation.sum);
+            }
+        }
+        
+        // 諧調の自動調整
+        function adjustContrast() {
+            // 最小値と最大値を見つける
+            let min = 255;
+            let max = 0;
+            let hasProcessedPixels = false;
+            
+            for (let y = 0; y < imageSize; y++) {
+                for (let x = 0; x < imageSize; x++) {
+                    if (resultImage[y][x] > 0) { // 処理済みピクセルのみ
+                        min = Math.min(min, resultImage[y][x]);
+                        max = Math.max(max, resultImage[y][x]);
+                        hasProcessedPixels = true;
+                    }
+                }
+            }
+            
+            // 処理済みピクセルがない場合は何もしない
+            if (!hasProcessedPixels) return;
+            
+            // 範囲が狭すぎるか広すぎる場合のみ調整
+            const range = max - min;
+            if (range < 100 || min > 50 || max < 200) {
+                // 調整されたピクセルを更新
+                for (let y = 0; y < imageSize; y++) {
+                    for (let x = 0; x < imageSize; x++) {
+                        if (resultImage[y][x] > 0) { // 処理済みピクセルのみ
+                            // 0-255の範囲にスケーリング
+                            const adjustedValue = range === 0 ? 
+                                128 : // 全ピクセルが同じ値の場合
+                                Math.round(((resultImage[y][x] - min) / range) * 255);
+                            
+                            // 元の値を保持するためにカスタム属性を追加
+                            const pixelEl = document.getElementById(`result-${x}-${y}`);
+                            if (pixelEl) {
+                                pixelEl.setAttribute('data-original-value', resultImage[y][x]);
+                                pixelEl.style.backgroundColor = getColor(adjustedValue);
+                                pixelEl.title = `値(原値/調整値): ${resultImage[y][x]}/${adjustedValue}`;
+                            }
+                        }
+                    }
+                }
+                
+                // 情報表示を更新（計算表示が表示されていれば）
+                if (calculationDisplayEl.style.display !== 'none' && currentCalculation) {
+                    calcSumEl.innerHTML += `<br>自動諧調調整: ${min}-${max} → 0-255`;
+                }
+            }
+        }
+        
+        // 再生/停止の切り替え
+        function togglePlay() {
+            isPlaying = !isPlaying;
+            
+            if (isPlaying) {
+                btnPlay.textContent = '停止';
+                btnNext.disabled = true;
+                btnPrev.disabled = true;
+                
+                // 再生が終わっていたら最初から
+                if (currentStep >= (imageSize - 2) * (imageSize - 2) - 1) {
+                    resetDemo();
+                }
+                
+                playInterval = setInterval(() => {
+                    nextStep();
+                    
+                    // 全ピクセルを処理し終えたら停止して自動調整
+                    if (currentStep >= (imageSize - 2) * (imageSize - 2) - 1) {
+                        togglePlay();
+                        if (autoAdjust) {
+                            adjustContrast();
+                        }
+                    }
+                }, 1000 / speed);
+            } else {
+                btnPlay.textContent = '再生';
+                btnNext.disabled = false;
+                btnPrev.disabled = false;
+                clearInterval(playInterval);
+            }
+        }
+        
+        // デモのリセット
+        function resetDemo() {
+            // 再生中なら停止
+            if (isPlaying) {
+                togglePlay();
+            }
+            
+            // 計算のリセット
+            resetCalculation();
+            
+            // 結果画像のリセット
+            for (let y = 0; y < imageSize; y++) {
+                for (let x = 0; x < imageSize; x++) {
+                    resultImage[y][x] = 0;
+                }
+            }
+            
+            // 表示の更新
+            displayImages();
+        }
+        
+        // カーネルの更新
+        function updateKernel() {
+            displayKernel();
+            resetDemo();
+        }
+        
+        // 画像サイズの更新
+        function updateImageSize() {
+            imageSize = parseInt(imageSizeSelect.value);
+            resetDemo();
+            generateImage();
+            displayImages();
+        }
+        
+        // 速度の更新
+        function updateSpeed() {
+            speed = parseInt(speedSlider.value);
+            speedValueEl.textContent = `${speed}x`;
+            
+            // 再生中なら再設定
+            if (isPlaying) {
+                clearInterval(playInterval);
+                playInterval = setInterval(nextStep, 1000 / speed);
+            }
+        }
+        
+        // カラーマッピング（グレースケール値をRGBに変換）
+        function getColor(value) {
+            const val = Math.min(255, Math.max(0, value));
+            return `rgb(${val}, ${val}, ${val})`;
+        }
+    </script>
+</body>
+</html>
