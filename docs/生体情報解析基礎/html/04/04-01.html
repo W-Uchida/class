@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>医用画像再構成シミュレーター - 脳ファントム</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .controls {
+            flex: 1;
+            min-width: 300px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .visualization {
+            flex: 2;
+            min-width: 500px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .viz-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .canvas-container {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            flex: 1;
+            position: relative;
+        }
+        
+        canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #2980b9;
+        }
+        
+        button:disabled {
+            background-color: #bdc3c7;
+            cursor: not-allowed;
+        }
+        
+        .slider-container {
+            margin: 20px 0;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        input[type="range"] {
+            width: 100%;
+        }
+        
+        .value-display {
+            text-align: center;
+            margin-top: 5px;
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+        
+        .projection-list {
+            max-height: 150px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 4px;
+        }
+        
+        .projection-item {
+            padding: 5px;
+            background-color: #f9f9f9;
+            margin-bottom: 5px;
+            border-radius: 4px;
+        }
+        
+        .explainer {
+            background-color: #e8f4f8;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 5px solid #3498db;
+        }
+        
+        .canvas-label {
+            position: absolute;
+            bottom: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .quality-indicator {
+            text-align: center;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+        }
+        
+        .method-selector {
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>医用画像再構成シミュレーター - 脳ファントム</h1>
+    
+    <div class="explainer">
+        <h3>投影データと再構成の概念</h3>
+        <p>このデモは、CT撮影などで見られる「投影データからの画像再構成」の基本概念を視覚的に体験するためのものです。</p>
+        <p>物体の様々な角度からの「影（投影データ）」を取得し、それを元に物体の断面形状を再構成するプロセスを体験できます。</p>
+        <p>角度を選んで「投影データ追加」ボタンをクリックすると、その角度からの投影データが取得されます。投影データが増えるほど、再構成画像の精度が向上します。</p>
+    </div>
+    
+    <div class="container">
+        <div class="controls">
+            <h2>コントロールパネル</h2>
+            
+            <div class="slider-container">
+                <label for="angleSlider">投影角度: <span id="angleValue">0°</span></label>
+                <input type="range" id="angleSlider" min="0" max="359" value="0">
+            </div>
+            
+            <div class="method-selector">
+                <label for="reconstructionMethod">再構成方法:</label>
+                <select id="reconstructionMethod">
+                    <option value="simple">単純逆投影法</option>
+                    <option value="filtered" selected>フィルタ補正逆投影法</option>
+                </select>
+            </div>
+            
+            <button id="addProjection">投影データ追加</button>
+            <button id="addRandomProjections">ランダムに10投影追加</button>
+            <button id="resetProjections">リセット</button>
+            
+            <h3>追加済み投影データ角度</h3>
+            <div class="projection-list" id="projectionList">
+                <!-- 投影データリストはJavaScriptで動的に追加 -->
+            </div>
+            
+            <div class="quality-indicator">
+                <p>再構成画質: <span id="qualityIndicator">非常に低い (0投影)</span></p>
+            </div>
+        </div>
+        
+        <div class="visualization">
+            <div class="viz-row">
+                <div class="canvas-container">
+                    <canvas id="originalCanvas"></canvas>
+                    <div class="canvas-label">元の3Dオブジェクト</div>
+                </div>
+                <div class="canvas-container">
+                    <canvas id="projectionCanvas"></canvas>
+                    <div class="canvas-label">現在の投影データ</div>
+                </div>
+            </div>
+            
+            <div class="viz-row">
+                <div class="canvas-container">
+                    <canvas id="sinogramCanvas"></canvas>
+                    <div class="canvas-label">サイノグラム</div>
+                </div>
+                <div class="canvas-container">
+                    <canvas id="reconstructionCanvas"></canvas>
+                    <div class="canvas-label">再構成画像</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>解説</h2>
+        <p>このシミュレーターは、医用画像再構成の基本原理を理解するためのツールです。以下の要素から構成されています：</p>
+        
+        <h3>1. 元の3Dオブジェクト</h3>
+        <p>脳のCTを模したファントム画像です。実際のCTスキャンでは見ることができない「真の形状」に相当します。頭蓋骨、脳実質、脳室、基底核、出血巣、梗塞巣などの構造が含まれており、実際の脳CT画像で見られる典型的な構造や病変を再現しています。</p>
+        
+        <h3>2. 投影データ</h3>
+        <p>現在選択されている角度からの投影データ（影）を表示します。X線が物体を通過する際の減衰量に相当します。</p>
+        
+        <h3>3. サイノグラム</h3>
+        <p>異なる角度から取得した投影データを並べたものです。横軸は検出器位置、縦軸は角度を表します。</p>
+        
+        <h3>4. 再構成画像</h3>
+        <p>サイノグラムから再構成された断層画像です。投影データが増えるほど元の画像に近づきます。</p>
+        
+        <h3>再構成方法</h3>
+        <p><strong>単純逆投影法</strong>: 各投影データを取得角度に沿って直線状に引き伸ばし、すべての投影データを重ね合わせる方法です。シンプルですが、ぼやけた画像になります。</p>
+        <p><strong>フィルタ補正逆投影法</strong>: 投影データにフィルタを適用してから逆投影を行う方法です。より鮮明な画像を得られます。</p>
+    </div>
+
+    <script>
+        // キャンバスの初期化
+        const originalCanvas = document.getElementById('originalCanvas');
+        const projectionCanvas = document.getElementById('projectionCanvas');
+        const sinogramCanvas = document.getElementById('sinogramCanvas');
+        const reconstructionCanvas = document.getElementById('reconstructionCanvas');
+        
+        const originalCtx = originalCanvas.getContext('2d');
+        const projectionCtx = projectionCanvas.getContext('2d');
+        const sinogramCtx = sinogramCanvas.getContext('2d');
+        const reconstructionCtx = reconstructionCanvas.getContext('2d');
+        
+        // キャンバスサイズの設定
+        const canvasSize = 256;
+        [originalCanvas, projectionCanvas, sinogramCanvas, reconstructionCanvas].forEach(canvas => {
+            canvas.width = canvasSize;
+            canvas.height = canvasSize;
+        });
+        
+        // 脳ファントム形状の定義
+        const centerX = canvasSize / 2;
+        const centerY = canvasSize / 2;
+        const radius = canvasSize / 3;
+        
+        // 投影データを保存する配列
+        let projections = [];
+        let sinogram = [];
+        
+        // 現在の角度
+        let currentAngle = 0;
+        
+        // 元のオブジェクトを描画（脳ファントム）
+        function drawOriginalObject() {
+            originalCtx.clearRect(0, 0, canvasSize, canvasSize);
+            
+            // 背景を塗る
+            originalCtx.fillStyle = '#f8f8f8';
+            originalCtx.fillRect(0, 0, canvasSize, canvasSize);
+            
+            // 頭蓋骨部分（外側の楕円）
+            originalCtx.beginPath();
+            originalCtx.ellipse(centerX, centerY, radius * 0.9, radius * 1.1, 0, 0, 2 * Math.PI);
+            originalCtx.fillStyle = '#e0e0e0';
+            originalCtx.fill();
+            originalCtx.strokeStyle = '#707070';
+            originalCtx.lineWidth = 3;
+            originalCtx.stroke();
+            
+            // 脳実質（内側の楕円）
+            originalCtx.beginPath();
+            originalCtx.ellipse(centerX, centerY, radius * 0.75, radius * 0.95, 0, 0, 2 * Math.PI);
+            originalCtx.fillStyle = '#c0c0c0';
+            originalCtx.fill();
+            
+            // 脳の左右半球の分割線（正中線）
+            originalCtx.beginPath();
+            originalCtx.moveTo(centerX, centerY - radius * 0.95);
+            originalCtx.lineTo(centerX, centerY + radius * 0.95);
+            originalCtx.strokeStyle = '#a0a0a0';
+            originalCtx.lineWidth = 2;
+            originalCtx.stroke();
+            
+            // 脳室系（左右側脳室）
+            const ventricleOffset = radius * 0.2;
+            
+            // 左側脳室
+            originalCtx.beginPath();
+            originalCtx.ellipse(
+                centerX - ventricleOffset, 
+                centerY, 
+                radius * 0.15, 
+                radius * 0.3, 
+                0, 0, 2 * Math.PI
+            );
+            originalCtx.fillStyle = '#505050';
+            originalCtx.fill();
+            
+            // 右側脳室
+            originalCtx.beginPath();
+            originalCtx.ellipse(
+                centerX + ventricleOffset, 
+                centerY, 
+                radius * 0.15, 
+                radius * 0.3, 
+                0, 0, 2 * Math.PI
+            );
+            originalCtx.fillStyle = '#505050';
+            originalCtx.fill();
+            
+            // 基底核エリア（左右）
+            const basalGangliaOffset = radius * 0.35;
+            
+            // 左基底核
+            originalCtx.beginPath();
+            originalCtx.ellipse(
+                centerX - basalGangliaOffset,
+                centerY + radius * 0.1,
+                radius * 0.2,
+                radius * 0.25,
+                Math.PI * 0.2,
+                0, 2 * Math.PI
+            );
+            originalCtx.fillStyle = '#b0b0b0';
+            originalCtx.fill();
+            
+            // 右基底核
+            originalCtx.beginPath();
+            originalCtx.ellipse(
+                centerX + basalGangliaOffset,
+                centerY + radius * 0.1,
+                radius * 0.2,
+                radius * 0.25,
+                -Math.PI * 0.2,
+                0, 2 * Math.PI
+            );
+            originalCtx.fillStyle = '#b0b0b0';
+            originalCtx.fill();
+            
+            // 出血巣（高密度）
+            originalCtx.beginPath();
+            originalCtx.arc(
+                centerX - radius * 0.4,
+                centerY - radius * 0.3,
+                radius * 0.12,
+                0, 2 * Math.PI
+            );
+            originalCtx.fillStyle = '#303030';
+            originalCtx.fill();
+            
+            // 低吸収域（梗塞巣）
+            originalCtx.beginPath();
+            originalCtx.arc(
+                centerX + radius * 0.5,
+                centerY - radius * 0.4,
+                radius * 0.18,
+                0, 2 * Math.PI
+            );
+            originalCtx.fillStyle = '#e8e8e8';
+            originalCtx.fill();
+            
+            // 大脳皮質の溝（シルビウス裂など）
+            // 左シルビウス裂
+            originalCtx.beginPath();
+            originalCtx.moveTo(centerX - radius * 0.5, centerY - radius * 0.1);
+            originalCtx.quadraticCurveTo(
+                centerX - radius * 0.2, centerY,
+                centerX - radius * 0.1, centerY + radius * 0.3
+            );
+            originalCtx.strokeStyle = '#909090';
+            originalCtx.lineWidth = 2;
+            originalCtx.stroke();
+            
+            // 右シルビウス裂
+            originalCtx.beginPath();
+            originalCtx.moveTo(centerX + radius * 0.5, centerY - radius * 0.1);
+            originalCtx.quadraticCurveTo(
+                centerX + radius * 0.2, centerY,
+                centerX + radius * 0.1, centerY + radius * 0.3
+            );
+            originalCtx.strokeStyle = '#909090';
+            originalCtx.lineWidth = 2;
+            originalCtx.stroke();
+            
+            // 石灰化病変
+            originalCtx.beginPath();
+            originalCtx.arc(
+                centerX + radius * 0.2,
+                centerY + radius * 0.5,
+                radius * 0.08,
+                0, 2 * Math.PI
+            );
+            originalCtx.fillStyle = '#ffffff';
+            originalCtx.fill();
+            originalCtx.strokeStyle = '#000000';
+            originalCtx.lineWidth = 1;
+            originalCtx.stroke();
+        }
+        
+        // 指定角度からの投影データを計算
+        function calculateProjection(angle) {
+            const rad = angle * Math.PI / 180;
+            const cosTheta = Math.cos(rad);
+            const sinTheta = Math.sin(rad);
+            
+            // 投影データ配列（検出器位置ごとの値）
+            const projData = new Array(canvasSize).fill(0);
+            
+            // 画像データを取得
+            const imageData = originalCtx.getImageData(0, 0, canvasSize, canvasSize);
+            const data = imageData.data;
+            
+            // 各ピクセルについて投影データを計算
+            for (let y = 0; y < canvasSize; y++) {
+                for (let x = 0; x < canvasSize; x++) {
+                    // ピクセルのインデックス
+                    const idx = (y * canvasSize + x) * 4;
+                    
+                    // グレースケール値を計算（RGBの平均）
+                    const pixelValue = (data[idx] + data[idx + 1] + data[idx + 2]) / 3;
+                    
+                    // 検出器上の位置を計算
+                    // x' = x*cos(θ) + y*sin(θ)
+                    const rotX = Math.round((x - centerX) * cosTheta + (y - centerY) * sinTheta + canvasSize / 2);
+                    
+                    // 検出器の範囲内なら値を加算
+                    if (rotX >= 0 && rotX < canvasSize) {
+                        projData[rotX] += pixelValue / 255;
+                    }
+                }
+            }
+            
+            // 最大値で正規化
+            const maxVal = Math.max(...projData);
+            return projData.map(val => val / maxVal);
+        }
+        
+        // 投影データを表示
+        function displayProjection(projData, angle) {
+            projectionCtx.clearRect(0, 0, canvasSize, canvasSize);
+            
+            // 背景を塗る
+            projectionCtx.fillStyle = '#f8f8f8';
+            projectionCtx.fillRect(0, 0, canvasSize, canvasSize);
+            
+            // 投影角度を描画
+            projectionCtx.save();
+            projectionCtx.translate(centerX, centerY);
+            projectionCtx.rotate(angle * Math.PI / 180);
+            
+            // X線源と検出器の線を描画
+            projectionCtx.beginPath();
+            projectionCtx.moveTo(-canvasSize / 2, 0);
+            projectionCtx.lineTo(canvasSize / 2, 0);
+            projectionCtx.strokeStyle = 'rgba(255, 0, 0, 0.3)';
+            projectionCtx.lineWidth = 1;
+            projectionCtx.stroke();
+            
+            // X線のライン
+            for (let i = -canvasSize / 3; i <= canvasSize / 3; i += 20) {
+                projectionCtx.beginPath();
+                projectionCtx.moveTo(-canvasSize / 2, i);
+                projectionCtx.lineTo(canvasSize / 2, i);
+                projectionCtx.strokeStyle = 'rgba(255, 0, 0, 0.1)';
+                projectionCtx.stroke();
+            }
+            
+            projectionCtx.restore();
+            
+            // 投影データをグラフとして描画
+            projectionCtx.beginPath();
+            projectionCtx.moveTo(0, canvasSize);
+            
+            for (let i = 0; i < projData.length; i++) {
+                const x = i;
+                const y = canvasSize - projData[i] * canvasSize / 2;
+                projectionCtx.lineTo(x, y);
+            }
+            
+            projectionCtx.lineTo(canvasSize, canvasSize);
+            projectionCtx.closePath();
+            projectionCtx.fillStyle = 'rgba(33, 150, 243, 0.5)';
+            projectionCtx.fill();
+            
+            // グラフの線
+            projectionCtx.beginPath();
+            for (let i = 0; i < projData.length; i++) {
+                const x = i;
+                const y = canvasSize - projData[i] * canvasSize / 2;
+                
+                if (i === 0) {
+                    projectionCtx.moveTo(x, y);
+                } else {
+                    projectionCtx.lineTo(x, y);
+                }
+            }
+            
+            projectionCtx.strokeStyle = '#2196F3';
+            projectionCtx.lineWidth = 2;
+            projectionCtx.stroke();
+        }
+        
+        // サイノグラムを更新
+        function updateSinogram() {
+            sinogramCtx.clearRect(0, 0, canvasSize, canvasSize);
+            
+            // 背景を塗る
+            sinogramCtx.fillStyle = '#f8f8f8';
+            sinogramCtx.fillRect(0, 0, canvasSize, canvasSize);
+            
+            // 各投影データをサイノグラムに描画
+            for (let i = 0; i < projections.length; i++) {
+                const proj = projections[i];
+                const angle = proj.angle;
+                const projData = proj.data;
+                
+                // 角度を位置に変換（0-359度を0-canvasSizeにマッピング）
+                const y = Math.floor((angle / 360) * canvasSize);
+                
+                // 各投影データ点を描画
+                for (let j = 0; j < projData.length; j++) {
+                    const value = projData[j];
+                    const color = Math.floor(255 * (1 - value));
+                    
+                    sinogramCtx.fillStyle = `rgb(${color}, ${color}, ${color})`;
+                    sinogramCtx.fillRect(j, y, 1, 1);
+                }
+            }
+        }
+        
+        // 単純逆投影法による再構成
+        function simpleBackprojection() {
+            // 再構成画像の初期化
+            const reconstructionImage = new Array(canvasSize * canvasSize).fill(0);
+            
+            // 各投影データについて
+            for (let p = 0; p < projections.length; p++) {
+                const angle = projections[p].angle;
+                const projData = projections[p].data;
+                const rad = angle * Math.PI / 180;
+                const cosTheta = Math.cos(rad);
+                const sinTheta = Math.sin(rad);
+                
+                // 画像の各ピクセルに対して
+                for (let y = 0; y < canvasSize; y++) {
+                    for (let x = 0; x < canvasSize; x++) {
+                        // 対応する投影データのインデックスを計算
+                        const projIndex = Math.round((x - centerX) * cosTheta + (y - centerY) * sinTheta + canvasSize / 2);
+                        
+                        // 範囲内ならその値を加算
+                        if (projIndex >= 0 && projIndex < canvasSize) {
+                            reconstructionImage[y * canvasSize + x] += projData[projIndex] / projections.length;
+                        }
+                    }
+                }
+            }
+            
+            return reconstructionImage;
+        }
+        
+        // フィルタ補正逆投影法
+        function filteredBackprojection() {
+            // 再構成画像の初期化
+            const reconstructionImage = new Array(canvasSize * canvasSize).fill(0);
+            
+            // 各投影データについて
+            for (let p = 0; p < projections.length; p++) {
+                const angle = projections[p].angle;
+                const projData = projections[p].data;
+                const rad = angle * Math.PI / 180;
+                const cosTheta = Math.cos(rad);
+                const sinTheta = Math.sin(rad);
+                
+                // ランプフィルタの適用
+                const filteredProjData = applyRampFilter(projData);
+                
+                // 画像の各ピクセルに対して
+                for (let y = 0; y < canvasSize; y++) {
+                    for (let x = 0; x < canvasSize; x++) {
+                        // 対応する投影データのインデックスを計算
+                        const projIndex = Math.round((x - centerX) * cosTheta + (y - centerY) * sinTheta + canvasSize / 2);
+                        
+                        // 範囲内ならその値を加算
+                        if (projIndex >= 0 && projIndex < canvasSize) {
+                            reconstructionImage[y * canvasSize + x] += filteredProjData[projIndex] / projections.length;
+                        }
+                    }
+                }
+            }
+            
+            return reconstructionImage;
+        }
+        
+        // ランプフィルタの適用（簡易実装）
+        function applyRampFilter(projData) {
+            const n = projData.length;
+            const filteredData = new Array(n).fill(0);
+            
+            // FFTを用いた実装が本来は効率的だが、簡易的に空間領域でのフィルタリングを行う
+            for (let i = 0; i < n; i++) {
+                for (let j = 0; j < n; j++) {
+                    // ランプフィルタの簡易実装（距離が遠いほど重みが小さくなる）
+                    const distance = Math.abs(i - j);
+                    if (distance === 0) {
+                        filteredData[i] += projData[j] * 0.5;
+                    } else if (distance % 2 === 1) {
+                        filteredData[i] -= projData[j] * (2 / (Math.PI * Math.PI * distance * distance));
+                    }
+                }
+            }
+            
+            // 結果の正規化
+            const maxVal = Math.max(...filteredData.map(v => Math.abs(v)));
+            return filteredData.map(v => v / maxVal);
+        }
+        
+        // 再構成画像の表示
+        function displayReconstruction(reconstructionImage) {
+            reconstructionCtx.clearRect(0, 0, canvasSize, canvasSize);
+            
+            // 背景を塗る
+            reconstructionCtx.fillStyle = '#f8f8f8';
+            reconstructionCtx.fillRect(0, 0, canvasSize, canvasSize);
+            
+            // 画像データの生成
+            const imageData = reconstructionCtx.createImageData(canvasSize, canvasSize);
+            const data = imageData.data;
+            
+            // 最大値と最小値を見つける
+            let minVal = 1;
+            let maxVal = 0;
+            
+            for (let i = 0; i < reconstructionImage.length; i++) {
+                if (reconstructionImage[i] > maxVal) maxVal = reconstructionImage[i];
+                if (reconstructionImage[i] < minVal) minVal = reconstructionImage[i];
+            }
+            
+            // 正規化して表示
+            for (let i = 0; i < reconstructionImage.length; i++) {
+                // 正規化
+                let normalizedVal = (reconstructionImage[i] - minVal) / (maxVal - minVal);
+                
+                // 値を制限
+                normalizedVal = Math.max(0, Math.min(1, normalizedVal));
+                
+                // ピクセル値を設定
+                const val = Math.floor(normalizedVal * 255);
+                data[i * 4] = val;
+                data[i * 4 + 1] = val;
+                data[i * 4 + 2] = val;
+                data[i * 4 + 3] = 255; // 不透明度
+            }
+            
+            reconstructionCtx.putImageData(imageData, 0, 0);
+        }
+        
+        // 画質インジケータの更新
+        function updateQualityIndicator() {
+            const qualitySpan = document.getElementById('qualityIndicator');
+            const numProjections = projections.length;
+            
+            let qualityText;
+            if (numProjections === 0) {
+                qualityText = "非常に低い (0投影)";
+            } else if (numProjections < 5) {
+                qualityText = "低い (" + numProjections + "投影)";
+            } else if (numProjections < 10) {
+                qualityText = "普通 (" + numProjections + "投影)";
+            } else if (numProjections < 20) {
+                qualityText = "良い (" + numProjections + "投影)";
+            } else {
+                qualityText = "非常に良い (" + numProjections + "投影)";
+            }
+            
+            qualitySpan.textContent = qualityText;
+        }
+        
+        // 投影データリストの更新
+        function updateProjectionList() {
+            const listElement = document.getElementById('projectionList');
+            listElement.innerHTML = '';
+            
+            if (projections.length === 0) {
+                const emptyItem = document.createElement('div');
+                emptyItem.className = 'projection-item';
+                emptyItem.textContent = '投影データはまだありません';
+                listElement.appendChild(emptyItem);
+                return;
+            }
+            
+            // 角度順にソート
+            const sortedProjections = [...projections].sort((a, b) => a.angle - b.angle);
+            
+            sortedProjections.forEach(proj => {
+                const item = document.createElement('div');
+                item.className = 'projection-item';
+                item.textContent = `${proj.angle}°`;
+                listElement.appendChild(item);
+            });
+        }
+        
+        // 再構成の実行
+        function performReconstruction() {
+            const method = document.getElementById('reconstructionMethod').value;
+            let reconstructionImage;
+            
+            if (method === 'simple') {
+                reconstructionImage = simpleBackprojection();
+            } else {
+                reconstructionImage = filteredBackprojection();
+            }
+            
+            displayReconstruction(reconstructionImage);
+        }
+        
+        // 投影データを追加
+        function addProjectionData(angle) {
+            // すでに同じ角度のデータがあるか確認
+            if (projections.some(p => p.angle === angle)) {
+                alert(`角度 ${angle}° の投影データはすでに追加されています。`);
+                return false;
+            }
+            
+            const projData = calculateProjection(angle);
+            projections.push({ angle, data: projData });
+            
+            // UI更新
+            updateSinogram();
+            performReconstruction();
+            updateProjectionList();
+            updateQualityIndicator();
+            
+            return true;
+        }
+        
+        // イベントリスナーの設定
+        document.getElementById('angleSlider').addEventListener('input', function() {
+            currentAngle = parseInt(this.value);
+            document.getElementById('angleValue').textContent = currentAngle + '°';
+            
+            // 現在の角度での投影を表示
+            const currentProjData = calculateProjection(currentAngle);
+            displayProjection(currentProjData, currentAngle);
+        });
+        
+        document.getElementById('addProjection').addEventListener('click', function() {
+            addProjectionData(currentAngle);
+        });
+        
+        document.getElementById('addRandomProjections').addEventListener('click', function() {
+            // 10個のランダムな角度を追加
+            let addedCount = 0;
+            for (let i = 0; i < 10; i++) {
+                // すでに登録済みでない角度をランダムに選ぶ
+                let attempts = 0;
+                let randomAngle;
+                let added = false;
+                
+                // 既存の角度と被らないランダムな角度を最大20回試行
+                while (attempts < 20 && !added) {
+                    randomAngle = Math.floor(Math.random() * 360);
+                    if (!projections.some(p => p.angle === randomAngle)) {
+                        added = addProjectionData(randomAngle);
+                        if (added) addedCount++;
+                    }
+                    attempts++;
+                }
+            }
+            
+            alert(`${addedCount}個の新しい投影データを追加しました。`);
+        });
+        
+        document.getElementById('resetProjections').addEventListener('click', function() {
+            if (confirm('すべての投影データをリセットしますか？')) {
+                projections = [];
+                updateSinogram();
+                performReconstruction();
+                updateProjectionList();
+                updateQualityIndicator();
+            }
+        });
+        
+        document.getElementById('reconstructionMethod').addEventListener('change', function() {
+            performReconstruction();
+        });
+        
+        // 初期表示
+        drawOriginalObject();
+        const initialProjData = calculateProjection(currentAngle);
+        displayProjection(initialProjData, currentAngle);
+        updateProjectionList();
+        updateQualityIndicator();
+        performReconstruction();
+    </script>
+</body>
+</html>

@@ -1,27 +1,5 @@
 # 01.オリエンテーション
 
-
-## 自己紹介
-- 名前：　内田　航　（Wataru Uchida, PhD）
-- 所属・役職：　順天堂大学 健康データサイエンス学部 助教
-- 連絡先： w-uchida@juntendo.ac.jp
-- 経歴：
-    - 2018年 診療放射線技師 国家資格 取得
-    - 2021年 東京都立大学大学院 博士前期過程 修了 （放射線学）
-    - 2024年 順天堂大学大学院 医学研究科 放射線診断学講座 博士課程 修了（医学）
-- 研究：
-    - MRI（Magnetic Resonanse Imaging）の画像解析
-    - 特に、脳の拡散MRI信号値のモデリングによる神経微細構造推定が専門です。微細構造推定により、専門家の読影（診断）では目に見えないレベルの軽微な（発症早期の）構造・機能変化を捉えることで疾患の早期診断や予後予測モデルの開発に従事しています。
-- [ResearchGate](https://www.researchgate.net/profile/Wataru-Uchida/research)
-- [健康データサイエンス研究科 研究室紹介](https://www.juntendo.ac.jp/academics/graduate/hds/research/laboratory/)
-
-<figure>
-  <img src="../img/01-01.png" alt="Tractography" width="600" height="auto">
-  <figcaption>Tractography</figcaption>
-</figure>
-
----
-
 ## 授業の概要
 - 本講義は、臨床工学科の大学4年生を対象に、来年の国家試験に向けた医用画像装置と画像処理技術の基礎から応用までを学習することを目的としています。
 - 可能な限り、画像処理に関連する国家試験範囲は復習しつつ、応用的な内容も多少含め、「暗記」ではなく「理解」に繋がるよう構成していければと思います。
