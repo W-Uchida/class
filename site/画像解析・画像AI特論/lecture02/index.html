@@ -1509,50 +1509,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../%E7%A2%BA%E7%8E%87%E3%81%A8%E7%B5%B1%E8%A8%88I_II/lecture02/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    第2回
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../%E7%A2%BA%E7%8E%87%E3%81%A8%E7%B5%B1%E8%A8%88I_II/lecture03/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    第3回
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -2306,32 +2262,32 @@ fs \geq f_n = 2 × fmax (\text{信号の最大周波数})
 <h3 id="42">4.2 代表的な空間フィルタ</h3>
 <h4 id="_2">平滑化フィルタ（移動平均フィルタ）</h4>
 <p>すべての要素が同じ値（通常は1/n²）の単純なカーネルを使用します。これにより画像がぼやけ、ノイズが低減されます。</p>
-<p><strong>3×3平滑化フィルタの例：</strong></p>
-<pre><code>1/9 × [1 1 1]
+<p><strong>3×3平滑化フィルタの例：</strong>
+<div class="highlight"><pre><span></span><code>1/9 × [1 1 1]
       [1 1 1]
       [1 1 1]
-</code></pre>
+</code></pre></div></p>
 <h4 id="_3">ガウシアンフィルタ</h4>
 <p>2次元ガウス関数に基づくフィルタで、中心ほど重みが大きく、周辺ほど小さくなります。自然なぼかし効果があり、エッジを保持しながらノイズを低減します。</p>
-<p><strong>5×5ガウシアンフィルタの例：</strong></p>
-<pre><code>1/273 × [ 1  4  7  4  1]
+<p><strong>5×5ガウシアンフィルタの例：</strong>
+<div class="highlight"><pre><span></span><code>1/273 × [ 1  4  7  4  1]
         [ 4 16 26 16  4]
         [ 7 26 41 26  7]
         [ 4 16 26 16  4]
         [ 1  4  7  4  1]
-</code></pre>
+</code></pre></div></p>
 <h4 id="_4">微分フィルタ（エッジ検出）</h4>
 <p>画像の勾配（明暗の変化率）を計算し、エッジを強調します。</p>
-<p><strong>Sobelフィルタの例：</strong></p>
-<pre><code>x方向: [-1 0 1]    y方向: [-1 -2 -1]
+<p><strong>Sobelフィルタの例：</strong>
+<div class="highlight"><pre><span></span><code>x方向: [-1 0 1]    y方向: [-1 -2 -1]
        [-2 0 2]           [ 0  0  0]
        [-1 0 1]           [ 1  2  1]
-</code></pre>
-<p><strong>ラプラシアンフィルタの例：</strong></p>
-<pre><code>[0  1  0]
+</code></pre></div></p>
+<p><strong>ラプラシアンフィルタの例：</strong>
+<div class="highlight"><pre><span></span><code>[0  1  0]
 [1 -4  1]
 [0  1  0]
-</code></pre>
+</code></pre></div></p>
 <h4 id="_5">メディアンフィルタ</h4>
 <p>非線形フィルタの一種で、周囲の画素値の中央値を出力します。スパイクノイズ（塩・コショウノイズ）の除去に効果的です。</p>
 <div style="text-align: center; margin: 20px 0;">
