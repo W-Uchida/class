@@ -2,6 +2,12 @@
 @media (min-width: 1400px) {
     .md-main__inner {
       max-width: 4000px;  /* お好みに合わせて調整 */
+    .md-typeset blockquote {
+      color: #202020;        /* 文字色をほぼ黒にする（デフォルトは薄いグレー） */
+      font-weight: 400;      /* 文字の太さを標準に戻す */
+      font-style: normal;    /* 斜体になってしまう場合は標準に戻す */
+      font-weight: bold;
+    }
     }
   }
   
