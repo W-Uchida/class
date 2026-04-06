@@ -686,7 +686,7 @@ $$e^+ + e^- \rightarrow 2\gamma \text{（511keV each）}$$
 </div>
 
 ---
-
+<!-- 
 ## 9. 演習課題・国家試験対策問題
 
 - [Google Form](https://docs.google.com/forms/d/e/1FAIpQLSfC8eUcoGhtoolNZcX1gRSKxNjpPV_yVrM1dxJo_P3DZGQCxA/viewform?usp=header)
@@ -694,4 +694,4 @@ $$e^+ + e^- \rightarrow 2\gamma \text{（511keV each）}$$
 <figure>
   <img src="../img/10-08.png" alt="第7回演習QRコード" width="300" height="auto">
   <figcaption>第10回演習QRコード</figcaption>
-</figure>
+</figure> -->

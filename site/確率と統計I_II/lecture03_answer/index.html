@@ -8,13 +8,11 @@
       
       
       
-        <link rel="canonical" href="https://W-Uchida.github.io/class/%E7%A2%BA%E7%8E%87%E3%81%A8%E7%B5%B1%E8%A8%88I_II/lecture03/">
+        <link rel="canonical" href="https://W-Uchida.github.io/class/%E7%A2%BA%E7%8E%87%E3%81%A8%E7%B5%B1%E8%A8%88I_II/lecture03_answer/">
       
       
-        <link rel="prev" href="../lecture02_answer/">
+        <link rel="prev" href="../lecture03/">
       
-      
-        <link rel="next" href="../lecture03_answer/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -22,7 +20,7 @@
     
     
       
-        <title>第3回 - 講義資料ポータル</title>
+        <title>第3回_解答付 - 講義資料ポータル</title>
       
     
     
@@ -118,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              第3回
+              第3回_解答付
             
           </span>
         </div>
@@ -1157,6 +1155,28 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture03/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第3回
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -1173,7 +1193,7 @@
           
   
   <span class="md-ellipsis">
-    第3回
+    第3回_解答付
     
   </span>
   
@@ -1185,7 +1205,7 @@
         
   
   <span class="md-ellipsis">
-    第3回
+    第3回_解答付
     
   </span>
   
@@ -1247,28 +1267,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../lecture03_answer/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    第3回_解答付
-    
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -1371,7 +1369,8 @@
 
 
 <h1 id="3">第3回演習：仮説検定</h1>
-<p>仮説検定の用語（過誤・検出力）、t検定、母比率の検定、カイ二乗検定を扱います。</p>
+<p>仮説検定の用語（過誤・検出力）、t検定、母比率の検定、カイ二乗検定を扱います。
+問題の下にある「解答例」をクリックすると、解説と定期テストに向けたポイントが表示されます。</p>
 <hr />
 <h2 id="1">パート1：検定の基礎概念と過誤</h2>
 <div class="admonition question">
@@ -1398,6 +1397,71 @@
 <li>検定 I，検定 II，検定 III の検出力は等しい。</li>
 </ol>
 </div>
+<details class="success">
+<summary>解答例と解説</summary>
+<p>**正解：〔1〕 4, [2] 2 **</p>
+<p><strong>【解説】</strong>
+<strong>【参考：検定の判断と誤りの分類】</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">真の状態 \ 判断</th>
+<th style="text-align: left;">帰無仮説 <span class="arithmatex">\(H_0\)</span> を棄却する</th>
+<th style="text-align: left;">帰無仮説 <span class="arithmatex">\(H_0\)</span> を棄却しない（受容する）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>帰無仮説 <span class="arithmatex">\(H_0\)</span> が正しい</strong></td>
+<td style="text-align: left;"><strong>第1種の過誤</strong> (<span class="arithmatex">\(\alpha\)</span>)</td>
+<td style="text-align: left;">正しい判断<br>（確率 <span class="arithmatex">\(1-\alpha\)</span>）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>帰無仮説 <span class="arithmatex">\(H_0\)</span> が正しくない</strong></td>
+<td style="text-align: left;">正しい判断 (<strong>検出力</strong> <span class="arithmatex">\(1-\beta\)</span>)</td>
+<td style="text-align: left;"><strong>第2種の過誤</strong> (<span class="arithmatex">\(\beta\)</span>)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>〔1〕</strong></p>
+<ul>
+<li>
+<p><strong>第1種の過誤（<span class="arithmatex">\(\alpha\)</span>）</strong>：帰無仮説 <span class="arithmatex">\(H_0\)</span> が正しいのに、誤って棄却してしまう確率。</p>
+<ul>
+<li><span class="arithmatex">\(H_0\)</span>（分布 <span class="arithmatex">\(P_0\)</span>）が正しいとき、棄却域 <span class="arithmatex">\(X \le 3\)</span>（<span class="arithmatex">\(X=1, 2, 3\)</span>）に入る確率は、
+$$ P_0(1) + P_0(2) + P_0(3) = 0.1 + 0.1 + 0.1 = 0.3 $$
+よって、第1種の過誤確率は 0.3 です。</li>
+</ul>
+</li>
+<li>
+<p><strong>第2種の過誤（<span class="arithmatex">\(\beta\)</span>）</strong>：帰無仮説<span class="arithmatex">\(H_0\)</span>が正しくないのに、誤って<span class="arithmatex">\(H_0\)</span>を受容してしまう確率。つまり、<span class="arithmatex">\(H_1\)</span>の元で<span class="arithmatex">\(X&gt;3\)</span>となる確率。</p>
+</li>
+<li><strong>検出力（<span class="arithmatex">\(1 - \beta\)</span>）</strong>：帰無仮説<span class="arithmatex">\(H_0\)</span>が正しくないときに、正しく棄却する確率。
+    $$ \beta = P_1(4) + P_1(5) + P_1(6) = 0.05 + 0.05 + 0.05 = 0.1 $$
+    よって、検出力は 
+    $$ 1-\beta = 0.9 $$ </li>
+</ul>
+<p>したがって、正解は <strong>④</strong> です。</p>
+<p><strong>〔2〕</strong>
+各検定の有意水準（第1種の過誤確率 <span class="arithmatex">\(\alpha\)</span>）と検出力（<span class="arithmatex">\(1-\beta\)</span>）を計算します。</p>
+<ul>
+<li><strong>検定 I (<span class="arithmatex">\(X \le 3\)</span>)</strong>： <span class="arithmatex">\(\alpha = 0.3\)</span>, 検出力 <span class="arithmatex">\(= 0.9\)</span> （〔1〕より）</li>
+<li><strong>検定 II (<span class="arithmatex">\(X \le 2\)</span>)</strong>：<ul>
+<li><span class="arithmatex">\(\alpha = P_0(1) + P_0(2) = 0.1 + 0.1 = 0.2\)</span></li>
+<li>検出力 <span class="arithmatex">\(= P_1(1) + P_1(2) = 0.4 + 0.3 = 0.7\)</span></li>
+</ul>
+</li>
+<li><strong>検定 III (<span class="arithmatex">\(X = 6\)</span>)</strong>：<ul>
+<li><span class="arithmatex">\(\alpha = P_0(6) = 0.3\)</span></li>
+<li>検出力 <span class="arithmatex">\(= P_1(6) = 0\)</span></li>
+</ul>
+</li>
+</ul>
+<p>選択肢を検討します。</p>
+<ul>
+<li>1, 2について：検定 I と検定 III はともに <span class="arithmatex">\(\alpha = 0.3\)</span> で有意水準は同じです。検出力は I が 0.9、III が 0 なので、I の方が高いです。よって <strong>②</strong> が正解です。</li>
+</ul>
+</details>
 <hr />
 <h2 id="2t">パート2：t検定</h2>
 <div class="admonition question">
@@ -1416,6 +1480,34 @@
 <li>(ア) <span class="arithmatex">\(t = \frac{85.6 - 90}{\sqrt{121.9/20}}\)</span> 　(イ) <span class="arithmatex">\(|t| &gt; 1.725\)</span> 　(ウ) 棄却する</li>
 </ol>
 </div>
+<details class="success">
+<summary>解答例と解説</summary>
+<p><strong>正解：4</strong></p>
+<p><strong>【解説】</strong></p>
+<p><strong>(ア) 検定統計量の計算式</strong>
+<strong>母分散が未知の場合の母平均の検定</strong>には <span class="arithmatex">\(t\)</span> 統計量を用います。
+式は <span class="arithmatex">\(t = \frac{\bar{X} - \mu_0}{\sqrt{S^2/n}}\)</span> です。
+ここで、<span class="arithmatex">\(\bar{X} = 85.6, \mu_0 = 90, S^2 = 121.9, n = 20\)</span> なので、
+$$ t = \frac{85.6 - 90}{\sqrt{121.9/20}} $$
+となります。</p>
+<p><strong>(イ) 棄却域の設定</strong>
+自由度 <span class="arithmatex">\(\nu = n - 1 = 20 - 1 = 19\)</span> の <span class="arithmatex">\(t\)</span> 分布に従います。
+<span class="arithmatex">\(t\)</span> 分布表より、自由度 19 の上側 2.5% 点（両側検定）は <span class="arithmatex">\(2.093\)</span> です。
+よって棄却域は <span class="arithmatex">\(|t| &gt; 2.093\)</span> となります。これで選択肢は ④ に確定します。
+（※2.086 は自由度 20 の値、1.729 は自由度 19 の上側 5% 点（片側検定用）です）</p>
+<p><strong>(ウ) 判定</strong>
+実際に <span class="arithmatex">\(t\)</span> 値を計算してみます。
+$$ t = \frac{-4.4}{\sqrt{6.095}} \approx \frac{-4.4}{2.469} \approx -1.782 $$
+絶対値をとると <span class="arithmatex">\(|t| \approx 1.782\)</span> です。
+これは棄却限界値 <span class="arithmatex">\(2.093\)</span> よりも小さいため、棄却域に入りません。
+したがって、「帰無仮説を棄却しない（有意差なし）」という結論になります。</p>
+<p>よって、正解は <strong>④</strong> です。</p>
+<p><strong>【ポイント】</strong></p>
+<ul>
+<li><strong>検定の手順</strong>：①仮説を立てる <span class="arithmatex">\(\to\)</span> ②統計量を計算する <span class="arithmatex">\(\to\)</span> ③棄却域と比較する <span class="arithmatex">\(\to\)</span> ④結論を出す。</li>
+<li><strong>自由度の確認</strong>：単一サンプルのt検定では、自由度は必ず <span class="arithmatex">\(n-1\)</span> です。表を読み間違えないように注意しましょう。</li>
+</ul>
+</details>
 <div class="admonition question">
 <p class="admonition-title">問題3：対応のあるt検定（2019年11月 問16）</p>
 <p>母平均 <span class="arithmatex">\(\mu\)</span>, 母分散 <span class="arithmatex">\(\sigma^2\)</span> の正規分布を母集団分布とする母集団から大きさ 16 の無作為標本 <span class="arithmatex">\(X_1, \dots, X_{16}\)</span> を抽出する。ここで</p>
@@ -1453,6 +1545,56 @@
 <li><span class="arithmatex">\(t &lt; 1.753\)</span> となるため，帰無仮説は棄却されない。よって，食品 A の摂取後には体重が減少するとは判断できない。</li>
 </ol>
 </div>
+<details class="success">
+<summary>解答例と解説</summary>
+<p><strong>正解：〔1〕 5, 〔2〕 4, 〔3〕 5</strong></p>
+<p><strong>【解説】</strong></p>
+<p>対応のあるt検定においては、時点ごとのデータを2つの独立した群のデータと考えてはならない。
+そこで、前後（問題ではダイエット前後）の比較するため"差"を計算し、1標本t検定を実施する。</p>
+<p><strong>〔1〕t分布の自由度</strong></p>
+<p>母分散が未知の場合、正規母集団からの標本平均を不偏分散で標準化した統計量 <span class="arithmatex">\(T\)</span> は、<span class="arithmatex">\(t\)</span> 分布に従います。
+自由度は、標本サイズ <span class="arithmatex">\(n=16\)</span> から 1 を引いた値になります。
+自由度 <span class="arithmatex">\(= 16 - 1 = 15\)</span>。
+よって、自由度 15 の <span class="arithmatex">\(t\)</span> 分布に従います。正解は <strong>⑤</strong> です。</p>
+<p><strong>〔2〕仮説の設定</strong></p>
+<ul>
+<li><strong>データの定義</strong>：問題文より、変数は「前 - 後」の差として定義されています。<ul>
+<li>体重が減少した場合： (前) <span class="arithmatex">\(&gt;\)</span> (後) なので、差は <strong>プラス</strong> になります。</li>
+</ul>
+</li>
+<li><strong>帰無仮説 <span class="arithmatex">\(H_0\)</span></strong>：「変化がない（効果がない）」。通常は等号を含めて <span class="arithmatex">\(\mu = 0\)</span> とします。 <span class="arithmatex">\(\Rightarrow H_0: \mu = 0\)</span></li>
+<li><strong>対立仮説 <span class="arithmatex">\(H_1\)</span></strong>：「体重が減少する」、つまり「差の平均 <span class="arithmatex">\(\mu\)</span> が正である」こと。 <span class="arithmatex">\(\Rightarrow H_1: \mu &gt; 0\)</span></li>
+</ul>
+<p>したがって、正解は <strong>④</strong> です。</p>
+<p><strong>〔3〕検定の実施と結論</strong></p>
+<ul>
+<li><strong>検定統計量の計算</strong>：
+    表の値より、標本平均 <span class="arithmatex">\(\bar{X} = 0.5\)</span>、標準偏差 <span class="arithmatex">\(S = 1.5\)</span>、サンプルサイズ <span class="arithmatex">\(n = 16\)</span>。
+    $$ t = \frac{\bar{X} - 0}{S/\sqrt{n}} = \frac{0.5}{1.5/\sqrt{16}} = \frac{0.5}{1.5/4} = \frac{0.5}{0.375} = \frac{2.0}{1.5} \approx 1.333 $$</li>
+<li><strong>棄却域の設定</strong>：
+    対立仮説が <span class="arithmatex">\(\mu &gt; 0\)</span> なので、<strong>片側検定（上側）</strong>を行います。
+    有意水準 5%、自由度 15 の <span class="arithmatex">\(t\)</span> 分布の上側 5% 点は <span class="arithmatex">\(t_{0.05}(15) = 1.753\)</span> です（選択肢の数値から読み取れます）。
+    棄却域は <span class="arithmatex">\(t &gt; 1.753\)</span> です。</li>
+<li><strong>判定</strong>：
+    計算した <span class="arithmatex">\(t \approx 1.33\)</span> は <span class="arithmatex">\(1.753\)</span> より小さい (<span class="arithmatex">\(1.33 &lt; 1.753\)</span>) ため、棄却域に入りません。
+    したがって、<strong>帰無仮説は棄却されません</strong>。
+    これは、「統計的に有意な体重減少は見られなかった（減少するとは判断できない）」ことを意味します。</li>
+</ul>
+<p>選択肢を検討します。</p>
+<ul>
+<li>1, 3：<span class="arithmatex">\(2.131\)</span> は両側検定（2.5%点）の値であり、今回は片側検定なので不適切です。</li>
+<li>2：不等号の向きや結論が矛盾しています。</li>
+<li><strong>4：「体重変化はないと判断する」は帰無仮説を積極的に採択する表現であり、検定の結論としては不適切です（「差があるとは言えない」までしか言えません）。</strong></li>
+<li>5：「帰無仮説は棄却されない」「体重が減少するとは判断できない」としており、適切です。</li>
+</ul>
+<p>よって正解は <strong>⑤</strong> です。</p>
+<p><strong>【ポイント】</strong></p>
+<ul>
+<li><strong>対応のあるt検定</strong>：同一対象の「前後」の比較は、差をとって「差の平均が0かどうか」の1標本t検定に帰着させます。</li>
+<li><strong>片側検定の符号</strong>：「減った」ことを言いたい場合、差を「前-後」でとるか「後-前」でとるかで、対立仮説が <span class="arithmatex">\(&gt;0\)</span> か <span class="arithmatex">\(&lt;0\)</span> か変わる点に注意してください。</li>
+<li><strong>検定の結論</strong>：棄却されなかった場合、「差がないと証明された」わけではなく、「差があるとは言えない（証拠不十分）」という解釈になります。---</li>
+</ul>
+</details>
 <h2 id="3_1">パート3：母比率の検定</h2>
 <div class="admonition question">
 <p class="admonition-title">問題4：母比率の検定（2018年11月 問15）</p>
@@ -1482,6 +1624,105 @@
 <li>0.86</li>
 </ol>
 </div>
+<details class="success">
+<summary>解答例と解説</summary>
+<p><strong>正解：〔1〕 3, 〔2〕 2, 〔3〕 5</strong></p>
+<p><strong>【解説】</strong></p>
+<p><strong>〔1〕確率分布の特定</strong></p>
+<ul>
+<li><strong>分布</strong>：不良品か良品かの2択（ベルヌーイ試行）を独立に <span class="arithmatex">\(n=200\)</span> 回繰り返すので、確率変数<span class="arithmatex">\(X\)</span>は、試行回数<span class="arithmatex">\(n\)</span>, 生起確率<span class="arithmatex">\(p\)</span>とすると二項分布<span class="arithmatex">\(B(n, p)\)</span>に従います。</li>
+</ul>
+<p><span class="arithmatex">\(p=0.05\)</span>を正しいと仮定したときの期待値と分散は、</p>
+<ul>
+<li><strong>期待値</strong>：<span class="arithmatex">\(E[X] = np = 200 \times 0.05 = 10.0\)</span>。</li>
+<li><strong>分散</strong>：<span class="arithmatex">\(V[X] = np(1-p) = 200 \times 0.05 \times 0.95 = 10.0 \times 0.95 = 9.5\)</span>。</li>
+</ul>
+<p>よって正解は <strong>③</strong> です。
+（※ポアソン分布で近似する場合、期待値＝分散＝<span class="arithmatex">\(\lambda=10.0\)</span> となりますが、ここでは二項分布が選択肢にあるため、より厳密な方を選びます）</p>
+<p><strong>〔2〕1標本の母比率の検定</strong></p>
+<ul>
+<li><strong>サンプルサイズ (<span class="arithmatex">\(n\)</span>)</strong>: <span class="arithmatex">\(n = 200\)</span> （試作した部品の総数）</li>
+<li><strong>観測データ (<span class="arithmatex">\(X\)</span>)</strong>: <span class="arithmatex">\(X = 16\)</span> （実際に混入していた不良品の個数）</li>
+<li>
+<p><strong>標本比率 (<span class="arithmatex">\(\hat{r}\)</span>)</strong>: 実際の不良品率です。以下のように計算します。
+    $$ \hat{r} = \frac{X}{n} = \frac{16}{200} = 0.08 $$</p>
+</li>
+<li>
+<p><strong>帰無仮説 (<span class="arithmatex">\(H_0\)</span>)</strong>: 「A社の主張通り、不良品率は5%である」
+    $$ H_0: r = 0.05 $$</p>
+</li>
+<li><strong>対立仮説 (<span class="arithmatex">\(H_1\)</span>)</strong>: 「不良品率は5%より高い（悪い）」
+    $$ H_1: r &gt; 0.05 $$</li>
+</ul>
+<p>本来、個数 <span class="arithmatex">\(X\)</span> は二項分布に従いますが、サンプルサイズ <span class="arithmatex">\(n\)</span> が十分に大きい場合、標本比率 <span class="arithmatex">\(\hat{r}\)</span> の分布は <strong>正規分布</strong> で近似できることが知られています（中心極限定理）。</p>
+<ul>
+<li><strong>平均</strong>: <span class="arithmatex">\(r = 0.05\)</span></li>
+<li><strong>標本比率の分散</strong>: <span class="arithmatex">\(V[X/n] = \frac{1}{n^2}V[X] = \frac{1}{n^2}nr(1-r) = \frac{r(1 - r)}{n}\)</span></li>
+<li><strong>標本比率の標準偏差（標準誤差）</strong>: <span class="arithmatex">\(\sqrt{\frac{r(1 - r)}{n}}\)</span></li>
+</ul>
+<p>したがって、これを標準化（平均0、分散1に変換）した統計量 <span class="arithmatex">\(Z\)</span> は標準正規分布に従う。</p>
+<div class="arithmatex">\[ Z = \frac{\hat{r} - r}{\sqrt{\frac{r(1 - r)}{n}}} \]</div>
+<p>数値を代入して <span class="arithmatex">\(Z\)</span> 値を求めます。</p>
+<div class="arithmatex">\[ Z = \frac{0.08 - 0.05}{\sqrt{\frac{0.05 \times (1 - 0.05)}{200}}}  \approx 1.946 \]</div>
+<ul>
+<li>
+<p>** P値の導出と結論**
+求めた <span class="arithmatex">\(Z=1.95\)</span> が、標準正規分布のどの位置にあるかを確認し、それより右側（上側）の面積（確率 <span class="arithmatex">\(P\)</span>）を求めます。</p>
+</li>
+<li>
+<p>標準正規分布表（Z分布表）を見ると、よく使われる値として <span class="arithmatex">\(Z=1.96\)</span> のときの上側確率は <span class="arithmatex">\(0.025\)</span> (<span class="arithmatex">\(2.5\%\)</span>) です。</p>
+</li>
+<li>今回の <span class="arithmatex">\(Z=1.95\)</span> は <span class="arithmatex">\(1.96\)</span> に非常に近い値です。</li>
+<li>したがって、求める確率（P値）も <span class="arithmatex">\(0.025\)</span> に非常に近い値になります。</li>
+</ul>
+<p>選択肢の中で <span class="arithmatex">\(0.025\)</span> に最も近い値を探すと、
+<strong>② 0.026</strong>
+が該当します。</p>
+<p>よって正解は <strong>②</strong> です。</p>
+<p><strong>〔3〕2標本の比率の差の検定</strong></p>
+<ul>
+<li>A社：<span class="arithmatex">\(n_1=200, x_1=16, \hat{p}_1=0.08\)</span></li>
+<li>B社：<span class="arithmatex">\(n_2=200, x_2=17, \hat{p}_2=0.085\)</span></li>
+</ul>
+<hr />
+<p><strong>差の分布について</strong></p>
+<p>2つの独立な標本から得られた標本比率 <span class="arithmatex">\(\hat{p}_1\)</span>, <span class="arithmatex">\(\hat{p}_2\)</span> について、それぞれが正規近似できるとき：</p>
+<div class="arithmatex">\[\hat{p}_1 \sim N\left(p_1, \frac{p_1(1-p_1)}{n_1}\right), \quad \hat{p}_2 \sim N\left(p_2, \frac{p_2(1-p_2)}{n_2}\right)\]</div>
+<p>独立な正規分布の差もまた正規分布に従うため、</p>
+<div class="arithmatex">\[\hat{p}_1 - \hat{p}_2 \sim N\left(p_1 - p_2, \frac{p_1(1-p_1)}{n_1} + \frac{p_2(1-p_2)}{n_2}\right)\]</div>
+<p>帰無仮説 <span class="arithmatex">\(H_0: d = p_1-p_2 = 0 \iff p_1 = p_2 = p\)</span>（共通の母比率）の下では、</p>
+<div class="arithmatex">\[\hat{p}_1 - \hat{p}_2 \sim N\left(0, p(1-p)\left(\frac{1}{n_1} + \frac{1}{n_2}\right)\right)\]</div>
+<p>となる。この共通の母比率 <span class="arithmatex">\(p\)</span> は未知なので、<strong>プールした比率</strong> <span class="arithmatex">\(\hat{p}\)</span> で推定する。</p>
+<hr />
+<ul>
+<li>
+<p>帰無仮説 <span class="arithmatex">\(H_0\)</span>（差がない）の下でのプールした比率 <span class="arithmatex">\(\hat{p}\)</span>：
+    $$ \hat{p} = \frac{x_1 + x_2}{n_1 + n_2} = \frac{16+17}{400} = \frac{33}{400} = 0.0825 $$</p>
+</li>
+<li>
+<p>検定統計量 <span class="arithmatex">\(Z\)</span> は帰無仮説 <span class="arithmatex">\(H_0\)</span> の下で標準正規分布に従う：
+    $$ Z = \frac{(\hat{p}_1 - \hat{p}_2) - 0}{\sqrt{\hat{p}(1-\hat{p})\left(\frac{1}{n_1} + \frac{1}{n_2}\right)}} = \frac{0.08 - 0.085}{\sqrt{0.0825 \times 0.9175 \times \frac{2}{200}}} $$
+    $$ \text{分母} = \sqrt{0.0757 \times 0.01} = \sqrt{0.000757} \approx 0.0275 $$
+    $$ Z = \frac{-0.005}{0.0275} \approx -0.18 $$</p>
+</li>
+<li>
+<p>対立仮説が <span class="arithmatex">\(H_1: p_1 \ne p_2\)</span> なので両側検定です。</p>
+</li>
+<li><span class="arithmatex">\(P(|Z| &gt; 0.18) = 2 \times P(Z &gt; 0.18)\)</span></li>
+<li>標準正規分布表より <span class="arithmatex">\(P(Z &gt; 0.18) \approx 0.4286\)</span></li>
+<li>
+<p>P値は <span class="arithmatex">\(2 \times 0.43 \approx 0.86\)</span></p>
+</li>
+<li>
+<p>よって正解は <strong>⑤</strong> です。</p>
+</li>
+</ul>
+<p><strong>【ポイント】</strong></p>
+<ul>
+<li><strong>二項分布の分散</strong>：<span class="arithmatex">\(np(1-p)\)</span> です。ポアソン分布（分散=<span class="arithmatex">\(\lambda\)</span>）と混同しないようにしましょう。</li>
+<li><strong>比率の差の検定</strong>：帰無仮説が <span class="arithmatex">\(p_1=p_2\)</span> の場合、共通の比率（プールした比率）を使って標準誤差を計算します。</li>
+</ul>
+</details>
 <hr />
 <h2 id="4">パート4：カイ二乗検定</h2>
 <div class="admonition question">
@@ -1513,6 +1754,37 @@
 <li>(ア) 自由度 6 の <span class="arithmatex">\(\chi^2\)</span> 分布 　(イ) 棄却しない</li>
 </ol>
 </div>
+<details class="success">
+<summary>解答例と解説</summary>
+<p><strong>正解：〔1〕 1, 〔2〕 3</strong></p>
+<p><strong>【解説】</strong></p>
+<p><strong>〔1〕統計量の計算</strong></p>
+<ul>
+<li>合計件数：<span class="arithmatex">\(14+19+15+22+16+16 = 102\)</span>件。</li>
+<li>カテゴリー数：月〜土の6つ。</li>
+<li>帰無仮説（一様分布）の下での期待度数 <span class="arithmatex">\(E\)</span>：<span class="arithmatex">\(102 / 6 = 17\)</span>。</li>
+<li>カイ二乗統計量の定義：<span class="arithmatex">\(\chi^2 = \sum \frac{(O-E)^2}{E}\)</span>　ただし、<span class="arithmatex">\(O\)</span>は観測度数、<span class="arithmatex">\(E\)</span>は期待度数。</li>
+<li>式：
+    $$ \chi^2 = \frac{(14-17)^2 + (19-17)^2 + (15-17)^2 + (22-17)^2 + (16-17)^2 + (16-17)^2}{17} \approx 2.59$$
+    最後の2項（金・土）は同じなので <span class="arithmatex">\(2 \times (16-17)^2\)</span> とまとめられます。
+    これは選択肢 <strong>①</strong> と一致します。</li>
+</ul>
+<p><strong>〔2〕自由度と判定</strong></p>
+<ul>
+<li><strong>(ア) 自由度</strong>：適合度検定の自由度は「カテゴリー数 - 1」です。<span class="arithmatex">\(6 - 1 = 5\)</span>。</li>
+<li><strong>(イ) 判定</strong>：<ul>
+<li>統計量の値：設問〔1〕の正解①の値は約 <strong>2.59</strong> と与えられています。</li>
+<li>棄却限界値：自由度5のカイ二乗分布の上側5%点は <strong>11.07</strong> です。</li>
+<li><span class="arithmatex">\(2.59 &lt; 11.07\)</span> なので棄却域に入りません。結論は「棄却しない」。</li>
+</ul>
+</li>
+</ul>
+<p>よって正解は <strong>③</strong> です。</p>
+<p><strong>【ポイント】</strong></p>
+<ul>
+<li><strong>カイ二乗検定</strong>：式 <span class="arithmatex">\(\sum (O-E)^2/E\)</span> と、自由度（カテゴリー数-1）を確実に覚えましょう。</li>
+</ul>
+</details>
 <div class="admonition question">
 <p class="admonition-title">問題6：独立性の検定（2021年6月 問19）</p>
 <p>ある医療施設で，心筋梗塞の患者 10 人全員と，心筋梗塞ではない患者の中からランダムに選択された患者 10 人について，過去の喫煙歴を調査したところ次の分割表の結果を得た。</p>
@@ -1533,6 +1805,110 @@
 <li>(ア) 1.55 　(イ) 1 　(ウ) 0.213</li>
 </ol>
 </div>
+<details class="success">
+<summary>解答例と解説</summary>
+<p><strong>正解：3</strong></p>
+<p><strong>【解説】</strong></p>
+<p><strong>(ア) 統計量の計算</strong></p>
+<ul>
+<li>実測値 <span class="arithmatex">\(O\)</span>：</li>
+<li>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>あり</th>
+<th>なし</th>
+<th>計</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>喫煙あり</td>
+<td>9</td>
+<td>6</td>
+<td>15</td>
+</tr>
+<tr>
+<td>喫煙なし</td>
+<td>1</td>
+<td>4</td>
+<td>5</td>
+</tr>
+<tr>
+<td>計</td>
+<td>10</td>
+<td>10</td>
+<td>20</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>期待度数 <span class="arithmatex">\(E\)</span>：<span class="arithmatex">\(\frac{\text{行和} \times \text{列和}}{\text{総和}}\)</span></p>
+<ul>
+<li>(あり, あり): <span class="arithmatex">\(15 \times 10 / 20 = 7.5\)</span></li>
+<li>(あり, なし): <span class="arithmatex">\(15 \times 10 / 20 = 7.5\)</span></li>
+<li>(なし, あり): <span class="arithmatex">\(5 \times 10 / 20 = 2.5\)</span></li>
+<li>(なし, なし): <span class="arithmatex">\(5 \times 10 / 20 = 2.5\)</span></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>あり</th>
+<th>なし</th>
+<th>計</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>喫煙あり</td>
+<td><span class="arithmatex">\(15 \times 10 / 20 = 7.5\)</span></td>
+<td><span class="arithmatex">\(15 \times 10 / 20 = 7.5\)</span></td>
+<td>15</td>
+</tr>
+<tr>
+<td>喫煙なし</td>
+<td><span class="arithmatex">\(5 \times 10 / 20 = 2.5\)</span></td>
+<td><span class="arithmatex">\(5 \times 10 / 20 = 2.5\)</span></td>
+<td>5</td>
+</tr>
+<tr>
+<td>計</td>
+<td>10</td>
+<td>10</td>
+<td>20</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p><span class="arithmatex">\(\chi^2\)</span> 統計量：
+    $$ \chi^2 = \frac{(9-7.5)^2}{7.5} + \frac{(6-7.5)^2}{7.5} + \frac{(1-2.5)^2}{2.5} + \frac{(4-2.5)^2}{2.5} $$
+    $$ = \frac{2.25}{7.5} \times 2 + \frac{2.25}{2.5} \times 2 = 0.3 \times 2 + 0.9 \times 2 = 0.6 + 1.8 = 2.40 $$</p>
+</li>
+</ul>
+<p><strong>(イ) 自由度</strong></p>
+<p><span class="arithmatex">\(2 \times 2\)</span> 分割表なので、<span class="arithmatex">\((2-1) \times (2-1) = 1\)</span>。</p>
+<p><strong>(ウ) P値の導出</strong></p>
+<p>自由度 1 のカイ二乗分布に従う統計量 <span class="arithmatex">\(\chi^2\)</span> は、標準正規分布に従う確率変数 <span class="arithmatex">\(Z\)</span> の2乗 (<span class="arithmatex">\(Z^2\)</span>) と同じ分布に従います。
+したがって、<span class="arithmatex">\(\chi^2 = 2.40\)</span> より大きい値をとる確率（P値）は、標準正規分布において <span class="arithmatex">\(Z^2 &gt; 2.40\)</span>、すなわち <span class="arithmatex">\(|Z| &gt; \sqrt{2.40}\)</span> となる確率と等しくなります。</p>
+<ol>
+<li>まず <span class="arithmatex">\(\sqrt{2.40}\)</span> を計算します。
+    <span class="arithmatex">\(\sqrt{2.40} \approx 1.549\)</span></li>
+<li>標準正規分布表を用いて、<span class="arithmatex">\(|Z| &gt; 1.55\)</span> となる確率を求めます。
+    表より、上側確率 <span class="arithmatex">\(P(Z &gt; 1.55) = 0.0606\)</span> です。</li>
+<li>両側（<span class="arithmatex">\(Z &gt; 1.55\)</span> または <span class="arithmatex">\(Z &lt; -1.55\)</span>）の確率を合わせます。
+    <span class="arithmatex">\(P(|Z| &gt; 1.55) = 2 \times 0.0606 = 0.1212\)</span></li>
+</ol>
+<p>計算された P値 <span class="arithmatex">\(0.1212\)</span> に最も近い選択肢は <strong>0.121</strong> です。
+よって正解は <strong>③</strong> です。</p>
+<p><strong>【ポイント】</strong></p>
+<ul>
+<li><strong>独立性の検定</strong>：期待度数の計算方法をマスターしましょう。自由度は <span class="arithmatex">\((R-1)(C-1)\)</span> です。</li>
+</ul>
+</details>
 
 
 
@@ -1565,7 +1941,7 @@
     <span class="md-icon" title="作成日">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年12月15日 04:32:43 UTC">2025年12月15日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年4月6日 06:03:19 UTC">2026年4月6日</span>
   </span>
 
     

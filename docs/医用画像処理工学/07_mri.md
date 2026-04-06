@@ -409,7 +409,7 @@ $$I(x,y) = \iint S(k_x,k_y) \cdot e^{j2\pi(k_x x + k_y y)} dk_x dk_y$$
 5. **臨床応用**：各領域での診断精度向上への貢献
 
 ---
-
+<!-- 
 ## 第7回 演習
 
 ### 演習問題
@@ -419,7 +419,7 @@ $$I(x,y) = \iint S(k_x,k_y) \cdot e^{j2\pi(k_x x + k_y y)} dk_x dk_y$$
 <figure>
   <img src="../img/07-11.png" alt="第7回演習" width="300" height="auto">
   <figcaption>第7回演習QRコード</figcaption>
-</figure>
+</figure> -->
 
 ---
 

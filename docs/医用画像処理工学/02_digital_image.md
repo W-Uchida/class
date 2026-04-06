@@ -518,11 +518,11 @@ $$
     - 医用画像では情報の保全と伝送・保存のバランスが特に重要
 
 ---
-
+<!-- 
 ## 第2回 演習
 - [Google Form](https://forms.gle/jH5WPRBSZu4iL95L8)
 
 <figure>
   <img src="../img/02-12.png" alt="第2回演習" width="300" height="auto">
   <figcaption>第2回演習</figcaption>
-</figure>
+</figure> -->

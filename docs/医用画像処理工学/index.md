@@ -9,11 +9,10 @@
 
 
 ## **授業資料の共有**
-- 授業資料はホームページ（[https://w-uchida.github.io/class/%E5%8C%BB%E7%94%A8%E7%94%BB%E5%83%8F%E5%87%A6%E7%90%86%E5%B7%A5%E5%AD%A6/](https://w-uchida.github.io/class/%E5%8C%BB%E7%94%A8%E7%94%BB%E5%83%8F%E5%87%A6%E7%90%86%E5%B7%A5%E5%AD%A6/)）で共有予定です。自身で管理して下さい。
-- 授業の進行度合いや理解度によって、場合によっては共有形式を変更する可能性があります。
+- 授業資料はホームページ（[講義資料ポータルサイト](https://w-uchida.github.io/class/%E5%8C%BB%E7%94%A8%E7%94%BB%E5%83%8F%E5%87%A6%E7%90%86%E5%B7%A5%E5%AD%A6/)）で共有します。
 
 <figure>
-  <img src="../img/00-01.png" alt="homepage_QR" width="300" height="auto">
+  <img src="./img/00-01.png" alt="homepage_QR" width="300" height="auto">
   <figcaption>授業資料QR</figcaption>
 </figure>
 

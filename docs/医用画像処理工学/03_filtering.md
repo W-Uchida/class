@@ -540,11 +540,11 @@ $$H_{HP}(u,v) = 1 - H_{LP}(u,v)$$
 
 これらの技術を適切に活用することで、医用画像の診断精度向上に貢献することができます。
 
-
+<!-- 
 ## 第3回 演習
 - [Google Form](https://forms.gle/iqDRXu36SzVDy9w4A)
 
 <figure>
   <img src="../img/03-09.png" alt="第3回演習" width="300" height="auto">
   <figcaption>第3回演習</figcaption>
-</figure>
+</figure> -->
