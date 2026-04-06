@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://W-Uchida.github.io/class/%E7%A2%BA%E7%8E%87%E3%81%A8%E7%B5%B1%E8%A8%88I_II/lecture02/">
+        <link rel="canonical" href="https://W-Uchida.github.io/class/%E7%A2%BA%E7%8E%87%E3%81%A8%E7%B5%B1%E8%A8%88I_II/lecture02_answer/">
       
       
-        <link rel="prev" href="../lecture01_answer/">
+        <link rel="prev" href="../lecture02/">
       
       
-        <link rel="next" href="../lecture02_answer/">
+        <link rel="next" href="../lecture03/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -22,7 +22,7 @@
     
     
       
-        <title>第2回 - 講義資料ポータル</title>
+        <title>第2回_解答付 - 講義資料ポータル</title>
       
     
     
@@ -118,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              第2回
+              第2回_解答付
             
           </span>
         </div>
@@ -1113,6 +1113,28 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../lecture02/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第2回
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -1129,7 +1151,7 @@
           
   
   <span class="md-ellipsis">
-    第2回
+    第2回_解答付
     
   </span>
   
@@ -1141,7 +1163,7 @@
         
   
   <span class="md-ellipsis">
-    第2回
+    第2回_解答付
     
   </span>
   
@@ -1203,28 +1225,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../lecture02_answer/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    第2回_解答付
-    
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -1391,6 +1391,23 @@
 <li>I：層化抽出法　II：集落抽出法　III：全数調査</li>
 </ol>
 </div>
+<details class="success">
+<summary>解答例と解説</summary>
+<p><strong>正解：4</strong></p>
+<p><strong>【解説】</strong></p>
+<ul>
+<li><strong>I (単純無作為抽出法)</strong>：母集団（当日のすべての搭乗客）から、構成要素（搭乗客）を直接無作為に抽出する方法です。これは単純無作為抽出法です。系統抽出法ではありません（系統抽出法は、名簿の最初から等間隔に選ぶ方法）。</li>
+<li><strong>II (層化抽出法)</strong>：母集団を「午前出発便」と「午後出発便」という2つのグループ（層）に分け、それぞれの層から無作為に標本を抽出する方法です。これは層化抽出法です。</li>
+<li><strong>III (集落抽出法)</strong>：母集団を「便」という小集団（集落・クラスター）に分け、その中から無作為にいくつかの便を選び、選ばれた便の搭乗客全員（全数）を調査する方法です。これは集落抽出法です。</li>
+</ul>
+<p>よって、正しい組み合わせは ④ です。</p>
+<p><strong>【ポイント】</strong></p>
+<ul>
+<li><strong>単純無作為抽出法</strong>：くじ引きのように選ぶ。</li>
+<li><strong>層化抽出法</strong>：グループに分けて、各グループから少しずつ選ぶ（比率は合わせることが多い）。</li>
+<li><strong>集落（クラスター）抽出法</strong>：グループに分けて、選んだグループの中身を全部調べる。</li>
+</ul>
+</details>
 <hr />
 <h2 id="2_1">パート2：点推定（不偏性・一致性）</h2>
 <div class="admonition question">
@@ -1416,6 +1433,102 @@
 <li>4 つの推定量の分散はすべて等しい。</li>
 </ol>
 </div>
+<details class="success">
+<summary>解答例と解説</summary>
+<p><strong>正解：〔1〕 5, 〔2〕 1</strong></p>
+<p><strong>【解説】</strong></p>
+<p><strong>〔1〕不偏性の確認</strong></p>
+<p>「不偏推定量である」とは、その推定量の期待値 <span class="arithmatex">\(E[\hat{\mu}]\)</span> が、真の母数 <span class="arithmatex">\(\mu\)</span> と等しくなることを指します。
+以下の<strong>期待値の性質（線形性）</strong>を利用して計算します。</p>
+<blockquote>
+<p><strong>＜期待値の計算ルール＞</strong></p>
+<ol>
+<li>定数は外に出る： <span class="arithmatex">\(E[cX] = cE[X]\)</span></li>
+<li>和は分けられる： <span class="arithmatex">\(E[X + Y] = E[X] + E[Y]\)</span></li>
+<li>今回の前提： すべての <span class="arithmatex">\(i\)</span> について <span class="arithmatex">\(E[X_i] = \mu\)</span></li>
+</ol>
+</blockquote>
+<ul>
+<li>
+<p><strong><span class="arithmatex">\(\hat{\mu}_1\)</span> の期待値</strong>：</p>
+<div class="arithmatex">\[E[\hat{\mu}_1] = E\left[ \frac{1}{n}\sum_{i=1}^n X_i \right] = \frac{1}{n}\sum_{i=1}^n E[X_i] = \frac{1}{n} \underbrace{(\mu + \mu + \dots + \mu)}_{n個} = \frac{1}{n} \cdot n\mu = \mu\]</div>
+</li>
+<li>
+<p><strong><span class="arithmatex">\(\hat{\mu}_2\)</span> の期待値</strong>：</p>
+<div class="arithmatex">\[E[\hat{\mu}_2] = E\left[ \frac{1}{2}(X_1 + X_n) \right] = \frac{1}{2}(E[X_1] + E[X_n]) = \frac{1}{2}(\mu + \mu) = \mu\]</div>
+</li>
+<li>
+<p><strong><span class="arithmatex">\(\hat{\mu}_3\)</span> の期待値</strong>：</p>
+<div class="arithmatex">\[E[\hat{\mu}_3] = E[X_1] = \mu\]</div>
+</li>
+<li>
+<p><strong><span class="arithmatex">\(\hat{\mu}_4\)</span> の期待値</strong>：</p>
+<div class="arithmatex">\[E[\hat{\mu}_4] = E\left[ \frac{2}{n(n+1)}\sum_{i=1}^n i X_i \right] = \frac{2}{n(n+1)}\sum_{i=1}^n i E[X_i] = \frac{2}{n(n+1)}\sum_{i=1}^n i \mu\]</div>
+<p>ここで、<strong>等差数列の和の公式（1からnまでの整数の和）</strong> <span class="arithmatex">\(\sum_{i=1}^n i = \frac{n(n+1)}{2}\)</span> を使います。</p>
+<div class="arithmatex">\[E[\hat{\mu}_4] = \frac{2\mu}{n(n+1)} \cdot \frac{n(n+1)}{2} = \mu\]</div>
+</li>
+</ul>
+<p>計算の結果、4つともすべて期待値が <span class="arithmatex">\(\mu\)</span> となったため、すべて不偏推定量です。
+よって、正解は <strong>5</strong> です。</p>
+<p><strong>〔2〕分散の比較</strong></p>
+<p>どの推定量の分散（散らばり具合）が最も小さいか（＝最も精度が良いか）を比較します。
+以下の<strong>分散の性質</strong>を利用して計算します。問題文に「互いに独立」とあるのが重要です。</p>
+<blockquote>
+<p><strong>＜分散の計算ルール＞</strong></p>
+<ol>
+<li>定数倍は2乗になって外に出る： <span class="arithmatex">\(V[cX] = c^2 V[X]\)</span></li>
+<li><strong>独立な</strong>変数の和の分散は、分散の和になる： <span class="arithmatex">\(V[X + Y] = V[X] + V[Y]\)</span> （共分散が0になるため）</li>
+<li>今回の前提： すべての <span class="arithmatex">\(i\)</span> について <span class="arithmatex">\(V[X_i] = \sigma^2\)</span></li>
+</ol>
+</blockquote>
+<ul>
+<li>
+<p><strong><span class="arithmatex">\(\hat{\mu}_1\)</span> の分散</strong>：
+    係数 <span class="arithmatex">\(1/n\)</span> は2乗されて外に出ます。</p>
+<div class="arithmatex">\[V[\hat{\mu}_1] = V\left[ \frac{1}{n}\sum X_i \right] = \frac{1}{n^2} \sum V[X_i] = \frac{1}{n^2} \cdot n\sigma^2 = \frac{\sigma^2}{n}\]</div>
+</li>
+<li>
+<p><strong><span class="arithmatex">\(\hat{\mu}_2\)</span> の分散</strong>：
+    係数 <span class="arithmatex">\(1/2\)</span> は2乗されて <span class="arithmatex">\(1/4\)</span> になります。</p>
+<div class="arithmatex">\[V[\hat{\mu}_2] = V\left[ \frac{1}{2}(X_1 + X_n) \right] = \frac{1}{4}(V[X_1] + V[X_n]) = \frac{1}{4}(\sigma^2 + \sigma^2) = \frac{2\sigma^2}{4} = \frac{\sigma^2}{2}\]</div>
+</li>
+<li>
+<p><strong><span class="arithmatex">\(\hat{\mu}_3\)</span> の分散</strong>：</p>
+<div class="arithmatex">\[V[\hat{\mu}_3] = V[X_1] = \sigma^2\]</div>
+</li>
+<li>
+<p><strong><span class="arithmatex">\(\hat{\mu}_4\)</span> の分散</strong>：</p>
+<p>係数 <span class="arithmatex">\(\frac{2}{n(n+1)}\)</span> は2乗されます。また、<span class="arithmatex">\(\sum i X_i\)</span> の分散は <span class="arithmatex">\(\sum i^2 V[X_i]\)</span> となります（各項の係数 <span class="arithmatex">\(i\)</span> も2乗されるため）。</p>
+<div class="arithmatex">\[V[\hat{\mu}_4] = \left( \frac{2}{n(n+1)} \right)^2 \sum_{i=1}^n V[i X_i] = \frac{4}{n^2(n+1)^2} \sum_{i=1}^n i^2 \sigma^2\]</div>
+<p>ここで、<strong>2乗の和の公式</strong> <span class="arithmatex">\(\sum_{i=1}^n i^2 = \frac{n(n+1)(2n+1)}{6}\)</span> を使います。</p>
+<div class="arithmatex">\[V[\hat{\mu}_4] = \frac{4\sigma^2}{n^2(n+1)^2} \cdot \frac{n(n+1)(2n+1)}{6} = \frac{2(2n+1)}{3n(n+1)}\sigma^2\]</div>
+</li>
+</ul>
+<p><strong>＜大小比較＞</strong>
+<span class="arithmatex">\(n \ge 3\)</span> のとき、それぞれの分散の係数を比較します。</p>
+<ul>
+<li><span class="arithmatex">\(\hat{\mu}_1\)</span>: <span class="arithmatex">\(\frac{1}{n}\)</span></li>
+<li><span class="arithmatex">\(\hat{\mu}_2\)</span>: <span class="arithmatex">\(\frac{1}{2}\)</span></li>
+<li><span class="arithmatex">\(\hat{\mu}_3\)</span>: <span class="arithmatex">\(1\)</span></li>
+<li><span class="arithmatex">\(\hat{\mu}_4\)</span>: <span class="arithmatex">\(\frac{2(2n+1)}{3n(n+1)} = \frac{4n+2}{3n^2+3n}\)</span></li>
+</ul>
+<p>明らかに <span class="arithmatex">\(\frac{1}{n}\)</span> は <span class="arithmatex">\(1/2\)</span> や <span class="arithmatex">\(1\)</span> より小さいです。<span class="arithmatex">\(\hat{\mu}_1\)</span> と <span class="arithmatex">\(\hat{\mu}_4\)</span> を比べます。</p>
+<div class="arithmatex">\[ \hat{\mu}_4 \text{の係数} = \frac{4n+2}{3n^2+3n} = \frac{4n+2}{3n(n+1)} \]</div>
+<p>一方、<span class="arithmatex">\(\hat{\mu}_1\)</span> の係数 <span class="arithmatex">\(\frac{1}{n}\)</span> を通分するために分母分子に <span class="arithmatex">\(3(n+1)\)</span> を掛けると、</p>
+<div class="arithmatex">\[ \frac{1}{n} = \frac{3(n+1)}{3n(n+1)} = \frac{3n+3}{3n(n+1)} \]</div>
+<p>分子を比較すると、</p>
+<p><span class="arithmatex">\((\hat{\mu}_4\text{の分子}) - (\hat{\mu}_1\text{の分子}) = (4n+2) - (3n+3) = n - 1\)</span></p>
+<p><span class="arithmatex">\(n \ge 3\)</span> なので <span class="arithmatex">\(n-1 &gt; 0\)</span> です。</p>
+<p>つまり、<span class="arithmatex">\(\hat{\mu}_4\)</span> の分散の方が <span class="arithmatex">\(\hat{\mu}_1\)</span> より大きくなります（精度が悪い）。</p>
+<p>したがって、分散が最も小さいのは <span class="arithmatex">\(\hat{\mu}_1\)</span> です。
+よって、正解は <strong>1</strong> です。</p>
+<p><strong>【ポイント】</strong></p>
+<ul>
+<li><strong>分散の加法性</strong>：独立なら <span class="arithmatex">\(V(X+Y) = V(X)+V(Y)\)</span>。</li>
+<li><strong>係数の2乗</strong>：分散の計算では係数は必ず2乗されて外に出る（<span class="arithmatex">\(V(cX) = c^2 V(X)\)</span>）。</li>
+<li><strong>有効性</strong>：一般に、すべてのデータを使って単純に平均をとる <span class="arithmatex">\(\bar{X}\)</span> (<span class="arithmatex">\(\hat{\mu}_1\)</span>) が、最も分散が小さく（有効性が高く）、精度の良い推定量になります。</li>
+</ul>
+</details>
 <hr />
 <h2 id="3">パート3：区間推定（母比率）</h2>
 <div class="admonition question">
@@ -1434,6 +1547,48 @@
 <li><span class="arithmatex">\(0.020 \pm 0.026\)</span></li>
 </ol>
 </div>
+<details class="success">
+<summary>解答例と解説</summary>
+<p><strong>正解：2</strong></p>
+<p><strong>【解説】</strong></p>
+<p>母比率を <span class="arithmatex">\(p\)</span>、標本比率を <span class="arithmatex">\(\hat{p}\)</span>、標本サイズを <span class="arithmatex">\(n\)</span> とします。
+問題文の表より、ほぼ毎日利用した人の標本比率は <span class="arithmatex">\(\hat{p} = 2.0\% = 0.020\)</span> です。
+標本サイズ（回答数）は <span class="arithmatex">\(n = 1338\)</span> です。</p>
+<p>このときの<strong>標準誤差</strong>は以下の式で推定されます。</p>
+<p><strong>標本比率の定義から導出：</strong></p>
+<p>標本比率 <span class="arithmatex">\(\hat{p}\)</span> は、<span class="arithmatex">\(n\)</span> 回の試行中の成功回数 <span class="arithmatex">\(X\)</span> を用いて定義されます：</p>
+<div class="arithmatex">\[\hat{p} = \frac{X}{n}\]</div>
+<p>ここで <span class="arithmatex">\(X\)</span> は二項分布 <span class="arithmatex">\(B(n, p)\)</span> に従い、以下の性質を持ちます：</p>
+<ul>
+<li><span class="arithmatex">\(E[X] = np\)</span>（期待値）</li>
+<li><span class="arithmatex">\(\text{Var}[X] = np(1-p)\)</span>（分散）</li>
+</ul>
+<p>標本比率の分散を求めると：</p>
+<div class="arithmatex">\[\text{Var}[\hat{p}] = \text{Var}\left[\frac{X}{n}\right] = \frac{1}{n^2}\text{Var}[X] = \frac{1}{n^2} \cdot np(1-p) = \frac{p(1-p)}{n}\]</div>
+<p>標準誤差は分散の平方根なので：</p>
+<div class="arithmatex">\[SE_{\text{理論}}(\hat{p}) = \sqrt{\text{Var}[\hat{p}]} = \sqrt{\frac{p(1-p)}{n}}\]</div>
+<p>しかし、真の母比率 <span class="arithmatex">\(p\)</span> は未知なので、標本比率 <span class="arithmatex">\(\hat{p}\)</span> で推定します：</p>
+<div class="arithmatex">\[ SE(\hat{p}) = \sqrt{\frac{\hat{p}(1-\hat{p})}{n}} \]</div>
+<p>数値を代入して計算します。</p>
+<div class="arithmatex">\[ SE(\hat{p}) = \sqrt{\frac{0.020 \times (1 - 0.020)}{1338}} = \sqrt{\frac{0.020 \times 0.980}{1338}} = \sqrt{\frac{0.0196}{1338}} \approx \sqrt{0.0000146} \approx 0.0038 \]</div>
+<p><strong>信頼区間の構成：</strong></p>
+<p><span class="arithmatex">\(n\)</span> が十分に大きいとき、中心極限定理により：</p>
+<div class="arithmatex">\[\frac{\hat{p} - p}{SE(\hat{p})} \approx N(0, 1)\]</div>
+<p>95%信頼区間を求めるため、<span class="arithmatex">\(P\left(-1.96 &lt; \frac{\hat{p} - p}{SE(\hat{p})} &lt; 1.96\right) = 0.95\)</span> から：</p>
+<div class="arithmatex">\[-1.96 &lt; \frac{\hat{p} - p}{SE(\hat{p})} &lt; 1.96\]</div>
+<p>この不等式を <span class="arithmatex">\(p\)</span> について解くと：</p>
+<div class="arithmatex">\[\hat{p} - 1.96 \times SE(\hat{p}) &lt; p &lt; \hat{p} + 1.96 \times SE(\hat{p})\]</div>
+<p>したがって、母比率 <span class="arithmatex">\(p\)</span> の 95% 信頼区間は：</p>
+<div class="arithmatex">\[\hat{p} \pm 1.96 \times SE(\hat{p})\]</div>
+<div class="arithmatex">\[ 0.020 \pm 1.96 \times 0.0038 = 0.020 \pm 0.007448 \]</div>
+<p>四捨五入して <span class="arithmatex">\(0.020 \pm 0.008\)</span> となります。
+よって、正解は <strong>②</strong> です。</p>
+<p><strong>【ポイント】</strong></p>
+<ul>
+<li><strong>母比率の信頼区間</strong>：<span class="arithmatex">\(\hat{p} \pm 1.96 \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}\)</span></li>
+<li><strong>中心極限定理</strong></li>
+</ul>
+</details>
 <hr />
 <h2 id="4">パート4：区間推定（母平均）とサンプルサイズ</h2>
 <div class="admonition question">
@@ -1456,6 +1611,34 @@
 <li>199</li>
 </ol>
 </div>
+<details class="success">
+<summary>解答例と解説</summary>
+<p>**正解：〔1〕 4, 〔2〕 3 **</p>
+<p><strong>【解説】</strong></p>
+<p><strong>〔1〕信頼区間の計算</strong>
+母分散 <span class="arithmatex">\(\sigma^2\)</span> が既知の場合、母平均 <span class="arithmatex">\(\mu\)</span> の 95% 信頼区間は以下の式で求められます。
+$$ \bar{X} - 1.96 \frac{\sigma}{\sqrt{n}} \le \mu \le \bar{X} + 1.96 \frac{\sigma}{\sqrt{n}} $$</p>
+<p>与えられた値：<span class="arithmatex">\(n = 100, \quad \sigma = 12, \quad \bar{X} = 5.25\)</span></p>
+<p>まず、標準誤差を用いた誤差の幅（許容誤差）を計算します。
+$$ 1.96 \frac{\sigma}{\sqrt{n}} = 1.96 \times \frac{12}{\sqrt{100}} = 1.96 \times \frac{12}{10} = 1.96 \times 1.2 = 2.352 $$</p>
+<p>これを標本平均に加減します。
+*   下限：<span class="arithmatex">\(5.25 - 2.352 = 2.898 \approx 2.90\)</span>
+*   上限：<span class="arithmatex">\(5.25 + 2.352 = 7.602 \approx 7.60\)</span></p>
+<p>したがって、信頼区間は <span class="arithmatex">\([2.90, 7.60]\)</span> となり、正解は <strong>④</strong> です。</p>
+<p><strong>〔2〕サンプルサイズの決定</strong>
+信頼区間の「幅」は、上限から下限を引いた長さなので、
+$$ \text{幅} = \left( \bar{X} + 1.96 \frac{\sigma}{\sqrt{n}} \right) - \left( \bar{X} - 1.96 \frac{\sigma}{\sqrt{n}} \right) = 2 \times 1.96 \frac{\sigma}{\sqrt{n}} $$
+となります。
+この幅を 4 以下にしたいので、以下の不等式を立てて <span class="arithmatex">\(n\)</span> について解きます。</p>
+<div class="arithmatex">\[ 2 \times 1.96 \frac{12}{\sqrt{n}} \le 4 \]</div>
+<p>両辺を 4 で割ると、
+$$ 1.96 \times \frac{12}{\sqrt{n}} \le 2 \implies 1.96 \times 6 \le \sqrt{n} $$
+$$ \sqrt{n} \ge 11.76 $$
+両辺を2乗して、
+$$ n \ge (11.76)^2 = 138.2976 $$</p>
+<p><span class="arithmatex">\(n\)</span> は整数である必要があるので、最低限必要な大きさは <strong>139</strong> となります。
+よって、正解は <strong>③</strong> です。</p>
+</details>
 <div class="admonition question">
 <p class="admonition-title">問題5：標本サイズの決定（2018年6月 問10）</p>
 <p>確率変数 <span class="arithmatex">\(X_1, \dots, X_n\)</span> が互いに独立にそれぞれ平均 <span class="arithmatex">\(\mu\)</span>，分散 <span class="arithmatex">\(\sigma^2 (&gt; 0)\)</span> の正規分布に従うとする。標本平均を <span class="arithmatex">\(\bar{X} = \frac{1}{n}\sum_{i=1}^n X_i\)</span>，不偏分散を <span class="arithmatex">\(S^2 = \frac{1}{n-1}\sum_{i=1}^n (X_i - \bar{X})^2\)</span> とおく。</p>
@@ -1476,6 +1659,57 @@
 <li><span class="arithmatex">\(10.50 \pm 2.086 \times \sqrt{5.41}\)</span></li>
 </ol>
 </div>
+<details class="success">
+<summary>解答例と解説</summary>
+<p>**正解：〔1〕 4, 〔2〕 1 ** </p>
+<p><strong>【解説】</strong></p>
+<p><strong>〔1〕</strong>
+標本平均 <span class="arithmatex">\(\bar{X}\)</span> は正規分布 <span class="arithmatex">\(N(\mu, \sigma^2/n)\)</span> に従います。標準化変数を <span class="arithmatex">\(Z = \frac{\bar{X} - \mu}{\sigma/\sqrt{n}}\)</span> とすると、<span class="arithmatex">\(Z \sim N(0, 1)\)</span> です。</p>
+<p>不等式を変形します。<span class="arithmatex">\(\sigma^2=1\)</span> (<span class="arithmatex">\(\sigma=1\)</span>) なので、</p>
+<div class="arithmatex">\[ P(|\bar{X} - \mu| \le 0.5) = P\left( \left| \frac{\bar{X} - \mu}{1/\sqrt{n}} \right| \le \frac{0.5}{1/\sqrt{n}} \right) = P(|Z| \le 0.5\sqrt{n}) \ge 0.95 \]</div>
+<p><strong>標準正規分布表の使い方（絶対値がある場合）：</strong></p>
+<p><span class="arithmatex">\(P(|Z| \le c) = P(-c \le Z \le c) = 2P(0 \le Z \le c) = 2\Phi(c) - 1\)</span></p>
+<p>ここで <span class="arithmatex">\(\Phi(c)\)</span> は標準正規分布の累積分布関数です。</p>
+<p><span class="arithmatex">\(P(|Z| \le c) \ge 0.95\)</span> となるためには：</p>
+<ul>
+<li><span class="arithmatex">\(2\Phi(c) - 1 \ge 0.95\)</span></li>
+<li><span class="arithmatex">\(\Phi(c) \ge 0.975\)</span></li>
+<li>つまり、上側2.5%点を求めることになります</li>
+</ul>
+<p>標準正規分布表より、<span class="arithmatex">\(\Phi(1.96) = 0.975\)</span> なので <span class="arithmatex">\(c = 1.96\)</span> です。</p>
+<p>したがって、</p>
+<div class="arithmatex">\[ 0.5\sqrt{n} \ge 1.96 \]</div>
+<div class="arithmatex">\[ \sqrt{n} \ge \frac{1.96}{0.5} = 3.92 \]</div>
+<div class="arithmatex">\[ n \ge (3.92)^2 \approx 15.37 \]</div>
+<p>これを満たす最小の整数 <span class="arithmatex">\(n\)</span> は <strong>16</strong> です。正解は <strong>④</strong> です。</p>
+<p><strong>〔2〕</strong>
+母分散が未知の場合、<span class="arithmatex">\(t\)</span> 統計量を用います：
+<span class="arithmatex">\(<span class="arithmatex">\(T = \frac{\bar{X} - \mu}{S/\sqrt{n}} \sim t(n-1)\)</span>\)</span></p>
+<p>ここで <span class="arithmatex">\(S\)</span> は標本標準偏差、<span class="arithmatex">\(t(n-1)\)</span> は自由度 <span class="arithmatex">\(n-1\)</span> の <span class="arithmatex">\(t\)</span> 分布です。</p>
+<p>95%信頼区間を求めるため、<span class="arithmatex">\(P(-t_{0.025}(n-1) &lt; T &lt; t_{0.025}(n-1)) = 0.95\)</span> から：</p>
+<div class="arithmatex">\[P\left(-t_{0.025}(n-1) &lt; \frac{\bar{X} - \mu}{S/\sqrt{n}} &lt; t_{0.025}(n-1)\right) = 0.95\]</div>
+<p>この不等式を <span class="arithmatex">\(\mu\)</span> について解くと：</p>
+<div class="arithmatex">\[-t_{0.025}(n-1) \cdot \frac{S}{\sqrt{n}} &lt; \bar{X} - \mu &lt; t_{0.025}(n-1) \cdot \frac{S}{\sqrt{n}}\]</div>
+<p>整理すると：</p>
+<div class="arithmatex">\[\bar{X} - t_{0.025}(n-1) \cdot \frac{S}{\sqrt{n}} &lt; \mu &lt; \bar{X} + t_{0.025}(n-1) \cdot \frac{S}{\sqrt{n}}\]</div>
+<p>したがって、<span class="arithmatex">\(\mu\)</span> の95%信頼区間は：</p>
+<div class="arithmatex">\[ \bar{X} \pm t_{0.025}(n-1) \cdot \frac{S}{\sqrt{n}} \]</div>
+<p>与えられた値を代入：</p>
+<ul>
+<li><span class="arithmatex">\(\bar{X} = 10.50\)</span></li>
+<li><span class="arithmatex">\(n = 20\)</span>、自由度 = <span class="arithmatex">\(n-1 = 19\)</span></li>
+<li>自由度19の <span class="arithmatex">\(t\)</span> 分布の上側2.5%点は <span class="arithmatex">\(t_{0.025}(19) = 2.093\)</span>（※選択肢から判断可能。2.086は自由度20の値）</li>
+<li>標準偏差の推定値 <span class="arithmatex">\(S = \sqrt{S^2} = \sqrt{5.41}\)</span></li>
+</ul>
+<p>これらを代入すると：
+$$ 10.50 \pm 2.093 \times \frac{\sqrt{5.41}}{\sqrt{20}} $$</p>
+<p>となります。よって正解は <strong>①</strong> です。    <strong>【ポイント】</strong></p>
+<ul>
+<li><strong>絶対値の処理</strong>：<span class="arithmatex">\(P(|Z| \le c) = 0.95\)</span> は両側95%なので、片側2.5%点（<span class="arithmatex">\(z_{0.025} = 1.96\)</span>）を使います</li>
+<li><strong>t分布を使う場面</strong>：母分散 <span class="arithmatex">\(\sigma^2\)</span> がわからないときは、不偏分散 <span class="arithmatex">\(S^2\)</span> を使い、分布は正規分布ではなく <span class="arithmatex">\(t\)</span> 分布（自由度 <span class="arithmatex">\(n-1\)</span>）を使います</li>
+<li>分母が <span class="arithmatex">\(\sqrt{n}\)</span> か <span class="arithmatex">\(\sqrt{n-1}\)</span> か迷うことがありますが、不偏分散 <span class="arithmatex">\(S^2\)</span> が既に <span class="arithmatex">\(n-1\)</span> で割って計算されているため、標準誤差の式は常に <span class="arithmatex">\(S/\sqrt{n}\)</span> です</li>
+</ul>
+</details>
 <div class="admonition question">
 <p class="admonition-title">問題6：t検定（2018年11月 問13）</p>
 <p>ある農家では，じゃがいもの生産を行っている。この農家において収穫されたじゃがいもを無作為に 20 個抽出したところ，重量 (g) の標本平均は 85.6，不偏分散は 121.9 であった。
@@ -1492,6 +1726,35 @@
 <li>(ア) <span class="arithmatex">\(t = \frac{85.6 - 90}{\sqrt{121.9/20}}\)</span> 　(イ) <span class="arithmatex">\(|t| &gt; 1.725\)</span> 　(ウ) 棄却する</li>
 </ol>
 </div>
+<details class="success">
+<summary>解答例と解説</summary>
+<p><strong>正解：4</strong></p>
+<p><strong>【解説】</strong></p>
+<p><strong>(ア) 検定統計量の計算式</strong>
+母分散が未知の場合の母平均の検定には <span class="arithmatex">\(t\)</span> 統計量を用います。
+式は <span class="arithmatex">\(t = \frac{\bar{X} - \mu_0}{\sqrt{S^2/n}}\)</span> です。
+ここで、<span class="arithmatex">\(\bar{X} = 85.6, \mu_0 = 90, S^2 = 121.9, n = 20\)</span> なので、
+$$ t = \frac{85.6 - 90}{\sqrt{121.9/20}} $$
+となります。これにより選択肢は ③, ④, ⑤ に絞られます。</p>
+<p><strong>(イ) 棄却域の設定</strong>
+自由度 <span class="arithmatex">\(\nu = n - 1 = 20 - 1 = 19\)</span> の <span class="arithmatex">\(t\)</span> 分布に従います。
+有意水準 5% の両側検定なので、棄却域は上側2.5%点と下側2.5%点の外側です。
+<span class="arithmatex">\(t\)</span> 分布表より、自由度 19 の上側 2.5% 点は <span class="arithmatex">\(2.093\)</span> です。
+よって棄却域は <span class="arithmatex">\(|t| &gt; 2.093\)</span> となります。これで選択肢は ④ に確定します。
+（※2.086 は自由度 20 の値、1.729 は自由度 19 の上側 5% 点（片側検定用）です）</p>
+<p><strong>(ウ) 判定</strong>
+実際に <span class="arithmatex">\(t\)</span> 値を計算してみます。
+$$ t = \frac{-4.4}{\sqrt{6.095}} \approx \frac{-4.4}{2.469} \approx -1.782 $$
+絶対値をとると <span class="arithmatex">\(|t| \approx 1.782\)</span> です。
+これは棄却限界値 <span class="arithmatex">\(2.093\)</span> よりも小さいため、棄却域に入りません。
+したがって、「帰無仮説を棄却しない（有意差なし）」という結論になります。</p>
+<p>よって、正解は <strong>④</strong> です。</p>
+<p><strong>【ポイント】</strong></p>
+<ul>
+<li><strong>検定の手順</strong>：①仮説を立てる <span class="arithmatex">\(\to\)</span> ②統計量を計算する <span class="arithmatex">\(\to\)</span> ③棄却域と比較する <span class="arithmatex">\(\to\)</span> ④結論を出す。</li>
+<li><strong>自由度の確認</strong>：単一サンプルのt検定では、自由度は必ず <span class="arithmatex">\(n-1\)</span> です。表を読み間違えないように注意しましょう。</li>
+</ul>
+</details>
 
 
 
@@ -1524,7 +1787,7 @@
     <span class="md-icon" title="作成日">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年12月15日 04:32:43 UTC">2025年12月15日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年4月6日 06:03:19 UTC">2026年4月6日</span>
   </span>
 
     
