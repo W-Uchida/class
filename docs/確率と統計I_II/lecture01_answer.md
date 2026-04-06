@@ -736,7 +736,7 @@
 
 
 ??? success "解説"
-    **正解：〔1〕 2, 〔2〕 3, 〔3〕 2**
+    **正解：〔1〕 2, 〔2〕 3**
 
     **【解説】**
 
@@ -816,7 +816,8 @@
     よって正解は 4 です。
 
     **〔2〕**
-    期待値の定義 $E[X] = \int x f(x) dx$ を計算します。
+    連続型確率変数の期待値の定義 $E[X] = \int x f(x) dx$ より、
+
     $$ \int_0^{20} x \cdot \frac{1}{10}\left(1 - \frac{x}{20}\right) dx = \frac{1}{10} \int_0^{20} \left(x - \frac{x^2}{20}\right) dx $$
     $$ = \frac{1}{10} \left[ \frac{x^2}{2} - \frac{x^3}{60} \right]_0^{20} = \frac{1}{10} \left( \frac{400}{2} - \frac{8000}{60} \right) $$
     $$ = \frac{1}{10} \left( 200 - \frac{400}{3} \right) = \frac{1}{10} \left( \frac{600-400}{3} \right) = \frac{1}{10} \cdot \frac{200}{3} = \frac{20}{3} $$
