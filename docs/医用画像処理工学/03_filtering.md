@@ -123,6 +123,8 @@ $$
 
 - フーリエ変換は、元の信号をこれらの周波数成分に分解する
 
+- 1次元では「時間波形 → 時間周波数スペクトル」。2次元では「画像の空間パターン → 空間周波数スペクトル」になります。
+
 - 逆フーリエ変換は、周波数成分から元の信号を再構成する
 
 
@@ -133,25 +135,50 @@ $$
 
 **1次元フーリエ変換の数式：**
 
-フーリエ変換：
+**フーリエ変換：**
+ 
+$$F(u) = \int_{-\infty}^{\infty} f(t)\, e^{-j2\pi u t}\, dt$$
+ 
+**逆フーリエ変換：**
+ 
+$$f(t) = \int_{-\infty}^{\infty} F(u)\, e^{j2\pi u t}\, du$$
+ 
+> 📖 **各記号の意味：**
 
-$$F(\omega) = \int_{-\infty}^{\infty} f(t) e^{-j\omega t} dt$$
+> - $f(t)$：元の信号（時間領域または空間領域）
 
-逆フーリエ変換：
+> - $F(u)$：変換後のスペクトル（周波数領域）。各周波数 $u$ における成分の強さと位相を表す
 
-$$f(t) = \frac{1}{2\pi} \int_{-\infty}^{\infty} F(\omega) e^{j\omega t} d\omega$$
+> - $u$：周波数 [Hz]（1秒間に何回繰り返されるか）
+
+> - $e^{-j2\pi ut}$：オイラーの公式 $e^{j\theta} = \cos\theta + j\sin\theta$ より、これは周波数 $u$ のコサイン波とサイン波を1つにまとめた式です。つまり、$e^{-j2\pi ut} = \cos(2\pi ut) - j\sin(2\pi ut)$
+
+> - 積分 $\int f(t)\, e^{-j2\pi ut}\,dt$ は「元の信号 $f(t)$ と周波数 $u$ の波を掛け合わせて全時間で足し合わせる」操作です。これにより、$f(t)$ の中に周波数 $u$ の成分がどれだけ含まれるかが $F(u)$ の大きさとして現れます。
+
+ 
+✅ **対称性のポイント：** 変換と逆変換の違いは指数の符号（$-j$か$+j$）だけです。この対称性は、変換が**可逆**（情報が一切失われない）であることを意味します。
 
 **2次元フーリエ変換（画像処理用）：**
 
-フーリエ変換：
+**フーリエ変換：**
+ 
+$$F(u,v) = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x,y)\, e^{-j2\pi(ux+vy)}\, dx\, dy$$
+ 
+**逆フーリエ変換：**
+ 
+$$f(x,y) = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} F(u,v)\, e^{j2\pi(ux+vy)}\, du\, dv$$
+ 
+> 📖 **各記号の意味：**
 
-$$F(u,v) = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x,y) e^{-j2\pi(ux+vy)} dx dy$$
+> - $(x, y)$：画像上の位置（空間座標）
 
-逆フーリエ変換：
+> - $f(x,y)$：各位置の輝度値（元の画像データ）
 
-$$f(x,y) = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} F(u,v) e^{j2\pi(ux+vy)} du dv$$
+> - $(u, v)$：空間周波数（$x$・$y$ 方向それぞれの「縞模様の細かさ」）
 
+> - $F(u,v)$：各空間周波数成分の強さと位相
 
+> - 二重積分 $\int\int$：画像全体（全 $x$・全 $y$）を対象に積分
 
 <div style="text-align: center; margin: 20px 0;">
 <a href="../html/03/03-03.html" style="display: inline-block; padding: 12px 24px; background-color: #2563eb; color: white; text-decoration: none; border-radius: 6px; font-weight: bold;">
@@ -540,11 +567,11 @@ $$H_{HP}(u,v) = 1 - H_{LP}(u,v)$$
 
 これらの技術を適切に活用することで、医用画像の診断精度向上に貢献することができます。
 
-<!-- 
+
 ## 第3回 演習
 - [Google Form](https://forms.gle/iqDRXu36SzVDy9w4A)
 
 <figure>
   <img src="../img/03-09.png" alt="第3回演習" width="300" height="auto">
   <figcaption>第3回演習</figcaption>
-</figure> -->
+</figure>
