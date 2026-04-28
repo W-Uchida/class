@@ -23,7 +23,7 @@
 - [01.オリエンテーション](01_orientation.md)
 - [02.ディジタル画像の基礎理論](02_digital_image.md)
 - [03.画像フィルタリングと質改善技術](03_filtering.md)
-- [04.画像再構成・復元・3次元化](04_reconstruction.md)
+- [04.投影データと画像再構成](04_reconstruction.md)
 - [05.X線画像機器の原理と応用](05_xray.md)
 - [06.CT装置の原理と発展](06_ct.md)
 - [07.MRI装置の原理と先進的撮像手法](07_mri.md)
