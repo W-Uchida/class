@@ -1168,6 +1168,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#3_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      第3回 演習
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2041,6 +2050,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#3_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      第3回 演習
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2181,6 +2199,9 @@ fs \geq f_n = 2 × fmax (\text{信号の最大周波数})
 <p>フーリエ変換は、元の信号をこれらの周波数成分に分解する</p>
 </li>
 <li>
+<p>1次元では「時間波形 → 時間周波数スペクトル」。2次元では「画像の空間パターン → 空間周波数スペクトル」になります。</p>
+</li>
+<li>
 <p>逆フーリエ変換は、周波数成分から元の信号を再構成する</p>
 </li>
 </ul>
@@ -2190,15 +2211,56 @@ fs \geq f_n = 2 × fmax (\text{信号の最大周波数})
 </figure>
 
 <p><strong>1次元フーリエ変換の数式：</strong></p>
-<p>フーリエ変換：</p>
-<div class="arithmatex">\[F(\omega) = \int_{-\infty}^{\infty} f(t) e^{-j\omega t} dt\]</div>
-<p>逆フーリエ変換：</p>
-<div class="arithmatex">\[f(t) = \frac{1}{2\pi} \int_{-\infty}^{\infty} F(\omega) e^{j\omega t} d\omega\]</div>
+<p><strong>フーリエ変換：</strong></p>
+<div class="arithmatex">\[F(u) = \int_{-\infty}^{\infty} f(t)\, e^{-j2\pi u t}\, dt\]</div>
+<p><strong>逆フーリエ変換：</strong></p>
+<div class="arithmatex">\[f(t) = \int_{-\infty}^{\infty} F(u)\, e^{j2\pi u t}\, du\]</div>
+<blockquote>
+<p>📖 <strong>各記号の意味：</strong></p>
+<ul>
+<li>
+<p><span class="arithmatex">\(f(t)\)</span>：元の信号（時間領域または空間領域）</p>
+</li>
+<li>
+<p><span class="arithmatex">\(F(u)\)</span>：変換後のスペクトル（周波数領域）。各周波数 <span class="arithmatex">\(u\)</span> における成分の強さと位相を表す</p>
+</li>
+<li>
+<p><span class="arithmatex">\(u\)</span>：周波数 [Hz]（1秒間に何回繰り返されるか）</p>
+</li>
+<li>
+<p><span class="arithmatex">\(e^{-j2\pi ut}\)</span>：オイラーの公式 <span class="arithmatex">\(e^{j\theta} = \cos\theta + j\sin\theta\)</span> より、これは周波数 <span class="arithmatex">\(u\)</span> のコサイン波とサイン波を1つにまとめた式です。つまり、<span class="arithmatex">\(e^{-j2\pi ut} = \cos(2\pi ut) - j\sin(2\pi ut)\)</span></p>
+</li>
+<li>
+<p>積分 <span class="arithmatex">\(\int f(t)\, e^{-j2\pi ut}\,dt\)</span> は「元の信号 <span class="arithmatex">\(f(t)\)</span> と周波数 <span class="arithmatex">\(u\)</span> の波を掛け合わせて全時間で足し合わせる」操作です。これにより、<span class="arithmatex">\(f(t)\)</span> の中に周波数 <span class="arithmatex">\(u\)</span> の成分がどれだけ含まれるかが <span class="arithmatex">\(F(u)\)</span> の大きさとして現れます。</p>
+</li>
+</ul>
+</blockquote>
+<p>✅ <strong>対称性のポイント：</strong> 変換と逆変換の違いは指数の符号（<span class="arithmatex">\(-j\)</span>か<span class="arithmatex">\(+j\)</span>）だけです。この対称性は、変換が<strong>可逆</strong>（情報が一切失われない）であることを意味します。</p>
 <p><strong>2次元フーリエ変換（画像処理用）：</strong></p>
-<p>フーリエ変換：</p>
-<div class="arithmatex">\[F(u,v) = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x,y) e^{-j2\pi(ux+vy)} dx dy\]</div>
-<p>逆フーリエ変換：</p>
-<div class="arithmatex">\[f(x,y) = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} F(u,v) e^{j2\pi(ux+vy)} du dv\]</div>
+<p><strong>フーリエ変換：</strong></p>
+<div class="arithmatex">\[F(u,v) = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x,y)\, e^{-j2\pi(ux+vy)}\, dx\, dy\]</div>
+<p><strong>逆フーリエ変換：</strong></p>
+<div class="arithmatex">\[f(x,y) = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} F(u,v)\, e^{j2\pi(ux+vy)}\, du\, dv\]</div>
+<blockquote>
+<p>📖 <strong>各記号の意味：</strong></p>
+<ul>
+<li>
+<p><span class="arithmatex">\((x, y)\)</span>：画像上の位置（空間座標）</p>
+</li>
+<li>
+<p><span class="arithmatex">\(f(x,y)\)</span>：各位置の輝度値（元の画像データ）</p>
+</li>
+<li>
+<p><span class="arithmatex">\((u, v)\)</span>：空間周波数（<span class="arithmatex">\(x\)</span>・<span class="arithmatex">\(y\)</span> 方向それぞれの「縞模様の細かさ」）</p>
+</li>
+<li>
+<p><span class="arithmatex">\(F(u,v)\)</span>：各空間周波数成分の強さと位相</p>
+</li>
+<li>
+<p>二重積分 <span class="arithmatex">\(\int\int\)</span>：画像全体（全 <span class="arithmatex">\(x\)</span>・全 <span class="arithmatex">\(y\)</span>）を対象に積分</p>
+</li>
+</ul>
+</blockquote>
 <div style="text-align: center; margin: 20px 0;">
 <a href="../html/03/03-03.html" style="display: inline-block; padding: 12px 24px; background-color: #2563eb; color: white; text-decoration: none; border-radius: 6px; font-weight: bold;">
 <h4><strong>🔍【実習】 1次元フーリエ変換</strong></h4>
@@ -2569,14 +2631,14 @@ fs \geq f_n = 2 × fmax (\text{信号の最大周波数})
 </li>
 </ol>
 <p>これらの技術を適切に活用することで、医用画像の診断精度向上に貢献することができます。</p>
-<!-- 
-## 第3回 演習
-- [Google Form](https://forms.gle/iqDRXu36SzVDy9w4A)
-
+<h2 id="3_2">第3回 演習</h2>
+<ul>
+<li><a href="https://forms.gle/iqDRXu36SzVDy9w4A">Google Form</a></li>
+</ul>
 <figure>
   <a class="glightbox" href="../img/03-09.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/03-09.png" alt="第3回演習" width="300" height="auto"></a>
   <figcaption>第3回演習</figcaption>
-</figure> -->
+</figure>
 
 
 
@@ -2599,7 +2661,7 @@ fs \geq f_n = 2 × fmax (\text{信号の最大周波数})
     <span class="md-icon" title="最終更新日">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年4月6日 06:14:36 UTC">2026年4月6日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年4月21日 02:49:37 UTC">2026年4月21日</span>
   </span>
 
     
