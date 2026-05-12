@@ -477,7 +477,7 @@ X線撮影においては、**管電流時間積の決定：ノイズや分解�
 - その他X線撮影手法
 
 ---
-<!-- 
+
 
 ## 第5回 演習
 - [Google Form](https://forms.gle/g1FRnZx56Y476tKB6)
@@ -486,4 +486,4 @@ X線撮影においては、**管電流時間積の決定：ノイズや分解�
   <img src="../img/05-12.png" alt="第5回演習" width="300" height="auto">
   <figcaption>第5回演習</figcaption>
 </figure>
- -->
+
