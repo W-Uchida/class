@@ -2,369 +2,637 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>圧電効果アニメーション (回路図再修正・反映版)</title>
+<title>超音波圧電効果・アルティメット・シミュレーター（通し再生版）</title>
 <style>
+  :root {
+    --bg-main: #0f172a;
+    --bg-canvas: #1e293b;
+    --color-tx: #00ffab;
+    --color-rx: #00e5ff;
+    --color-piezo: #f1c40f;
+    --color-text: #f8fafc;
+    --color-dim: #64748b;
+  }
+
   body {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #2c3e50;
+    background-color: var(--bg-main);
     margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #ecf0f1;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    color: var(--color-text);
+    user-select: none;
   }
+
+  h1 {
+    font-size: 20px;
+    margin-bottom: 5px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #e2e8f0;
+  }
+
+  /* ステップインジケーター */
+  .step-bar {
+    display: flex;
+    width: 720px;
+    margin-bottom: 15px;
+    background-color: rgba(30, 41, 59, 0.7);
+    border-radius: 30px;
+    padding: 6px;
+    border: 1px solid #334155;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+  }
+  .step-item {
+    flex: 1;
+    text-align: center;
+    font-size: 12px;
+    padding: 8px 4px;
+    color: var(--color-dim);
+    border-radius: 20px;
+    transition: all 0.4s ease;
+    font-weight: 500;
+  }
+  .step-item.active {
+    color: #fff;
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    box-shadow: 0 0 12px rgba(59, 130, 246, 0.6);
+    font-weight: bold;
+  }
+
+  /* メインコンテナ */
   .container {
     position: relative;
-    width: 700px;
-    height: 450px;
-    background-color: #34495e;
-    border-radius: 8px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    width: 720px;
+    height: 440px;
+    background-color: var(--bg-canvas);
+    border-radius: 12px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.4);
+    border: 1px solid #334155;
+    overflow: hidden;
   }
   svg {
     width: 100%;
     height: 100%;
   }
-  .piezo-element-final {
-    transition: transform 0.08s ease-in-out;
-    fill: #f1c40f; 
-    stroke: #c0392b; 
-    stroke-width: 1.5;
+
+  /* 高級感のあるネオングロー効果 */
+  .glow-tx { filter: drop-shadow(0 0 5px var(--color-tx)); }
+  .glow-rx { filter: drop-shadow(0 0 5px var(--color-rx)); }
+  .glow-piezo { filter: drop-shadow(0 0 4px var(--color-piezo)); }
+
+  /* 物理切替スイッチレバーのスタイル */
+  #switch-lever-pos { transform-origin: 152px 185px; }
+  #switch-lever-neg { transform-origin: 152px 255px; }
+  
+  .switch-lever {
+    stroke: #475569;
+    stroke-width: 4;
+    stroke-linecap: round;
+    transform: rotate(0deg); /* 初期は中立（水平） */
+    transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), stroke 0.2s;
   }
-  .ultrasound-wave-final {
+  /* 送信モード：時計回りに回転させてレバー先端を「上」の送信端子へ繋ぐ */
+  .switch-lever.tx-pos {
+    transform: rotate(18deg);
+    stroke: var(--color-tx);
+    filter: drop-shadow(0 0 4px var(--color-tx));
+  }
+  /* 受信モード：反時計回りに回転させてレバー先端を「下」の受信端子へ繋ぐ */
+  .switch-lever.rx-pos {
+    transform: rotate(-18deg);
+    stroke: var(--color-rx);
+    filter: drop-shadow(0 0 4px var(--color-rx));
+  }
+
+  /* 圧電素子スタイル */
+  .piezo-element {
+    fill: url(#piezoGrad);
+    stroke: #d97706;
+    stroke-width: 2;
+    transition: transform 0.05s ease-in-out;
+  }
+
+  /* 音波スタイル (美しい3重の同心円弧) */
+  .ultrasound-wave-tx {
     opacity: 0;
-    stroke: #1abc9c; 
-    stroke-width: 3.5;
+    stroke: var(--color-tx);
+    stroke-width: 3;
+    stroke-linecap: round;
     fill: none;
-    transition: transform 1s linear, opacity 0.3s linear;
+    transition: transform 0s linear, opacity 0.3s;
   }
-  .reflected-wave-final {
+  .ultrasound-wave-rx {
     opacity: 0;
-    stroke: #3498db; 
+    stroke: var(--color-rx);
+    stroke-width: 3;
+    stroke-linecap: round;
+    fill: none;
+    transition: transform 0s linear, opacity 0.3s;
+  }
+
+  /* 回路配線のベース */
+  .circuit-base {
+    stroke: #334155;
     stroke-width: 3;
     fill: none;
-    transition: transform 1s linear, opacity 0.3s linear;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: stroke 0.4s ease;
   }
-  .circuit-line-final {
-    stroke: #95a5a6; 
-    stroke-width: 2;
+  .circuit-base.standby-tx {
+    stroke: #065f46;
+  }
+  .circuit-base.standby-rx {
+    animation: circuit-pulse-blue 1.5s infinite alternate ease-in-out;
+  }
+  @keyframes circuit-pulse-blue {
+    0% { stroke: #1e3a8a; filter: drop-shadow(0 0 1px #1e3a8a); }
+    100% { stroke: #0284c7; filter: drop-shadow(0 0 4px #0284c7); }
+  }
+
+  /* 流れる電流アニメーション（ネオンドット） */
+  .circuit-flow {
     fill: none;
-    transition: stroke 0.2s;
-  }
-  .active-circuit-line-final {
-    stroke: #2ecc71 !important; 
-  }
-  .component-box-final {
-    fill: #7f8c8d; 
-    stroke: #bdc3c7; 
-    stroke-width: 1;
-  }
-  .display-screen-final {
-    fill: #2d3436; 
-  }
-  .display-signal-final {
-    stroke: #00ffab; 
-    stroke-width: 1.5;
-    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 3;
     opacity: 0;
     transition: opacity 0.2s;
   }
+  .active-tx-flow {
+    opacity: 1;
+    stroke: var(--color-tx);
+    stroke-dasharray: 8, 12;
+    animation: flow-forward 0.8s linear infinite;
+  }
+  .active-rx-flow {
+    opacity: 1;
+    stroke: var(--color-rx);
+    stroke-dasharray: 8, 12;
+    animation: flow-forward 0.8s linear infinite;
+  }
+  @keyframes flow-forward {
+    to { stroke-dashoffset: -20; }
+  }
+
+  /* コンポーネント装飾 */
+  .component-box {
+    fill: #1e293b;
+    stroke: #475569;
+    stroke-width: 2;
+  }
+  .display-screen {
+    fill: #020617;
+    stroke: #334155;
+    stroke-width: 1.5;
+  }
+  .display-signal {
+    stroke: var(--color-tx);
+    stroke-width: 2;
+    fill: none;
+    stroke-dasharray: 200;
+    stroke-dashoffset: 200;
+  }
+  @keyframes drawWave {
+    to { stroke-dashoffset: 0; }
+  }
+
+  /* 説明ボックス */
+  .description-box {
+    width: 690px;
+    min-height: 54px;
+    margin-top: 15px;
+    background-color: rgba(15, 23, 42, 0.6);
+    border-left: 4px solid #3b82f6;
+    padding: 12px 15px;
+    border-radius: 0 8px 8px 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #cbd5e1;
+    border: 1px solid #334155;
+  }
+
+  /* コントローラー */
   .controls {
     margin-top: 20px;
-    padding: 10px;
-    background-color: rgba(0,0,0,0.3);
-    border-radius: 5px;
+    display: flex;
+    gap: 15px;
   }
   .controls button {
-    padding: 10px 18px;
-    margin: 0 8px;
+    padding: 12px 24px;
     cursor: pointer;
-    background-color: #3498db;
-    color: white;
-    border: none;
-    border-radius: 4px;
+    background: linear-gradient(135deg, #1e293b, #0f172a);
+    color: #e2e8f0;
+    border: 1px solid #475569;
+    border-radius: 6px;
     font-size: 14px;
-    transition: background-color 0.2s;
+    font-weight: 600;
+    transition: all 0.2s;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.2);
   }
-  .controls button:hover {
-    background-color: #2980b9;
+  .controls button:hover:not(:disabled) {
+    background: linear-gradient(135deg, #334155, #1e293b);
+    border-color: #64748b;
+    color: #fff;
+    transform: translateY(-1px);
   }
   .controls button:disabled {
-    background-color: #95a5a6;
+    background: #1e293b;
+    color: #475569;
+    border-color: #334155;
     cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
   }
-  .status-text {
-    position: absolute;
-    top: 15px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 16px;
-    background-color: rgba(44, 62, 80, 0.7);
-    padding: 8px 15px;
-    border-radius: 4px;
-    color: #ecf0f1;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  .controls button#nextButton {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    border-color: #3b82f6;
+    color: #fff;
   }
-  .label-text {
-    font-size: 18px;
-    fill: #f0e68c;
-    text-anchor: middle;
+  .controls button#nextButton:hover:not(:disabled) {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
   }
+  /* 新設：通し再生ボタンのスタイル */
+  .controls button#autoplayButton {
+    background: linear-gradient(135deg, #10b981, #059669);
+    border-color: #10b981;
+    color: #fff;
+  }
+  .controls button#autoplayButton:hover:not(:disabled) {
+    background: linear-gradient(135deg, #34d399, #10b981);
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+  }
+
+  .label-title { font-size: 14px; fill: #94a3b8; font-weight: 600; }
+  .label-sub { font-size: 11px; fill: #64748b; text-anchor: middle; }
 </style>
 </head>
 <body>
 
+<h1>超音波圧電効果 シミュレーター</h1>
+
+<div class="step-bar">
+  <div class="step-item active" id="step0-idx">待機中</div>
+  <div class="step-item" id="step1-idx">1. 電圧印加 (逆圧電)</div>
+  <div class="step-item" id="step2-idx">2. 超音波送信・伝播</div>
+  <div class="step-item" id="step3-idx">3. 受信モード切替</div>
+  <div class="step-item" id="step4-idx">4. 反射エコー帰還</div>
+  <div class="step-item" id="step5-idx">5. エコー受信 (正圧電)</div>
+</div>
+
 <div class="container">
-  <svg id="animationCanvasFinal" viewBox="0 0 700 450">
+  <svg id="canvas" viewBox="0 0 720 440">
     <defs>
-      <g id="ac-source-icon">
-        <circle cx="0" cy="0" r="15" stroke="#ecf0f1" stroke-width="1.5" fill="#7f8c8d"/>
-        <path d="M -10 0 Q -5 -10 0 0 T 10 0" stroke="#f1c40f" stroke-width="1.5" fill="none"/>
+      <linearGradient id="piezoGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#fbbf24" />
+        <stop offset="50%" stop-color="#f59e0b" />
+        <stop offset="100%" stop-color="#d97706" />
+      </linearGradient>
+      <radialGradient id="reflectorGrad" cx="40%" cy="40%" r="60%">
+        <stop offset="0%" stop-color="#94a3b8" />
+        <stop offset="70%" stop-color="#475569" />
+        <stop offset="100%" stop-color="#334155" />
+      </radialGradient>
+      <g id="ac-source">
+        <circle cx="0" cy="0" r="16" stroke="#94a3b8" stroke-width="2" fill="#334155"/>
+        <path d="M -10 0 Q -5 -8 0 0 T 10 0" stroke="#fbbf24" stroke-width="2" fill="none"/>
       </g>
     </defs>
 
-    <!-- ラベル -->
-    <text x="150" y="90" class="label-text">送信側</text>
-    <text x="150" y="340" class="label-text">受信側</text>
+    <line x1="260" y1="20" x2="260" y2="420" stroke="#334155" stroke-dasharray="4,4"/>
+    <text x="130" y="35" class="label-title" text-anchor="middle">制御回路・システム側</text>
+    <text x="490" y="35" class="label-title" text-anchor="middle">外部・測定対象（媒質）側</text>
 
-    <!-- 送信側コンポーネント -->
-    <use href="#ac-source-icon" x="70" y="85"/>
-    <text x="70" y="125" font-size="11px" fill="#bdc3c7" text-anchor="middle">電源</text>
+    <path id="tx-line-pos" class="circuit-base" d="M 70 74 L 70 50 L 127 50 L 127 176"/>
+    <path id="tx-line-neg" class="circuit-base" d="M 70 106 L 70 125 L 127 125 L 127 246"/>
+    
+    <path id="rx-line-pos" class="circuit-base" d="M 127 194 L 127 315 L 110 315"/>
+    <path id="rx-line-neg" class="circuit-base" d="M 127 264 L 127 345 L 110 345"/>
+    
+    <path id="common-line-pos" class="circuit-base" d="M 152 185 L 180 185"/>
+    <path id="common-line-neg" class="circuit-base" d="M 152 255 L 180 255"/>
 
-    <!-- 受信側コンポーネント (表示器) -->
-    <rect id="display-unit-final" class="component-box-final" x="30" y="300" width="80" height="60" rx="5"/>
-    <rect id="display-screen-rect-final" class="display-screen-final" x="35" y="305" width="70" height="50" rx="3"/>
-    <path id="received-signal-path-final" class="display-signal-final" d="M 38 330 Q 48 310 58 330 T 78 330 T 98 330"/>
-    <text x="70" y="375" font-size="11px" fill="#bdc3c7" text-anchor="middle">表示器</text>
+    <path id="tx-flow-pos" class="circuit-flow" d="M 70 74 L 70 50 L 127 50 L 127 176 L 152 185 L 180 185"/>
+    <path id="tx-flow-neg" class="circuit-flow" d="M 70 106 L 70 125 L 127 125 L 127 246 L 152 255 L 180 255"/>
+    
+    <path id="rx-flow-pos" class="circuit-flow" d="M 180 185 L 152 185 L 127 194 L 127 315 L 110 315"/>
+    <path id="rx-flow-neg" class="circuit-flow" d="M 180 255 L 152 255 L 127 264 L 127 345 L 110 345"/>
 
+    <use href="#ac-source" x="70" y="90"/>
+    <text x="70" y="130" class="label-sub">高周波交流電源</text>
 
-    <!-- ピエゾ素子 (中央) -->
-    <rect id="piezo-final" class="piezo-element-final" x="180" y="165" width="30" height="120"/>
-    <text x="195" y="230" text-anchor="middle" font-size="15px" fill="#2c3e50" writing-mode="vertical-rl">圧電素子</text>
+    <rect class="component-box" x="30" y="290" width="80" height="70" rx="6"/>
+    <rect class="display-screen" x="36" y="296" width="68" height="48" rx="3"/>
+    <line x1="36" y1="320" x2="104" y2="320" stroke="#1e293b" stroke-width="0.5"/>
+    <line x1="70" y1="296" x2="70" y2="344" stroke="#1e293b" stroke-width="0.5"/>
+    <path id="display-wave" class="display-signal" d="M 38 320 L 50 320 Q 55 300 60 320 T 70 320 T 80 320 L 102 320"/>
+    <text x="70" y="380" class="label-sub">超音波表示器</text>
 
-    <!-- 回路配線 (ご指定のSVGコードをそのまま使用) -->
-    <!-- 送信回路 -->
-    <line id="tx-line-power-pos" class="circuit-line-final" x1="70" y1="100" x2="70" y2="130"/>
-    <line id="tx-line-pos-to-piezo-top" class="circuit-line-final" x1="70" y1="130" x2="180" y2="165"/> <!-- ピエゾ上へ -->
-    <line id="tx-line-power-neg" class="circuit-line-final" x1="70" y1="100" x2="70" y2="150"/>
-    <line id="tx-line-neg-to-piezo-bottom" class="circuit-line-final" x1="70" y1="150" x2="180" y2="285"/> <!-- ピエゾ下へ -->
-    <!-- 受信回路 -->
-    <line id="rx-line-piezo-top-to-display" class="circuit-line-final" x1="180" y1="165" x2="70" y2="280"/> <!-- ピエゾ上から表示器入力へ -->
-    <line id="rx-line-display-in" class="circuit-line-final" x1="70" y1="280" x2="70" y2="300"/>
-    <line id="rx-line-piezo-bottom-to-display-gnd" class="circuit-line-final" x1="180" y1="285" x2="70" y2="280"/> <!-- ピエゾ下から表示器GNDへ -->
+    <rect class="component-box" x="115" y="145" width="50" height="140" rx="6"/>
+    <text x="140" y="135" class="label-sub" font-size="11px" fill="#94a3b8">Tx/Rx切替器</text>
+    <circle cx="152" cy="185" r="3" fill="#64748b"/><circle cx="127" cy="176" r="2.5" fill="#475569"/><circle cx="127" cy="194" r="2.5" fill="#475569"/>
+    <circle cx="152" cy="255" r="3" fill="#64748b"/><circle cx="127" cy="246" r="2.5" fill="#475569"/><circle cx="127" cy="264" r="2.5" fill="#475569"/>
+    
+    <line id="switch-lever-pos" class="switch-lever" x1="152" y1="185" x2="126" y2="185" />
+    <line id="switch-lever-neg" class="switch-lever" x1="152" y1="255" x2="126" y2="255" />
 
-
-    <!-- 超音波 (送信) -->
-    <g id="ultrasound-waves-tx-final">
-      <path class="ultrasound-wave-final" id="wave1-tx-f" d="M 220 205 C 230 195, 230 235, 220 245" transform="translate(0,0)"/>
-      <path class="ultrasound-wave-final" id="wave2-tx-f" d="M 220 200 C 230 190, 230 240, 220 250" transform="translate(15,0)"/>
-      <path class="ultrasound-wave-final" id="wave3-tx-f" d="M 220 195 C 230 185, 230 245, 220 255" transform="translate(30,0)"/>
+    <g id="piezo-container">
+      <rect id="piezo" class="piezo-element glow-piezo" x="180" y="155" width="30" height="130" rx="2"/>
+      <text x="196" y="220" text-anchor="middle" font-size="13px" font-weight="bold" fill="#0f172a" writing-mode="vertical-rl" style="letter-spacing: 3px;">圧電素子</text>
     </g>
 
-    <!-- 反射体 -->
-    <circle id="reflector-final" cx="520" cy="225" r="30" fill="#7f8c8d" stroke="#95a5a6" stroke-width="2"/>
-    <text x="520" y="275" font-size="13px" fill="#ecf0f1" text-anchor="middle">反射体</text>
-    
-    <!-- 超音波 (反射) -->
-    <g id="ultrasound-waves-rx-final">
-      <path class="reflected-wave-final" id="wave1-rx-f" d="M 220 205 C 230 195, 230 235, 220 245" transform="translate(0,0) scale(-1,1)"/>
-      <path class="reflected-wave-final" id="wave2-rx-f" d="M 220 200 C 230 190, 230 240, 220 250" transform="translate(15,0) scale(-1,1)"/>
-      <path class="reflected-wave-final" id="wave3-rx-f" d="M 220 195 C 230 185, 230 245, 220 255" transform="translate(30,0) scale(-1,1)"/>
+    <circle id="reflector" cx="540" cy="220" r="35" fill="url(#reflectorGrad)" stroke="#64748b" stroke-width="2"/>
+    <text x="540" y="275" font-size="13px" font-weight="600" fill="#cbd5e1" text-anchor="middle">反射体 (骨や金属など)</text>
+
+    <g id="tx-wave-group" class="glow-tx">
+      <path class="ultrasound-wave-tx" d="M 215 190 Q 230 220 215 250" />
+      <path class="ultrasound-wave-tx" d="M 225 182 Q 242 220 225 258" />
+      <path class="ultrasound-wave-tx" d="M 235 175 Q 254 220 235 265" />
     </g>
-    
-    <text x="420" y="415" font-size="14px" fill="#bdc3c7" text-anchor="middle">
-      圧電素子: 電圧で振動 (超音波送信)、振動で電圧発生 (超音波受信)
-    </text>
+
+    <g id="rx-wave-group" class="glow-rx">
+      <path class="ultrasound-wave-rx" d="M 505 190 Q 490 220 505 250" />
+      <path class="ultrasound-wave-rx" d="M 515 182 Q 498 220 515 258" />
+      <path class="ultrasound-wave-rx" d="M 525 175 Q 506 220 525 265" />
+    </g>
   </svg>
-  <div class="status-text" id="statusTextFinal">待機中</div>
+</div>
+
+<div class="description-box" id="descriptionBox">
+  シミュレーターが起動しました。「アニメーション開始 ＞」で手動進行、「通しで再生 🔁」で全自動進行します。
 </div>
 
 <div class="controls">
-  <button id="startButtonFinal">アニメーション開始</button>
-  <button id="resetButtonFinal">リセット</button>
+  <button id="resetButton">リセット</button>
+  <button id="nextButton">アニメーション開始 ＞</button>
+  <button id="autoplayButton">通しで再生 🔁</button>
 </div>
 
 <script>
-  const piezoF = document.getElementById('piezo-final');
-  const wavesTxF = [document.getElementById('wave1-tx-f'), document.getElementById('wave2-tx-f'), document.getElementById('wave3-tx-f')];
-  const wavesRxF = [document.getElementById('wave1-rx-f'), document.getElementById('wave2-rx-f'), document.getElementById('wave3-rx-f')];
-  const reflectorF = document.getElementById('reflector-final');
-  const receivedSignalPathF = document.getElementById('received-signal-path-final');
+  // DOM参照
+  const piezoContainer = document.getElementById('piezo-container');
+  const txWaveGroup = document.getElementById('tx-wave-group');
+  const rxWaveGroup = document.getElementById('rx-wave-group');
+  const txWaves = document.querySelectorAll('.ultrasound-wave-tx');
+  const rxWaves = document.querySelectorAll('.ultrasound-wave-rx');
   
-  const startButtonF = document.getElementById('startButtonFinal');
-  const resetButtonF = document.getElementById('resetButtonFinal');
-  const statusTextF = document.getElementById('statusTextFinal');
+  const txLines = [document.getElementById('tx-line-pos'), document.getElementById('tx-line-neg')];
+  const rxLines = [document.getElementById('rx-line-pos'), document.getElementById('rx-line-neg')];
+  const commonLines = [document.getElementById('common-line-pos'), document.getElementById('common-line-neg')];
+  const txFlows = [document.getElementById('tx-flow-pos'), document.getElementById('tx-flow-neg')];
+  const rxFlows = [document.getElementById('rx-flow-pos'), document.getElementById('rx-flow-neg')];
+  const leverPos = document.getElementById('switch-lever-pos');
+  const leverNeg = document.getElementById('switch-lever-neg');
 
-  // 回路線の参照 (HTMLのIDと完全に一致させる)
-  const txLinePowerPos = document.getElementById('tx-line-power-pos');
-  const txLinePosToPiezoTop = document.getElementById('tx-line-pos-to-piezo-top');
-  const txLinePowerNeg = document.getElementById('tx-line-power-neg');
-  const txLineNegToPiezoBottom = document.getElementById('tx-line-neg-to-piezo-bottom');
+  const displayWave = document.getElementById('display-wave');
+  const descBox = document.getElementById('descriptionBox');
+  const nextBtn = document.getElementById('nextButton');
+  const resetBtn = document.getElementById('resetButton');
+  const autoplayBtn = document.getElementById('autoplayButton'); // 新設
+
+  let currentStep = 0;
+  let piezoVibrateInterval = null;
+  let isAutoplay = false;          // 自動再生フラグ
+  let autoplayTimeoutIds = [];    // 自動再生タイマー管理用配列
   
-  const rxLinePiezoTopToDisplay = document.getElementById('rx-line-piezo-top-to-display');
-  const rxLineDisplayIn = document.getElementById('rx-line-display-in');
-  const rxLinePiezoBottomToDisplayGnd = document.getElementById('rx-line-piezo-bottom-to-display-gnd');
-  // rx-line-display-gnd-terminal はご提示のSVGには無いため削除
+  const WAVE_TRAVEL_TIME = 2.8; 
+  const TX_DISTANCE = 290;      
+  const RX_DISTANCE = -290;     
 
-  const txCircuitLines = [
-      txLinePowerPos, txLinePosToPiezoTop, 
-      txLinePowerNeg, txLineNegToPiezoBottom
+  const stepDescriptions = [
+    "シミュレーターが起動しました。「アニメーション開始 ＞」で手動進行、「通しで再生 🔁」で全自動進行します。",
+    "【ステップ 1: 送信回路の活性化（逆圧電効果）】<br>Tx/Rx切替器が『送信（上側）』に繋がり、送信回路（緑）に通電します。高周波交流電源からの電圧によって圧電素子が高速に伸縮（縦振動）を開始します。",
+    "【ステップ 2: 超音波の発生と伝播】<br>振動した素子表面が媒質を押し、超音波パルス（緑）が生成されます。音波は反射体に向かってゆっくりと進んでいきます。",
+    "【ステップ 3: 電子回路の受信モード切替】<br>装置は送信電流を遮断し、<strong>Tx/Rx切替器のレバーを『受信（下側）』へと物理的に切り替えます！</strong> 送信回路は消灯し、代わりに受信回路（青）がエコーを待ち受ける『スタンバイ状態（明滅）』に入ります。",
+    "【ステップ 4: 反射エコーの帰還】<br>反射体にぶつかって跳ね返った微弱なエコー（青）が、受信モードでじっと待ち受ける圧電素子へと向かって帰還します。",
+    "【ステップ 5: エコー受信と信号表示（正圧電効果）】<br>帰ってきたエコーの圧力で素子が再び微小に振動します。これにより素子内に電圧が発生（正圧電効果）し、活性化した受信回路を通って表示器へと電流が流れ込み、クッキリとした受信波形が描画されます！"
   ];
-  const rxCircuitLines = [
-      rxLinePiezoTopToDisplay, rxLineDisplayIn,
-      rxLinePiezoBottomToDisplayGnd
-      // rxLineDisplayGndTerminal は削除
-  ];
-  const allCircuitLines = [...txCircuitLines, ...rxCircuitLines];
 
-  let vibrationIntervalF;
-  let currentStepF = 0;
-
-  const PIEZO_X_F = parseFloat(piezoF.getAttribute('x'));
-  const PIEZO_WIDTH_F = parseFloat(piezoF.getAttribute('width'));
-  const PIEZO_SURFACE_RIGHT_F = PIEZO_X_F + PIEZO_WIDTH_F; 
-
-  const WAVE_TX_START_X_ABS_F = PIEZO_X_F + PIEZO_WIDTH_F + 10; 
-  
-  const REFLECTOR_X_F = parseFloat(reflectorF.getAttribute('cx'));
-  const REFLECTOR_RADIUS_F = parseFloat(reflectorF.getAttribute('r'));
-  const REFLECTOR_SURFACE_LEFT_F = REFLECTOR_X_F - REFLECTOR_RADIUS_F; 
-
-  function resetAnimationFinal() {
-    clearInterval(vibrationIntervalF);
-    startButtonF.disabled = false;
-    currentStepF = 0;
-    statusTextF.textContent = "待機中";
-
-    piezoF.style.transform = 'scaleX(1)';
-    allCircuitLines.forEach(line => {
-        if(line) line.classList.remove('active-circuit-line-final') // 要素存在チェック
-    });
-    receivedSignalPathF.style.opacity = '0';
-
-    wavesTxF.forEach((wave) => {
-      wave.style.opacity = '0';
-      const initialTransform = wave.getAttribute('transform');
-      wave.style.transform = initialTransform;
-      wave.style.transitionDuration = `1s, 0.3s`; 
-    });
-    wavesRxF.forEach((wave) => {
-      wave.style.opacity = '0';
-      const baseTranslateX_SVG = parseFloat(wave.getAttribute('transform').match(/translate\(([^,]+),/)[1]); 
-      const waveDefinitionStartX = 220; 
-      const targetStyleTranslateX = REFLECTOR_SURFACE_LEFT_F + waveDefinitionStartX + baseTranslateX_SVG;
-      wave.style.transform = `translate(${targetStyleTranslateX}px, 0) scale(-1,1)`;
-      wave.style.transitionDuration = `1s, 0.3s`; 
-    });
+  function setStepIndicator(step) {
+    document.querySelectorAll('.step-item').forEach(item => item.classList.remove('active'));
+    document.getElementById(`step${step}-idx`).classList.add('active');
   }
 
-  function vibratePiezoFinal() {
-    let scale = 1.03;
-    return setInterval(() => {
-      scale = (scale === 1.03) ? 0.97 : 1.03;
-      piezoF.style.transform = `translateX(${(1-scale) * (PIEZO_WIDTH_F/2)}px) scaleX(${scale})`;
-    }, 80);
+  function startPiezoVibration(intensity = 1.02) {
+    stopPiezoVibration();
+    let toggle = true;
+    piezoVibrateInterval = setInterval(() => {
+      let scaleX = toggle ? intensity : (2 - intensity);
+      piezoContainer.style.transformOrigin = "195px 220px";
+      piezoContainer.style.transform = `scaleX(${scaleX})`;
+      toggle = !toggle;
+    }, 60);
   }
-  
-  function setCircuitActive(circuit, isActive) {
-    circuit.forEach(line => {
-        if (line) { 
-            isActive ? line.classList.add('active-circuit-line-final') : line.classList.remove('active-circuit-line-final');
-        } else {
-            // console.warn("Undefined line element in circuit list:", circuit); // デバッグ用
-        }
+
+  function stopPiezoVibration() {
+    clearInterval(piezoVibrateInterval);
+    piezoContainer.style.transform = "scaleX(1)";
+  }
+
+  // タイマー全解除
+  function clearAutoplayTimeouts() {
+    autoplayTimeoutIds.forEach(id => clearTimeout(id));
+    autoplayTimeoutIds = [];
+  }
+
+  function resetToInitial() {
+    // 自動再生システムのリセット
+    isAutoplay = false;
+    clearAutoplayTimeouts();
+
+    stopPiezoVibration();
+    currentStep = 0;
+    setStepIndicator(0);
+    descBox.innerHTML = stepDescriptions[0];
+    
+    // ボタンの復帰
+    nextBtn.disabled = false;
+    nextBtn.textContent = "アニメーション開始 ＞";
+    autoplayBtn.disabled = false;
+    autoplayBtn.textContent = "通しで再生 🔁";
+
+    // スイッチを中立（水平）にリセット
+    leverPos.className.baseVal = "switch-lever";
+    leverNeg.className.baseVal = "switch-lever";
+
+    // 回路・電流リセット
+    txLines.forEach(l => l.classList.remove('standby-tx'));
+    rxLines.forEach(l => l.classList.remove('standby-rx'));
+    commonLines.forEach(l => {
+      l.classList.remove('standby-tx');
+      l.classList.remove('standby-rx');
     });
+    txFlows.forEach(f => f.classList.remove('active-tx-flow'));
+    rxFlows.forEach(f => f.classList.remove('active-rx-flow'));
+
+    // 波リセット
+    txWaveGroup.style.transition = "none";
+    txWaveGroup.style.transform = "translateX(0px)";
+    txWaves.forEach(w => w.style.opacity = "0");
+
+    rxWaveGroup.style.transition = "none";
+    rxWaveGroup.style.transform = "translateX(0px)";
+    rxWaves.forEach(w => w.style.opacity = "0");
+
+    // 表示器リセット
+    displayWave.style.animation = "none";
+    displayWave.style.strokeDashoffset = "200";
   }
 
-  async function startAnimationFinal() {
-    resetAnimationFinal(); 
-    startButtonF.disabled = true;
-    currentStepF = 1;
-    statusTextF.textContent = "1. 送信モード・ピエゾ素子振動";
+  // メインステートマシン
+  async function triggerNextStep() {
+    if (currentStep === 0) {
+      // Step 1: 電圧印加
+      currentStep = 1;
+      setStepIndicator(1);
+      descBox.innerHTML = stepDescriptions[1];
+      nextBtn.textContent = "次のステップへ ＞";
 
-    setCircuitActive(txCircuitLines, true);
-    setCircuitActive(rxCircuitLines, false);
-
-    vibrationIntervalF = vibratePiezoFinal();
-    await new Promise(resolve => setTimeout(resolve, 600)); 
-
-    currentStepF = 2;
-    statusTextF.textContent = "2. 超音波発生・伝播";
-    wavesTxF.forEach((wave) => {
-      wave.style.opacity = '1';
-      const initialTranslateX = parseFloat(wave.getAttribute('transform').match(/translate\(([^,]+),/)[1]);
-      const waveFrontInitialX = WAVE_TX_START_X_ABS_F + initialTranslateX; 
-      const distanceToTravelTx = REFLECTOR_SURFACE_LEFT_F - waveFrontInitialX;
+      leverPos.classList.add('tx-pos');
+      leverNeg.classList.add('tx-pos');
+      txLines.forEach(l => l.classList.add('standby-tx'));
+      commonLines.forEach(l => l.classList.add('standby-tx'));
+      txFlows.forEach(f => f.classList.add('active-tx-flow'));
       
-      wave.style.transitionDuration = `${Math.abs(distanceToTravelTx) / 250}s, 0.3s`; 
-      wave.style.transform = `translate(${initialTranslateX + distanceToTravelTx}px, 0)`;
-    });
-    
-    const lastWaveTxF = wavesTxF[wavesTxF.length-1];
-    let durationTxF = parseFloat(lastWaveTxF.style.transitionDuration.split(',')[0]) * 1000;
-    if (isNaN(durationTxF) || durationTxF <= 0) durationTxF = 1000;
-    await new Promise(resolve => setTimeout(resolve, durationTxF + 100));
+      startPiezoVibration(1.04);
 
-    clearInterval(vibrationIntervalF);
-    piezoF.style.transform = 'scaleX(1)';
-    wavesTxF.forEach(wave => wave.style.opacity = '0'); 
+      // 自動再生時：解説を読む時間を設けてから次のステップへ
+      if (isAutoplay) {
+        const tId = setTimeout(() => { if(isAutoplay) triggerNextStep(); }, 3500);
+        autoplayTimeoutIds.push(tId);
+      }
 
-    currentStepF = 3;
-    statusTextF.textContent = "3. 反射体で反射・受信モードへ";
-    
-    setCircuitActive(txCircuitLines, false); 
-    setCircuitActive(rxCircuitLines, true);  
-    await new Promise(resolve => setTimeout(resolve, 400)); 
+    } else if (currentStep === 1) {
+      // Step 2: 超音波送信
+      currentStep = 2;
+      setStepIndicator(2);
+      descBox.innerHTML = stepDescriptions[2];
+      nextBtn.disabled = true; 
 
-    currentStepF = 4;
-    statusTextF.textContent = "4. 反射波伝播";
-    wavesRxF.forEach((wave) => {
-        wave.style.opacity = '1';
+      txWaves.forEach((w, index) => {
+        w.style.opacity = (1 - index * 0.25).toString(); 
+      });
+
+      txWaveGroup.style.transition = `transform ${WAVE_TRAVEL_TIME}s linear`;
+      txWaveGroup.style.transform = `translateX(${TX_DISTANCE}px)`;
+
+      setTimeout(() => {
+        txWaves.forEach(w => w.style.opacity = "0");
+        stopPiezoVibration();
         
-        const initialStyleTranslateX = parseFloat(wave.style.transform.match(/translate\(([^px]+)/)[1]);
-        const svgDefinedTranslateOffsetX = parseFloat(wave.getAttribute('transform').match(/translate\(([^,]+),/)[1]);
-        const waveDefinitionStartX = 220;
+        if (!isAutoplay) {
+          nextBtn.disabled = false;
+        } else {
+          // 自動再生時：音波到達から1.2秒後に自動でステップ3へ
+          const tId = setTimeout(() => { if(isAutoplay) triggerNextStep(); }, 1200);
+          autoplayTimeoutIds.push(tId);
+        }
+      }, WAVE_TRAVEL_TIME * 1000);
 
-        const currentVisualX = initialStyleTranslateX - (waveDefinitionStartX + svgDefinedTranslateOffsetX);
-        const targetVisualX = PIEZO_SURFACE_RIGHT_F;
-        const visualDistanceToTravel = currentVisualX - targetVisualX; 
-        const deltaStyleTranslateX = -visualDistanceToTravel;
-        const finalStyleTranslateX = initialStyleTranslateX + deltaStyleTranslateX;
+    } else if (currentStep === 2) {
+      // Step 3: モード切替
+      currentStep = 3;
+      setStepIndicator(3);
+      descBox.innerHTML = stepDescriptions[3];
+
+      txFlows.forEach(f => f.classList.remove('active-tx-flow'));
+      txLines.forEach(l => l.classList.remove('standby-tx'));
+      commonLines.forEach(l => l.classList.remove('standby-tx'));
+      
+      leverPos.classList.remove('tx-pos');
+      leverNeg.classList.remove('tx-pos');
+      leverPos.classList.add('rx-pos');
+      leverNeg.classList.add('rx-pos');
+
+      rxLines.forEach(l => l.classList.add('standby-rx'));
+      commonLines.forEach(l => l.classList.add('standby-rx'));
+
+      txWaveGroup.style.transition = "none";
+      txWaveGroup.style.transform = "translateX(0px)";
+
+      // 自動再生時：切り替えアクションと解説をじっくり見せるため4秒待機
+      if (isAutoplay) {
+        const tId = setTimeout(() => { if(isAutoplay) triggerNextStep(); }, 4000);
+        autoplayTimeoutIds.push(tId);
+      }
+
+    } else if (currentStep === 3) {
+      // Step 4: 反射エコー帰還
+      currentStep = 4;
+      setStepIndicator(4);
+      descBox.innerHTML = stepDescriptions[4];
+      nextBtn.disabled = true;
+
+      rxWaves.forEach((w, index) => {
+        w.style.opacity = (1 - index * 0.25).toString();
+      });
+
+      rxWaveGroup.style.transition = `transform ${WAVE_TRAVEL_TIME}s linear`;
+      rxWaveGroup.style.transform = `translateX(${RX_DISTANCE}px)`;
+
+      setTimeout(() => {
+        rxWaves.forEach(w => w.style.opacity = "0");
         
-        wave.style.transitionDuration = `${Math.abs(visualDistanceToTravel) / 250}s, 0.3s`;
-        wave.style.transform = `translate(${finalStyleTranslateX}px, 0) scale(-1,1)`;
-    });
+        if (!isAutoplay) {
+          nextBtn.disabled = false;
+        } else {
+          // 自動再生時：エコー到達から1.2秒後に自動で最後のステップへ
+          const tId = setTimeout(() => { if(isAutoplay) triggerNextStep(); }, 1200);
+          autoplayTimeoutIds.push(tId);
+        }
+      }, WAVE_TRAVEL_TIME * 1000);
 
-    const lastWaveRxF = wavesRxF[wavesRxF.length - 1];
-    let durationRxF = parseFloat(lastWaveRxF.style.transitionDuration.split(',')[0]) * 1000;
-    if (isNaN(durationRxF) || durationRxF <=0) durationRxF = 1000; 
-    await new Promise(resolve => setTimeout(resolve, durationRxF + 100));
+    } else if (currentStep === 4) {
+      // Step 5: エコー受信・表示
+      currentStep = 5;
+      setStepIndicator(5);
+      descBox.innerHTML = stepDescriptions[5];
+      nextBtn.textContent = "最初から再生 ＞";
 
+      rxWaveGroup.style.transition = "none";
+      rxWaveGroup.style.transform = "translateX(0px)";
 
-    currentStepF = 5;
-    statusTextF.textContent = "5. 受信・電圧発生・表示";
-    wavesRxF.forEach(wave => wave.style.opacity = '0');
-    vibrationIntervalF = vibratePiezoFinal();
-    receivedSignalPathF.style.opacity = '1'; 
+      startPiezoVibration(1.02);
+      rxFlows.forEach(f => f.classList.add('active-rx-flow'));
+      displayWave.style.animation = "drawWave 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards";
 
-    await new Promise(resolve => setTimeout(resolve, 1000)); 
+      setTimeout(() => {
+        stopPiezoVibration();
+        if (isAutoplay) {
+          // 通し再生完了時のコントロール復帰
+          isAutoplay = false;
+          nextBtn.disabled = false;
+          autoplayBtn.disabled = false;
+          autoplayBtn.textContent = "通しで再生 🔁";
+        }
+      }, 1200);
 
-    clearInterval(vibrationIntervalF);
-    piezoF.style.transform = 'scaleX(1)';
-    receivedSignalPathF.style.opacity = '0';
-    setCircuitActive(rxCircuitLines, false); 
-    
-    statusTextF.textContent = "完了 (リセットで再開)";
-    startButtonF.disabled = false;
-    currentStepF = 0;
+    } else if (currentStep === 5) {
+      resetToInitial();
+    }
   }
 
-  startButtonF.addEventListener('click', startAnimationFinal);
-  resetButtonF.addEventListener('click', resetAnimationFinal);
+  // イベントリスナー
+  nextBtn.addEventListener('click', triggerNextStep);
+  resetBtn.addEventListener('click', resetToInitial);
+  
+  // 新設：通し再生ボタンのクリック処理
+  autoplayBtn.addEventListener('click', () => {
+    resetToInitial(); // 完全な初期状態から始めるためにリセット
+    isAutoplay = true;
+    nextBtn.disabled = true;
+    autoplayBtn.disabled = true;
+    autoplayBtn.textContent = "通し再生中...";
+    triggerNextStep();
+  });
 
-  resetAnimationFinal();
+  // 初期化
+  resetToInitial();
 </script>
 
 </body>
