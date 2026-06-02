@@ -654,11 +654,11 @@ $$
 
 ---
 
-<!-- ## 9. 演習課題・国家試験対策問題
+## 9. 演習課題・国家試験対策問題
 
 - [Google Form](https://forms.gle/gF3jhJGNFWGaBW8VA)
 
 <figure>
   <img src="../img/09-05.png" alt="第8,9回演習QRコード" width="300" height="auto">
   <figcaption>第8,9回演習QRコード</figcaption>
-</figure> -->
+</figure>
