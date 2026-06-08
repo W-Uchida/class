@@ -1,312 +1,659 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>距離分解能デモ</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 20px;
-            background-color: #f8f9fa;
-            color: #343a40;
-            line-height: 1.6;
-        }
-        .container {
-            background-color: #ffffff;
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            max-width: 800px;
-            margin: auto;
-        }
-        h1, h2 {
-            color: #00509e;
-            border-bottom: 2px solid #dee2e6;
-            padding-bottom: 5px;
-        }
-        .controls {
-            margin-bottom: 20px;
-            padding: 15px;
-            background-color: #e9ecef;
-            border-radius: 5px;
-        }
-        .controls div {
-            margin-bottom: 10px;
-        }
-        .controls label {
-            display: inline-block;
-            width: 180px; /* ラベル幅を統一 */
-            font-weight: 500;
-        }
-        .controls input[type="range"] {
-            width: 300px;
-            vertical-align: middle;
-        }
-        .controls span {
-            font-weight: bold;
-            color: #00509e;
-            min-width: 30px; /* 値表示の幅 */
-            display: inline-block;
-        }
-        #visualizationArea {
-            border: 1px solid #ced4da;
-            height: 350px; /* 描画領域の高さ */
-            margin-top: 10px;
-            position: relative; /* 子要素の絶対位置指定のため */
-            background-color: #fff;
-        }
-        .pulse, .reflector, .echo {
-            position: absolute;
-            height: 40px; /* パルスの高さ */
-            background-color: rgba(0, 123, 255, 0.7); /* 送信パルスは青系 */
-            border: 1px solid rgba(0, 86, 179, 0.9);
-            box-sizing: border-box;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8em;
-            color: white;
-            overflow: hidden;
-        }
-        .reflector {
-            width: 10px;
-            height: 10px;
-            background-color: #dc3545; /* 反射点は赤 */
-            border-radius: 50%;
-            border: none;
-        }
-        .echo {
-            background-color: rgba(255, 193, 7, 0.7); /* 反射波は黄色系 */
-            border-color: rgba(204, 154, 0, 0.9);
-        }
-        #combinedEchoArea {
-            height: 60px; /* 合成波形表示エリア */
-            border: 1px dashed #6c757d;
-            margin-top: 5px;
-            position: relative;
-        }
-        .combined-segment {
-            position: absolute;
-            height: 100%;
-            opacity: 0.6;
-        }
-        #statusIndicator {
-            margin-top: 15px;
-            padding: 10px;
-            text-align: center;
-            font-weight: bold;
-            border-radius: 5px;
-            color: white;
-        }
-        .status-good { background-color: #28a745; } /* 分離良好: 緑 (赤から変更) */
-        .status-poor { background-color: #007bff; } /* 分離不十分: 青 */
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>超音波距離分解能・完全物理再現シミュレーター</title>
+<style>
+  :root {
+    --bg-main: #0f172a;
+    --bg-canvas: #1e293b;
+    --color-tx: #00ffab;    /* 送信パルス：ネオングリーン */
+    --color-rx1: #00e5ff;   /* エコー1：ネオンブルー */
+    --color-rx2: #a855f7;   /* エコー2：パープル */
+    --color-text: #f8fafc;
+    --color-dim: #64748b;
+    --color-warn: #ef4444;  /* 重なり警告：レッド */
+    --color-good: #10b981;  /* 分離良好：グリーン */
+  }
 
-        .object-label {
-            position: absolute;
-            font-size: 0.8em;
-            color: #495057;
-            text-align: center;
-        }
-    </style>
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--bg-main);
+    margin: 0;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    color: var(--color-text);
+    user-select: none;
+  }
+
+  h1 {
+    font-size: 21px;
+    margin: 15px 0 5px 0;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #e2e8f0;
+  }
+  
+  p.subtitle {
+    font-size: 13px;
+    color: var(--color-dim);
+    margin: 0 0 15px 0;
+  }
+
+  .main-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 760px;
+  }
+
+  /* コントロールパネル */
+  .control-panel {
+    background-color: rgba(30, 41, 59, 0.7);
+    border-radius: 12px;
+    padding: 15px 20px;
+    border: 1px solid #334155;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .sliders-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex-grow: 1;
+  }
+
+  .control-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .control-row label {
+    width: 150px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #cbd5e1;
+  }
+
+  .control-row input[type="range"] {
+    flex-grow: 1;
+    max-width: 300px;
+    cursor: pointer;
+  }
+
+  .control-row .value-display {
+    min-width: 60px;
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--color-tx);
+    font-family: monospace;
+  }
+
+  /* 判定インジケーター */
+  .status-badge {
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    min-width: 160px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+  }
+  .status-good {
+    background-color: rgba(16, 185, 129, 0.15);
+    border-color: var(--color-good);
+    color: var(--color-good);
+    filter: drop-shadow(0 0 4px rgba(16, 185, 129, 0.4));
+  }
+  .status-poor {
+    background-color: rgba(239, 68, 68, 0.15);
+    border-color: var(--color-warn);
+    color: var(--color-warn);
+    filter: drop-shadow(0 0 4px rgba(239, 68, 68, 0.4));
+  }
+
+  /* キャンバス */
+  .canvas-container {
+    position: relative;
+    width: 100%;
+    height: 420px;
+    background-color: var(--bg-canvas);
+    border-radius: 12px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+    border: 1px solid #334155;
+    overflow: hidden;
+  }
+  
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .glow-tx { filter: drop-shadow(0 0 4px var(--color-tx)); }
+  .glow-rx1 { filter: drop-shadow(0 0 4px var(--color-rx1)); }
+  .glow-rx2 { filter: drop-shadow(0 0 4px var(--color-rx2)); }
+  .glow-warn { filter: drop-shadow(0 0 5px var(--color-warn)); }
+
+  .wave-pulse {
+    fill: none;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  /* Aモードモニター */
+  .monitor-bg {
+    fill: #020617;
+    stroke: #334155;
+    stroke-width: 2;
+  }
+  
+  .monitor-grid {
+    stroke: #1e293b;
+    stroke-width: 0.5;
+    stroke-dasharray: 2, 4;
+  }
+
+  .description-box {
+    background-color: rgba(15, 23, 42, 0.6);
+    border-left: 4px solid #3b82f6;
+    padding: 12px 15px;
+    border-radius: 0 8px 8px 0;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: #cbd5e1;
+    border: 1px solid #334155;
+    min-height: 60px;
+  }
+
+  .btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+
+  .btn-group button {
+    padding: 12px 30px;
+    cursor: pointer;
+    background: linear-gradient(135deg, #1e293b, #0f172a);
+    color: #e2e8f0;
+    border: 1px solid #475569;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  .btn-group button:hover:not(:disabled) {
+    background: linear-gradient(135deg, #334155, #1e293b);
+    border-color: #64748b;
+    color: #fff;
+  }
+  .btn-group button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+  .btn-group button#fireButton {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    border-color: #3b82f6;
+    color: #fff;
+  }
+  .btn-group button#fireButton:hover:not(:disabled) {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+  }
+
+  .label-title { font-size: 12px; fill: #94a3b8; font-weight: 600; }
+  .label-node { font-size: 11px; fill: #cbd5e1; text-anchor: middle; }
+</style>
 </head>
 <body>
-    <div class="container">
-        <h1>距離分解能 体験デモツール</h1>
-        <p>超音波パルスの長さと、軸方向に並んだ2つの反射点の分離能力の関係を視覚化します。</p>
 
-        <div class="controls">
-            <div>
-                <label for="pulseLengthSlider">パルス長 (SPL):</label>
-                <input type="range" id="pulseLengthSlider" min="10" max="150" value="80">
-                <span id="pulseLengthValue">80</span> px
-            </div>
-            <div>
-                <label for="reflectorDistanceSlider">反射点の間隔:</label>
-                <input type="range" id="reflectorDistanceSlider" min="5" max="200" value="100">
-                <span id="reflectorDistanceValue">100</span> px
-            </div>
-        </div>
+<h1>超音波 距離分解能 シミュレーター（完全物理再現版）</h1>
+<p class="subtitle">波の最先端が各反射点に届いた瞬間に反射波が独立発生。空間上の重なり合いを100%正確にシミュレート</p>
 
-        <h2>視覚化エリア</h2>
-        <div id="visualizationArea">
-            <!-- 送信プローブ（概念） -->
-            <div class="object-label" style="left: 10px; top: 5px;">プローブ</div>
-            <div style="position:absolute; left: 20px; top: 20px; width:10px; height:40px; background: #6c757d;"></div>
-
-            <!-- 送信パルス -->
-            <div class="pulse" id="txPulse"><span class="pulse-text">送信パルス</span></div>
-
-            <!-- 反射点 -->
-            <div class="reflector" id="reflector1"></div>
-            <div class="object-label" id="reflector1Label" style="top: 65px;">点1</div>
-            <div class="reflector" id="reflector2"></div>
-            <div class="object-label" id="reflector2Label" style="top: 65px;">点2</div>
-
-            <!-- 反射波（エコー）表示エリアのラベル -->
-            <div class="object-label" style="left: 10px; top: 100px;">受信エコー (時間/距離)</div>
-            <div style="position:absolute; left: 20px; top: 120px; width:10px; height:40px; background: #6c757d; opacity:0.5;"></div>
-
-
-            <!-- エコー1 -->
-            <div class="echo" id="echo1"><span class="echo-text">エコー1</span></div>
-            <!-- エコー2 -->
-            <div class="echo" id="echo2"><span class="echo-text">エコー2</span></div>
-
-
-            <!-- 合成反射波表示エリアのラベル -->
-            <div class="object-label" style="left: 10px; top: 220px;">合成エコー</div>
-            <div id="combinedEchoArea">
-                <!-- ここにJavaScriptで合成波形を描画 -->
-            </div>
-        </div>
-
-        <div id="statusIndicator">
-            分離状態を判定中...
-        </div>
-        <p style="font-size:0.9em; margin-top:15px;">
-            <strong>説明:</strong><br>
-            - <strong>パルス長 (SPL):</strong> 送信される超音波1パルスの空間的な長さです。短いほど分解能が良くなります。<br>
-            - <strong>反射点の間隔:</strong> 2つの物体（反射点）が超音波の進む方向にどれだけ離れているかを示します。<br>
-            - <strong>分離状態:</strong>
-                <span style="color:#28a745; font-weight:bold;">緑色</span>は2つの点が分離して認識できる状態（良好）、
-                <span style="color:#007bff; font-weight:bold;">青色</span>は2つの点が重なって1つの点のように見える状態（不十分）を示します。<br>
-            - 距離分解能の目安は、一般的にパルス長(SPL)の半分 (SPL/2) と言われます。2つの反射点の間隔がSPL/2より大きければ分離できる可能性が高まります。
-        </p>
+<div class="main-wrapper">
+  
+  <div class="control-panel">
+    <div class="sliders-group">
+      <div class="control-row">
+        <label for="splSlider">① パルス長 (SPL) :</label>
+        <input type="range" id="splSlider" min="20" max="140" value="80">
+        <span class="value-display" id="splVal">80 px</span>
+      </div>
+      <div class="control-row">
+        <label for="distSlider">② 反射点の間隔 :</label>
+        <input type="range" id="distSlider" min="15" max="130" value="65">
+        <span class="value-display" id="distVal">65 px</span>
+      </div>
     </div>
+    <div id="statusBadge" class="status-badge status-good">分離状態を判定中...</div>
+  </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const pulseLengthSlider = document.getElementById('pulseLengthSlider');
-            const pulseLengthValue = document.getElementById('pulseLengthValue');
-            const reflectorDistanceSlider = document.getElementById('reflectorDistanceSlider');
-            const reflectorDistanceValue = document.getElementById('reflectorDistanceValue');
+  <div class="canvas-container">
+    <svg id="mainCanvas" viewBox="0 0 760 420">
+      <line x1="0" y1="230" x2="760" y2="230" stroke="#334155" stroke-dasharray="4,4"/>
+      
+      <text x="15" y="25" class="label-title" text-anchor="start">▼ 生体・媒質内（空間軸：パルス先端が接触した瞬間、その場で即座に反射エコーが生まれます）</text>
+      <text x="15" y="250" class="label-title" text-anchor="start">▼ Aモード超音波波形モニター（時間軸：プローブにエコーが突入した時間がリアルタイム走査されます）</text>
 
-            const visualizationArea = document.getElementById('visualizationArea');
-            const txPulse = document.getElementById('txPulse');
-            const reflector1 = document.getElementById('reflector1');
-            const reflector2 = document.getElementById('reflector2');
-            const reflector1Label = document.getElementById('reflector1Label');
-            const reflector2Label = document.getElementById('reflector2Label');
-            const echo1 = document.getElementById('echo1');
-            const echo2 = document.getElementById('echo2');
+      <rect x="15" y="45" width="25" height="140" fill="#475569" stroke="#64748b" stroke-width="1.5" rx="3"/>
+      <path d="M 40 55 L 45 65 L 45 165 L 40 175 Z" fill="#94a3b8"/>
+      <text x="27" y="120" font-size="11px" fill="#0f172a" font-weight="bold" writing-mode="vertical-rl" text-anchor="middle">プローブ</text>
 
-            const combinedEchoArea = document.getElementById('combinedEchoArea');
-            const statusIndicator = document.getElementById('statusIndicator');
+      <path id="txWavePath" class="wave-pulse glow-tx" stroke="var(--color-tx)"/>
+      <path id="rxWavePath1" class="wave-pulse glow-rx1" stroke="var(--color-rx1)"/>
+      <path id="rxWavePath2" class="wave-pulse glow-rx2" stroke="var(--color-rx2)"/>
 
-            const PROBE_POSITION_X = 30; // プローブ(パルス開始)のX座標 (px)
-            const REFLECTOR_Y = 40;       // 反射点のY座標 (px)
-            const ECHO_Y = 120;           // エコー表示のY座標 (px)
+      <circle id="reflector1" cx="350" cy="115" r="7" fill="#ef4444" stroke="#f8fafc" stroke-width="1.5"/>
+      <text id="reflector1Label" x="350" y="98" class="label-node" font-weight="bold">反射点 1</text>
+      
+      <circle id="reflector2" cx="415" cy="115" r="7" fill="#f59e0b" stroke="#f8fafc" stroke-width="1.5"/>
+      <text id="reflector2Label" x="415" y="98" class="label-node" font-weight="bold">反射点 2</text>
 
-            function drawElements() {
-                const spl = parseInt(pulseLengthSlider.value); // Spatial Pulse Length
-                const distance = parseInt(reflectorDistanceSlider.value); // Distance between reflectors
+      <g id="resolutionGaugeGroup">
+        <line id="gaugeLine" x1="350" y1="140" x2="390" y2="140" stroke="#00ffab" stroke-width="3" stroke-linecap="round"/>
+        <line id="gaugeLeftTick" x1="350" y1="135" x2="350" y2="145" stroke="#00ffab" stroke-width="2"/>
+        <line id="gaugeRightTick" x1="390" y1="135" x2="390" y2="145" stroke="#00ffab" stroke-width="2"/>
+        <text id="gaugeText" x="370" y="158" font-size="11px" fill="#00ffab" font-weight="bold" text-anchor="middle">分解能限界 (SPL/2)</text>
+      </g>
 
-                pulseLengthValue.textContent = spl;
-                reflectorDistanceValue.textContent = distance;
+      <rect class="monitor-bg" x="15" y="265" width="730" height="135" rx="6"/>
+      <line x1="15" y1="332.5" x2="745" y2="332.5" class="monitor-grid"/>
+      <line x1="136.6" y1="265" x2="136.6" y2="400" class="monitor-grid"/>
+      <line x1="258.2" y1="265" x2="258.2" y2="400" class="monitor-grid"/>
+      <line x1="380" y1="265" x2="380" y2="400" class="monitor-grid"/>
+      <line x1="501.6" y1="265" x2="501.6" y2="400" class="monitor-grid"/>
+      <line x1="623.2" y1="265" x2="623.2" y2="400" class="monitor-grid"/>
 
-                // 1. 送信パルス
-                txPulse.style.left = PROBE_POSITION_X + 'px';
-                txPulse.style.top = REFLECTOR_Y - 20 + 'px';
-                txPulse.style.width = spl + 'px';
-                txPulse.querySelector('.pulse-text').textContent = `送信パルス (SPL: ${spl}px)`;
+      <path id="aModeEcho1" fill="none" stroke="var(--color-rx1)" stroke-width="1.5" opacity="0.35"/>
+      <path id="aModeEcho2" fill="none" stroke="var(--color-rx2)" stroke-width="1.5" opacity="0.35"/>
+      <path id="aModeCombined" fill="none" stroke="#fff" stroke-width="3" class="glow-tx"/>
 
-                // 2. 反射点
-                const r1_x_abs = PROBE_POSITION_X + 100; // 反射点1の基準X位置 (絶対座標)
-                reflector1.style.left = r1_x_abs - (reflector1.offsetWidth / 2) + 'px';
-                reflector1.style.top = REFLECTOR_Y + 'px';
-                reflector1Label.style.left = r1_x_abs - 10 + 'px';
+      <text x="35" y="285" font-size="10px" fill="#475569" font-weight="bold">A-MODE MONITOR</text>
+      <text id="monitorStatusText" x="730" y="285" font-size="11px" fill="#cbd5e1" text-anchor="end">LIVE MODE</text>
+    </svg>
+  </div>
 
-                const r2_x_abs = r1_x_abs + distance; // 反射点2のX位置 (絶対座標)
-                reflector2.style.left = r2_x_abs - (reflector2.offsetWidth / 2) + 'px';
-                reflector2.style.top = REFLECTOR_Y + 'px';
-                reflector2Label.style.left = r2_x_abs - 10 + 'px';
+  <div class="description-box" id="descBox">
+    数値を調整するか、「パルスを発射して計測 📡」を押して動的な挙動を確認してください。
+  </div>
 
-                // 3. 反射波（エコー） - visualizationArea内の絶対座標で表示
-                const echo1_start_abs = r1_x_abs;
-                echo1.style.left = echo1_start_abs + 'px';
-                echo1.style.top = ECHO_Y + 'px';
-                echo1.style.width = spl + 'px';
-                echo1.querySelector('.echo-text').textContent = `エコー1`;
+  <div class="btn-group">
+    <button id="fireButton">パルスを発射して計測 📡</button>
+    <button id="resetButton">ライブ描画に戻す ↺</button>
+  </div>
+</div>
 
-                const echo2_start_abs = r2_x_abs;
-                echo2.style.left = echo2_start_abs + 'px';
-                echo2.style.top = ECHO_Y + 'px';
-                echo2.style.width = spl + 'px';
-                echo2.querySelector('.echo-text').textContent = `エコー2`;
+<script>
+  const splSlider = document.getElementById('splSlider');
+  const distSlider = document.getElementById('distSlider');
+  const splVal = document.getElementById('splVal');
+  const distVal = document.getElementById('distVal');
+  const statusBadge = document.getElementById('statusBadge');
+  const descBox = document.getElementById('descBox');
+  const fireButton = document.getElementById('fireButton');
+  const resetButton = document.getElementById('resetButton');
+  const monitorStatus = document.getElementById('monitorStatusText');
 
-                // 4. 合成反射波と分解能判定
-                combinedEchoArea.innerHTML = ''; // 前の描画をクリア
-                combinedEchoArea.style.paddingLeft = '0px'; // paddingLeftは不要になったのでリセット
+  const txWavePath = document.getElementById('txWavePath');
+  const rxWavePath1 = document.getElementById('rxWavePath1');
+  const rxWavePath2 = document.getElementById('rxWavePath2');
+  const reflector1 = document.getElementById('reflector1');
+  const reflector2 = document.getElementById('reflector2');
+  const reflector1Label = document.getElementById('reflector1Label');
+  const reflector2Label = document.getElementById('reflector2Label');
+  
+  const gaugeLine = document.getElementById('gaugeLine');
+  const gaugeLeftTick = document.getElementById('gaugeLeftTick');
+  const gaugeRightTick = document.getElementById('gaugeRightTick');
+  const gaugeText = document.getElementById('gaugeText');
+  const resolutionGaugeGroup = document.getElementById('resolutionGaugeGroup');
 
-                // エコーの開始位置と終了位置を、combinedEchoAreaの左端を0とした相対座標で計算
-                // PROBE_POSITION_X を基準点として、そこからの相対距離で描画する
-                const e1_start_relative = r1_x_abs - PROBE_POSITION_X;
-                const e1_end_relative = e1_start_relative + spl;
-                const e2_start_relative = r2_x_abs - PROBE_POSITION_X;
-                const e2_end_relative = e2_start_relative + spl;
+  const aModeEcho1 = document.getElementById('aModeEcho1');
+  const aModeEcho2 = document.getElementById('aModeEcho2');
+  const aModeCombined = document.getElementById('aModeCombined');
 
-                let resolved = false;
-                if (distance > spl / 2) {
-                    resolved = true;
-                }
+  const PROBE_X = 45;       
+  const R1_BASE_X = 350;    
+  const MONITOR_Y_CENTER = 332.5; 
+  
+  let animId = null;
+  let isAnimating = false;
 
-                if (resolved) {
-                    statusIndicator.textContent = '分離良好 (Good Resolution)';
-                    statusIndicator.className = 'status-good';
-                } else {
-                    statusIndicator.textContent = '分離不十分 (Poor Resolution)';
-                    statusIndicator.className = 'status-poor';
-                }
+  // パルス波形生成 (波の中心x, 幅w, 反射時は反転表現)
+  function generatePulsePathData(centerX, width, direction = 1, centerY = 115, maxAmp = 25) {
+    if (width <= 0) return "M 0 0";
+    let points = [];
+    const step = 2;
+    const startX = centerX - width / 2;
+    const endX = centerX + width / 2;
 
-                // --- 合成波形を視覚化 ---
-                // エコー1の描画
-                if (spl > 0) {
-                    const echo1Segment = document.createElement('div');
-                    echo1Segment.className = 'combined-segment';
-                    echo1Segment.style.left = e1_start_relative + 'px';
-                    echo1Segment.style.width = spl + 'px';
-                    echo1Segment.style.backgroundColor = resolved ? 'rgba(40, 167, 69, 0.4)' : 'rgba(0, 123, 255, 0.4)'; // 半透明
-                    echo1Segment.style.zIndex = "1";
-                    combinedEchoArea.appendChild(echo1Segment);
-                }
+    for (let x = startX; x <= endX; x += step) {
+      if (x < PROBE_X) continue; 
+      let rel = (x - startX) / width; 
+      let envelope = Math.sin(rel * Math.PI); 
+      let waveCycles = (width / 80) * 5; 
+      let sine = Math.sin(rel * Math.PI * 2 * waveCycles) * direction; 
+      
+      let y = centerY - (sine * envelope * maxAmp);
+      points.push(`${x},${y}`);
+    }
+    return points.length > 0 ? "M " + points.join(" L ") : "M 0 0";
+  }
 
-                // エコー2の描画
-                if (spl > 0) {
-                    const echo2Segment = document.createElement('div');
-                    echo2Segment.className = 'combined-segment';
-                    echo2Segment.style.left = e2_start_relative + 'px';
-                    echo2Segment.style.width = spl + 'px';
-                    echo2Segment.style.backgroundColor = resolved ? 'rgba(40, 167, 69, 0.4)' : 'rgba(0, 123, 255, 0.4)'; // 半透明
-                    echo2Segment.style.zIndex = "1";
-                    combinedEchoArea.appendChild(echo2Segment);
-                }
+  // モニター用の単一波形データ生成
+  function generateAModePathData(peakX, width, ampFactor = 1) {
+    let points = [];
+    const monitorLeft = 15;
+    const monitorRight = 745;
+    const halfW = width;
 
-                // 重なり部分をより濃い色で強調
-                const overlap_start_relative = Math.max(e1_start_relative, e2_start_relative);
-                const overlap_end_relative = Math.min(e1_end_relative, e2_end_relative);
-                const overlap_width = overlap_end_relative - overlap_start_relative;
+    for (let x = monitorLeft; x <= monitorRight; x += 1) {
+      let y = MONITOR_Y_CENTER;
+      if (x >= peakX - halfW && x <= peakX + halfW) {
+        let rel = (x - (peakX - halfW)) / (halfW * 2);
+        let envelope = Math.sin(rel * Math.PI);
+        let waveCycles = 6;
+        let sine = Math.sin(rel * Math.PI * 2 * waveCycles);
+        y -= (sine * envelope * 55 * ampFactor); 
+      }
+      points.push(`${x},${y}`);
+    }
+    return "M " + points.join(" L ");
+  }
 
-                if (overlap_width > 0) {
-                    const overlapSegment = document.createElement('div');
-                    overlapSegment.className = 'combined-segment';
-                    overlapSegment.style.left = overlap_start_relative + 'px';
-                    overlapSegment.style.width = overlap_width + 'px';
-                    // 重なりの色は常に赤系で固定、透明度で元の色が少し見えるように
-                    overlapSegment.style.backgroundColor = 'rgba(220, 53, 69, 0.6)'; // より濃い赤
-                    overlapSegment.style.zIndex = "2"; // 最前面に
-                    combinedEchoArea.appendChild(overlapSegment);
-                }
-            }
+  // モニター合成エコー描画
+  function updateCombinedMonitor(peakX1, peakX2, width, resolved) {
+    let points = [];
+    const monitorLeft = 15;
+    const monitorRight = 745;
+    const halfW = width; 
 
-            pulseLengthSlider.addEventListener('input', drawElements);
-            reflectorDistanceSlider.addEventListener('input', drawElements);
+    for (let x = monitorLeft; x <= monitorRight; x += 1) {
+      let val1 = 0;
+      let val2 = 0;
 
-            // 初期描画
-            drawElements();
-        });
+      if (x >= peakX1 - halfW && x <= peakX1 + halfW) {
+        let rel = (x - (peakX1 - halfW)) / (halfW * 2);
+        let envelope = Math.sin(rel * Math.PI);
+        val1 = (Math.sin(rel * Math.PI * 2 * 6) * envelope * 55);
+      }
+      if (x >= peakX2 - halfW && x <= peakX2 + halfW) {
+        let rel = (x - (peakX2 - halfW)) / (halfW * 2);
+        let envelope = Math.sin(rel * Math.PI);
+        val2 = (Math.sin(rel * Math.PI * 2 * 6) * envelope * 50); 
+      }
 
+      let totalValue = val1 + val2;
+      let y = MONITOR_Y_CENTER - totalValue;
+      points.push(`${x},${y}`);
+    }
+    
+    aModeCombined.setAttribute('d', "M " + points.join(" L "));
+    
+    if (resolved) {
+      aModeCombined.setAttribute('stroke', 'var(--color-tx)');
+      aModeCombined.classList.remove('glow-warn');
+      aModeCombined.classList.add('glow-tx');
+    } else {
+      aModeCombined.setAttribute('stroke', 'var(--color-warn)');
+      aModeCombined.classList.remove('glow-tx');
+      aModeCombined.classList.add('glow-warn');
+    }
+  }
 
-    </script>
+  // 静止プレビューモード（スライダー調整時）
+  function draw() {
+    if (isAnimating) return; 
+
+    const spl = parseInt(splSlider.value);
+    const dist = parseInt(distSlider.value);
+
+    splVal.textContent = `${spl} px`;
+    distVal.textContent = `${dist} px`;
+
+    const r1x = R1_BASE_X;
+    const r2x = R1_BASE_X + dist;
+    reflector1.setAttribute('cx', r1x);
+    reflector1Label.setAttribute('x', r1x);
+    reflector2.setAttribute('cx', r2x);
+    reflector2Label.setAttribute('x', r2x);
+
+    const resolved = dist > (spl / 2);
+
+    if (resolved) {
+      statusBadge.textContent = "分離良好 (RESOLVED) 🟢";
+      statusBadge.className = "status-badge status-good";
+      descBox.innerHTML = `<strong>【物理条件：独立反射＆分離良好】</strong><br>各点に波の先端が届いた瞬間に反射波が別々に発生します。現在は点の間隔（${dist}px）が分解能限界<strong>SPL/2（${spl/2}px）よりも広い</strong>ため、戻る途中で波同士（青と紫）が重ならず、モニターでも2本の山としてクッキリ識別できます。`;
+    } else {
+      statusBadge.textContent = "分離不十分 (OVERLAPPED) 🔴";
+      statusBadge.className = "status-badge status-poor";
+      descBox.innerHTML = `<strong>【物理条件：独立反射＆空間内で重合】</strong><br>それぞれの点で個別に波が反射していますが、点同士が近すぎる（${dist}px）ため、戻る途中で<strong>エコー1（青）の後ろ側とエコー2（紫）の前側が空間上で完全に重なってしまいます（1つの巨大な塊化）</strong>。そのため、装置側には1つの山にしか見えなくなります。`;
+    }
+
+    // 静止時の空間プレビュー（イメージ位置）
+    txWavePath.setAttribute('d', generatePulsePathData(160, spl, 1));
+    txWavePath.style.opacity = "0.8";
+    rxWavePath1.setAttribute('d', generatePulsePathData(r1x - 70, spl, -1));
+    rxWavePath1.style.opacity = "0.6";
+    rxWavePath2.setAttribute('d', generatePulsePathData(r2x - 40, spl, -1));
+    rxWavePath2.style.opacity = "0.6";
+
+    // 限界ゲージ（SPL/2）の描画更新
+    resolutionGaugeGroup.style.opacity = "1";
+    gaugeLine.setAttribute('x1', r1x);
+    gaugeLine.setAttribute('x2', r1x + (spl / 2));
+    gaugeLeftTick.setAttribute('x1', r1x);
+    gaugeLeftTick.setAttribute('x2', r1x);
+    gaugeRightTick.setAttribute('x1', r1x + (spl / 2));
+    gaugeRightTick.setAttribute('x2', r1x + (spl / 2));
+    gaugeText.setAttribute('x', r1x + (spl / 2) / 2);
+    
+    const gaugeColor = resolved ? 'var(--color-tx)' : 'var(--color-warn)';
+    gaugeLine.setAttribute('stroke', gaugeColor);
+    gaugeLeftTick.setAttribute('stroke', gaugeColor);
+    gaugeRightTick.setAttribute('stroke', gaugeColor);
+    gaugeText.setAttribute('fill', gaugeColor);
+
+    // 時間軸へのマッピング（往復距離に正確に比例）
+    const mPeak1 = 120 + (r1x - PROBE_X) * 1.35;
+    const mPeak2 = 120 + (r2x - PROBE_X) * 1.35;
+    const mWidth = spl * 0.65;
+
+    aModeEcho1.setAttribute('d', generateAModePathData(mPeak1, mWidth, 1));
+    aModeEcho2.setAttribute('d', generateAModePathData(mPeak2, mWidth, 0.9));
+    aModeEcho1.style.opacity = "0.3";
+    aModeEcho2.style.opacity = "0.3";
+
+    updateCombinedMonitor(mPeak1, mPeak2, mWidth, resolved);
+  }
+
+  // --- アニメーション処理（等速かつ各点接触時での即時独立発生） ---
+  function fireUltrasound() {
+    if (isAnimating) return;
+    isAnimating = true;
+    fireButton.disabled = true;
+    splSlider.disabled = true;
+    distSlider.disabled = true;
+    monitorStatus.textContent = "SCANNING...";
+    monitorStatus.style.color = "var(--color-warn)";
+
+    const spl = parseInt(splSlider.value);
+    const dist = parseInt(distSlider.value);
+    const r1x = R1_BASE_X;
+    const r2x = R1_BASE_X + dist;
+    const resolved = dist > (spl / 2);
+
+    const mPeak1 = 120 + (r1x - PROBE_X) * 1.35;
+    const mPeak2 = 120 + (r2x - PROBE_X) * 1.35;
+    const mWidth = spl * 0.65;
+
+    // 初期状態クリア
+    resolutionGaugeGroup.style.opacity = "0";
+    txWavePath.style.opacity = "0";
+    rxWavePath1.style.opacity = "0";
+    rxWavePath2.style.opacity = "0";
+    aModeEcho1.style.opacity = "0";
+    aModeEcho2.style.opacity = "0";
+    aModeCombined.setAttribute('d', `M 15 ${MONITOR_Y_CENTER} L 745 ${MONITOR_Y_CENTER}`);
+
+    let startTime = null;
+    const WAVE_SPEED = 0.15; // 音速（一定速度 px/ms）
+
+    // 物理的に重要な、パルスの【先端（フロントエッジ）】が各点に接触する時刻
+    const t_tx_hit_r1 = (r1x - (PROBE_X + spl/2)) / WAVE_SPEED; 
+    const t_tx_hit_r2 = (r2x - (PROBE_X + spl/2)) / WAVE_SPEED; 
+
+    function animStep(timestamp) {
+      if (!startTime) startTime = timestamp;
+      let elapsed = timestamp - startTime; // 発射後の時間経過
+
+      // 1. 送信パルスの位置更新 (右進)
+      let txCenterX = (PROBE_X + spl/2) + WAVE_SPEED * elapsed;
+      if (txCenterX - spl/2 < r2x + 120) {
+        txWavePath.setAttribute('d', generatePulsePathData(txCenterX, spl, 1));
+        txWavePath.style.opacity = "0.9";
+      } else {
+        txWavePath.style.opacity = "0";
+      }
+
+      // 2. エコー1（青波）の処理：反射点1に先端が届いたら即座に発生して等速で左進
+      if (elapsed >= t_tx_hit_r1) {
+        let timeSinceR1Hit = elapsed - t_tx_hit_r1;
+        let rx1CenterX = r1x - (WAVE_SPEED * timeSinceR1Hit); // 左に進む
+        
+        // プローブを通り過ぎるまで描画
+        if (rx1CenterX + spl/2 > PROBE_X) {
+          rxWavePath1.setAttribute('d', generatePulsePathData(rx1CenterX, spl, -1)); // 180度位相反転
+          rxWavePath1.style.opacity = "0.8";
+        } else {
+          rxWavePath1.style.opacity = "0";
+        }
+      }
+
+      // 3. エコー2（紫波）の処理：反射点2に先端が届いたら即座に発生して等速で左進
+      if (elapsed >= t_tx_hit_r2) {
+        let timeSinceR2Hit = elapsed - t_tx_hit_r2;
+        let rx2CenterX = r2x - (WAVE_SPEED * timeSinceR2Hit); // 全く同じ速度で左に進む
+        
+        if (rx2CenterX + spl/2 > PROBE_X) {
+          rxWavePath2.setAttribute('d', generatePulsePathData(rx2CenterX, spl, -1)); // 180度位相反転
+          rxWavePath2.style.opacity = "0.8";
+        } else {
+          rxWavePath2.style.opacity = "0";
+        }
+      }
+
+      // 動的解説文
+      if (elapsed < t_tx_hit_r1) {
+        descBox.innerHTML = `<strong>【状態1: 送信パルス進行中】</strong><br>プローブから出た波が一定の音速で右へ走っています。まだ反射点に届いていません。`;
+      } else if (elapsed >= t_tx_hit_r1 && elapsed < t_tx_hit_r2) {
+        descBox.innerHTML = `<strong>【状態2: 反射点1に到達・即時独立反射！】</strong><br>波の先端が反射点1（赤）に衝突！<strong>その場で即座にエコー1（青）が生まれて左へ等速で戻り始めました。</strong>パルスはそのまま奥へ進みます。`;
+      } else {
+        descBox.innerHTML = `<strong>【状態3: 反射点2に到達＆空間内での波の重なり】</strong><br>波の先端が奥の反射点2（黄）にも衝突し、個別にエコー2（紫）が左へ向けて発生しました！<br>同じ速度で戻る中、<strong>「青い波（エコー1）」と「紫の波（エコー2）」が空間上で重なり合う様子（または分離して走る様子）</strong>に注目してください。`;
+      }
+
+      // 4. Aモードモニターの時間軸走査
+      // エコー1がプローブに戻ってくるタイミングを起点にして、モニターをスイープさせる
+      let sweepProgress = 0;
+      if (elapsed >= t_tx_hit_r1) {
+        sweepProgress = (elapsed - t_tx_hit_r1) * WAVE_SPEED * 1.5;
+      }
+      let scanX = 15 + Math.min(sweepProgress, 730);
+      updateAnimatedMonitor(scanX, mPeak1, mPeak2, mWidth, resolved);
+
+      // 5. 終了判定：一番奥から戻るエコー2の後端がプローブを抜けたら計測終了
+      let rx2RearX = (r2x - WAVE_SPEED * (elapsed - t_tx_hit_r2)) + spl/2;
+      if (rx2RearX < PROBE_X) {
+        txWavePath.style.opacity = "0";
+        rxWavePath1.style.opacity = "0";
+        rxWavePath2.style.opacity = "0";
+        aModeEcho1.style.opacity = "0.3";
+        aModeEcho2.style.opacity = "0.3";
+        updateCombinedMonitor(mPeak1, mPeak2, mWidth, resolved);
+        
+        monitorStatus.textContent = "LIVE MODE";
+        monitorStatus.style.color = "#cbd5e1";
+        
+        if (resolved) {
+          descBox.innerHTML = `<strong>【計測完了: 二つの独立した山を検出】</strong><br>各点で別々のタイミングで反射した波は、空間上で重なることなくプローブへ戻ってきました。そのため、時間軸モニターにも<strong>2つの独立したエコー</strong>として完璧に記録されました。`;
+        } else {
+          descBox.innerHTML = `<strong>【計測完了: 空間での重なりにより同化】</strong><br>各点で独立して反射したものの、標的同士が近すぎたため、戻る途中で<strong>波形同士がドッキング（空間重合）</strong>してしまいました。プローブには1つの大きな塊として突入したため、モニター上でも分離に失敗しています。`;
+        }
+        stopAnimation();
+        return;
+      }
+
+      if (isAnimating) {
+        animId = requestAnimationFrame(animStep);
+      }
+    }
+
+    animId = requestAnimationFrame(animStep);
+  }
+
+  function updateAnimatedMonitor(currentScanLineX, peakX1, peakX2, width, resolved) {
+    let points = [];
+    const monitorLeft = 15;
+
+    for (let x = monitorLeft; x <= currentScanLineX; x += 2) {
+      let val1 = 0;
+      let val2 = 0;
+
+      if (x >= peakX1 - width && x <= peakX1 + width) {
+        let rel = (x - (peakX1 - width)) / (width * 2);
+        val1 = (Math.sin(rel * Math.PI * 2 * 6) * Math.sin(rel * Math.PI) * 55);
+      }
+      if (x >= peakX2 - width && x <= peakX2 + width) {
+        let rel = (x - (peakX2 - width)) / (width * 2);
+        val2 = (Math.sin(rel * Math.PI * 2 * 6) * Math.sin(rel * Math.PI) * 50);
+      }
+
+      let y = MONITOR_Y_CENTER - (val1 + val2);
+      points.push(`${x},${y}`);
+    }
+    
+    if (points.length > 0) {
+      aModeCombined.setAttribute('d', "M " + points.join(" L "));
+      if (resolved) {
+        aModeCombined.setAttribute('stroke', 'var(--color-tx)');
+      } else {
+        aModeCombined.setAttribute('stroke', 'var(--color-warn)');
+      }
+    }
+  }
+
+  function stopAnimation() {
+    isAnimating = false;
+    cancelAnimationFrame(animId);
+    fireButton.disabled = false;
+    splSlider.disabled = false;
+    distSlider.disabled = false;
+  }
+
+  function restoreLiveMode() {
+    stopAnimation();
+    draw();
+  }
+
+  splSlider.addEventListener('input', draw);
+  distSlider.addEventListener('input', draw);
+  fireButton.addEventListener('click', fireUltrasound);
+  resetButton.addEventListener('click', restoreLiveMode);
+
+  draw();
+</script>
+
 </body>
 </html>
