@@ -3,510 +3,738 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ドプラ効果 周波数シフト デモ (f0固定表示版)</title>
+    <title>09-02: ドプラ効果 周波数シフト デモ</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 20px; background-color: #f8f9fa; color: #343a40; line-height: 1.6; }
-        .container { background-color: #ffffff; padding: 25px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); max-width: 1000px; margin: auto; }
-        h1, h2, h3 { color: #00509e; border-bottom: 2px solid #dee2e6; padding-bottom: 5px; margin-top: 1.5em; }
-        h1 { margin-top: 0; }
-        .controls { margin-bottom: 25px; padding: 15px; background-color: #e9ecef; border-radius: 5px; }
-        .control-row { display: flex; align-items: center; margin-bottom: 15px; flex-wrap: wrap; gap: 15px; }
-        .control-group { display: flex; align-items: center; gap: 10px; }
-        .control-group label { font-weight: 500; min-width: 120px; }
-        .control-group input[type="range"] { width: 150px; }
-        .value-display { font-weight: bold; color: #00509e; min-width: 80px; }
-        canvas { border: 1px solid #ced4da; margin-top: 10px; background-color: #fff; display: block; margin-left: auto; margin-right: auto; }
-        .chart-container { margin-bottom: 30px; text-align: center; }
-        .description { margin-bottom: 25px; padding: 15px; background-color: #f1f3f5; border-left: 4px solid #007bff; border-radius: 4px; }
-        .description strong { color: #00509e; }
-        .formula { font-family: "Consolas", "Courier New", Courier, monospace; background-color: #e0e0e0; padding: 3px 7px; border-radius: 4px; font-size: 0.9em; border: 1px solid #ccc; display: inline-block; margin: 2px 0; }
-        .footer { margin-top: 40px; text-align: center; font-size: 0.85em; color: #6c757d; }
-        .result-info { padding: 15px; background-color: #fff3cd; border: 1px solid #ffeaa7; border-radius: 4px; margin-top: 15px; }
-        .result-info.warning { background-color: #ffe6e6; border: 1px solid #ffb3b3; }
-        .diagram-container { display: flex; justify-content: space-around; align-items: flex-start; margin: 20px 0; gap: 20px; flex-wrap: wrap; }
-        .geometry-section { flex: 1; min-width: 400px; text-align: center; }
-        .spectrum-section { flex: 1; min-width: 450px; text-align: center; }
-        .legend { font-size: 12px; color: #666; margin-top: 10px; text-align: center; }
-        .scenario-buttons { margin-bottom: 20px; display: flex; gap: 10px; flex-wrap: wrap; }
-        .scenario-btn { padding: 8px 16px; background-color: #6c757d; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 14px; }
-        .scenario-btn:hover { background-color: #545b62; }
-        .scenario-btn.active { background-color: #00509e; }
+        :root {
+            --bg-main: #0f172a;
+            --bg-canvas: #1e293b;
+            --color-text: #f8fafc;
+            --color-dim: #64748b;
+            --color-accent: #3b82f6; 
+            --color-math: #ffd700;   
+            --color-f0: #38bdf8;       /* 送信周波数: スカイブルー */
+            --color-fd: #f43f5e;       /* 受信・シフト: ローズレッド */
+            --color-plus: #10b981;     /* 接近(プラス): エメラルド */
+            --color-minus: #f59e0b;    /* 遠ざかる(マイナス): アンバー */
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: var(--bg-main);
+            margin: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            color: var(--color-text);
+            user-select: none;
+        }
+
+        .container {
+            width: 960px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        h1 {
+            font-size: 20px;
+            margin: 0;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: #e2e8f0;
+            border-left: 4px solid var(--color-accent);
+            padding-left: 10px;
+        }
+        
+        p.subtitle {
+            font-size: 13px;
+            color: var(--color-dim);
+            margin: -5px 0 5px 0;
+        }
+
+        /* シナリオ選択ボタン */
+        .scenario-buttons {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background-color: rgba(30, 41, 59, 0.4);
+            padding: 8px 15px;
+            border-radius: 8px;
+            border: 1px solid #1e293b;
+        }
+        .scenario-buttons h3 {
+            font-size: 13px;
+            margin: 0;
+            color: #cbd5e1;
+        }
+        .scenario-btn {
+            padding: 6px 14px;
+            background: #1e293b;
+            color: #94a3b8;
+            border: 1px solid #334155;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12.5px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .scenario-btn:hover {
+            background: #334155;
+            color: #fff;
+        }
+        .scenario-btn.active {
+            background: var(--color-accent);
+            border-color: #60a5fa;
+            color: white;
+            box-shadow: 0 0 8px rgba(59, 130, 246, 0.4);
+        }
+
+        /* コントロールパネル */
+        .controls {
+            background-color: rgba(30, 41, 59, 0.7);
+            border-radius: 12px;
+            padding: 15px 20px;
+            border: 1px solid #334155;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px 25px;
+        }
+
+        .control-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .control-row label {
+            width: 140px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #cbd5e1;
+        }
+
+        .control-row input[type="range"] {
+            flex-grow: 1;
+            cursor: pointer;
+        }
+
+        .control-row .value-display {
+            min-width: 65px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #38bdf8;
+            font-family: monospace;
+            text-align: right;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 15px;
+            font-size: 13px;
+            color: #cbd5e1;
+        }
+        .radio-group label {
+            width: auto;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        /* 数式インフォパネル */
+        .math-info-panel {
+            background-color: rgba(15, 23, 42, 0.5);
+            border: 1px solid #1e293b;
+            border-radius: 8px;
+            padding: 12px 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            font-size: 14px;
+        }
+        .formula-box {
+            font-family: 'Times New Roman', Times, serif;
+            font-style: italic;
+            font-size: 15px;
+            letter-spacing: 0.5px;
+        }
+        .math-val {
+            font-family: monospace;
+            font-weight: bold;
+            font-style: normal;
+            color: var(--color-math);
+            font-size: 16px;
+        }
+
+        /* メイン描画領域（横並び） */
+        .diagram-container {
+            display: flex;
+            gap: 15px;
+            width: 100%;
+        }
+
+        .section-box {
+            flex: 1;
+            background-color: var(--bg-canvas);
+            border-radius: 12px;
+            box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.5);
+            border: 1px solid #334155;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .section-box h3 {
+            font-size: 13px;
+            margin: 5px 0 10px 0;
+            color: #94a3b8;
+            align-self: flex-start;
+            border-left: 3px solid var(--color-accent);
+            padding-left: 8px;
+        }
+
+        canvas {
+            background-color: #0f172a;
+            border-radius: 8px;
+            border: 1px solid #1e293b;
+        }
+
+        .legend {
+            font-size: 11px;
+            color: #94a3b8;
+            margin-top: 10px;
+            display: flex;
+            gap: 15px;
+        }
+        .legend span { font-weight: bold; }
+
+        /* 結果情報ボックス */
+        .result-info {
+            padding: 12px 15px;
+            background-color: rgba(30, 41, 59, 0.4);
+            border-left: 4px solid #10b981;
+            border-radius: 0 8px 8px 0;
+            font-size: 13px;
+            line-height: 1.6;
+            color: #cbd5e1;
+            border-top: 1px solid #334155;
+            border-right: 1px solid #334155;
+            border-bottom: 1px solid #334155;
+        }
+        .result-info.warning {
+            border-left-color: #ef4444;
+            background-color: rgba(239, 68, 68, 0.05);
+        }
+        .result-title {
+            font-weight: bold;
+            color: #e2e8f0;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 11px;
+            color: var(--color-dim);
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>ドプラ効果 周波数シフト デモツール</h1>
-        <div class="description">
-            <h2>ドプラ効果による周波数変化の可視化</h2>
-            <p>
-                <strong>ドプラシフト周波数</strong>：
-                <span class="formula">f<sub>d</sub> = (2 × f<sub>0</sub> × v × cos θ) / c</span>
-            </p>
-            <p>
-                <strong>パラメータ</strong>：
-                f<sub>0</sub>: 送信周波数, v: 血流速度, θ: 超音波ビームと血流の角度, c: 音速 (≈1540 m/s)
-            </p>
-        </div>
 
-        <div class="scenario-buttons">
-            <h3>シナリオ選択:</h3>
-            <button class="scenario-btn active" data-scenario="normal">正常血流</button>
-            <button class="scenario-btn" data-scenario="stenosis">血管狭窄</button>
-            <button class="scenario-btn" data-scenario="regurgitation">逆流</button>
-            <button class="scenario-btn" data-scenario="custom">カスタム</button>
-        </div>
+<div class="container">
+    <h1>🔍【実習】 ドプラ効果 周波数シフト デモ</h1>
+    <p class="subtitle">血流速度、入射角度、送信周波数の変化がドプラシフト周波数（fd）に与える影響のリアルタイムシミュレーション</p>
 
-        <div class="controls">
-            <h3>パラメータ調整:</h3>
-            <div class="control-row">
-                <div class="control-group">
-                    <label>ドプラモード:</label>
-                    <label><input type="radio" name="dopplerMode" value="continuous" checked> 連続波 (CW)</label>
-                    <label><input type="radio" name="dopplerMode" value="pulsed"> パルス波 (PW)</label>
-                </div>
-            </div>
-            <div class="control-row">
-                <div class="control-group">
-                    <label for="frequencySlider">送信周波数 f₀:</label>
-                    <input type="range" id="frequencySlider" min="2" max="10" step="0.5" value="5">
-                    <span class="value-display" id="frequencyValue">5.0</span> MHz
-                </div>
-            </div>
-            <div class="control-row">
-                <div class="control-group">
-                    <label for="velocitySlider">血流速度 v:</label>
-                    <input type="range" id="velocitySlider" min="-200" max="200" step="5" value="50">
-                    <span class="value-display" id="velocityValue">50</span> cm/s
-                </div>
-                <div class="control-group">
-                    <label for="angleSlider">ドプラ角度 θ:</label>
-                    <input type="range" id="angleSlider" min="0" max="90" step="5" value="45">
-                    <span class="value-display" id="angleValue">45</span>°
-                </div>
-            </div>
-            <div id="pwControls" style="display: none;">
-                <div class="control-row">
-                    <div class="control-group">
-                        <label for="prfSlider">PRF:</label>
-                        <input type="range" id="prfSlider" min="1" max="10" step="0.5" value="5">
-                        <span class="value-display" id="prfValue">5.0</span> kHz
-                    </div>
-                </div>
-            </div>
-            <div style="margin-top: 10px; font-size: 12px; color: #666;">
-                音速 c = 1540 m/s
-            </div>
-        </div>
+    <div class="scenario-buttons">
+        <h3>臨床シナリオ選択:</h3>
+        <button class="scenario-btn active" data-scenario="normal">正常血流 (低速・順流)</button>
+        <button class="scenario-btn" data-scenario="stenosis">血管狭窄 (高速血流)</button>
+        <button class="scenario-btn" data-scenario="regurgitation">弁逆流 (高速・逆流)</button>
+        <button class="scenario-btn" data-scenario="custom">カスタム調整</button>
+    </div>
 
-        <div class="diagram-container">
-            <div class="geometry-section">
-                <h3>幾何学的配置</h3>
-                <canvas id="geometryCanvas" width="400" height="300"></canvas>
-            </div>
-            <div class="spectrum-section">
-                <h3>周波数スペクトル</h3>
-                <canvas id="spectrumCanvas" width="450" height="300"></canvas>
-                <div class="legend">
-                    <span style="color: blue;">■</span> f₀　
-                    <span style="color: red;">■</span> f₀+f<sub>d</sub>(CW/PW)　
-                    <span style="color: green;">■</span> f<sub>d</sub>(+)　
-                    <span style="color: orange;">■</span> f<sub>d</sub>(-)
-                </div>
+    <div class="controls">
+        <div class="control-row">
+            <label>① ドプラモード :</label>
+            <div class="radio-group">
+                <label><input type="radio" name="dopplerMode" value="continuous" checked> 連続波ドプラ (CW)</label>
+                <label><input type="radio" name="dopplerMode" value="pulsed"> パルス波ドプラ (PW)</label>
             </div>
         </div>
+        <div class="control-row">
+            <label for="frequencySlider">② 送信周波数 (f₀) :</label>
+            <input type="range" id="frequencySlider" min="2" max="10" step="0.5" value="5">
+            <span class="value-display" id="frequencyValue">5.0 MHz</span>
+        </div>
+        <div class="control-row">
+            <label for="velocitySlider">③ 血流速度 (v) :</label>
+            <input type="range" id="velocitySlider" min="-200" max="200" step="5" value="50">
+            <span class="value-display" id="velocityValue">50 cm/s</span>
+        </div>
+        <div class="control-row">
+            <label for="angleSlider">④ ドプラ角度 (θ) :</label>
+            <input type="range" id="angleSlider" min="0" max="90" step="5" value="45">
+            <span class="value-display" id="angleValue">45°</span>
+        </div>
+        <div class="control-row" id="pwControls" style="grid-column: span 2; display: none; background: rgba(15, 23, 42, 0.4); padding: 8px 12px; border-radius: 6px; border: 1px dashed #475569;">
+            <label for="prfSlider">⑤ 繰り返し周波数 (PRF) :</label>
+            <input type="range" id="prfSlider" min="1" max="10" step="0.5" value="5">
+            <span class="value-display" id="prfValue" style="color: #a855f7;">5.0 kHz</span>
+            <span style="font-size: 11px; color: var(--color-dim); margin-left: 15px;">※PWドプラ時のクシ状高調波間隔を決定</span>
+        </div>
+    </div>
 
-        <div class="result-info" id="resultInfo">
-            <h3>計算結果</h3>
-            <div id="calculationResults"></div>
+    <div class="math-info-panel">
+        <div class="formula-box">
+            ドプラ基本式: f_d = (2 × f₀ × v × cosθ) / c ➔ 
+            <span class="math-val" id="mathFormulaRealTime">fd = 0.23 kHz</span>
         </div>
+    </div>
+
+    <div class="diagram-container">
+        <div class="section-box">
+            <h3>幾何学的配置（ビームと血流の交差角）</h3>
+            <canvas id="geometryCanvas" width="450" height="280"></canvas>
+            <div class="legend">
+                <span>薄青線: 超音波ビーム</span>
+                <span style="color: var(--color-plus);">■ 接近成分 (fd &gt; 0)</span>
+                <span style="color: var(--color-minus);">■ 遠ざかる成分 (fd &lt; 0)</span>
+            </div>
+        </div>
+        
+        <div class="section-box">
+            <h3>周波数スペクトルモニター</h3>
+            <canvas id="spectrumCanvas" width="450" height="280"></canvas>
+            <div class="legend">
+                <span style="color: var(--color-f0);">■ 送信波 (f₀)</span>
+                <span style="color: var(--color-fd);">■ 受信波 (f₀ + f_d)</span>
+                <span style="color: #ffd700;">➔ シフト量 (f_d)</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="result-info" id="resultInfo">
+        <div class="result-title" id="resultTitle">📊 計測計算レポート</div>
+        <div id="calculationResults">データ計算中...</div>
     </div>
 
     <div class="footer">
-        超音波ドプラ効果デモツール
+        生体内音速 c = 1540 m/s 固定モデル
     </div>
+</div>
 
-    <script>
-        class DopplerDemo {
-            constructor() {
-                this.frequency = 5.0; 
-                this.velocity = 50; 
-                this.angle = 45; 
-                this.soundSpeed = 1540; 
-                this.dopplerMode = 'continuous';
-                this.prf = 5.0; 
-                
-                this.geometryCanvas = document.getElementById('geometryCanvas');
-                this.spectrumCanvas = document.getElementById('spectrumCanvas');
-                this.geometryCtx = this.geometryCanvas.getContext('2d');
-                this.spectrumCtx = this.spectrumCanvas.getContext('2d');
-                
-                this.initializeControls();
-                this.initializeScenarios();
-                this.update();
-            }
-
-            initializeControls() {
-                const controls = [
-                    { id: 'frequencySlider', property: 'frequency', display: 'frequencyValue' },
-                    { id: 'velocitySlider', property: 'velocity', display: 'velocityValue' },
-                    { id: 'angleSlider', property: 'angle', display: 'angleValue' },
-                    { id: 'prfSlider', property: 'prf', display: 'prfValue' }
-                ];
-
-                controls.forEach(control => {
-                    const slider = document.getElementById(control.id);
-                    const display = document.getElementById(control.display);
-                    
-                    if (slider && display) {
-                        display.textContent = parseFloat(slider.value).toFixed( (control.property === 'frequency' || control.property === 'prf') ? 1 : 0);
-                        this[control.property] = parseFloat(slider.value);
-
-                        slider.addEventListener('input', (e) => {
-                            this[control.property] = parseFloat(e.target.value);
-                            display.textContent = this[control.property].toFixed( (control.property === 'frequency' || control.property === 'prf') ? 1 : 0);
-                            this.update();
-                        });
-                    }
-                });
-
-                document.querySelectorAll('input[name="dopplerMode"]').forEach(radio => {
-                    radio.addEventListener('change', (e) => {
-                        this.dopplerMode = e.target.value;
-                        document.getElementById('pwControls').style.display = (this.dopplerMode === 'pulsed') ? 'block' : 'none';
-                        this.update();
-                    });
-                });
-            }
-
-            initializeScenarios() {
-                const scenarios = {
-                    normal: { frequency: 5.0, velocity: 50, angle: 45, prf: 5.0 },
-                    stenosis: { frequency: 5.0, velocity: 150, angle: 30, prf: 7.0 },
-                    regurgitation: { frequency: 3.5, velocity: -80, angle: 45, prf: 4.0 },
-                    custom: { frequency: this.frequency, velocity: this.velocity, angle: this.angle, prf: this.prf }
-                };
-                 document.querySelectorAll('.scenario-btn').forEach(btn => {
-                    btn.addEventListener('click', (e) => {
-                        document.querySelectorAll('.scenario-btn').forEach(b => b.classList.remove('active'));
-                        btn.classList.add('active');
-                        const scenarioKey = btn.dataset.scenario;
-                        if (scenarioKey === "custom") { 
-                            scenarios.custom = { frequency: this.frequency, velocity: this.velocity, angle: this.angle, prf: this.prf };
-                        }
-                        this.setParameters(scenarios[scenarioKey]);
-                        this.update();
-                    });
-                });
-            }
-
-            setParameters(params) {
-                this.frequency = params.frequency;
-                this.velocity = params.velocity;
-                this.angle = params.angle;
-                this.prf = params.prf;
-                
-                document.getElementById('frequencySlider').value = this.frequency;
-                document.getElementById('velocitySlider').value = this.velocity;
-                document.getElementById('angleSlider').value = this.angle;
-                document.getElementById('prfSlider').value = this.prf;
-                
-                document.getElementById('frequencyValue').textContent = this.frequency.toFixed(1);
-                document.getElementById('velocityValue').textContent = this.velocity.toFixed(0);
-                document.getElementById('angleValue').textContent = this.angle.toFixed(0);
-                document.getElementById('prfValue').textContent = this.prf.toFixed(1);
-            }
-
-            calculateDopplerShift() {
-                const f0Hz = this.frequency * 1e6; 
-                const vMs = this.velocity / 100; 
-                const angleRad = this.angle * Math.PI / 180; 
-                
-                const fd = (2 * f0Hz * vMs * Math.cos(angleRad)) / this.soundSpeed;
-                const receivedFreq = f0Hz + fd;
-                
-                return {
-                    dopplerShift: fd,
-                    receivedFrequency: receivedFreq,
-                    transmittedFrequency: f0Hz,
-                    effectiveVelocity: vMs * Math.cos(angleRad)
-                };
-            }
-
-            drawGeometry() {
-                const ctx = this.geometryCtx;
-                const canvas = this.geometryCanvas;
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
-                const vesselY = 180;
-                const bloodCellX = 200;
-                const bloodCellY = vesselY;
-                const angleRad = this.angle * Math.PI / 180;
-                const probeDistanceToCell = 100;
-                const probeX = bloodCellX - probeDistanceToCell * Math.cos(angleRad);
-                const probeY = bloodCellY - probeDistanceToCell * Math.sin(angleRad);
-        
-                const vesselWidth = 30;
-                const vesselLength = 300;
-                const vesselStartX = bloodCellX - vesselLength / 2;
-                const vesselEndX = bloodCellX + vesselLength / 2;
-        
-                ctx.strokeStyle = '#8B4513'; ctx.lineWidth = 4;
-                ctx.beginPath(); ctx.moveTo(vesselStartX, vesselY - vesselWidth / 2); ctx.lineTo(vesselEndX, vesselY - vesselWidth / 2);
-                ctx.moveTo(vesselStartX, vesselY + vesselWidth / 2); ctx.lineTo(vesselEndX, vesselY + vesselWidth / 2); ctx.stroke();
-                ctx.fillStyle = '#DC143C'; ctx.fillRect(vesselStartX, vesselY - vesselWidth / 2, vesselLength, vesselWidth);
-        
-                const numArrows = 5; const arrowSpacing = vesselLength / (numArrows + 1);
-                const effectiveVelocityForArrow = this.velocity * Math.cos(angleRad);
-        
-                for (let i = 1; i <= numArrows; i++) {
-                    const arrowX = vesselStartX + i * arrowSpacing; const arrowY = vesselY;
-                    const arrowLength = Math.max(15, Math.min(40, Math.abs(this.velocity) * 0.3));
-                    const arrowHeadWidth = 8;
-                    let arrowColor = effectiveVelocityForArrow > 1 ? '#ff4444' : effectiveVelocityForArrow < -1 ? '#4444ff' : '#888888';
-                    if (Math.abs(this.velocity) > 5) {
-                        ctx.fillStyle = arrowColor; ctx.strokeStyle = arrowColor; ctx.lineWidth = 3;
-                        const direction = this.velocity > 0 ? 1 : -1;
-                        const startX_a = arrowX - (arrowLength / 2) * direction;
-                        const endX_a = arrowX + (arrowLength / 2) * direction;
-                        ctx.beginPath(); ctx.moveTo(startX_a, arrowY); ctx.lineTo(endX_a - arrowHeadWidth * direction, arrowY); ctx.stroke();
-                        ctx.beginPath(); ctx.moveTo(endX_a, arrowY);
-                        ctx.lineTo(endX_a - arrowHeadWidth * direction, arrowY - arrowHeadWidth / 2);
-                        ctx.lineTo(endX_a - arrowHeadWidth * direction, arrowY + arrowHeadWidth / 2); ctx.closePath(); ctx.fill();
-                    }
-                }
-                ctx.fillStyle = '#8B4513'; ctx.font = '12px Arial'; ctx.textAlign = 'center';
-                ctx.fillText('血管', vesselEndX - 20, vesselY + vesselWidth);
-        
-                ctx.save(); ctx.translate(probeX, probeY); ctx.rotate(angleRad);
-                ctx.fillStyle = '#4a90e2'; ctx.fillRect(-30, -15, 60, 30);
-                ctx.strokeStyle = '#2c5aa0'; ctx.lineWidth = 2; ctx.strokeRect(-30, -15, 60, 30);
-                ctx.fillStyle = '#1e40af'; ctx.fillRect(25, -12, 5, 24);
-                ctx.fillStyle = 'white'; ctx.font = '10px Arial'; ctx.textAlign = 'center'; ctx.fillText('探触子', 0, 5);
-                ctx.restore();
-        
-                const beamStartOffsetX = 30 * Math.cos(angleRad); const beamStartOffsetY = 30 * Math.sin(angleRad);
-                const beamEndPointRatioInVessel = 0.7; 
-                const beamTargetX = bloodCellX + (vesselLength/2 * beamEndPointRatioInVessel -15) * Math.cos(angleRad);
-                const beamTargetY = bloodCellY + (vesselLength/2 * beamEndPointRatioInVessel -15) * Math.sin(angleRad);
-                
-                const beamAfterVesselLength = 80;
-                const beamAfterStartX = bloodCellX + (vesselLength/2 - 10) * Math.cos(angleRad); 
-                const beamAfterStartY = bloodCellY + (vesselLength/2 - 10) * Math.sin(angleRad);
-                const beamAfterTargetX = beamAfterStartX + beamAfterVesselLength * Math.cos(angleRad);
-                const beamAfterTargetY = beamAfterStartY + beamAfterVesselLength * Math.sin(angleRad);
-        
-                ctx.setLineDash(this.dopplerMode === 'pulsed' ? [8, 4] : []);
-                ctx.strokeStyle = '#4a90e2'; ctx.lineWidth = 3;
-                ctx.beginPath(); ctx.moveTo(probeX + beamStartOffsetX, probeY + beamStartOffsetY); ctx.lineTo(beamTargetX, beamTargetY); ctx.stroke();
-        
-                ctx.strokeStyle = 'rgba(74, 144, 226, 0.4)'; ctx.lineWidth = 2;
-                ctx.beginPath(); ctx.moveTo(beamTargetX, beamTargetY); ctx.lineTo(beamAfterTargetX, beamAfterTargetY); ctx.stroke();
-                ctx.setLineDash([]);
-        
-                if (this.dopplerMode === 'pulsed') {
-                    ctx.strokeStyle = '#ff6600'; ctx.lineWidth = 4;
-                    ctx.beginPath(); ctx.arc(bloodCellX, bloodCellY, 8, 0, 2 * Math.PI); ctx.stroke();
-                    ctx.fillStyle = '#ff6600'; ctx.font = '10px Arial'; ctx.textAlign = 'center'; ctx.fillText('SV', bloodCellX, bloodCellY + 3);
-                }
-                ctx.fillStyle = '#4a90e2'; ctx.font = '12px Arial'; ctx.textAlign = 'left';
-                ctx.fillText(this.dopplerMode === 'continuous' ? '連続波 (CW)' : 'パルス波 (PW)', 20, 30);
-        
-                ctx.fillStyle = '#ff6b6b'; ctx.strokeStyle = '#d63384'; ctx.lineWidth = 2;
-                ctx.beginPath(); ctx.arc(bloodCellX, bloodCellY, 10, 0, 2 * Math.PI); ctx.fill(); ctx.stroke();
-                ctx.fillStyle = 'white'; ctx.font = '9px Arial'; ctx.textAlign = 'center'; ctx.fillText('血球群', bloodCellX, bloodCellY + 3);
-        
-                const arcRadius = 40;
-                ctx.strokeStyle = '#333'; ctx.lineWidth = 1.5;
-                ctx.beginPath(); ctx.arc(bloodCellX, bloodCellY, arcRadius, 0, angleRad, false); ctx.stroke();
-                ctx.fillStyle = '#333'; ctx.font = '14px Arial'; ctx.textAlign = 'left';
-                const labelX = bloodCellX + arcRadius * Math.cos(angleRad/2) + 5;
-                const labelY = bloodCellY + arcRadius * Math.sin(angleRad/2) - 5;
-                ctx.fillText(`θ=${this.angle}°`, labelX, labelY);
-        
-                ctx.fillStyle = '#666'; ctx.font = '12px Arial'; ctx.textAlign = 'right';
-                ctx.fillText(`v=${this.velocity} cm/s`, canvas.width - 20, 30);
-                ctx.fillText(`v cosθ=${(this.velocity * Math.cos(angleRad)).toFixed(1)} cm/s`, canvas.width - 20, 50);
-            }
-
-            drawSpectrum() {
-                const ctx = this.spectrumCtx;
-                const canvas = this.spectrumCanvas;
-                const results = this.calculateDopplerShift();
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-                const margin = { top: 40, right: 30, bottom: 50, left: 50 };
-                const plotWidth = canvas.width - margin.left - margin.right;
-                const plotHeight = canvas.height - margin.top - margin.bottom;
-
-                ctx.strokeStyle = '#333'; ctx.lineWidth = 1;
-                ctx.beginPath(); ctx.moveTo(margin.left, margin.top);
-                ctx.lineTo(margin.left, margin.top + plotHeight);
-                ctx.lineTo(margin.left + plotWidth, margin.top + plotHeight); ctx.stroke();
-
-                const f0MHz = this.frequency;
-                const fdHz = results.dopplerShift;
-                const fdKHz = fdHz / 1000;
-                const receivedFreqMHz = results.receivedFrequency / 1e6; 
-                
-                // 周波数スペクトルの表示範囲: f0を中心に固定
-                const displayHalfWidthMHz = Math.max(0.03, Math.abs(fdKHz / 1000) * 2.0 + this.prf / 1000 * 3); // PRFの3倍程度まで表示
-                const minFreq = f0MHz - displayHalfWidthMHz;
-                const maxFreq = f0MHz + displayHalfWidthMHz;
-                const freqRange = maxFreq - minFreq;
-
-
-                ctx.fillStyle = '#333'; ctx.font = '12px Arial'; ctx.textAlign = 'center';
-                ctx.fillText('周波数 (MHz)', margin.left + plotWidth / 2, margin.top + plotHeight + 35);
-                ctx.save(); ctx.translate(margin.left - 35, margin.top + plotHeight / 2); ctx.rotate(-Math.PI / 2);
-                ctx.fillText('振幅', 0, 0); ctx.restore();
-
-                const numTicks = 4; 
-                for (let i = 0; i <= numTicks; i++) {
-                    const freq = minFreq + (i / numTicks) * freqRange;
-                    const x = margin.left + ( (freq - minFreq) / freqRange ) * plotWidth;
-                    if (x >= margin.left && x <= margin.left + plotWidth + 1) { 
-                        ctx.strokeStyle = '#e0e0e0'; ctx.lineWidth = 0.5;
-                        ctx.beginPath(); ctx.moveTo(x, margin.top); ctx.lineTo(x, margin.top + plotHeight); ctx.stroke();
-                        ctx.fillStyle = '#666'; ctx.font = '10px Arial';
-                        const numDecimalPlaces = Math.max(2, Math.ceil(-Math.log10(freqRange / numTicks))+1 );
-                        ctx.fillText(freq.toFixed(numDecimalPlaces > 4 ? 4 : numDecimalPlaces) , x, margin.top + plotHeight + 15);
-                    }
-                }
-                
-                const peakHeight = plotHeight * 0.8;
-                const peakBaseY = margin.top + plotHeight;
-
-                let effectivePulseWidthTauForSinc = 1 / (f0MHz * 1e6 * 5); // Default for CW-like
-                if (this.dopplerMode === 'pulsed' && this.prf > 0) {
-                    effectivePulseWidthTauForSinc = (1 / (this.prf * 1000)) * 0.15; // PRF周期の15%程度
-                }
-
-                function sinc(x_val) {
-                    if (Math.abs(x_val) < 1e-9) return 1.0;
-                    return Math.sin(Math.PI * x_val) / (Math.PI * x_val);
-                }
-
-                function drawSpectrumComponent(centerFreqMHz, color, isMainF0) {
-                    const mainPeakPos = margin.left + ((centerFreqMHz - minFreq) / freqRange) * plotWidth;
-                    
-                    if (this.dopplerMode === 'continuous') { 
-                        if (mainPeakPos >= margin.left && mainPeakPos <= margin.left + plotWidth) {
-                            ctx.strokeStyle = color;
-                            ctx.lineWidth = isMainF0 ? 3 : 4; 
-                            ctx.beginPath();
-                            ctx.moveTo(mainPeakPos, peakBaseY);
-                            ctx.lineTo(mainPeakPos, peakBaseY - peakHeight * (isMainF0 ? 1 : 0.75) );
-                            ctx.stroke();
-                            ctx.fillStyle = color; ctx.font = '10px Arial';
-                            ctx.fillText(centerFreqMHz.toFixed(isMainF0 ? 1:3), mainPeakPos, margin.top - (isMainF0 ? 5:18) );
-                        }
-                    } else { // パルス波ドプラの櫛状スペクトル
-                        const numSideLobesToDraw = Math.floor( displayHalfWidthMHz / (this.prf / 1000) ) + 2;
-                        ctx.strokeStyle = color;
-                        ctx.lineWidth = 1.5; 
-
-                        for (let n = -numSideLobesToDraw; n <= numSideLobesToDraw; n++) {
-                            const spectralFreqMHz = centerFreqMHz + n * (this.prf / 1000); 
-                            if (spectralFreqMHz >= minFreq && spectralFreqMHz <= maxFreq) {
-                                const x_spectral = margin.left + ((spectralFreqMHz - minFreq) / freqRange) * plotWidth;
-                                
-                                let amplitudeFactor = 1.0; 
-                                if (effectivePulseWidthTauForSinc > 0) {
-                                    const sincArg = (spectralFreqMHz - centerFreqMHz) * 1e6 * effectivePulseWidthTauForSinc;
-                                    amplitudeFactor = Math.abs(sinc(sincArg));
-                                }
-                                
-                                const currentPeakHeightVal = peakHeight * (isMainF0 ? 1.0 : 0.75) * amplitudeFactor;
-                                if (currentPeakHeightVal < 1) continue; 
-
-                                ctx.beginPath();
-                                ctx.moveTo(x_spectral, peakBaseY);
-                                ctx.lineTo(x_spectral, peakBaseY - currentPeakHeightVal);
-                                ctx.stroke();
-                            }
-                        }
-                        if (mainPeakPos >= margin.left && mainPeakPos <= margin.left + plotWidth) {
-                           ctx.fillStyle = color; ctx.font = '10px Arial';
-                           ctx.fillText(centerFreqMHz.toFixed(isMainF0 ? 1:3), mainPeakPos, margin.top - (isMainF0 ? 5:18) );
-                        }
-                    }
-                }
-
-                // 1. 送信周波数スペクトル f0
-                drawSpectrumComponent.call(this, f0MHz, 'blue', true);
-
-                // 2. 受信周波数スペクトル f0 + fd
-                if (Math.abs(receivedFreqMHz - f0MHz) > 0.000001) {
-                     drawSpectrumComponent.call(this, receivedFreqMHz, 'red', false);
-                }
-                
-                // ドプラシフト矢印とラベル
-                const f0DisplayPos = margin.left + ((f0MHz - minFreq) / freqRange) * plotWidth;
-                const receivedDisplayPos = margin.left + ((receivedFreqMHz - minFreq) / freqRange) * plotWidth;
-
-                if (Math.abs(fdKHz) > 0.0001 && Math.abs(receivedDisplayPos - f0DisplayPos) > 1 ) {
-                    const arrowY = margin.top + peakHeight * 0.15; 
-                    const arrowColor = (fdKHz > 0 ? 'green' : 'orange');
-                    ctx.strokeStyle = arrowColor; ctx.lineWidth = 1.5;
-                    ctx.beginPath(); ctx.moveTo(f0DisplayPos, arrowY); ctx.lineTo(receivedDisplayPos, arrowY); ctx.stroke();
-                    
-                    const arrowSize = 5; 
-                    const direction = (receivedDisplayPos > f0DisplayPos) ? 1 : -1;
-                    ctx.fillStyle = arrowColor; ctx.beginPath(); ctx.moveTo(receivedDisplayPos, arrowY);
-                    ctx.lineTo(receivedDisplayPos - direction * arrowSize, arrowY - arrowSize/2);
-                    ctx.lineTo(receivedDisplayPos - direction * arrowSize, arrowY + arrowSize/2); ctx.closePath(); ctx.fill();
-                    
-                    ctx.font = '10px Arial';
-                    const midPoint = (f0DisplayPos + receivedDisplayPos) / 2;
-                    ctx.fillText(`fd=${fdKHz.toFixed(2)}kHz`, midPoint, arrowY - 5);
-                } else if (Math.abs(fdKHz) <= 0.0001 && (f0DisplayPos >= margin.left && f0DisplayPos <= margin.left + plotWidth +1 )) { 
-                    ctx.fillStyle = '#666'; ctx.font = '10px Arial'; ctx.textAlign = 'center';
-                    ctx.fillText('fd ≈ 0', f0DisplayPos, margin.top - 18);
-                }
-            }
-
-            updateResults() {
-                const results = this.calculateDopplerShift();
-                const resultDiv = document.getElementById('calculationResults');
-                const angleRad = this.angle * Math.PI / 180;
-                const effectiveVelocityCmS = results.effectiveVelocity * 100;
-                
-                let resultClassList = ['result-info'];
-                if (this.angle > 75) resultClassList.push('warning');
-                
-                let modeInfo = '';
-                // エイリアシングの表示は削除
-
-                if (this.dopplerMode === 'continuous') {
-                    modeInfo = '<strong>連続波ドプラ (CW):</strong> 高速血流測定可能<br>';
-                } else {
-                    const nyquistFreqHz = (this.prf * 1000) / 2;
-                    modeInfo = `<strong>パルス波ドプラ (PW):</strong> PRF ${this.prf.toFixed(1)} kHz, ナイキスト周波数 ${(nyquistFreqHz/1000).toFixed(1)} kHz<br>`;
-                    // 最大検出速度に関する記述はエイリアシングを教える前なので簡略化、または削除
-                }
-                
-                resultDiv.className = resultClassList.join(' ');
-                resultDiv.innerHTML = `
-                    ${modeInfo}
-                    <strong>ドプラシフト周波数 (fd):</strong> ${(results.dopplerShift/1000).toFixed(2)} kHz<br>
-                    <strong>受信周波数 (f₀ + fd):</strong> ${(results.receivedFrequency/1e6).toFixed(4)} MHz<br>
-                    <strong>有効速度成分 (v cos θ):</strong> ${effectiveVelocityCmS.toFixed(1)} cm/s<br>
-                    <strong>cos θ:</strong> ${Math.cos(angleRad).toFixed(3)}<br>
-                    ${this.angle > 75 ? '<br><span style="color: red;">⚠️ 角度が大きすぎます。60°以下が推奨されます。</span>' : ''}
-                    ${(Math.abs(effectiveVelocityCmS) < 1 && this.angle < 85 && Math.abs(this.velocity)>5) ? '<br><span style="color: orange;">⚠️ 血流がビームにほぼ垂直、または低流速のため検出困難。</span>' : ''}
-                `;
-            }
-
-            update() {
-                this.drawGeometry();
-                this.drawSpectrum();
-                this.updateResults();
-            }
+<script>
+    class DopplerDemo {
+        constructor() {
+            this.frequency = 5.0; 
+            this.velocity = 50; 
+            this.angle = 45; 
+            this.soundSpeed = 1540; 
+            this.dopplerMode = 'continuous';
+            this.prf = 5.0; 
+            
+            this.geometryCanvas = document.getElementById('geometryCanvas');
+            this.spectrumCanvas = document.getElementById('spectrumCanvas');
+            this.geometryCtx = this.geometryCanvas.getContext('2d');
+            this.spectrumCtx = this.spectrumCanvas.getContext('2d');
+            
+            this.initializeControls();
+            this.initializeScenarios();
+            this.update();
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            new DopplerDemo();
+        initializeControls() {
+            const controls = [
+                { id: 'frequencySlider', property: 'frequency', display: 'frequencyValue', unit: ' MHz' },
+                { id: 'velocitySlider', property: 'velocity', display: 'velocityValue', unit: ' cm/s' },
+                { id: 'angleSlider', property: 'angle', display: 'angleValue', unit: '°' },
+                { id: 'prfSlider', property: 'prf', display: 'prfValue', unit: ' kHz' }
+            ];
+
+            controls.forEach(control => {
+                const slider = document.getElementById(control.id);
+                const display = document.getElementById(control.display);
+                
+                if (slider && display) {
+                    slider.addEventListener('input', (e) => {
+                        this[control.property] = parseFloat(e.target.value);
+                        const digits = (control.property === 'frequency' || control.property === 'prf') ? 1 : 0;
+                        display.textContent = this[control.property].toFixed(digits) + control.unit;
+                        this.update();
+                    });
+                }
+            });
+
+            document.querySelectorAll('input[name="dopplerMode"]').forEach(radio => {
+                radio.addEventListener('change', (e) => {
+                    this.dopplerMode = e.target.value;
+                    document.getElementById('pwControls').style.display = (this.dopplerMode === 'pulsed') ? 'flex' : 'none';
+                    this.update();
+                });
+            });
+        }
+
+        initializeScenarios() {
+            const scenarios = {
+                normal: { frequency: 5.0, velocity: 50, angle: 45, prf: 5.0 },
+                stenosis: { frequency: 5.0, velocity: 160, angle: 30, prf: 8.0 },
+                regurgitation: { frequency: 3.5, velocity: -120, angle: 20, prf: 6.0 },
+                custom: { frequency: 5.0, velocity: 50, angle: 45, prf: 5.0 }
+            };
+
+            document.querySelectorAll('.scenario-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    document.querySelectorAll('.scenario-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    const scenarioKey = btn.dataset.scenario;
+                    this.setParameters(scenarios[scenarioKey]);
+                    this.update();
+                });
+            });
+        }
+
+        setParameters(params) {
+            this.frequency = params.frequency;
+            this.velocity = params.velocity;
+            this.angle = params.angle;
+            this.prf = params.prf;
+            
+            document.getElementById('frequencySlider').value = this.frequency;
+            document.getElementById('velocitySlider').value = this.velocity;
+            document.getElementById('angleSlider').value = this.angle;
+            document.getElementById('prfSlider').value = this.prf;
+            
+            document.getElementById('frequencyValue').textContent = this.frequency.toFixed(1) + " MHz";
+            document.getElementById('velocityValue').textContent = this.velocity.toFixed(0) + " cm/s";
+            document.getElementById('angleValue').textContent = this.angle.toFixed(0) + "°";
+            document.getElementById('prfValue').textContent = this.prf.toFixed(1) + " kHz";
+        }
+
+        calculateDopplerShift() {
+            const f0Hz = this.frequency * 1e6; 
+            const vMs = this.velocity / 100; 
+            const angleRad = this.angle * Math.PI / 180; 
+            
+            const fd = (2 * f0Hz * vMs * Math.cos(angleRad)) / this.soundSpeed;
+            const receivedFreq = f0Hz + fd;
+            
+            return {
+                dopplerShift: fd,
+                receivedFrequency: receivedFreq,
+                transmittedFrequency: f0Hz,
+                effectiveVelocity: vMs * Math.cos(angleRad)
+            };
+        }
+
+        drawGeometry() {
+            const ctx = this.geometryCtx;
+            const canvas = this.geometryCanvas;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+            const vesselY = 170;
+            const bloodCellX = 220;
+            const bloodCellY = vesselY;
+            const angleRad = this.angle * Math.PI / 180;
+            const probeDistanceToCell = 110;
+            const probeX = bloodCellX - probeDistanceToCell * Math.cos(angleRad);
+            const probeY = bloodCellY - probeDistanceToCell * Math.sin(angleRad);
+    
+            const vesselWidth = 34;
+            const vesselLength = 360;
+            const vesselStartX = bloodCellX - vesselLength / 2;
+            const vesselEndX = bloodCellX + vesselLength / 2;
+    
+            // 血管壁の描画
+            ctx.strokeStyle = '#334155'; ctx.lineWidth = 3;
+            ctx.beginPath(); ctx.moveTo(vesselStartX, vesselY - vesselWidth / 2); ctx.lineTo(vesselEndX, vesselY - vesselWidth / 2);
+            ctx.moveTo(vesselStartX, vesselY + vesselWidth / 2); ctx.lineTo(vesselEndX, vesselY + vesselWidth / 2); ctx.stroke();
+            
+            // 血流（薄い赤背景）
+            ctx.fillStyle = 'rgba(220, 20, 60, 0.15)'; ctx.fillRect(vesselStartX, vesselY - vesselWidth / 2, vesselLength, vesselWidth);
+    
+            // 血流の水平中心軸（点線として可視化、これによって血流軸であることがより明解に）
+            ctx.strokeStyle = 'rgba(148, 163, 184, 0.4)'; ctx.lineWidth = 1; ctx.setLineDash([4, 4]);
+            ctx.beginPath(); ctx.moveTo(vesselStartX, vesselY); ctx.lineTo(vesselEndX, vesselY); ctx.stroke();
+            ctx.setLineDash([]);
+
+            // 流速矢印
+            const numArrows = 4; const arrowSpacing = vesselLength / (numArrows + 1);
+            const effectiveVelocityForArrow = this.velocity * Math.cos(angleRad);
+    
+            for (let i = 1; i <= numArrows; i++) {
+                const arrowX = vesselStartX + i * arrowSpacing; const arrowY = vesselY;
+                const arrowLength = Math.max(15, Math.min(50, Math.abs(this.velocity) * 0.35));
+                const arrowHeadWidth = 6;
+                let arrowColor = effectiveVelocityForArrow > 0.1 ? '#f43f5e' : effectiveVelocityForArrow < -0.1 ? '#38bdf8' : '#64748b';
+                
+                if (Math.abs(this.velocity) > 2) {
+                    ctx.fillStyle = arrowColor; ctx.strokeStyle = arrowColor; ctx.lineWidth = 2;
+                    const direction = this.velocity > 0 ? 1 : -1;
+                    const startX_a = arrowX - (arrowLength / 2) * direction;
+                    const endX_a = arrowX + (arrowLength / 2) * direction;
+                    ctx.beginPath(); ctx.moveTo(startX_a, arrowY); ctx.lineTo(endX_a - arrowHeadWidth * direction, arrowY); ctx.stroke();
+                    ctx.beginPath(); ctx.moveTo(endX_a, arrowY);
+                    ctx.lineTo(endX_a - arrowHeadWidth * direction, arrowY - arrowHeadWidth / 2);
+                    ctx.lineTo(endX_a - arrowHeadWidth * direction, arrowY + arrowHeadWidth / 2); ctx.closePath(); ctx.fill();
+                }
+            }
+            ctx.fillStyle = '#94a3b8'; ctx.font = '11px sans-serif'; ctx.textAlign = 'center';
+            ctx.fillText('血管腔', vesselEndX - 25, vesselY - vesselWidth);
+    
+            // 探触子（プローブ）の回転描画
+            ctx.save(); ctx.translate(probeX, probeY); ctx.rotate(angleRad);
+            ctx.fillStyle = '#1e293b'; ctx.fillRect(-25, -12, 50, 24);
+            ctx.strokeStyle = '#3b82f6'; ctx.lineWidth = 2; ctx.strokeRect(-25, -12, 50, 24);
+            ctx.fillStyle = '#60a5fa'; ctx.fillRect(20, -10, 4, 20);
+            ctx.fillStyle = '#f8fafc'; ctx.font = '10px sans-serif'; ctx.textAlign = 'center'; 
+            ctx.fillText('Probe', -2, 4);
+            ctx.restore();
+    
+            // 超音波ビーム
+            const beamStartOffsetX = 24 * Math.cos(angleRad); const beamStartOffsetY = 24 * Math.sin(angleRad);
+            ctx.setLineDash(this.dopplerMode === 'pulsed' ? [6, 4] : []);
+            ctx.strokeStyle = 'rgba(56, 189, 248, 0.7)'; ctx.lineWidth = 2.5;
+            ctx.beginPath(); ctx.moveTo(probeX + beamStartOffsetX, probeY + beamStartOffsetY); ctx.lineTo(bloodCellX, bloodCellY); ctx.stroke();
+            ctx.setLineDash([]);
+    
+            // PWのサンプルボリューム（SV）マーク
+            if (this.dopplerMode === 'pulsed') {
+                ctx.strokeStyle = '#eab308'; ctx.lineWidth = 2;
+                ctx.beginPath(); ctx.arc(bloodCellX, bloodCellY, 7, 0, 2 * Math.PI); ctx.stroke();
+                ctx.fillStyle = '#eab308'; ctx.font = '9px monospace'; ctx.fillText('SV', bloodCellX - 12, bloodCellY - 10);
+            }
+    
+            // 血球ターゲット
+            ctx.fillStyle = '#ef4444'; ctx.strokeStyle = '#f43f5e'; ctx.lineWidth = 1.5;
+            ctx.beginPath(); ctx.arc(bloodCellX, bloodCellY, 9, 0, 2 * Math.PI); ctx.fill(); ctx.stroke();
+    
+            // 【修正箇所】ドプラ角度（アーク＆θテキスト）の描画位置変更
+            // ターゲット（血球）を起点とし、「血流軸の右方向の直線（180度反転＝Math.PI）」から「ビームが戻ってくるプローブへの方向（Math.PI + angleRad）」へのアークとして描画。
+            // これにより、血流軸に対する交差角であることが完璧に図示されます。
+            const arcRadius = 40;
+            ctx.strokeStyle = '#ffd700'; ctx.lineWidth = 2; // 目立たせるためにゴールド色に変更
+            ctx.beginPath(); 
+            // 始点：180度（血流の右向きラインから見た角度）
+            // 終点：180度 + angle（ビームの傾き）
+            ctx.arc(bloodCellX, bloodCellY, arcRadius, Math.PI, Math.PI + angleRad, false); 
+            ctx.stroke();
+            
+            // θテキストの位置計算（血流中心軸とビーム軸のちょうど中間の角度に美しく配置）
+            ctx.fillStyle = '#ffd700'; ctx.font = 'bold 13px sans-serif'; ctx.textAlign = 'right';
+            const textAngle = Math.PI + (angleRad / 2);
+            const labelX = bloodCellX + (arcRadius + 14) * Math.cos(textAngle);
+            const labelY = bloodCellY + (arcRadius + 14) * Math.sin(textAngle) + 4;
+            ctx.fillText(`θ = ${this.angle}°`, labelX, labelY);
+
+            // 補助線（血流軸の延長。アークがどこから始まっているかを分かりやすくする）
+            ctx.strokeStyle = 'rgba(255, 215, 0, 0.4)'; ctx.lineWidth = 1;
+            ctx.beginPath(); ctx.moveTo(bloodCellX - 60, bloodCellY); ctx.lineTo(bloodCellX, bloodCellY); ctx.stroke();
+        }
+
+        drawSpectrum() {
+            const ctx = this.spectrumCtx;
+            const canvas = this.spectrumCanvas;
+            const results = this.calculateDopplerShift();
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            const margin = { top: 35, right: 25, bottom: 45, left: 45 };
+            const plotWidth = canvas.width - margin.left - margin.right;
+            const plotHeight = canvas.height - margin.top - margin.bottom;
+
+            // 軸の描画
+            ctx.strokeStyle = '#475569'; ctx.lineWidth = 1.5;
+            ctx.beginPath(); ctx.moveTo(margin.left, margin.top);
+            ctx.lineTo(margin.left, margin.top + plotHeight);
+            ctx.lineTo(margin.left + plotWidth, margin.top + plotHeight); ctx.stroke();
+
+            const f0MHz = this.frequency;
+            const fdHz = results.dopplerShift;
+            const fdKHz = fdHz / 1000;
+            const receivedFreqMHz = results.receivedFrequency / 1e6; 
+            
+            // ディスプレイ表示のレンジ固定幅計算
+            const displayHalfWidthMHz = Math.max(0.04, Math.abs(fdKHz / 1000) * 1.8 + this.prf / 1000 * 2.5);
+            const minFreq = f0MHz - displayHalfWidthMHz;
+            const maxFreq = f0MHz + displayHalfWidthMHz;
+            const freqRange = maxFreq - minFreq;
+
+            ctx.fillStyle = '#94a3b8'; ctx.font = '11px sans-serif'; ctx.textAlign = 'center';
+            ctx.fillText('周波数モニター ➔ (MHz)', margin.left + plotWidth / 2, margin.top + plotHeight + 32);
+
+            // 目盛りの描画
+            const numTicks = 4; 
+            for (let i = 0; i <= numTicks; i++) {
+                const freq = minFreq + (i / numTicks) * freqRange;
+                const x = margin.left + ((freq - minFreq) / freqRange) * plotWidth;
+                if (x >= margin.left && x <= margin.left + plotWidth + 1) { 
+                    ctx.strokeStyle = '#1e293b'; ctx.lineWidth = 1;
+                    ctx.beginPath(); ctx.moveTo(x, margin.top); ctx.lineTo(x, margin.top + plotHeight); ctx.stroke();
+                    ctx.fillStyle = '#64748b'; ctx.font = '10px monospace';
+                    ctx.fillText(freq.toFixed(3), x, margin.top + plotHeight + 14);
+                }
+            }
+            
+            const peakHeight = plotHeight * 0.75;
+            const peakBaseY = margin.top + plotHeight;
+
+            let effectivePulseWidthTauForSinc = 1 / (f0MHz * 1e6 * 4);
+            if (this.dopplerMode === 'pulsed' && this.prf > 0) {
+                effectivePulseWidthTauForSinc = (1 / (this.prf * 1000)) * 0.18; 
+            }
+
+            const sinc = (x_val) => {
+                if (Math.abs(x_val) < 1e-9) return 1.0;
+                return Math.sin(Math.PI * x_val) / (Math.PI * x_val);
+            };
+
+            const drawSpectrumComponent = (centerFreqMHz, color, isMainF0) => {
+                const mainPeakPos = margin.left + ((centerFreqMHz - minFreq) / freqRange) * plotWidth;
+                
+                if (this.dopplerMode === 'continuous') { 
+                    if (mainPeakPos >= margin.left && mainPeakPos <= margin.left + plotWidth) {
+                        ctx.strokeStyle = color;
+                        ctx.lineWidth = isMainF0 ? 3 : 3.5; 
+                        ctx.shadowBlur = 4; ctx.shadowColor = color;
+                        ctx.beginPath(); ctx.moveTo(mainPeakPos, peakBaseY);
+                        ctx.lineTo(mainPeakPos, peakBaseY - peakHeight * (isMainF0 ? 1 : 0.8) ); ctx.stroke();
+                        ctx.shadowBlur = 0; 
+                        
+                        ctx.fillStyle = color; ctx.font = '10px monospace';
+                        ctx.fillText(centerFreqMHz.toFixed(3), mainPeakPos, margin.top - (isMainF0 ? 4 : 15) );
+                    }
+                } else { 
+                    const numSideLobesToDraw = Math.floor(displayHalfWidthMHz / (this.prf / 1000)) + 2;
+                    ctx.strokeStyle = color;
+                    ctx.lineWidth = 1.5; 
+
+                    for (let n = -numSideLobesToDraw; n <= numSideLobesToDraw; n++) {
+                        const spectralFreqMHz = centerFreqMHz + n * (this.prf / 1000); 
+                        if (spectralFreqMHz >= minFreq && spectralFreqMHz <= maxFreq) {
+                            const x_spectral = margin.left + ((spectralFreqMHz - minFreq) / freqRange) * plotWidth;
+                            
+                            let amplitudeFactor = 1.0; 
+                            if (effectivePulseWidthTauForSinc > 0) {
+                                const sincArg = (spectralFreqMHz - centerFreqMHz) * 1e6 * effectivePulseWidthTauForSinc;
+                                amplitudeFactor = Math.abs(sinc(sincArg));
+                            }
+                            
+                            const currentPeakHeightVal = peakHeight * (isMainF0 ? 1.0 : 0.8) * amplitudeFactor;
+                            if (currentPeakHeightVal < 1) continue; 
+
+                            ctx.beginPath(); ctx.moveTo(x_spectral, peakBaseY);
+                            ctx.lineTo(x_spectral, peakBaseY - currentPeakHeightVal); ctx.stroke();
+                        }
+                    }
+                }
+            };
+
+            // 1. 送信周波数 f0
+            drawSpectrumComponent(f0MHz, '#38bdf8', true);
+
+            // 2. 受信周波数 f0 + fd
+            if (Math.abs(receivedFreqMHz - f0MHz) > 0.00001) {
+                 drawSpectrumComponent(receivedFreqMHz, '#f43f5e', false);
+            }
+            
+            // シフト量を示す横矢印
+            const f0DisplayPos = margin.left + ((f0MHz - minFreq) / freqRange) * plotWidth;
+            const receivedDisplayPos = margin.left + ((receivedFreqMHz - minFreq) / freqRange) * plotWidth;
+
+            if (Math.abs(fdKHz) > 0.01 && Math.abs(receivedDisplayPos - f0DisplayPos) > 2) {
+                const arrowY = margin.top + peakHeight * 0.25; 
+                ctx.strokeStyle = '#ffd700'; ctx.lineWidth = 1.5;
+                ctx.beginPath(); ctx.moveTo(f0DisplayPos, arrowY); ctx.lineTo(receivedDisplayPos, arrowY); ctx.stroke();
+                
+                const arrowSize = 4; 
+                const direction = (receivedDisplayPos > f0DisplayPos) ? 1 : -1;
+                ctx.fillStyle = '#ffd700'; ctx.beginPath(); ctx.moveTo(receivedDisplayPos, arrowY);
+                ctx.lineTo(receivedDisplayPos - direction * arrowSize, arrowY - arrowSize/2);
+                ctx.lineTo(receivedDisplayPos - direction * arrowSize, arrowY + arrowSize/2); ctx.closePath(); ctx.fill();
+            }
+            
+            // リアルタイム数式テキストの同期更新
+            const signStr = fdKHz >= 0 ? "+" : "";
+            document.getElementById('mathFormulaRealTime').innerHTML = `f_d = <span style="color:var(--color-math); font-style:normal;">${signStr}${fdKHz.toFixed(2)} kHz</span> (受信周波数: ${receivedFreqMHz.toFixed(4)} MHz)`;
+        }
+
+        updateResults() {
+            const results = this.calculateDopplerShift();
+            const resultDiv = document.getElementById('calculationResults');
+            const infoBox = document.getElementById('resultInfo');
+            const angleRad = this.angle * Math.PI / 180;
+            const effectiveVelocityCmS = results.effectiveVelocity * 100;
+            const fdKHz = results.dopplerShift / 1000;
+            
+            let isWarning = false;
+            let reportHTML = '';
+
+            if (this.dopplerMode === 'continuous') {
+                reportHTML += `・<strong>計測モード:</strong> 連続波ドプラ (CW) ➔ 送信と受信を別々の素子で行うため、高速な血流でも折り返しを起こさず測定可能です。<br>`;
+            } else {
+                const nyquistKHz = this.prf / 2;
+                const isAliasing = Math.abs(fdKHz) > nyquistKHz;
+                if (isAliasing) isWarning = true;
+                
+                reportHTML += `・<strong>計測モード:</strong> パルス波ドプラ (PW) [PRF: ${this.prf.toFixed(1)} kHz / ナイキスト限界周波数: <span style="color:#a855f7; font-weight:bold;">±${nyquistKHz.toFixed(2)} kHz</span>]<br>`;
+                if (isAliasing) {
+                    reportHTML += ` ➔ <span style="color:#ef4444; font-weight:bold;">⚠️エイリアシング（折り返し現象）発生の恐れあり！</span> シフト周波数がナイキスト限界を超えています。実機では波形が上下逆転して表示されます。<br>`;
+                }
+            }
+            
+            reportHTML += `・<strong>ドプラシフト周波数 (fd):</strong> ${fdKHz.toFixed(2)} kHz (送信波 $f₀$ からのズレ量)<br>`;
+            reportHTML += `・<strong>超音波ビーム軸上の有効血流速度 (v cosθ):</strong> ${effectiveVelocityCmS.toFixed(1)} cm/s (全流速 <strong>${this.velocity} cm/s</strong> に対し、$\cos${this.angle}^\circ = ${Math.cos(angleRad).toFixed(3)}$ を乗算)<br>`;
+
+            // 角度に関する臨床的注意アラート
+            if (this.angle > 60) {
+                isWarning = true;
+                reportHTML += `<br><span style="color: #f87171; font-weight:bold;">⚠️ 臨床アラート (ドプラ角度 θ = ${this.angle}°):</span> 角度が60°を超えると、$\cos\theta$ の変化率が急峻になり、わずかな角度誤差が血流速度計算の致命的な誤差に繋がります。探触子の傾きを調整して60°以下にする必要があります。`;
+            } else if (this.angle === 90 || Math.abs(effectiveVelocityCmS) < 0.1) {
+                isWarning = true;
+                reportHTML += `<br><span style="color: #fbbf24; font-weight:bold;">⚠️ 検出限界アラート:</span> ビームが血流に対してほぼ垂直（$\theta \approx 90^\circ$）なため、$\cos\theta \approx 0$ となりドプラシフトがほとんど発生しません（血流があっても画面上は静止しているように見えます）。`;
+            } else {
+                reportHTML += `<br><span style="color: #34d399; font-weight:bold;">✅ 適正計測条件:</span> ドプラ角度は60°以下に保たれており、安定した流速換算が期待できる幾何学的配置です。`;
+            }
+            
+            if (isWarning) {
+                infoBox.className = 'result-info warning';
+            } else {
+                infoBox.className = 'result-info';
+            }
+            resultDiv.innerHTML = reportHTML;
+        }
+
+        update() {
+            this.drawGeometry();
+            this.drawSpectrum();
+            this.updateResults();
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const demo = new DopplerDemo();
+
+        document.querySelectorAll('.scenario-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                if(btn.dataset.scenario === 'custom') return;
+                if(btn.dataset.scenario === 'regurgitation') {
+                    document.querySelector('input[name="dopplerMode"][value="pulsed"]').checked = true;
+                    document.getElementById('pwControls').style.display = 'flex';
+                    demo.dopplerMode = 'pulsed';
+                } else {
+                    document.querySelector('input[name="dopplerMode"][value="continuous"]').checked = true;
+                    document.getElementById('pwControls').style.display = 'none';
+                    demo.dopplerMode = 'continuous';
+                }
+            });
         });
-    </script>
+    });
+</script>
 </body>
 </html>
