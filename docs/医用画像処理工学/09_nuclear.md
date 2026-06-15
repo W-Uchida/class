@@ -108,7 +108,7 @@
 
 
 <figure>
-  <img src="../../img/10-01.png" alt="PET vs SPECT 原理比較" width="600" height="auto">
+  <img src="../img/10-01.png" alt="PET vs SPECT 原理比較" width="600" height="auto">
   <figcaption>PET vs SPECT 原理比較</figcaption>
 </figure>
 
@@ -150,7 +150,7 @@
 - **生体元素**：¹¹C、¹³N、¹⁵O、¹⁸Fは生体構成元素のため生理的
 
 <figure>
-  <img src="../../img/10-02.png" alt="サイクロトロン" width="300" height="auto">
+  <img src="../img/10-02.png" alt="サイクロトロン" width="300" height="auto">
   <figcaption>サイクロトロン（加速器）</figcaption>
 </figure>
 
@@ -177,7 +177,7 @@
   核医学画像では、光電効果による完全吸収がであれば感度低下のみですが、<font color="red">コンプトン散乱による散乱線が画質劣化の原因となります（散乱補正が必要）</font>。
 
 <figure>
-  <img src="../../img/10-03.png" alt="光電効果・コンプトン散乱" width="600" height="auto">
+  <img src="../img/10-03.png" alt="光電効果・コンプトン散乱" width="600" height="auto">
   <figcaption>光電効果・コンプトン散乱</figcaption>
 </figure>
 
@@ -211,7 +211,7 @@
 核医学検査には主に**SPECT**と**PET**の2つの手法があります。どちらも体内の放射性医薬品から放出される放射線を検出しますが、**検出原理**と**使用核種**が根本的に異なります。
 
 <figure>
-  <img src="../../img/10-01.png" alt="PET vs SPECT 原理比較" width="600" height="auto">
+  <img src="../img/10-01.png" alt="PET vs SPECT 原理比較" width="600" height="auto">
   <figcaption>PET vs SPECT 原理比較</figcaption>
 </figure>
 
@@ -298,7 +298,7 @@ SPECTは「単一光子放射断層撮影」と呼ばれ、体内に投与した
   **空間分解能と感度のトレードオフ**を考慮して、臨床目的に応じて最適なコリメータを選択する必要があります。
 
 <figure>
-  <img src="../../img/10-04.png" alt="コリメータ" width="600" height="auto">
+  <img src="../img/10-04.png" alt="コリメータ" width="600" height="auto">
   <figcaption>コリメータ</figcaption>
 </figure>
 
@@ -382,7 +382,7 @@ ML-EM法の高速化バージョン：
 PET（陽電子放射断層撮影）は、SPECTとは全く異なる物理原理に基づく核医学装置です。
 
 <figure>
-  <img src="../../img/10-05.png" alt="PETにおけるγ線発生機序（β崩壊）" width="600" height="auto">
+  <img src="../img/10-05.png" alt="PETにおけるγ線発生機序（β崩壊）" width="600" height="auto">
   <figcaption>PETにおけるγ線発生機序（β崩壊）</figcaption>
 </figure>
 
@@ -487,7 +487,7 @@ $$e^+ + e^- \rightarrow 2\gamma \text{（511keV each）}$$
      - バックグラウンドノイズの原因
 
 <figure>
-  <img src="../../img/10-06.png" alt="PETにおける同時計数計測" width="600" height="auto">
+  <img src="../img/10-06.png" alt="PETにおける同時計数計測" width="600" height="auto">
   <figcaption>PETにおける同時計数計測</figcaption>
 </figure>
 ---
