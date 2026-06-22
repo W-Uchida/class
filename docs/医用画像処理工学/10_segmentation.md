@@ -258,11 +258,11 @@ $$
     - 結果の精度は必ず評価し、その限界を理解した上で利用することが重要です。
 
 
-<!-- ## 6. 演習課題
+## 6. 演習課題
 
 - [Google Form](https://docs.google.com/forms/d/e/1FAIpQLSeF3cyf_9Bv9OFTbmVsH-XZq2Gj7aAtYQTm4Ipkh84qWuBykA/viewform?usp=sharing&ouid=102691845603378234488)
 
 <figure>
   <img src="/img/11-08.png" alt="第11回演習QRコード" width="300" height="auto">
   <figcaption>第11回演習QRコード</figcaption>
-</figure> -->
+</figure>
