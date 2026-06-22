@@ -241,6 +241,6 @@ Registrationは、画像の「動かし方（変換の種類）」と「何を�
 
 
 
-<!-- ## 6. Google Colab実習 -->
+## 6. Google Colab実習 -->
 
-<!-- - [Google colabファイル](https://drive.google.com/file/d/1IC3Mk-BKfPDdGF8oqHc7LTiTdGIAD8om/view?usp=sharing) -->
+<!-- - [Google colabファイル](https://drive.google.com/file/d/1IC3Mk-BKfPDdGF8oqHc7LTiTdGIAD8om/view?usp=sharing)
