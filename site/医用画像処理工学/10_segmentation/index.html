@@ -2048,33 +2048,41 @@
 <ul>
 <li><strong>距離の定義</strong></li>
 </ul>
-<p>p次元ベクトル <span class="arithmatex">\(\mathbf{x}_i\)</span> と <span class="arithmatex">\(\mathbf{x}_j\)</span> の間のユークリッド距離：</p>
+<p>ここではグレースケール画像を仮定し、各ピクセルが1つの輝度値のみを持つものとします。つまり各データ点は <span class="arithmatex">\(p=1\)</span> 次元、すなわちスカラー値 <span class="arithmatex">\(x_i\)</span>(ピクセル <span class="arithmatex">\(i\)</span> の輝度)で表されます。</p>
+<p>2つのピクセル <span class="arithmatex">\(\mathbf{x}_i\)</span> と <span class="arithmatex">\(\mathbf{x}_j\)</span> の「似ていなさ」を測る尺度として、ユークリッド距離を用います。一般の <span class="arithmatex">\(p\)</span> 次元（カラー画像の場合、RGBで表されるため<span class="arithmatex">\(p=3\)</span>）では</p>
 <div class="arithmatex">\[d(\mathbf{x}_i, \mathbf{x}_j) = \sqrt{\sum_{l=1}^{p} (x_{il} - x_{jl})^2}\]</div>
+<p>と定義されますが、グレースケール(<span class="arithmatex">\(p=1\)</span>)では総和が1項だけになり、輝度差の絶対値に帰着します:</p>
+<div class="arithmatex">\[d(x_i, x_j) = \sqrt{(x_i - x_j)^2} = |x_i - x_j|\]</div>
+<p>距離が小さいほど、2つのピクセルは輝度が近い(似ている)ことを意味します。
+なお、この距離は輝度の近さだけを測り、ピクセルが画像内のどこにあるか(空間的な位置)は含みません。</p>
 <ul>
 <li><strong>目的関数</strong></li>
 </ul>
-<p>クラスタ内分散の総和を最小化：</p>
-<div class="arithmatex">\[\arg\min_{C_1, C_2, \ldots, C_k} \sum_{j=1}^{k} \sum_{\mathbf{x}_i \in C_j} \|\mathbf{x}_i - \mathbf{c}_j\|^2\]</div>
-<p>ここで：</p>
+<p>K-means は、各クラスタの「まとまりの良さ」をクラスタ内のばらつき(分散)で評価し、その総和を最小にするようなクラスタ分割を探します。全ピクセルを <span class="arithmatex">\(k\)</span> 個のクラスタ <span class="arithmatex">\(C_1, C_2, \ldots, C_k\)</span> に分けたとき、各ピクセルとそのクラスタ重心との距離の二乗和(クラスタ内平方和)を最小化します:</p>
+<div class="arithmatex">\[\arg\min_{C_1, C_2, \ldots, C_k} \sum_{j=1}^{k} \sum_{x_i \in C_j} (x_i - c_j)^2\]</div>
+<p>ここで:</p>
 <ul>
-<li><span class="arithmatex">\(C_j\)</span>：j番目のクラスタに属するデータ点の集合</li>
-<li><span class="arithmatex">\(\mathbf{c}_j\)</span>：j番目のクラスタの重心（セントロイド）</li>
+<li><span class="arithmatex">\(C_j\)</span>:<span class="arithmatex">\(j\)</span> 番目のクラスタに属するピクセルの集合</li>
+<li><span class="arithmatex">\(c_j\)</span>:クラスタ <span class="arithmatex">\(C_j\)</span> の重心(セントロイド)。グレースケールでは、所属するピクセルの平均輝度として定義されます:</li>
 </ul>
+<div class="arithmatex">\[c_j = \frac{1}{|C_j|} \sum_{x_i \in C_j} x_i\]</div>
+<p>ここで <span class="arithmatex">\(|C_j|\)</span> はクラスタ <span class="arithmatex">\(C_j\)</span> に含まれるピクセル数、<span class="arithmatex">\((x_i - c_j)^2\)</span> はピクセルの輝度と重心(平均輝度)との差の二乗を表します。</p>
+<p>この目的関数を直接最小化するのは計算量が膨大になるため、K-means では次の2ステップを交互に繰り返して近似的に解きます。すなわち、(1) 各ピクセルを最も近い重心 <span class="arithmatex">\(c_j\)</span> のクラスタに割り当てる(所属の更新)、(2) 各クラスタの重心を所属ピクセルの平均輝度に更新する(重心の更新)、です。手順(2)で重心を平均値に置くことは、そのクラスタ内部の平方和を最小化する操作に一致しており、この反復によって目的関数の値が単調に減少して収束します。これが、前の図で示した「中心点を平均位置へ移動する」処理が数式の上で持つ意味です。</p>
 <h3 id="23-segmentation">2.3 Segmentationの精度評価</h3>
 <p>自動セグメンテーションの結果は、必ずその精度を評価する必要があります。</p>
 <ul>
 <li>
 <p><strong>セグメンテーション精度の評価指標:</strong></p>
+<ul>
+<li><strong>Dice係数 (Dice Coefficient):</strong> 2つの領域の重なり具合を示す指標。1に近いほど一致している。 </li>
+</ul>
 </li>
-<li>
-<p><strong>Dice係数 (Dice Coefficient):</strong> 2つの領域の重なり具合を示す指標。1に近いほど一致している。 
-$$
+</ul>
+<div class="arithmatex">\[
 \text{DICE index} = \frac{2 * |A ∩ B|}{(|A| + |B|)}
-$$</p>
-</li>
-<li>
-<p><strong>手動描画との比較検証 (Ground Truth):</strong> 放射線科医などが手作業で作成した「正解データ」と自動セグメンテーションの結果を比較し、精度を検証します。</p>
-</li>
+\]</div>
+<ul>
+<li><strong>手動描画との比較検証 (Ground Truth):</strong> 放射線科医などが手作業で作成した「正解データ」と自動セグメンテーションの結果を比較し、精度を検証します。</li>
 <li><strong>再現性の確保:</strong> 同じデータに対して、何度実行しても同じ結果が得られることが重要です。</li>
 </ul>
 <h3 id="24">2.4 実際の臨床応用例</h3>
@@ -2188,7 +2196,7 @@ $$</p>
     <span class="md-icon" title="最終更新日">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月22日 12:26:53 UTC">2026年6月22日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月22日 13:11:24 UTC">2026年6月22日</span>
   </span>
 
     
