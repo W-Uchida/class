@@ -101,19 +101,19 @@ Registrationは、画像の「動かし方（変換の種類）」と「何を�
 
             * **2次元表現（自由度：3）**
 
-                $$\begin{bmatrix} x' \\ y' \\ 1 \end{bmatrix} = \begin{bmatrix} \cos\theta & -\sin\theta & t_x \\ \sin\theta & \cos\theta & t_y \\ 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} x \\ y \\ 1 \end{bmatrix}$$
+                $$\begin{bmatrix} x' \\ y' \\ 1 \end{bmatrix} = \begin{bmatrix} \cos\theta & -\sin\theta & d_x \\ \sin\theta & \cos\theta & d_y \\ 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} x \\ y \\ 1 \end{bmatrix}$$
 
-                * **未知パラメータ（3個）**: $\theta, t_x, t_y$
+                * **未知パラメータ（3個）**: $\theta, d_x, d_y$
 
             * **3次元表現（自由度：6）**
 
                 3次元の剛体変換は、平行移動行列と、各軸（$x, y, z$軸）まわりの回転行列の積として以下のように表現されます。
 
-                $$\begin{bmatrix} x' \\ y' \\ z' \\ 1 \end{bmatrix} = \begin{bmatrix} 1 & 0 & 0 & t_x \\ 0 & 1 & 0 & t_y \\ 0 & 0 & 1 & t_z \\ 0 & 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} 1 & 0 & 0 & 0 \\ 0 & \cos\alpha & -\sin\alpha & 0 \\ 0 & \sin\alpha & \cos\alpha & 0 \\ 0 & 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} \cos\beta & 0 & \sin\beta & 0 \\ 0 & 1 & 0 & 0 \\ -\sin\beta & 0 & \cos\beta & 0 \\ 0 & 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} \cos\gamma & -\sin\gamma & 0 & 0 \\ \sin\gamma & \cos\gamma & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} x \\ y \\ z \\ 1 \end{bmatrix}$$
+                $$\begin{bmatrix} x' \\ y' \\ z' \\ 1 \end{bmatrix} = \begin{bmatrix} 1 & 0 & 0 & d_x \\ 0 & 1 & 0 & d_y \\ 0 & 0 & 1 & d_z \\ 0 & 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} 1 & 0 & 0 & 0 \\ 0 & \cos\alpha & -\sin\alpha & 0 \\ 0 & \sin\alpha & \cos\alpha & 0 \\ 0 & 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} \cos\beta & 0 & \sin\beta & 0 \\ 0 & 1 & 0 & 0 \\ -\sin\beta & 0 & \cos\beta & 0 \\ 0 & 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} \cos\gamma & -\sin\gamma & 0 & 0 \\ \sin\gamma & \cos\gamma & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} x \\ y \\ z \\ 1 \end{bmatrix}$$
 
                 * （左から順に：平行移動行列、 $x$軸まわり回転[$yz$平面]、 $y$軸まわり回転[$xz$平面]、 $z$軸まわり回転[$xy$平面]）
 
-                * **未知パラメータ（6個）**: $\alpha, \beta, \gamma, t_x, t_y, t_z$
+                * **未知パラメータ（6個）**: $\alpha, \beta, \gamma, d_x, d_y, d_z$
 
     * **アフィン変換 (Affine Transformation)**
         * **概念**: 剛体ではないものの、線形な関係を維持して全体の変形を表現できる場合に使用します。「平行な直線は変換後も平行なまま保たれる」という性質を持ちますが、**拡大・縮小やせん断（ひしゃげる変形）を許容**します。
@@ -123,15 +123,15 @@ Registrationは、画像の「動かし方（変換の種類）」と「何を�
 
             * **2次元表現（自由度：6）**
 
-                $$\begin{bmatrix} x' \\ y' \\ 1 \end{bmatrix} = \begin{bmatrix} a_{11} & a_{12} & t_x \\ a_{21} & a_{22} & t_y \\ 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} x \\ y \\ 1 \end{bmatrix}$$
+                $$\begin{bmatrix} x' \\ y' \\ 1 \end{bmatrix} = \begin{bmatrix} a_{11} & a_{12} & d_x \\ a_{21} & a_{22} & d_y \\ 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} x \\ y \\ 1 \end{bmatrix}$$
 
-                * **未知パラメータ（6個）**: $a_{11}, a_{12}, a_{21}, a_{22}, t_x, t_y$
+                * **未知パラメータ（6個）**: $a_{11}, a_{12}, a_{21}, a_{22}, d_x, d_y$
 
             * **3次元表現（自由度：12）**
 
-                $$\begin{bmatrix} x' \\ y' \\ z' \\ 1 \end{bmatrix} = \begin{bmatrix} a_{11} & a_{12} & a_{13} & t_x \\ a_{21} & a_{22} & a_{23} & t_y \\ a_{31} & a_{32} & a_{33} & t_z \\ 0 & 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} x \\ y \\ z \\ 1 \end{bmatrix}$$
+                $$\begin{bmatrix} x' \\ y' \\ z' \\ 1 \end{bmatrix} = \begin{bmatrix} a_{11} & a_{12} & a_{13} & d_x \\ a_{21} & a_{22} & a_{23} & d_y \\ a_{31} & a_{32} & a_{33} & d_z \\ 0 & 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} x \\ y \\ z \\ 1 \end{bmatrix}$$
 
-                * **未知パラメータ（12個）**: $a_{11}, a_{12}, a_{13}, a_{21}, a_{22}, a_{23}, a_{31}, a_{32}, a_{33}, t_x, t_y, t_z$
+                * **未知パラメータ（12個）**: $a_{11}, a_{12}, a_{13}, a_{21}, a_{22}, a_{23}, a_{31}, a_{32}, a_{33}, d_x, d_y, d_z$
 
 2. **非線形変換 (Non-rigid / Deformable Transformation)**
     * **動き**: 局所的な、グニャグニャとした変形を許容します（「変形レジストレーション」とも呼ばれます）。
