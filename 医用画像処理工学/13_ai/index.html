@@ -1165,18 +1165,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1_3" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      💡 ブレークスルー1：隠れ層の導入（多層化による非線形表現）
+      💡 隠れ層（中間層）の導入
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2_2" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
-      💡 ブレークスルー2：滑らかな活性化関数の導入（微分可能性の確保）
+      💡 滑らかな活性化関数の導入（微分可能性の確保）
     </span>
   </a>
   
@@ -1198,7 +1198,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       📊 損失関数による「間違い」の計算例
     </span>
@@ -1845,18 +1845,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1_3" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      💡 ブレークスルー1：隠れ層の導入（多層化による非線形表現）
+      💡 隠れ層（中間層）の導入
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2_2" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
-      💡 ブレークスルー2：滑らかな活性化関数の導入（微分可能性の確保）
+      💡 滑らかな活性化関数の導入（微分可能性の確保）
     </span>
   </a>
   
@@ -1878,7 +1878,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       📊 損失関数による「間違い」の計算例
     </span>
@@ -2184,37 +2184,8 @@
 <p>機械学習は、学習時に与えるデータの性質によって、大きく<strong>「教師あり学習」</strong>と<strong>「教師なし学習」</strong>に大別されます。</p>
 <ul>
 <li><strong>教師あり学習 vs 教師なし学習</strong><ul>
-<li><strong>教師あり学習 (Supervised Learning)</strong>: <strong>問題（入力データ）と正解（教師ラベル）のペア</strong>を使って学習する方法。医用画像解析で最も広く使われます。<ul>
-<li><strong>分類 (Classification)</strong>: データを predefined なカテゴリに分ける問題。<ul>
-<li>例: 病変の画像から「良性」か「悪性」かを判定する。</li>
-<li><strong>代表的な統計学的手法</strong>:<ul>
-<li><strong>ロジスティック回帰</strong>: 特徴量の重み付き和をシグモイド関数に入力し、事象の発生確率（例: 悪性である確率）を0から1の間で予測する。</li>
-<li><strong>サポートベクターマシン (SVM)</strong>: 異なるクラスのデータ点間の距離（マージン）が最大となるような境界線を引くことで、未知のデータを分類する。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><strong>回帰 (Regression)</strong>: 連続的な数値を予測する問題。<ul>
-<li>例: 腫瘍の画像からその「体積(mm³)」や「直径(mm)」を予測する。</li>
-<li><strong>代表的な統計学的手法</strong>:<ul>
-<li><strong>線形回帰</strong>: データ点全体の誤差が最小になるような直線（または平面・超平面）を求めることで、目的の数値を予測する。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><strong>教師なし学習 (Unsupervised Learning)</strong>: <strong>正解ラベルがないデータ</strong>から、データに潜む構造やパターンを見つけ出す方法。<ul>
-<li><strong>クラスタリング (Clustering)</strong>: データを似たもの同士のグループ（クラスタ）に分ける。<ul>
-<li>例: 脳の組織画像を、特徴に基づいて「灰白質」「白質」「脳脊髄液」の3つのグループに自動で分類する。</li>
-</ul>
-</li>
-<li><strong>代表的な統計学的手法</strong>:<ul>
-<li><strong>k-means法</strong>: 指定したクラスタ数k個の中心点をランダムに配置し、「各データ点を最も近い中心点に割り当てる→中心点をクラスタの重心に移動させる」という処理を繰り返すことで、データをグループ分けする。</li>
-</ul>
-</li>
-</ul>
-</li>
+<li><strong>教師あり学習 (Supervised Learning)</strong>: <strong>問題（入力データ）と正解（教師ラベル）のペア</strong>を使って学習する方法。AIにお手本を提示して覚えさせるアプローチで、医用画像解析の分野で最も広く使われています。画像から病変の有無や種類を当てたり、腫瘍の具体的な大きさを予測したりするタスクがこれに該当します。</li>
+<li><strong>教師なし学習 (Unsupervised Learning)</strong>: <strong>正解ラベルがないデータ</strong>から、データに潜む構造やパターン、特徴の似たグループを自力で見つけ出す方法。前々回の授業の実習で扱った<strong>「k-means法」による画像のグループ分け（クラスタリング）</strong>は、まさにこの教師なし学習に分類されます。</li>
 </ul>
 </li>
 </ul>
@@ -2270,14 +2241,13 @@
 <hr />
 <h3 id="22-deep-learning">2.2 深層学習（Deep Learning）入門</h3>
 <p>深層学習は機械学習の特定の系譜であり、その根底には生物の脳を模した数理モデルがあります。現代の高度なAIモデルへと至る進化の歴史を、アルゴリズムの本質とともに紐解いていきましょう。</p>
-<hr />
 <h3 id="1_2">1. パーセプトロン：ニューラルネットワークの原点</h3>
 <p>深層学習の最も基本的な構成単位（最小パーツ）が、1957年にローゼンブラットによって考考案された<strong>単純パーセプトロン（Simple Perceptron）</strong>です。これは、生物の脳にある神経細胞（ニューロン）が、他の細胞から電気信号を受け取り、一定以上の刺激になると次の細胞へ信号を伝達（発火）する仕組みを数理モデル化したものです。</p>
 <h4 id="_3">数理モデルのアプローチ</h4>
 <p>パーセプトロンは、複数の入力信号を受け取り、最終的な出力を計算します。内部の計算は以下の2段階で行われます。</p>
 <ol>
 <li><strong>重み付き和とバイアスの計算</strong>
-   それぞれの入力信号に対して、固有の<strong>重み</strong>を掛け合わせ、その総和をとります。重みは「その入力情報をどれだけ重視するか」を表します。ここに、モデルの「発火のしやすさ（感度）」を調整する<strong>バイアス</strong>を加算します。入力変数を <span class="arithmatex">\(x\)</span>、重みを <span class="arithmatex">\(w\)</span>、バイアスを <span class="arithmatex">\(b\)</span> とすると、全体の信号の強さ <span class="arithmatex">\(z\)</span> は以下の数式で表されます。</li>
+   それぞれの入力信号に対して、固有の<strong>重み</strong>を掛け合わせ、その総和をとります。重みは「その入力情報をどれだけ重視するか」を表します（<span class="arithmatex">\(b\)</span>はバイアス）。入力変数を <span class="arithmatex">\(x\)</span>、重みを <span class="arithmatex">\(w\)</span>、バイアスを <span class="arithmatex">\(b\)</span> とすると、全体の信号の強さ <span class="arithmatex">\(z\)</span> は以下の数式で表されます。</li>
 </ol>
 <div class="arithmatex">\[
 z = w_1 x_1 + w_2 x_2 + \dots + b = \sum_{i=1}^{n} w_i x_i + b
@@ -2302,16 +2272,16 @@ y = \begin{cases} 1 &amp; (z \ge 0) \\ 0 &amp; (z &lt; 0) \end{cases}
   <figcaption>単純パーセプトロンの限界（線形分離の壁）</figcaption>
 </figure>
 
-<p>この限界を克服し、人工知能を復活させたのが<strong>多層パーセプトロン（Multilayer Perceptron: MLP）</strong>であり、それを実現させたのが次の2つのブレークスルーです。</p>
-<h4 id="1_3">💡 ブレークスルー1：隠れ層の導入（多層化による非線形表現）</h4>
+<p>この限界を克服し、ブレークスルーとなったのが<strong>多層パーセプトロン（Multilayer Perceptron: MLP）と活性化関数の導入</strong>です。</p>
+<h4 id="_4">💡 隠れ層（中間層）の導入</h4>
 <p>入力層と出力層の間に、複数のパーセプトロンからなる<strong>隠れ層（中間層：Hidden Layer）</strong>を追加しました。
-1つのパーセプトロンが作れるのは「1本の直線」だけですが、複数のパーセプトロンの出力を組み合わせることで、空間を複雑に折り曲げるような<strong>非線形な識別境界（曲線や複雑な多面体）</strong>を描くことが数学的に可能になりました。</p>
+1つのパーセプトロンが作れるのは「1本の直線」だけですが、複数のパーセプトロンの出力を組み合わせることで、空間を複雑に折り曲げるような<strong>複雑な識別境界</strong>を描くことが数学的に可能になりました。</p>
 <figure>
   <a class="glightbox" href="../img/13-05.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/13-05.png" alt="多層パーセプトロン" width="800" height="auto"></a>
   <figcaption>多層パーセプトロン（MLP）のネットワーク構造</figcaption>
 </figure>
 
-<h4 id="2_2">💡 ブレークスルー2：滑らかな活性化関数の導入（微分可能性の確保）</h4>
+<h4 id="_5">💡 滑らかな活性化関数の導入（微分可能性の確保）</h4>
 <p>従来のパーセプトロンが使っていたステップ関数は、出力が「0か1か」の階段状であり、数学的に<strong>微分不可能（あるいは微分値が常に0）</strong>でした。これでは、モデルが予測を外したときに、「どれくらい惜しかったのか（確信度）」が分からず、重みをどう修正すれば良くなるかのヒント（勾配）が得られません。</p>
 <p>そこで現代のニューラルネットワークでは、ネットワークの表現力を高め、数学的に最適化（計算）しやすくするために、目的や場所に応じて以下のような様々な活性化関数を使い分けます。</p>
 <ul>
@@ -2345,7 +2315,7 @@ y = \begin{cases} 1 &amp; (z \ge 0) \\ 0 &amp; (z &lt; 0) \end{cases}
 <h3 id="3-ai">3. 「誤差逆伝播法」の登場：AIが自らパラメータを最適化する仕組み</h3>
 <p>活性化関数が微分可能になったことで、モデルの予測と正解との「ズレ」を定義する<strong>損失関数（Loss Function）</strong>の最小化を、数学的な傾き（勾配）を使って最適化できるようになりました。</p>
 <p>「学習」とは、モデルの予測結果が正解に近づくように、重みやバイアスを少しずつ調整していくプロセスを指します。</p>
-<h4 id="_4">📊 損失関数による「間違い」の計算例</h4>
+<h4 id="_6">📊 損失関数による「間違い」の計算例</h4>
 <p>例えば、入力された画像が「猫」「犬」「車」のどれにあたるかを分類するタスクを考えます。
 （※出力層には、合計が 1 になるソフトマックス関数が使われていると仮定します）</p>
 <ul>
@@ -2636,7 +2606,7 @@ L = \frac{1}{2} \left[ 0.09 + 0.0625 + 0.0025 \right] = \frac{1}{2} \times 0.155
     <span class="md-icon" title="最終更新日">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年7月7日 02:26:24 UTC">2026年7月7日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年7月7日 02:52:11 UTC">2026年7月7日</span>
   </span>
 
     
