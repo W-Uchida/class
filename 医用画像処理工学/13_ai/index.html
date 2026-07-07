@@ -1200,6 +1200,15 @@
           <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
+      📐 損失関数の定義と代表的な数式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
       📊 損失関数による「間違い」の計算例
     </span>
   </a>
@@ -1880,6 +1889,15 @@
           <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
+      📐 損失関数の定義と代表的な数式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
       📊 損失関数による「間違い」の計算例
     </span>
   </a>
@@ -2315,7 +2333,28 @@ y = \begin{cases} 1 &amp; (z \ge 0) \\ 0 &amp; (z &lt; 0) \end{cases}
 <h3 id="3-ai">3. 「誤差逆伝播法」の登場：AIが自らパラメータを最適化する仕組み</h3>
 <p>活性化関数が微分可能になったことで、モデルの予測と正解との「ズレ」を定義する<strong>損失関数（Loss Function）</strong>の最小化を、数学的な傾き（勾配）を使って最適化できるようになりました。</p>
 <p>「学習」とは、モデルの予測結果が正解に近づくように、重みやバイアスを少しずつ調整していくプロセスを指します。</p>
-<h4 id="_6">📊 損失関数による「間違い」の計算例</h4>
+<h4 id="_6">📐 損失関数の定義と代表的な数式</h4>
+<p>損失関数とは、<strong>「AIの予測値が、どれくらい正解（目標値）から外れているか」を計算する数式</strong>です。この関数の出力値（損失 <span class="arithmatex">\(L\)</span>）が小さければ小さいほど優秀なモデルということになり、最終的に <span class="arithmatex">\(L = 0\)</span>（誤差ゼロ）に近づけることが学習のゴールとなります。</p>
+<p>タスクの種類に応じて、例えば以下のような関数を用います。</p>
+<ul>
+<li><strong>① 平均二乗誤差（MSE: Mean Squared Error）</strong><ul>
+<li><strong>用途</strong>：主に「回帰問題」（病変のサイズや、腫瘍の体積などの数値を予測するタスク）で使われます。</li>
+<li><strong>数式</strong>：（データの個数を <span class="arithmatex">\(n\)</span>、正解を <span class="arithmatex">\(y\)</span>、予測値を <span class="arithmatex">\(\hat{y}\)</span> とすると）</li>
+<li><strong>意味</strong>：「正解」と「予測」を引き算して引き起こされたズレ（誤差）を2乗し、その平均をとったものです。2乗することで、ズレがプラスでもマイナスでも必ずプラスの数値としてカウントされ、さらに「大きなハズレ」に対して重いペナルティを課す仕組みになっています。</li>
+</ul>
+</li>
+</ul>
+<div class="arithmatex">\[
+L = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2
+\]</div>
+<ul>
+<li><strong>② 交差エントロピー誤差（Cross-Entropy Loss）</strong><ul>
+<li><strong>用途</strong>：主に「分類問題」（画像が『正常』か『異常』か、あるいは『猫』『犬』『車』かを当てるタスク）で使われます。</li>
+<li><strong>意味</strong>：確率のズレを評価する特殊な対数（<span class="arithmatex">\(\log\)</span>）の数式です。AIが自信満々に間違った（例えば、正解が猫なのに『100%車！』と予測した）ときに、損失 <span class="arithmatex">\(L\)</span> が無限大に向かって爆発的に大きくなる性質を持ち、分類タスクにおいて非常に効率よく学習が進むため採用されています。</li>
+</ul>
+</li>
+</ul>
+<h4 id="_7">📊 損失関数による「間違い」の計算例</h4>
 <p>例えば、入力された画像が「猫」「犬」「車」のどれにあたるかを分類するタスクを考えます。
 （※出力層には、合計が 1 になるソフトマックス関数が使われていると仮定します）</p>
 <ul>
@@ -2346,7 +2385,7 @@ L = \frac{1}{2} \left[ 0.09 + 0.0625 + 0.0025 \right] = \frac{1}{2} \times 0.155
 <p>この <span class="arithmatex">\(L = 0.0775\)</span> という値が、現在のAIの「未熟さ」を表すスコアです。この値をゼロに近づける（＝猫の出力を1に、他を0に近づける）ようにパラメータを調整していくのが「学習」の正体です。</p>
 <h4 id="backpropagation">誤差逆伝播法（バックプロパゲーション：Backpropagation）</h4>
 <p>シグモイド関数やソフトマックス関数のように出力が滑らか（微分可能）になったおかげで、この損失 <span class="arithmatex">\(L\)</span> から、<strong>「どの重みを、どちらの方向に、どれだけ動かせば誤差 <span class="arithmatex">\(L\)</span> を減らせるか」</strong>を数学的に逆算できるようになりました。</p>
-<p>出力層で発生した誤差を、ネットワークの「逆向き（出力層 <span class="arithmatex">\(\rightarrow\)</span> 隠れ層 <span class="arithmatex">\(\rightarrow\)</span> 入力層）」に伝えながら、各層の重みとバイアスをドミノ倒しのように効率よく微修正していくアルゴリズムを<strong>誤差逆伝播法</strong>と呼びます。</p>
+<p>出力層で発生した誤差を、ネットワークの「逆向き（出力層 <span class="arithmatex">\(\rightarrow\)</span> 隠れ層 <span class="arithmatex">\(\rightarrow\)</span> 入力層）」に伝えながら、各層の重みとバイアスを効率よく微修正していくアルゴリズムを<strong>誤差逆伝播法</strong>と呼びます。</p>
 <ol>
 <li><strong>順伝播（Forward）</strong>：入力をモデルに通して予測値を計算し、損失 <span class="arithmatex">\(L\)</span> を求める。</li>
 <li><strong>逆伝播（Backward）</strong>：損失 <span class="arithmatex">\(L\)</span> を減らすための各パラメータの修正量（勾配）を後ろの層から順に計算する。</li>
@@ -2357,6 +2396,11 @@ L = \frac{1}{2} \left[ 0.09 + 0.0625 + 0.0025 \right] = \frac{1}{2} \times 0.155
 <h3 id="4-cnn">4. 畳み込みニューラルネットワーク（CNN）：画像認識のデファクトスタンダード</h3>
 <p>多層パーセプトロン（MLP）をそのまま画像解析に適用しようとすると、大きな問題が発生します。画像を1次元のベクトルに引き伸ばして入力する必要があるため、<strong>「ピクセル同士の上下左右の空間的な位置関係（局所構造）」が破壊されてしまう</strong>のです。また、全結合層では解像度が上がるとパラメータ数が爆発的に増加します。</p>
 <p>この課題を解決し、画像認識タスクにおいて圧倒的な性能を発揮するのが<strong>畳み込みニューラルネットワーク（CNN: Convolutional Neural Network）</strong>です。CNNは主に2つの特殊な層を交互に配置することで構成されます。</p>
+<figure>
+  <a class="glightbox" href="../img/13-08.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/13-08.png" alt="CNN" width="800" height="auto"></a>
+  <figcaption>CNNによる特徴量抽出と分類のパイプライン</figcaption>
+</figure>
+
 <h4 id="1-convolutional-layer">① 畳み込み層 (Convolutional Layer) ── 特徴の抽出</h4>
 <p>画像に対して「フィルタ（カーネル）」と呼ばれる小さな行列をスライドさせながら、局所的な積和演算（畳み込み演算）を行います。</p>
 <ul>
@@ -2367,22 +2411,17 @@ L = \frac{1}{2} \left[ 0.09 + 0.0625 + 0.0025 \right] = \frac{1}{2} \times 0.155
 <p><strong>層の深化による抽象化</strong>：浅い層では単純な直線や曲線を検出し、層が深くなるにつれて、それらが組み合わさった複雑な構造（形状や物体のパーツ）を抽象的な特徴マップとして捉えられるようになります。</p>
 </li>
 </ul>
-<h4 id="2-pooling-layer">② プーリング層 (Pooling Layer) ── 頑健性の獲得</h4>
-<p>特徴マップを一定の領域（例：<span class="arithmatex">\(2 \times 2\)</span> ピクセル）ごとに区切り、その中の最大値を取り出す（<strong>Max Pooling</strong>）などのダウンサンプリング処理を行います。</p>
-<ul>
-<li><strong>位置不変性の獲得</strong>：画像のサイズを小さくして情報の位置をあえて「あいまいに」することで、対象物の位置が多少ズレたり、拡大縮小したりしても、同じ特徴として頑健（ロバスト）に認識できるようになります。</li>
-</ul>
-<figure>
-  <a class="glightbox" href="../img/13-08.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/13-08.png" alt="CNN" width="800" height="auto"></a>
-  <figcaption>CNNによる特徴量抽出と分類のパイプライン</figcaption>
-</figure>
-
 <div style="text-align: center; margin: 20px 0;">
 <a href="../html/03/03-05.html" style="display: inline-block; padding: 12px 24px; background-color: #2563eb; color: white; text-decoration: none; border-radius: 6px; font-weight: bold;">
 <h4><strong>🔍【実習】 畳み込み</strong></h4>
 </a>
 </div>
 
+<h4 id="2-pooling-layer">② プーリング層 (Pooling Layer) ── 頑健性の獲得</h4>
+<p>特徴マップを一定の領域（例：<span class="arithmatex">\(2 \times 2\)</span> ピクセル）ごとに区切り、その中の最大値を取り出す（<strong>Max Pooling</strong>）などのダウンサンプリング処理を行います。</p>
+<ul>
+<li><strong>位置不変性の獲得</strong>：画像のサイズを小さくして情報の位置をあえて「あいまいに」することで、対象物の位置が多少ズレたり、拡大縮小したりしても、同じ特徴として頑健（ロバスト）に認識できるようになります。</li>
+</ul>
 <figure>
   <a class="glightbox" href="../img/13-07.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img src="../img/13-07.png" alt="CNN" width="800" height="auto"></a>
   <figcaption>max pooling</figcaption>
@@ -2606,7 +2645,7 @@ L = \frac{1}{2} \left[ 0.09 + 0.0625 + 0.0025 \right] = \frac{1}{2} \times 0.155
     <span class="md-icon" title="最終更新日">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年7月7日 02:52:11 UTC">2026年7月7日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年7月7日 03:03:40 UTC">2026年7月7日</span>
   </span>
 
     
