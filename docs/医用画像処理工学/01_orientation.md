@@ -75,7 +75,7 @@ In preparation...
 
 - [レポート課題提出用 Google form](https://forms.gle/a8qDNYxGinsVLKZz8)
 
-分量は、課題1を除き課題1つ当たりA4 1ページ以内とする。<font color="red">**締め切りは7月30日18時まで** </font>。
+分量は、課題1を除き課題1つ当たりA4 1ページ以内とする。<font color="red">**締め切りは7月31日18時まで** </font>。
 
 ※ 2つ以上の課題に取り組んでいただいた場合は加点されます。
 
