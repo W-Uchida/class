@@ -2,8 +2,8 @@
 
 ## 講義資料
 以下のプレビューから講義スライドを閲覧できます。
-
-<iframe src="https://drive.google.com/file/d/1UX19lv_NtY6agJLzft_gNXJosiNJpVDA/view?usp=sharing" width="100%" height="600px" allow="autoplay"></iframe>
+<!-- /Users/uchidawataru/Library/CloudStorage/GoogleDrive-syutucchi10@gmail.com/マイドライブ/GoogleForm/0_授業/2025/医用画像処理工学/15_mri_research/第15回_医用画像処理工学.pdfを閲覧。 -->
+<iframe src="https://drive.google.com/file/d/1UX19lv_NtY6agJLzft_gNXJosiNJpVDA/preview?usp=sharing" width="100%" height="600px" allow="autoplay"></iframe>
 
 
 ## Google Colab実習
